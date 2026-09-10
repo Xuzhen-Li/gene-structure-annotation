@@ -7,6 +7,7 @@ This repo is the agent skill and notes for BRAKER3, GALBA, and GeMoMa on new pla
 This is not TE curation. EDTA libraries live in [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
 This is not synteny or collinearity. That line is [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny).
 This is not a pangenome graph. That line is [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome).
+This is not last-mile manual curation. That line is [vitis-gene-annotation](https://github.com/Xuzhen-Li/vitis-gene-annotation).
 
 - Not an EDTA / TE-library repo
 - Not a GENESPACE / SyRI repo
@@ -27,6 +28,7 @@ No unpublished genotypes, private coordinates, or sample-level matrices.
 - [vitis-te](https://github.com/Xuzhen-Li/vitis-te) — EDTA to curated TE libraries
 - [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny) — GENESPACE / SyRI / collinearity
 - [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome) — graphs, PAV, mixed-variant / dosage
+- [vitis-gene-annotation](https://github.com/Xuzhen-Li/vitis-gene-annotation) — last-mile QC / GSAman curation after the draft
 - [bioinfo-agent-skills](https://github.com/Xuzhen-Li/bioinfo-agent-skills) — index; install from this sibling, not the index
 
 ## Install
