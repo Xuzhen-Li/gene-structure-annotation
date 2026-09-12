@@ -1,0 +1,5 @@
+# Alternate weights for S1 (BRAKER + GeMoMa/Liftoff), no PASA
+ABINITIO_PREDICTION	BRAKER	5
+OTHER_PREDICTION	GeMoMa	8
+OTHER_PREDICTION	Liftoff	7
+TRANSCRIPT	stringtie_or_pasa	10

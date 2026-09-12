@@ -1,45 +1,57 @@
 # gene-structure-annotation
 
-Formerly `plant-gene-annotation`. Biology-general structure spine (plant engines remain primary worked examples).
+**Main product: structural gene annotation** — genome → qualified GFF + proteins.
 
-This repo is the agent skill and notes for BRAKER3, GALBA, and GeMoMa on new genome assemblies (plant engines are the worked examples).
+Biology-general teaching / METHODS playbook (not grape-only, not plant-only). Plant engines (BRAKER / GALBA / GeMoMa) are the richest worked examples; set BUSCO lineage, OrthoDB partition, and soft-mask libraries for your clade. Formerly `plant-gene-annotation`.
 
-## This is not
+Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation).
 
-This is not TE curation. EDTA libraries live in [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
-This is not synteny or collinearity. That line is [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny).
-This is not a pangenome graph. That line is [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome).
-Gene **structure** (models) playbook. Functional annotation is [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
+| Doc | |
+|-----|--|
+| **[`docs/PLAYBOOK.md`](docs/PLAYBOOK.md)** | End-to-end spine + qualification checklist |
+| **[`docs/steps/MAIN.md`](docs/steps/MAIN.md)** | Branch pick S1–S14 |
+| **[`docs/SCENARIOS.md`](docs/SCENARIOS.md)** | Scenario recipes |
+| **[`docs/DETAILED_GUIDE.md`](docs/DETAILED_GUIDE.md)** | Copy-paste steps |
+| [`docs/steps/dclab/`](docs/steps/dclab/) | S14 EVM / PASA path |
+| [`docs/AI_ASSIST.md`](docs/AI_ASSIST.md)| Co-pilot prompts / checks |
+| [`docs/TOOLS.md`](docs/TOOLS.md) | Tool index |
+| [`config/example.env`](config/example.env) | Paths / threads / lineages |
 
-- Not an EDTA / TE-library repo
-- Not a GENESPACE / SyRI repo
-- Not a substitute for the skills index
+## Inputs → outputs
 
-## What will land later
+| | What |
+|--|------|
+| **In** | Genome FASTA (+ RNA BAM and/or proteins; TE lib) |
+| **Out (primary)** | Curated / qualified GFF + `proteins.faa` + METHODS |
+| **Next** | Hand proteins to [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) for F1 FA |
 
-Methods, scripts, and notes only.
+## Default line
 
-- BRAKER3 / GALBA / GeMoMa choice notes
-- Softmask and evidence-input checklists
-- Plant-specific annotation traps
+```text
+Asm0 → Asm1 → A0 soft-mask
+  → pick ONE branch (default S1 if RNA+proteins)
+  → merge / AGAT → proteins → BUSCO (+ PSAURON)
+  → GSAman depth by scenario → qualify → release
+```
 
-No unpublished genotypes, private coordinates, or sample-level matrices.
-
-## See also
-
-- [vitis-te](https://github.com/Xuzhen-Li/vitis-te) — EDTA to curated TE libraries
-- [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny) — GENESPACE / SyRI / collinearity
-- [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome) — graphs, PAV, mixed-variant / dosage
-- [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) — functional annotation after models exist
-- [bioinfo-agent-skills](https://github.com/Xuzhen-Li/bioinfo-agent-skills) — index; install from this sibling, not the index
-
-## Install
+Unsure? **S1** (RNA + proteins → BRAKER4/3 ± GeMoMa/Liftoff → EVM).  
+No usable RNA? **S2**. Deep Iso-seq? **S3**. Classic PASA→EVM? **S14** (`docs/steps/dclab/`).
 
 ```bash
 git clone https://github.com/Xuzhen-Li/gene-structure-annotation.git
-cp -R gene-structure-annotation/skills/gene-structure-annotation ~/.cursor/skills/
+cd gene-structure-annotation
+cp config/example.env config/local.env   # set GENOME_FA, BUSCO_LINEAGE, evidence paths
+# docs/PLAYBOOK.md → docs/SCENARIOS.md (one branch) → release checklist
 ```
 
-MIT. Unpublished genotypes and private coordinates do not belong here.
+## This is not
+
+- Not functional annotation — [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)
+- Not TE-only — species TE lib (grape example: [vitis-te](https://github.com/Xuzhen-Li/vitis-te))
+- Not graphs / synteny — [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome), [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny)
+
+No private FASTQ/BAM in git.
+
+**Agent skill:** `skills/gene-structure-annotation/` (optional Cursor skill install).
 
 **Author:** Xuzhen Li · [ORCID](https://orcid.org/0000-0003-3670-6657)

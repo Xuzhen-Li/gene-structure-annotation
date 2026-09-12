@@ -1,59 +1,62 @@
 ---
 name: gene-structure-annotation
 description: >
-  Eukaryotic gene prediction for new plant assemblies.
-  Use when running BRAKER3, GALBA, GeMoMa, RepeatMasker
-  softmask, or OrthoDB Viridiplantae protein hints.
+  Use this when predicting gene models on a new genome assembly
+  (BRAKER / GALBA / GeMoMa / Liftoff / EVM), soft-masking repeats,
+  or choosing structural-annotation evidence branches.
 ---
 
 # gene-structure-annotation
 
 Evidence dominates algorithm. A pretty BUSCO score on a TE-stuffed GFF is not an annotation.
 
+Canonical playbook: this repository (`docs/PLAYBOOK.md`, `docs/steps/MAIN.md`).  
+Functional annotation after proteins exist: `gene-function-annotation`.
+
 ## Tool defaults
 
 | Evidence you actually have | First tool |
 |----------------------------|------------|
-| RNA-seq + proteins | BRAKER3, smallest OrthoDB partition that contains the clade |
+| RNA-seq + proteins | BRAKER4/3 (or BRAKER3), OrthoDB partition for the clade |
 | Proteins only, close relatives | GALBA |
-| Project a close annotated genome | GeMoMa |
-| TE library for this assembly | see `vitis-te`; soft-mask first |
+| Project a close annotated genome | GeMoMa / Liftoff / LiftOn |
+| TE library for this assembly | soft-mask first (species TE lib); never hard-mask to N before ab initio |
 
-OrthoDB partition: Viridiplantae or eudicots. Not all Metazoa. Not "the biggest protein set".
+OrthoDB / protein hints: use the **smallest partition that contains the clade**. Not "all Metazoa" for a plant; not "all plants" if a tighter set exists.
 
 ## Order
 
-1. Soft-mask repeats (`vitis-te` curated lib). Hard-mask destroys exons.
-2. Filter the TE lib so NLR / R-genes are not in it.
-3. Run BRAKER3 / GALBA / GeMoMa from the table above.
-4. Keep one representative isoform for counts; do not pretend you have UTRs if the GFF has none.
-5. Sanity-check gene number, length, and BUSCO against a near relative + ploidy.
+1. Asm QC gate (genome BUSCO / contiguity).
+2. Soft-mask repeats. Hard-mask destroys exons.
+3. Keep genes (e.g. NLR / immune / multi-copy defense) **out** of the TE lib when that matters for the clade.
+4. Pick **one** branch (S1–S14); default S1 if RNA + proteins.
+5. Merge → AGAT → representative proteins → protein BUSCO (+ PSAURON / OMArk as needed).
+6. GSAman / priority curation depth by scenario → qualify → release GFF + proteins.
+7. Hand `proteins.faa` to `gene-function-annotation` for FA.
 
-## Plant traps
+## Common traps
 
 | Trap | What it looks like | What it is |
 |------|--------------------|------------|
-| TE ORFs as genes | extra 10–40k "genes" | unmasked LTR / Helitron ORFs |
-| One isoform, no UTRs | mRNA:gene == 1 | normal for ab initio; not a transcriptome |
-| NLR tandem merge/split | one huge gene or shredded cluster | predictor cannot see array boundaries |
+| TE ORFs as genes | extra tens of k "genes" | unmasked repeat ORFs |
+| One isoform, no UTRs | mRNA:gene ≈ 1 | normal for ab initio |
+| Tandem merge/split | one huge gene or shredded cluster | predictor cannot see array boundaries |
 | High BUSCO-D | "haplotigs leftover" | often real WGD / heterozygous pairs |
-| Over-masking | missing multi-copy defense genes | NLR/R-genes were in the TE lib |
+| Over-masking | missing multi-copy genes | those proteins were in the TE lib |
 
 ## Sanity
 
-- Gene count vs nearest relative, scaled by ploidy — not vs human, and not vs Arabidopsis if the species is a recent polyploid.
-- Mono-exonic fraction: plants have many real single-exon genes. Do not apply vertebrate mono-exonic cutoffs.
-- Protein-length histogram should be unimodal around the clade mean. A second spike at ~100 aa is usually TE fragments.
-- BUSCO-C high + gene count 2× relative → check ploidy / haplotigs before you purge.
+- Gene count vs nearest relative, scaled by ploidy.
+- Mono-exonic fraction: many clades have real single-exon genes — do not apply the wrong kingdom’s cutoffs.
+- Protein-length histogram: a spike at ~100 aa is often TE fragments.
+- BUSCO-C high + gene count ~2× relative → check ploidy / haplotigs before you purge.
 
 ## Red lines
 
-- Do not hard-mask a plant genome and then run a gene predictor.
-- Do not feed OrthoDB Metazoa (or "all proteins") to a Vitis BRAKER3 run.
-- Do not put NLR / R-gene proteins into the RepeatMasker library.
-- Do not interpret mRNA:gene == 1 as a failed annotation.
+- Do not hard-mask then run a gene predictor.
+- Do not feed the wrong OrthoDB kingdom to BRAKER.
+- Do not put clade-critical multi-copy gene proteins into the RepeatMasker library without review.
+- Do not interpret mRNA:gene ≈ 1 as a failed annotation by itself.
 - Do not call high BUSCO-D haplotig error without a ploidy / WGD check.
 
-Related: `vitis-te`, `vitis-synteny`, `vitis-pangenome`.
-
-Adapted from GPTomics/bioSkills (MIT); rewritten for plants/Vitis.
+Related: `gene-function-annotation`, species TE / synteny / pangenome playbooks as needed.

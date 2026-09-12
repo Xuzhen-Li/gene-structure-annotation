@@ -1,0 +1,8 @@
+# Default weights from CantuLab AnnotationPipeline2-EVM_based-DClab step 07
+# Use when PASA / Iso-Seq evidence is strong (scenario S14).
+ABINITIO_PREDICTION	AUGUSTUS	9
+ABINITIO_PREDICTION	GeneMark.hmm3	9
+TRANSCRIPT	gmap	7
+TRANSCRIPT	BLAT	6
+TRANSCRIPT	PASA_assemblies	20
+OTHER_PREDICTION	PASA_transdecoder	25
