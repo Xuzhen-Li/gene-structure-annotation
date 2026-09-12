@@ -1,12 +1,12 @@
 ---
-name: plant-gene-annotation
+name: gene-structure-annotation
 description: >
   Eukaryotic gene prediction for new plant assemblies.
   Use when running BRAKER3, GALBA, GeMoMa, RepeatMasker
   softmask, or OrthoDB Viridiplantae protein hints.
 ---
 
-# plant-gene-annotation
+# gene-structure-annotation
 
 Evidence dominates algorithm. A pretty BUSCO score on a TE-stuffed GFF is not an annotation.
 
