@@ -14,3 +14,8 @@ Functional tools: [gene-function-annotation](https://github.com/Xuzhen-Li/gene-f
 | [GSAman](https://github.com/CJ-Chen/GSAman) | Last-mile curation |
 | EDTA · RepeatMasker · ProtExcluder | Soft-mask |
 | AGAT · BUSCO · OMArk · compleasm · PSAURON | QC |
+
+| [Helixer](https://github.com/weberlab-hhu/Helixer/) | AI ab initio (S13) |
+| [Tiberius](https://github.com/Gaius-Augustus/Tiberius) | AI ab initio (S13-class) |
+| [ANNEVO](https://github.com/xjtu-omics/ANNEVO) | Kai Ye lab AI ab initio (non-commercial) |
+| MAKER2 | High-citation alternate full stack |

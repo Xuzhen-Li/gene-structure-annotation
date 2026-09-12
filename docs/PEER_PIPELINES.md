@@ -50,6 +50,39 @@ Functional FA after proteins: [gene-function-annotation](https://github.com/Xuzh
 - Genome Research 2025 comparative annotation essay (tree-of-life liftoff / TOGA / BRAKER patterns).  
 - **Our mapping:** teaching parallels; does not replace our S-branch table.
 
+
+
+## Mainstream / high-citation stacks
+
+| Peer | Why it matters | Our hook |
+|------|----------------|----------|
+| **MAKER2** | BMC Bioinformatics 2011; decades of genome papers; AED QC | Alternate full stack; [`notes/maker2.md`](notes/maker2.md) |
+| **AUGUSTUS · GeneMark · SNAP** | Classic ab initio engines inside BRAKER/MAKER | [`notes/classic_abinitio.md`](notes/classic_abinitio.md) |
+| **EVM · PASA** | Haas consensus + transcript polish | **S14** `docs/steps/dclab/` |
+| **NCBI EGAPx** | Institutional eukaryotic annotation | Optional S8-class peer (`pipeline/A2d_egapx_optional.md`) |
+| **StringTie + aligners** | Standard RNA evidence path | S1 inputs |
+
+Do not replace the default S1 spine with MAKER unless the lab already standardizes on it.
+
+## AI-driven ab initio
+
+| Peer | Venue / lab | Our hook |
+|------|-------------|----------|
+| **Helixer** | *Nat Methods* 2025; Usadel/Weber | **S13**; [`notes/helixer.md`](notes/helixer.md) |
+| **Tiberius** | *Bioinformatics* 2024 (+ multi-clade); Stanke/Hoff | S13-class peer; [`notes/tiberius.md`](notes/tiberius.md) |
+| **ANNEVO** | Kai Ye 叶凯 / XJTU `xjtu-omics`; genomic MoE LM | S13-class peer; [`notes/annevo.md`](notes/annevo.md) |
+
+**Rule:** AI drafts are evidence-light starts. Soft-mask first; still run protein BUSCO / PSAURON; when RNA+proteins exist, prefer **S1 BRAKER** and treat AI GFFs as comparison tracks (or EVM inputs with low–medium weight), not automatic truth.
+
+## Kai Ye group (叶凯 / XJTU-omics)
+
+| Tool | Role |
+|------|------|
+| **ANNEVO** | Primary gene-structure contribution for this playbook (ab initio LM). See [`notes/annevo.md`](notes/annevo.md). |
+| Other XJTU-omics tools (assembly / SV / T2T helpers) | Out of scope here unless they emit GFF gene models; link from assembly notes if needed. |
+
+License caution: ANNEVO is **non-commercial** — keep that explicit in METHODS and redistributed recipes.
+
 ## Still thin / watchlist (not yet fleshed)
 
 | Idea | Why interesting |
@@ -58,6 +91,7 @@ Functional FA after proteins: [gene-function-annotation](https://github.com/Xuzh
 | FINDER | RNA+homology combiner (BRAKER3 paper compares) |
 | Earl Grey / EDTA-class TE | Soft-mask peers beyond EDTA |
 | Mycotools | Fungal comparative DB / GFF ops (not a predictor) |
+| More Ye-lab GFF emitters | Only if they publish gene-model tools beyond ANNEVO |
 
 ## How to use this list
 

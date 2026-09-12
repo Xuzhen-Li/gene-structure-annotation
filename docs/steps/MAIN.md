@@ -33,7 +33,7 @@ Raw reads
 | **S10** | TE gene inflation | Remask → re-enter draft |
 | **S11** | Quick IDs | Liftoff / LiftOn (vertebrates: consider TOGA2) provisional |
 | **S12** | Stop rules | Freeze when stable |
-| **S13** | GPU Helixer path | Helixer + Mikado |
+| **S13** | GPU / AI ab initio | Helixer / Tiberius / ANNEVO (± Mikado); compare to S1 when evidence exists |
 | **S14** | EVM consensus (PASA→EVM→polish) | PASA → Augustus/GeneMark → EVM → PASA polish → filter → rename |
 
 Recipes: [`../SCENARIOS.md`](../SCENARIOS.md).  
@@ -42,3 +42,5 @@ Commands spine: [`../DETAILED_GUIDE.md`](../DETAILED_GUIDE.md).
 AI co-pilot: [`../AI_ASSIST.md`](../AI_ASSIST.md).
 
 Peer stacks (GALBA2 / TOGA2 / funannotate2): [`../PEER_PIPELINES.md`](../PEER_PIPELINES.md).
+
+AI ab initio notes: [`../notes/helixer.md`](../notes/helixer.md), [`../notes/tiberius.md`](../notes/tiberius.md), [`../notes/annevo.md`](../notes/annevo.md) (Kai Ye / 叶凯).
