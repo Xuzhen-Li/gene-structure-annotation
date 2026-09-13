@@ -4,6 +4,8 @@
 
 Biology-general spine (eukaryotes). *Vitis* / PN40024 / plant-only tools in linked notes are examples or optional modules.
 
+**New here:** [`QUICKSTART.md`](QUICKSTART.md) · [`STAGE_IO.md`](STAGE_IO.md).
+
 **Main spine:** [`steps/MAIN.md`](steps/MAIN.md). **AI assist:** [`AI_ASSIST.md`](AI_ASSIST.md). **S14:** [`steps/dclab/`](steps/dclab/).
 
 **Tool how-tos:** [`TOOLS.md`](TOOLS.md).

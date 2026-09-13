@@ -1,5 +1,7 @@
 # gene-structure-annotation
 
+> **New here?** Start with [`docs/QUICKSTART.md`](docs/QUICKSTART.md) (run + understand) and [`docs/STAGE_IO.md`](docs/STAGE_IO.md) (what each step produces).
+
 **Main product: structural gene annotation** — genome → qualified GFF + proteins.
 
 Biology-general teaching / METHODS playbook (not grape-only, not plant-only). Plant engines (BRAKER / GALBA / GeMoMa) are the richest worked examples; set BUSCO lineage, OrthoDB partition, and soft-mask libraries for your clade. Formerly `plant-gene-annotation`.
@@ -8,6 +10,8 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 
 | Doc | |
 |-----|--|
+| **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — run default S1 and learn each product |
+| [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | Every stage: inputs → outputs → how to check |
 | **[`docs/PLAYBOOK.md`](docs/PLAYBOOK.md)** | End-to-end spine + qualification checklist |
 | **[`docs/steps/MAIN.md`](docs/steps/MAIN.md)** | Branch pick S1–S14 |
 | **[`docs/SCENARIOS.md`](docs/SCENARIOS.md)** | Scenario recipes |

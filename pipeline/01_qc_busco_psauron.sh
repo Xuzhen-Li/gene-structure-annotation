@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Protein-set completeness (BUSCO) + coding-likelihood scores (PSAURON).
 # Pattern from GSAman Methods (Chen et al. 2026 The Innovation).
+# Produces: BUSCO_OUT summary + PSAURON_TSV.
+# See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
 
 : "${WORK_DIR:?}"

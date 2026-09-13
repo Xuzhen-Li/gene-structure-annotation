@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Structural QC with AGAT (NBISweden/AGAT) — before and after merge/curation.
+# Produces: AGAT_OUT counts/stats for a GFF (genes / mRNA / CDS).
+# See: docs/STAGE_IO.md
 set -euo pipefail
 
 : "${WORK_DIR:?}"

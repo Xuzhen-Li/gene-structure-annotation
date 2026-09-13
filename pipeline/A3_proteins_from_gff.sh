@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Build a representative protein FASTA from draft (or curated) GFF for BUSCO/PSAURON.
+# Produces: PROTEINS_FA (representative translations for BUSCO / FA).
+# See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
 
 : "${GENOME_FA:?unmasked or soft-masked genome OK for gffread CDS}"
