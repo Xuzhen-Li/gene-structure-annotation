@@ -1,6 +1,7 @@
 # Case: *Vitis* T2T assembly → publication-grade structure (S1 engine + S5 bar)
 
 **Status:** delivery template (fill bracketed metrics with *your* run).  
+**Honest scope:** this repo’s `pipeline/*.sh` helpers often **print** cluster commands (BRAKER/EVM/OMArk) rather than execute opaque black boxes — you still run the printed lines under your modules.  
 **Audience:** someone who must ship a non-provisional GFF + proteins for a grapevine (or close *Vitis*) **T2T / near-T2T** genome.  
 **Not this case:** liftoff-only cultivar draft (that is **S11**, provisional) · FA/GO tables (sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)).
 
@@ -12,6 +13,7 @@
 | Scenario stubs | [`../SCENARIOS.md`](../SCENARIOS.md) S1 + S5 |
 | Stage meanings | [`../STAGE_IO.md`](../STAGE_IO.md) |
 | Error tags | [`../ERROR_CLASSES.md`](../ERROR_CLASSES.md) |
+| Release checklist | [`../PLAYBOOK.md`](../PLAYBOOK.md) |
 
 ---
 
@@ -83,6 +85,7 @@ PSAURON_TSV="$WORK_DIR/qc/psauron.tsv"
 PRIORITY_TSV="$WORK_DIR/qc/priority_r1.tsv"
 AGAT_OUT="$WORK_DIR/agat"
 OMARK_OUT="$WORK_DIR/qc/omark"
+COMPLEASM_LINEAGE="eudicots"            # A5b compleasm pack name
 CURATED_GFF="$WORK_DIR/curated/curated.gff3"
 RELEASE_TAG="VitisT2T.structure.v1"
 ```
@@ -126,10 +129,12 @@ Follow [`../DETAILED_GUIDE.md`](../DETAILED_GUIDE.md) Steps 1–4. Condensed che
 ### 3.1 Primary draft (BRAKER4/3)
 
 ```bash
-# Prefer BRAKER4 ETP — docs/tools/braker4.md
-# Fallback prints classic command:
+# Prefer BRAKER4 ETP — docs/tools/braker4.md / DETAILED_GUIDE Step 5
+# A2_run_draft.sh PRINTS a braker.pl template — run that output (or BRAKER4) on your cluster,
+# then copy/link the resulting GFF/GTF to DRAFT_GFF:
 DRAFT_ENGINE=braker3 bash pipeline/A2_run_draft.sh
-# Point DRAFT_GFF at the BRAKER GFF/GTF you keep as primary
+# After BRAKER finishes:
+#   cp "$WORK_DIR/draft/braker3/braker.gff3" "$DRAFT_GFF"   # path may vary by BRAKER version
 ```
 
 | Produce | Check |
@@ -142,7 +147,14 @@ DRAFT_ENGINE=braker3 bash pipeline/A2_run_draft.sh
 ```bash
 # Example — adjust to your modules
 stringtie "$RNA_BAM" -o "$WORK_DIR/draft/stringtie.gtf" -p "$THREADS"
-# TransDecoder / ORF call per your lab SOP → keep as COMPARE track only
+# Optional isoform compare counts (Copetti habit):
+# bash pipeline/A5d_stage_counts.sh "$WORK_DIR/draft/braker3/braker.gtf" "$WORK_DIR/draft/stringtie.gtf"
+#
+# ORF track (compare only) — classic TransDecoder longOrfs + predict on StringTie transcripts:
+#   gffread stringtie.gtf -g "$GENOME_FA" -w "$WORK_DIR/draft/stringtie.transcripts.fa"
+#   TransDecoder.LongOrfs -t "$WORK_DIR/draft/stringtie.transcripts.fa"
+#   TransDecoder.Predict  -t "$WORK_DIR/draft/stringtie.transcripts.fa"
+# Keep TD GFF/PEP under draft/compare/ — do NOT overwrite DRAFT_GFF with it for S5 primary.
 ```
 
 Record in METHODS: StringTie(+TD) was **compare**, not silent replace of BRAKER (Freedman & Sackton 2025; [`../REVIEWS.md`](../REVIEWS.md)).
@@ -159,7 +171,9 @@ bash pipeline/A5_agat_stats.sh "$DRAFT_GFF_B"
 ### 3.4 Merge
 
 ```bash
+# A4 prints an EVM/TSEBRA recipe for your inputs — execute that recipe, then set MERGED_GFF
 MERGE_MODE=evm bash pipeline/A4_merge_sets.sh
+# After EVM finishes, point MERGED_GFF at EVM.all.gff3 (or your merge output)
 bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
 ```
 
@@ -175,7 +189,10 @@ bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
 ```bash
 DRAFT_GFF="$MERGED_GFF" bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
-bash pipeline/A5b_omark_compleasm.sh          # S5 mandatory
+# S5 mandatory OMArk: A5b prints OMAmer/OMArk lines and needs your clade .h5 DB wired.
+# Compleasm runs if installed (COMPLEASM_LINEAGE). Save all tables under $WORK_DIR/qc/.
+bash pipeline/A5b_omark_compleasm.sh
+# Then actually run the printed omark/omamer commands; waiver ≠ S5 delivery.
 ```
 
 | Artifact | Where | METHODS must say |
@@ -231,10 +248,23 @@ Tag every edit with [`../ERROR_CLASSES.md`](../ERROR_CLASSES.md). Export → upd
 
 Build `priority_rounds/priority_r2.tsv` as the **union** of:
 
-1. Remaining round-1 opens  
-2. All **fragmented** BUSCO orthologs from protein BUSCO  
-3. Genome-wide **tandem array** neighborhoods (NLR / stilbene / known clusters)  
-4. OMArk inconsistent / missing family signals you trust  
+1. Remaining round-1 opens (`round1_notes.md` status=open)  
+2. All **fragmented** BUSCO orthologs from protein BUSCO (`full_table.tsv` / missing+fragmented IDs → gene IDs via your ID map)  
+3. Genome-wide **tandem array** neighborhoods (NLR / stilbene / known clusters) — feed `02_priority_loci.py --families gene_id\tfamily.tsv --boost-families NLR,stilbene,RGA,NBS` on a fresh PSAURON pass after round-1 GFF edits  
+4. OMArk inconsistent / missing family signals you trust (from `$OMARK_OUT`)  
+
+Practical pattern:
+
+```bash
+# After round-1 GFF edits → refresh proteins + PSAURON, then:
+python3 pipeline/02_priority_loci.py \
+  -i "$PSAURON_TSV" \
+  -o "$WORK_DIR/priority_rounds/priority_r2_psauron.tsv" \
+  --threshold 90 \
+  --families "$WORK_DIR/priority_rounds/families.tsv"
+# Manually merge fragmented-BUSCO + OMArk IDs into priority_r2.tsv (column: gene_id, reason)
+# Keep the merge recorded in priority_rounds/priority_r2_build.md
+```
 
 ### 6.2 Second GSAman pass
 
@@ -265,12 +295,21 @@ bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
 bash pipeline/A5_agat_stats.sh "$CURATED_GFF"
 
+# Validate coordinates vs genome (fail release if this errors)
+gffread "$CURATED_GFF" -g "$GENOME_FA" -V   # or: agat_sp_validate.sh / agat levels check
+
 REL="$WORK_DIR/release/$RELEASE_TAG"
-mkdir -p "$REL/qc" "$REL/priority_rounds"
+mkdir -p "$REL/qc/asm1" "$REL/priority_rounds"
 cp "$CURATED_GFF" "$REL/${RELEASE_TAG}.gff3"
 cp "$PROTEINS_FA" "$REL/${RELEASE_TAG}.faa"
 cp -r "$WORK_DIR/qc/." "$REL/qc/" 2>/dev/null || true
+# Asm1 lived under asm/ — include it in the delivery bundle
+cp -r "$WORK_DIR/asm/." "$REL/qc/asm1/" 2>/dev/null || true
 cp -r "$WORK_DIR/priority_rounds/." "$REL/priority_rounds/"
+cp "$WORK_DIR/methods_scratch/asm1_bar.md" "$REL/qc/asm1_bar.md" 2>/dev/null || true
+# Write METHODS from §7.2 into:
+#   "$REL/METHODS.md"
+ls -la "$REL"
 ```
 
 ### 7.1 Qualification checklist (all required)
@@ -357,3 +396,22 @@ Do not claim GO in the structure GFF unless you explicitly built write-back (not
 5. Is `provisional` absent from METHODS?  
 
 If any answer is no → **not deliverable** under this case.
+
+---
+
+## 11. Self-audit (maintainers)
+
+Last checked against repo helpers on 2026-09-13:
+
+| Claim in this case | Repo reality | Mitigation in this doc |
+|--------------------|--------------|------------------------|
+| `A2_run_draft.sh` “runs BRAKER” | Prints `braker.pl` template | §3.1 says print → run → copy to `DRAFT_GFF` |
+| `A4_merge_sets.sh` “merges” | Prints EVM/TSEBRA recipe | §3.4 same honesty |
+| `A5b` “runs OMArk” | Prints OMAmer/OMArk; Compleasm may run | §4 requires executing printed OMArk; waiver ≠ S5 |
+| StringTie+TD | No single wrapper script | §3.2 gives explicit example commands |
+| Priority round 2 | No auto-union script | §6.1 pattern + manual merge log |
+| Release bundle | Easy to forget Asm1 + METHODS | §7 copies `asm/` → `qc/asm1/` and calls out `METHODS.md` |
+| `02_priority_loci.py -i` | OK (`--psauron`) | unchanged |
+| Paths cited (braker4, A2c, weights, …) | Present in tree | verified |
+
+**Still not automated (acceptable for a METHODS playbook):** full BRAKER/EVM containers, OMAmer DB install, GSAman GUI clicks, automatic BUSCO-fragment→gene_id mapping. Those remain operator steps — listed so delivery cannot pretend otherwise.
