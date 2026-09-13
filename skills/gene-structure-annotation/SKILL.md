@@ -60,3 +60,7 @@ OrthoDB / protein hints: use the **smallest partition that contains the clade**.
 - Do not call high BUSCO-D haplotig error without a ploidy / WGD check.
 
 Related: `gene-function-annotation`, species TE / synteny / pangenome playbooks as needed.
+
+## Evidence chooser (Ji NRG 2026)
+
+Close curated reference → S11 liftover first. RNA+proteins → S1 (+ StringTie compare). Proteins only → S2. Iso-seq/EviAnn → S3. GPU ab initio → S13 compare. Function → sibling gene-function-annotation, not an S-branch. See `docs/REVIEWS.md`.

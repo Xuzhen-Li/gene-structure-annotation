@@ -17,11 +17,23 @@ Raw reads
   → qualify → release
 ```
 
+
+## Evidence chooser (before you pick an ID)
+
+Same logic as Ji *NRG* 2026 + Freedman *GR* 2025 — full notes in [`../REVIEWS.md`](../REVIEWS.md):
+
+1. **Close curated reference?** → start at **S11** (Liftoff / LiftOn / CAT; vertebrates + WGA: TOGA2). Fill gaps with S1/S2, do not ignore liftover.
+2. **RNA + proteins, no close ref?** → **S1** (BRAKER4/3). Always keep a **StringTie→TransDecoder** compare set when RNA exists.
+3. **Proteins only?** → **S2** (GALBA/GALBA2).
+4. **Deep Iso-seq / evidence-only CDS?** → **S3** (± EviAnn).
+5. **GPU ab initio compare / thin evidence?** → **S13** (never a silent replace of S1 when evidence exists).
+6. **Function (GO/KEGG/names)?** → stop structure release, then sibling FA repo — not an S-branch.
+
 ## Branch pick (main flowchart node)
 
 | ID | When | Draft / merge core |
 |----|------|--------------------|
-| **S1** | RNA + proteins | **BRAKER4 ETP** (or BRAKER3) + GeMoMa/Liftoff → EVM |
+| **S1** | RNA + proteins (no close curated ref) | **BRAKER4 ETP** (or BRAKER3) + GeMoMa → EVM; **StringTie→TransDecoder** compare |
 | **S2** | No usable RNA | GALBA/**GALBA2**/GeMoMa + Liftoff → EVM |
 | **S3** | Deep Iso-seq / evidence-first | IsoQuant→SQANTI3 (± EviAnn) backbone + BRAKER orphans |
 | **S4** | Multi-hap | After S1/S3: Liftoff + SynGAP |
@@ -31,7 +43,7 @@ Raw reads
 | **S8** | NCBI compare | Parallel EGAPx |
 | **S9** | High BUSCO-D | Annotate haps / don’t purge blind |
 | **S10** | TE gene inflation | Remask → re-enter draft |
-| **S11** | Quick IDs | Liftoff / LiftOn (vertebrates: consider TOGA2) provisional |
+| **S11** | Close curated reference (Ji: prefer liftover first) | **Liftoff / LiftOn / CAT** (± TOGA2 if WGA); provisional until QC |
 | **S12** | Stop rules | Freeze when stable |
 | **S13** | GPU / AI ab initio | Helixer / Tiberius / ANNEVO / OrionGeno (± Mikado); compare to S1 when evidence exists |
 | **S14** | EVM consensus (PASA→EVM→polish) | PASA → Augustus/GeneMark → EVM → PASA polish → filter → rename |
@@ -43,7 +55,7 @@ AI co-pilot: [`../AI_ASSIST.md`](../AI_ASSIST.md).
 
 Peer stacks (GALBA2 / TOGA2 / funannotate2): [`../PEER_PIPELINES.md`](../PEER_PIPELINES.md).
 
-Reviews / decision tree: [`../REVIEWS.md`](../REVIEWS.md) (Freedman & Sackton 2025; when RNA exists, compare **StringTie→TransDecoder**).
+Reviews / decision tree: [`../REVIEWS.md`](../REVIEWS.md) (Ji *NRG* 2026 + Freedman *GR* 2025).
 
 AI ab initio notes: [`../notes/helixer.md`](../notes/helixer.md), [`../notes/tiberius.md`](../notes/tiberius.md), [`../notes/annevo.md`](../notes/annevo.md) (Kai Ye / 叶凯).
 

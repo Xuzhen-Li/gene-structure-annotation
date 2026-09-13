@@ -58,11 +58,10 @@ Provisional releases (S6, S11) must say `status=provisional` in METHODS.
 ## How to use the branches
 
 1. Finish **Asm0 → Asm1 → A0**.  
-2. Pick **one** scenario in [`SCENARIOS.md`](SCENARIOS.md).  
-3. Follow that scenario’s numbered steps to a merged draft.  
+2. Run the **evidence chooser** ([`README.md`](../README.md#evidence--branch-chooser) or [`steps/MAIN.md`](steps/MAIN.md)): close ref → **S11**; else RNA+proteins → **S1**; proteins only → **S2**; Iso-seq/EviAnn → **S3**; GPU compare → **S13**.  
+3. Open **one** scenario in [`SCENARIOS.md`](SCENARIOS.md) and follow it to a merged draft.  
 4. Rejoin spine at **A3 → 01 → 02 → 04 → 06**.  
-5. Tick the qualification checklist above.
+5. Tick the qualification checklist above.  
+6. Hand proteins to [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) for FA (second layer).
 
-Default if unsure: **S1** (RNA + proteins → BRAKER4/3).
-
-When RNA exists, also keep a **StringTie → TransDecoder** compare set (GR 2025 top performer). WGA+close reference → consider **TOGA2** (check monocot BUSCO). Thin evidence / GPU → **S13**. Traceable evidence-only → **EviAnn** under **S3**.
+Default if unsure and you have RNA+proteins: **S1** (BRAKER4/3) **plus** StringTie→TransDecoder compare. Close curated reference: do **S11** before inventing a de novo story.

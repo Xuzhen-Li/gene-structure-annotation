@@ -17,7 +17,7 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 | [`docs/TOOLS.md`](docs/TOOLS.md) | Tool index |
 | [`config/example.env`](config/example.env) | Paths / threads / lineages |
 | [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) | Biology-wide peer stacks (GALBA2 / TOGA2 / funannotate2) |
-| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & benchmarks (GR 2025 chooser; Nat Methods trio) |
+| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & chooser (Ji *NRG* 2026 + Freedman *GR* 2025) |
 
 ## Inputs → outputs
 
@@ -27,19 +27,53 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 | **Out (primary)** | Curated / qualified GFF + `proteins.faa` + METHODS |
 | **Next** | Hand proteins to [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) for F1 FA |
 
-## Default line
+
+## Evidence → branch (chooser)
+
+Framed like Ji, Pertea & Salzberg (*Nat Rev Genet* 2026 Fig. 2): **what evidence you have** decides the draft path. Details and citations: [`docs/REVIEWS.md`](docs/REVIEWS.md).
 
 ```text
 Asm0 → Asm1 → A0 soft-mask
-  → pick ONE branch (default S1 if RNA+proteins)
-  → merge / AGAT → proteins → BUSCO (+ PSAURON)
-  → GSAman depth by scenario → qualify → release
+        │
+        ▼
+   What do you have?
+        │
+        ├─ Close, curated reference annotation
+        │     → S11 first: Liftoff / LiftOn / CAT (± TOGA2 if WGA)
+        │       then qualify; de novo only to fill gaps
+        │
+        ├─ RNA-seq + proteins (no close ref)
+        │     → S1: BRAKER4/3 (± GeMoMa) + StringTie→TransDecoder compare
+        │
+        ├─ Proteins only
+        │     → S2: GALBA / GALBA2 / GeMoMa
+        │
+        ├─ Deep Iso-seq / want traceable evidence CDS
+        │     → S3: IsoQuant→SQANTI3 (± EviAnn)
+        │
+        ├─ GPU / thin evidence ab initio compare
+        │     → S13: Helixer / Tiberius / ANNEVO (not a silent S1 replace)
+        │
+        └─ NCBI / GenBank package compare
+              → S8: EGAPx / Gnomon
+        │
+        ▼
+   Merge / AGAT → proteins → BUSCO + PSAURON → GSAman → qualify → release
+        │
+        ▼
+   Hand proteins to gene-function-annotation (F1)  ← function is a second layer
 ```
 
-Unsure? **S1** (RNA + proteins → BRAKER4/3 ± GeMoMa/Liftoff → EVM).  
-RNA present? also run **StringTie→TransDecoder** as a compare set ([`docs/REVIEWS.md`](docs/REVIEWS.md)).  
-WGA + close reference? **TOGA2** (monocots: check BUSCO).  
-No usable RNA? **S2**. Deep Iso-seq / EviAnn? **S3**. GPU ab initio? **S13**. Classic PASA→EVM? **S14** (`docs/steps/dclab/`).
+| Evidence | Prefer | Avoid as sole draft |
+|----------|--------|---------------------|
+| Near-identical / same-species curated GFF | **S11** liftover | Starting BRAKER from scratch |
+| Illumina RNA + OrthoDB/proteins | **S1** + StringTie compare | Ab initio-only (no UTRs / multi-isoform) |
+| Proteins, little/no RNA | **S2** | Claiming complete UTRs |
+| Long-read / Iso-seq heavy | **S3** (± EviAnn) | Ignoring SQANTI filters |
+| WGA to close clade | TOGA2 / LiftOn (with S11 or S1) | Blind TOGA on tough monocots without BUSCO check |
+
+Unsure with RNA+proteins? **S1**. Recipes: [`docs/SCENARIOS.md`](docs/SCENARIOS.md).
+
 
 ```bash
 git clone https://github.com/Xuzhen-Li/gene-structure-annotation.git
