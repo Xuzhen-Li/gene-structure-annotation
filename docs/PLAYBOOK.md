@@ -8,7 +8,7 @@ Biology-general spine (eukaryotes). *Vitis* / PN40024 / plant-only tools in link
 
 **Tool how-tos:** [`TOOLS.md`](TOOLS.md).
 
-**Reviews / benchmarks (chooser):** [`REVIEWS.md`](REVIEWS.md) — Freedman & Sackton *Genome Res.* 2025; Nature Methods Helixer / ANNEVO / EviAnn.
+**Reviews / benchmarks (chooser):** [`REVIEWS.md`](REVIEWS.md) — Ji/Pertea/Salzberg *Nat Rev Genet* 2026 (PDF takeaways); Freedman & Sackton *Genome Res.* 2025; Nat Methods Helixer / ANNEVO / EviAnn.
 
 **Homepage flowchart:** see repository [`README.md`](../README.md).  
 **Branch recipes:** [`SCENARIOS.md`](SCENARIOS.md) (S1–S12, step-by-step).  

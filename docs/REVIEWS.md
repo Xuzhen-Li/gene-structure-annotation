@@ -27,6 +27,32 @@ Sibling FA patterns: [gene-function-annotation `RECENT_HIGH_QUALITY.md`](https:/
 | Zhang, Ye et al., **ANNEVO** | *Nat Methods* 2026 doi:[10.1038/s41592-026-03036-7](https://doi.org/10.1038/s41592-026-03036-7) · PMID [41820667](https://pubmed.ncbi.nlm.nih.gov/41820667/) | S13; “annotation gap” narrative |
 | Zimin et al., **EviAnn** | *Nat Methods* 2026 doi:[10.1038/s41592-026-03156-0](https://doi.org/10.1038/s41592-026-03156-0) · PMID [42399474](https://pubmed.ncbi.nlm.nih.gov/42399474/) | S3 evidence-only |
 
+
+## Takeaways from Ji, Pertea & Salzberg 2026 (PDF)
+
+Source: *Nat Rev Genet* doi:10.1038/s41576-026-00937-3 (full text read 2026-09-13). Summaries only — do not redistribute the PDF in this repo.
+
+1. **Chooser depends on available information** — RNA-seq, related-species transcripts/proteins, and/or a close reference annotation (their Fig. 2 workflow).
+2. **Close reference exists → prefer liftover** — Liftoff / LiftOn / CAT is often faster and more accurate than de novo; Liftoff also finds extra copies under CNV. Across larger distances, **LiftOn** adds spliced protein alignment (miniprot).
+3. **No similar annotated species → automated pipelines** — they explicitly list BRAKER3, MAKER2, Gnomon, Ensembl, FINDER, GALBA, GeMoMa, **EviAnn** (RNA + protein-DNA + ab initio mixes).
+4. **Ab initio limits** — AUGUSTUS / GeneMark / Tiberius (and peers) do not recover UTRs and usually one isoform/locus; UTRs and multi-isoform need RNA (or related transcripts).
+5. **Transcript evidence** — StringTie (and Scallop / Trinity) for reconstruction; spliced RNA aligners STAR / HISAT2 / minimap2; protein-to-genome miniprot / Spaln3.
+6. **Function is a second layer** — homology naming, domains, structure (AlphaFold-era), ncRNA databases; protein-coding FA ≠ GFF structure.
+7. **Human still incomplete** — GENCODE / RefSeq / CHESS disagree especially on lncRNA; MANE is a one-isoform clinical consensus, not a full catalogue.
+8. **EBP-scale future** — VGP / i5k / 10KP / EBP genomes become liftover sources; annotation quality must keep pace with assembly.
+
+**How we map this (with Freedman & Sackton 2025):**
+
+| Ji 2026 situation | Our branch |
+|-------------------|------------|
+| Close curated reference | S11 / Liftoff·LiftOn·CAT (provisional→qualify) |
+| RNA + proteins, no close ref | **S1** BRAKER4/3 (+ StringTie compare) |
+| Proteins only | **S2** GALBA/GALBA2 |
+| Deep Iso-seq / evidence-first | **S3** (± EviAnn) |
+| GPU ab initio compare | **S13** Tiberius / Helixer / ANNEVO |
+| Institutional GenBank | **S8** EGAPx/Gnomon |
+| FA after proteins | sibling `gene-function-annotation` |
+
 ## Decision tree (adopted)
 
 Aligned to Freedman & Sackton 2025 + Harvard FAS tutorial; framed by Ji/Pertea/Salzberg 2026 scale narrative:
