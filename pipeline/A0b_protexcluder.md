@@ -5,6 +5,8 @@ Pattern: Krabbenhoft / [ProtExcluder](https://github.com/NBISweden/ProtExcluder)
 
 ## Why
 
+In the grape pangenome TE scheme, **working** consensi still contain gene-like and Unknown entries; only **trusted** (post-CDS / motif gate) is allowed as curatedlib / soft-mask gold. A0b is the host-gene purge step inside that gate (see local `03_TE/04_library_curation/01_cds.md`).
+
 EDTA/RepeatModeler consensi often include **host gene fragments**. If those stay in the RepeatMasker library, soft-mask will lowercase real exons (NLR, LRR, kinase, stilbene synthase, …) and structure annotation will miss or shatter them — fatal for grape T2T / S5 delivery.
 
 ## Order

@@ -110,8 +110,8 @@ seqkit stats -a "$GENOME_FA" | tee "$WORK_DIR/asm/seqkit_stats.txt"
 Soft-mask TE without wiping NLR exons. Soft-mask is a **curated TE library** problem, not a single EDTA run.
 
 ### Lab TE scheme (required reading)
-[`TE_LIBRARY.md`](TE_LIBRARY.md) — EDTA → TEtrimmer → TEsorter → manual check → CD-HIT~85% + 80-80 → ProtExcluder → RepeatMasker `-xsmall` → (LAI only after curation).  
-Canonical TE repo: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+[`TE_LIBRARY.md`](TE_LIBRARY.md) — from pangenome `03_TE`: EDTA → TEtrimmer **working** → TEsorter labels → gate **trusted** → soft-mask; panEDTA/LAI after.  
+**Never** soft-mask with raw EDTA or the whole working lib. Canonical stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
 
 ### Steps
 

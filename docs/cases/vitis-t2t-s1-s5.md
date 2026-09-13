@@ -357,7 +357,7 @@ Copy into `REL/METHODS.md` and tick:
 - Reference transfer: PN40024 [GFF version] via [Liftoff/GeMoMa]
 
 ## Pipeline
-- Soft-mask: [TE lib] + ProtExcluder [yes/no]; RepeatMasker -xsmall
+- Soft-mask: trusted curatedlib (not raw EDTA / not full working lib); ProtExcluder [yes/no]; RepeatMasker -xsmall; see docs/TE_LIBRARY.md
 - Primary: BRAKER[3/4] [version]; AUGUSTUS species [ ]
 - Compare: StringTie [version] (+ TransDecoder [yes/no]) — compare only
 - Secondary: [Liftoff/GeMoMa] [version]
