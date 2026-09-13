@@ -23,7 +23,7 @@ Raw reads
 |----|------|--------------------|
 | **S1** | RNA + proteins | **BRAKER4 ETP** (or BRAKER3) + GeMoMa/Liftoff → EVM |
 | **S2** | No usable RNA | GALBA/**GALBA2**/GeMoMa + Liftoff → EVM |
-| **S3** | Deep Iso-seq | EviAnn backbone + BRAKER orphans |
+| **S3** | Deep Iso-seq / evidence-first | EviAnn (or Iso-seq assemblers) backbone + BRAKER orphans |
 | **S4** | Multi-hap | After S1/S3: Liftoff + SynGAP |
 | **S5** | Paper / T2T | S1/S14 + OMArk + deeper GSAman |
 | **S6** | Thin evidence | Homology-first provisional |
@@ -44,3 +44,5 @@ AI co-pilot: [`../AI_ASSIST.md`](../AI_ASSIST.md).
 Peer stacks (GALBA2 / TOGA2 / funannotate2): [`../PEER_PIPELINES.md`](../PEER_PIPELINES.md).
 
 AI ab initio notes: [`../notes/helixer.md`](../notes/helixer.md), [`../notes/tiberius.md`](../notes/tiberius.md), [`../notes/annevo.md`](../notes/annevo.md) (Kai Ye / 叶凯).
+
+Evidence/transfer notes: [`../notes/eviann.md`](../notes/eviann.md), [`../notes/finder.md`](../notes/finder.md), [`../notes/cat.md`](../notes/cat.md), [`../notes/lifton.md`](../notes/lifton.md).

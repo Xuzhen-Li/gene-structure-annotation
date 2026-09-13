@@ -83,15 +83,44 @@ Do not replace the default S1 spine with MAKER unless the lab already standardiz
 
 License caution: ANNEVO is **non-commercial** — keep that explicit in METHODS and redistributed recipes.
 
+
+
+## More peers (2026-09-13 haul)
+
+### Evidence / transfer
+
+| Peer | Notes | Hook |
+|------|-------|------|
+| **EviAnn** | *Nat Methods* 2026 evidence-only (no ab initio) | S3-class; [`notes/eviann.md`](notes/eviann.md) |
+| **FINDER** | *BMC Bioinformatics* 2021; RNA→BRAKER2 automation | S1 alternate; [`notes/finder.md`](notes/finder.md) |
+| **CAT** | Cactus HAL clade annotation (Fiddes et al.) | Multi-genome / T2T; [`notes/cat.md`](notes/cat.md) |
+| **LiftOn** | Liftoff + miniprot protein-max | S4/S11; [`notes/lifton.md`](notes/lifton.md) |
+
+### Soft-mask / TE
+
+| Peer | Notes | Hook |
+|------|-------|------|
+| **Earl Grey** | *MBE* 2024 automated TE curation | A0 peer; [`notes/earlgrey.md`](notes/earlgrey.md) |
+
+### Metagenome eukaryotes
+
+| Peer | Notes | Hook |
+|------|-------|------|
+| **MetaEuk** | *Microbiome* 2020; Soeding lab | MAG/contig lane; [`notes/metaeuk.md`](notes/metaeuk.md) |
+
+### Functional (sibling repo)
+
+KO/GO peers for after proteins exist — see gene-function-annotation notes: DeepKOALA, BlastKOALA/GhostKOALA, DeepGOPlus. Default FA spine remains F1.
+
+
 ## Still thin / watchlist (not yet fleshed)
 
 | Idea | Why interesting |
 |------|-----------------|
-| MetaEuk | Eukaryotic proteins on metagenomic contigs |
-| FINDER | RNA+homology combiner (BRAKER3 paper compares) |
-| Earl Grey / EDTA-class TE | Soft-mask peers beyond EDTA |
 | Mycotools | Fungal comparative DB / GFF ops (not a predictor) |
 | More Ye-lab GFF emitters | Only if they publish gene-model tools beyond ANNEVO |
+| ProteInfer / DeepFRI | Enzyme / GO DL — track in FA repo |
+| NCBI RefSeq eukaryotic pipeline docs | Institutional compare |
 
 ## How to use this list
 
