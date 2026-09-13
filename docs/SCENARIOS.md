@@ -29,7 +29,8 @@ Every scenario below is a full recipe. Shared early steps always mean:
 4. **Align RNA** — HISAT2 or STAR → `RNA_BAM` + index.  
    Step 4 · [`../pipeline/A1b_rna_align.md`](../pipeline/A1b_rna_align.md)
 
-5. **Primary draft** — **prefer [BRAKER4](notes/braker4.md) ETP** if Singularity works; else BRAKER3 `braker.pl`.  
+5. **Primary draft** — **prefer [BRAKER4](notes/braker4.md) ETP** if Singularity works; else BRAKER3 `braker.pl`.
+   **Also (GR 2025):** run StringTie on `RNA_BAM` → TransDecoder ORF set as a **compare** track (not a silent replace of BRAKER). See [`REVIEWS.md`](REVIEWS.md).  
    ```bash
    # BRAKER4: see docs/tools/braker4.md (samples.csv mode=ETP)
    DRAFT_ENGINE=braker3 bash pipeline/A2_run_draft.sh   # classic fallback

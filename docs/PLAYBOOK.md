@@ -8,6 +8,8 @@ Biology-general spine (eukaryotes). *Vitis* / PN40024 / plant-only tools in link
 
 **Tool how-tos:** [`TOOLS.md`](TOOLS.md).
 
+**Reviews / benchmarks (chooser):** [`REVIEWS.md`](REVIEWS.md) — Freedman & Sackton *Genome Res.* 2025; Nature Methods Helixer / ANNEVO / EviAnn.
+
 **Homepage flowchart:** see repository [`README.md`](../README.md).  
 **Branch recipes:** [`SCENARIOS.md`](SCENARIOS.md) (S1–S12, step-by-step).  
 **Stage list:** [`FULL_PIPELINE.md`](FULL_PIPELINE.md).
@@ -61,4 +63,6 @@ Provisional releases (S6, S11) must say `status=provisional` in METHODS.
 4. Rejoin spine at **A3 → 01 → 02 → 04 → 06**.  
 5. Tick the qualification checklist above.
 
-Default if unsure: **S1** (RNA + proteins).
+Default if unsure: **S1** (RNA + proteins → BRAKER4/3).
+
+When RNA exists, also keep a **StringTie → TransDecoder** compare set (GR 2025 top performer). WGA+close reference → consider **TOGA2** (check monocot BUSCO). Thin evidence / GPU → **S13**. Traceable evidence-only → **EviAnn** under **S3**.

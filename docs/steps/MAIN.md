@@ -43,6 +43,8 @@ AI co-pilot: [`../AI_ASSIST.md`](../AI_ASSIST.md).
 
 Peer stacks (GALBA2 / TOGA2 / funannotate2): [`../PEER_PIPELINES.md`](../PEER_PIPELINES.md).
 
+Reviews / decision tree: [`../REVIEWS.md`](../REVIEWS.md) (Freedman & Sackton 2025; when RNA exists, compare **StringTie→TransDecoder**).
+
 AI ab initio notes: [`../notes/helixer.md`](../notes/helixer.md), [`../notes/tiberius.md`](../notes/tiberius.md), [`../notes/annevo.md`](../notes/annevo.md) (Kai Ye / 叶凯).
 
 Evidence/transfer notes: [`../notes/eviann.md`](../notes/eviann.md), [`../notes/finder.md`](../notes/finder.md), [`../notes/cat.md`](../notes/cat.md), [`../notes/lifton.md`](../notes/lifton.md).

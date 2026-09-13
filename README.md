@@ -17,6 +17,7 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 | [`docs/TOOLS.md`](docs/TOOLS.md) | Tool index |
 | [`config/example.env`](config/example.env) | Paths / threads / lineages |
 | [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) | Biology-wide peer stacks (GALBA2 / TOGA2 / funannotate2) |
+| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & benchmarks (GR 2025 chooser; Nat Methods trio) |
 
 ## Inputs → outputs
 
@@ -36,7 +37,9 @@ Asm0 → Asm1 → A0 soft-mask
 ```
 
 Unsure? **S1** (RNA + proteins → BRAKER4/3 ± GeMoMa/Liftoff → EVM).  
-No usable RNA? **S2**. Deep Iso-seq? **S3**. Classic PASA→EVM? **S14** (`docs/steps/dclab/`).
+RNA present? also run **StringTie→TransDecoder** as a compare set ([`docs/REVIEWS.md`](docs/REVIEWS.md)).  
+WGA + close reference? **TOGA2** (monocots: check BUSCO).  
+No usable RNA? **S2**. Deep Iso-seq / EviAnn? **S3**. GPU ab initio? **S13**. Classic PASA→EVM? **S14** (`docs/steps/dclab/`).
 
 ```bash
 git clone https://github.com/Xuzhen-Li/gene-structure-annotation.git
