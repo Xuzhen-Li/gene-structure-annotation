@@ -12,6 +12,7 @@
 | Copy-paste depth | [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) |
 | Reviews behind the chooser | [`REVIEWS.md`](REVIEWS.md) |
 | *Vitis* T2T publication delivery | [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) |
+| TE library → soft-mask | [`TE_LIBRARY.md`](TE_LIBRARY.md) |
 
 ---
 
@@ -105,10 +106,10 @@ After each step, glance at [`STAGE_IO.md`](STAGE_IO.md) for the same stage.
 
 ### Step B — Soft-mask (A0)
 
-Follow `pipeline/A0_softmask.md` (+ ProtExcluder `A0b` if you build a TE lib).
+Follow the lab TE scheme: [`TE_LIBRARY.md`](TE_LIBRARY.md) (EDTA → TEtrimmer → TEsorter → curate → ProtExcluder → RepeatMasker `-xsmall`). Short path: `pipeline/A0_softmask.md` + `A0b_protexcluder.md`.
 
-**Produces:** `$GENOME_SOFT`.  
-**Why:** ab initio engines over-predict inside repeats if you hard-mask or skip masking carelessly.
+**Produces:** `$GENOME_SOFT` + curated TE lib notes.  
+**Why:** raw EDTA is not a gold lib; hard-mask or gene-contaminated libs break BRAKER / NLR loci.
 
 ### Step C — RNA align (A1b)
 

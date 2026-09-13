@@ -107,32 +107,40 @@ seqkit stats -a "$GENOME_FA" | tee "$WORK_DIR/asm/seqkit_stats.txt"
 ## Step 3 — Soft-mask repeats (A0 + A0b)
 
 ### Goal
-Soft-mask TE without wiping NLR exons.
+Soft-mask TE without wiping NLR exons. Soft-mask is a **curated TE library** problem, not a single EDTA run.
+
+### Lab TE scheme (required reading)
+[`TE_LIBRARY.md`](TE_LIBRARY.md) — EDTA → TEtrimmer → TEsorter → manual check → CD-HIT~85% + 80-80 → ProtExcluder → RepeatMasker `-xsmall` → (LAI only after curation).  
+Canonical TE repo: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
 
 ### Steps
 
-1. Build / update TE library ([vitis-te](https://github.com/Xuzhen-Li/vitis-te) or EDTA + curated lib).  
-2. **ProtExcluder-style clean**: BLAST lib vs plant proteins; remove host-gene hits (NLR, kinases, etc.).  
-3. Soft-mask (lowercase), **never** hard-mask to `N` before BRAKER.
+1. **EDTA** on this assembly (`--species others`; prefer `--cds` if you have CDS).  
+2. **TEtrimmer** + **TEsorter** (boundaries + names; classifier ≠ scanner).  
+3. Manual spot-check (LTR FP, CDS contamination).  
+4. Curate: drop CDS → CD-HIT ~85% → 80-80 collapse.  
+5. **ProtExcluder / A0b**: remove host-gene hits (NLR, kinases, …).  
+6. Soft-mask (lowercase), **never** hard-mask to `N` before BRAKER.
 
 ```bash
-# RepeatMasker example (after cleaned lib)
-RepeatMasker -lib cleaned_te.lib -xsmall -pa "$THREADS" \
+# RepeatMasker example (after curated + purged lib)
+RepeatMasker -lib "$CLEAN_TE_LIB" -xsmall -pa "$THREADS" \
   -dir "$WORK_DIR/mask" "$GENOME_FA"
-# Result soft-masked fasta → GENOME_SOFT
 cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
 ```
 
 ### Outputs
 - `GENOME_SOFT` — soft-masked genome  
-- Log of excluded TE consensi (NLR-safe)
+- `mask/te_curated.fasta` (+ exclusion list)  
+- Curation notes for METHODS
 
 ### Fail if
-- You hard-masked
-- NLR peptides were inside the TE lib
+- You hard-masked  
+- You used raw EDTA as the gold lib  
+- NLR peptides were inside the TE lib  
 
 ### Details
-[`../pipeline/A0_softmask.md`](../pipeline/A0_softmask.md) · [`../pipeline/A0b_protexcluder.md`](../pipeline/A0b_protexcluder.md)
+[`TE_LIBRARY.md`](TE_LIBRARY.md) · [`../pipeline/A0_softmask.md`](../pipeline/A0_softmask.md) · [`../pipeline/A0b_protexcluder.md`](../pipeline/A0b_protexcluder.md)
 
 ---
 

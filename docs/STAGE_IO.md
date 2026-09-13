@@ -27,7 +27,7 @@ reads / assembly
 |-------|-------------|----------------|----------------|------------------------|
 | **Asm0** | Raw HiFi / Hi-C / … | [`../pipeline/Asm0_assembly.md`](../pipeline/Asm0_assembly.md) | `GENOME_FA` (haplotype decision documented) | Contigs exist; ploidy choice written down |
 | **Asm1** | `GENOME_FA` | [`../pipeline/Asm1_assembly_qc.md`](../pipeline/Asm1_assembly_qc.md) | QC notes; set `ASSEMBLY_OK=yes` | Genome BUSCO + N50 acceptable for *your* clade |
-| **A0 / A0b** | Genome + TE lib | softmask notes | `GENOME_SOFT` (soft-masked FASTA) | Softmask file exists; genes not scrubbed into TE lib (ProtExcluder) |
+| **A0 / A0b** | Genome + **curated** TE lib | [`TE_LIBRARY.md`](TE_LIBRARY.md) + softmask notes | `GENOME_SOFT` + curated lib + exclusion list | Softmask file exists; raw EDTA not used as gold; NLR not in TE lib |
 | **A1b** (if RNA) | RNA FASTQ | HISAT2/STAR | `RNA_BAM` (+ index) | Align rate sane; BAM indexes present |
 
 ## Draft → merge (branch-dependent; S1 shown)

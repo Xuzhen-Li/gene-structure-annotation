@@ -12,6 +12,7 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 |-----|--|
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — run default S1 and learn each product |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | Every stage: inputs → outputs → how to check |
+| [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) | **TE scheme** → soft-mask (EDTA→curate→A0; docks [vitis-te](https://github.com/Xuzhen-Li/vitis-te)) |
 | [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) | **Delivery case:** *Vitis* T2T × S1 engine + S5 bar |
 | **[`docs/PLAYBOOK.md`](docs/PLAYBOOK.md)** | End-to-end spine + qualification checklist |
 | **[`docs/steps/MAIN.md`](docs/steps/MAIN.md)** | Branch pick S1–S14 |

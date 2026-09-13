@@ -1,31 +1,46 @@
 # A0 — Soft-mask (detailed)
 
-See also [`../docs/DETAILED_GUIDE.md`](../docs/DETAILED_GUIDE.md) Step 3.
+**Full TE scheme (EDTA → trim → sort → curate → mask):** [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md)  
+Also: [`../docs/DETAILED_GUIDE.md`](../docs/DETAILED_GUIDE.md) Step 3 · [`A0b_protexcluder.md`](A0b_protexcluder.md) · [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
 
-## 1. TE library
-Prefer a curated species TE library (grape example: [vitis-te](https://github.com/Xuzhen-Li/vitis-te)). Else EDTA / RepeatModeler, then clean.
+## Goal
 
-## 2. Remove host genes from lib (A0b)
-BLAST TE consensi to UniProt plant / grape proteins; exclude significant gene hits (NLR, LRR, kinase, …) — ProtExcluder pattern.
+Produce `GENOME_SOFT` (lowercase soft-mask) safe for BRAKER/GALBA — without wiping NLR exons.
 
-## 3. Soft-mask
+## Order (do not skip curation)
+
+1. **EDTA** on this assembly (`--species others` unless rice/maize); optional `--cds`.  
+2. **TEtrimmer** (boundaries) → **TEsorter** (lineage names only).  
+3. Manual spot-check (LTR FP, LINE/SINE, CDS contamination).  
+4. Curated lib: drop CDS → CD-HIT ~85% → 80-80 collapse.  
+5. **A0b** ProtExcluder / host-gene purge (NLR, kinase, …).  
+6. **RepeatMasker `-lib curated.fa -xsmall`** → `GENOME_SOFT`.  
+7. LAI / LTR age only **after** curated lib.
+
+Raw EDTA ≠ gold library. Details and METHODS bullets: [`TE_LIBRARY.md`](../docs/TE_LIBRARY.md).
+
+## Soft-mask command
+
 ```bash
-RepeatMasker -lib cleaned_te.lib -xsmall -pa "$THREADS" -dir "$WORK_DIR/mask" "$GENOME_FA"
-# soft-masked = lowercase; set GENOME_SOFT to the *.masked file
+# CLEAN_TE_LIB = curated + host-gene-purged FASTA
+RepeatMasker -lib "$CLEAN_TE_LIB" -xsmall -pa "$THREADS" \
+  -dir "$WORK_DIR/mask" "$GENOME_FA"
+cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
 ```
 
-## 4. Verify
+## Verify
+
 ```bash
-# fraction soft-masked
 python3 - <<'PY'
 from pathlib import Path
 import sys
 fa=Path(sys.argv[1]).read_text().splitlines()
 seq="".join(l for l in fa if not l.startswith(">"))
 low=sum(1 for c in seq if c.islower())
-print(f"softmasked_fraction={low/len(seq):.4f} total={len(seq)}")
+print(f"softmasked_fraction={low/max(len(seq),1):.4f} total={len(seq)}")
 PY
 "$GENOME_SOFT"
 ```
 
-**Never** use hard-masked `N` genome for BRAKER/GALBA.
+**Never** use hard-masked `N` genome for BRAKER/GALBA.  
+If gene models explode inside repeats later → **S10** (remask with curated lib, re-enter draft).

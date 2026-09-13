@@ -44,7 +44,7 @@ A run is **deliverable** only when all of the following exist under `$WORK_DIR/r
 | RNA | Illumina RNA-seq from **same or very close** genotype → will become `RNA_BAM` |
 | Proteins | OrthoDB eudicots / Viridiplantae **or** high-quality grape proteins → `PROTEIN_DB` |
 | Reference transfer | PN40024 (or best grape) `REF_FA` + `REF_GFF` for Liftoff / GeMoMa second track |
-| TE lib | Curated grape TE lib (e.g. [vitis-te](https://github.com/Xuzhen-Li/vitis-te)) or EDTA + ProtExcluder clean |
+| TE lib | Lab scheme [`TE_LIBRARY.md`](../TE_LIBRARY.md) / [vitis-te](https://github.com/Xuzhen-Li/vitis-te): EDTA→TEtrimmer→TEsorter→curate→ProtExcluder→soft-mask |
 | Compute | BRAKER/GALBA stack, HISAT2 or STAR, AGAT, BUSCO, gffread, EVM or TSEBRA; OMArk + Compleasm for S5 |
 
 ### 1.2 `config/local.env` skeleton (fill paths)
@@ -119,7 +119,7 @@ Follow [`../DETAILED_GUIDE.md`](../DETAILED_GUIDE.md) Steps 1–4. Condensed che
 |------|--------|--------------|-------------|
 | Asm0 | Already done for T2T case (or document how `GENOME_FA` was built) | `GENOME_FA` | FASTA headers stable for release |
 | Asm1 | `busco -m genome` + `seqkit stats` | `WORK_DIR/asm/` | Meets §1.3 bar → set `ASSEMBLY_OK=yes` |
-| A0 | TE lib → ProtExcluder → RepeatMasker `-xsmall` | `GENOME_SOFT` | Softmask only; NLR exons not stripped into TE lib |
+| A0 | Full TE scheme ([`TE_LIBRARY.md`](../TE_LIBRARY.md)) → ProtExcluder → RepeatMasker `-xsmall` | `GENOME_SOFT` + curated lib | Softmask only; raw EDTA not gold; NLR not in TE lib |
 | A1b | HISAT2 or STAR | `RNA_BAM` + index | Align rate recorded; BAM used by BRAKER + StringTie |
 
 **Stop if:** `ASSEMBLY_OK` still `no`, or RNA is distant genotype (then reconsider S2 / provisional — not S5).

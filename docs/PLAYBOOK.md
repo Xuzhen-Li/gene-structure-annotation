@@ -23,7 +23,7 @@ Biology-general spine (eukaryotes). *Vitis* / PN40024 / plant-only tools in link
 ```text
 Asm0  Assemble / phase / purge / scaffold
 Asm1  Assembly QC gate (genome BUSCO, N50, ploidy decision)
-A0    Soft-mask repeats (ProtExcluder: keep genes out of TE lib)
+A0    Soft-mask repeats — [`TE_LIBRARY.md`](TE_LIBRARY.md) (EDTA→curate→ProtExcluder→`-xsmall`)
   │
   ├─► branch by evidence / goal  (SCENARIOS S1–S11)
   │
