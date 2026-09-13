@@ -165,6 +165,8 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 ## S5 — T2T / publication-grade
 
+**Worked delivery case (*Vitis* T2T):** [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) — S1 engine + S5 bar, full I/O, METHODS, freeze gate.
+
 **When:** Paper or database release needs “qualified,” not provisional.
 
 ### Steps

@@ -19,3 +19,5 @@ Human guides: [`PLAYBOOK.md`](PLAYBOOK.md) · [`SCENARIOS.md`](SCENARIOS.md).
 | A6 Function | optional |
 
 Default branch: **S1** after Asm0–A0.
+
+Publication T2T worked case: [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md).

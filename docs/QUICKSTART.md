@@ -11,6 +11,7 @@
 | Full qualification checklist | [`PLAYBOOK.md`](PLAYBOOK.md) |
 | Copy-paste depth | [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) |
 | Reviews behind the chooser | [`REVIEWS.md`](REVIEWS.md) |
+| *Vitis* T2T publication delivery | [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) |
 
 ---
 
