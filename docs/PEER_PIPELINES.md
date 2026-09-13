@@ -92,7 +92,7 @@ License caution: ANNEVO is **non-commercial** — keep that explicit in METHODS 
 
 | Peer | Notes | Hook |
 |------|-------|------|
-| **EviAnn** | *Nat Methods* 2026 evidence-only (no ab initio) | S3-class; [`notes/eviann.md`](notes/eviann.md) |
+| **EviAnn** | *Nat Methods* 2026 evidence-only (Zimin; **not NCBI**); GenBank via table2asn | S3-class; [`notes/eviann.md`](notes/eviann.md) |
 | **FINDER** | *BMC Bioinformatics* 2021; RNA→BRAKER2 automation | S1 alternate; [`notes/finder.md`](notes/finder.md) |
 | **CAT** | Cactus HAL clade annotation (Fiddes et al.) | Multi-genome / T2T; [`notes/cat.md`](notes/cat.md) |
 | **LiftOn** | Liftoff + miniprot protein-max | S4/S11; [`notes/lifton.md`](notes/lifton.md) |
