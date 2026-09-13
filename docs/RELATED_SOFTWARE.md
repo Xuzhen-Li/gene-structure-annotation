@@ -26,3 +26,9 @@ Functional tools: [gene-function-annotation](https://github.com/Xuzhen-Li/gene-f
 | [LiftOn](https://github.com/Kuanhao-Chao/LiftOn) | Liftoff+miniprot transfer |
 | [Earl Grey](https://github.com/TobyBaril/EarlGrey) | TE soft-mask peer |
 | [MetaEuk](https://github.com/soedinglab/metaeuk) | Eukaryotic metagenome genes |
+
+| [IsoQuant](https://github.com/ablab/IsoQuant) | Long-read transcript discovery |
+| [SQANTI3](https://github.com/ConesaLab/SQANTI3) | Long-read transcriptome QC |
+| Mikado · Portcullis | Transcript combiner |
+| [EGAPx](https://github.com/ncbi/egapx) | NCBI public EGAP / Gnomon |
+| OMArk · compleasm | Annotation QC |

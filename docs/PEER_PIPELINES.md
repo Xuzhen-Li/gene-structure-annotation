@@ -122,6 +122,44 @@ KO/GO peers for after proteins exist — see gene-function-annotation notes: Dee
 | ProteInfer / DeepFRI | Enzyme / GO DL — track in FA repo |
 | NCBI RefSeq eukaryotic pipeline docs | Institutional compare |
 
+
+
+## Deep hunt (2026-09-13b) — complexity layers
+
+Gene annotation is not one tool: **mask → evidence transcripts → ab initio/AI → homology transfer → combiner → QC → (optional) FA**.
+
+### Long-read / transcript evidence
+
+| Peer | Venue | Hook |
+|------|-------|------|
+| **IsoQuant** | *Nat Biotechnol* 2023 | S3 LR discovery; [`notes/isoquant.md`](notes/isoquant.md) |
+| **SQANTI3** | *Nat Methods* 2024 | LR QC/filter/rescue; [`notes/sqanti3.md`](notes/sqanti3.md) |
+| **Mikado + Portcullis** | Earlham | Multi-assembler pick; S13; [`notes/mikado_portcullis.md`](notes/mikado_portcullis.md) |
+
+### Protein homology aligners
+
+| Peer | Hook |
+|------|------|
+| **miniprot · Spaln** (+ GenomeThreader/Exonerate legacy) | S1/S2/S14 evidence; [`notes/miniprot_spaln.md`](notes/miniprot_spaln.md) |
+
+### Institutional / automated stacks
+
+| Peer | Hook |
+|------|------|
+| **EGAPx / Gnomon** | NCBI public EGAP; GenBank 2026 path; S8; [`notes/egapx_gnomon.md`](notes/egapx_gnomon.md) |
+| **MoGAAAP** | Liftoff+Helixer provisional + OMArk/BUSCO; [`notes/mogaaap.md`](notes/mogaaap.md) |
+
+### QC beyond single BUSCO number
+
+| Peer | Hook |
+|------|------|
+| **OMArk · compleasm** | Consistency + fast completeness; A5b; [`notes/omark_compleasm.md`](notes/omark_compleasm.md) |
+
+### FA complexity (sibling)
+
+After proteins: F1 core stays DIAMOND+eggNOG+InterProScan. DL/KO extras: ProteInfer, DeepFRI, DeepKOALA, IsoAnnot/FIT — see gene-function-annotation notes.
+
+
 ## How to use this list
 
 1. Pick **one** evidence branch in `SCENARIOS.md`.  
