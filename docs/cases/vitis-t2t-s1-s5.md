@@ -86,6 +86,8 @@ PRIORITY_TSV="$WORK_DIR/qc/priority_r1.tsv"
 AGAT_OUT="$WORK_DIR/agat"
 OMARK_OUT="$WORK_DIR/qc/omark"
 COMPLEASM_LINEAGE="eudicots"            # A5b compleasm pack name
+OMAMER_DB="/shared/db/omamer/LUCA.h5"  # see docs/tools/omark_compleasm.md
+# OMARK_TAXID=29760                    # optional Vitis vinifera
 CURATED_GFF="$WORK_DIR/curated/curated.gff3"
 RELEASE_TAG="VitisT2T.structure.v1"
 ```
@@ -189,10 +191,11 @@ bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
 ```bash
 DRAFT_GFF="$MERGED_GFF" bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
-# S5 mandatory OMArk: A5b prints OMAmer/OMArk lines and needs your clade .h5 DB wired.
-# Compleasm runs if installed (COMPLEASM_LINEAGE). Save all tables under $WORK_DIR/qc/.
-bash pipeline/A5b_omark_compleasm.sh
-# Then actually run the printed omark/omamer commands; waiver ≠ S5 delivery.
+# S5 mandatory OMArk — wire OMAMER_DB first (prefer LUCA.h5):
+#   docs/tools/omark_compleasm.md
+RUN=1 bash pipeline/A5b_omark_compleasm.sh
+# Without OMAMER_DB the script STOPs; waiver ≠ S5 delivery.
+# Export omark missing/inconsistent gene IDs → priority_rounds/omark_flags.tsv (gene_id\treason)
 ```
 
 | Artifact | Where | METHODS must say |
@@ -262,8 +265,18 @@ python3 pipeline/02_priority_loci.py \
   -o "$WORK_DIR/priority_rounds/priority_r2_psauron.tsv" \
   --threshold 90 \
   --families "$WORK_DIR/priority_rounds/families.tsv"
-# Manually merge fragmented-BUSCO + OMArk IDs into priority_r2.tsv (column: gene_id, reason)
-# Keep the merge recorded in priority_rounds/priority_r2_build.md
+
+# Prepare side lists (gene_id\treason), e.g.:
+#   priority_rounds/busco_fragmented.tsv
+#   priority_rounds/omark_flags.tsv
+
+python3 pipeline/02b_merge_priority_r2.py \
+  -o "$WORK_DIR/priority_rounds/priority_r2.tsv" \
+  --from-priority "$WORK_DIR/priority_rounds/priority_r1.tsv" \
+  --from-priority "$WORK_DIR/priority_rounds/priority_r2_psauron.tsv" \
+  --from-ids-reason "$WORK_DIR/priority_rounds/busco_fragmented.tsv" \
+  --from-ids-reason "$WORK_DIR/priority_rounds/omark_flags.tsv" \
+  --log "$WORK_DIR/priority_rounds/priority_r2_build.md"
 ```
 
 ### 6.2 Second GSAman pass

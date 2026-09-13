@@ -1,28 +1,52 @@
 #!/usr/bin/env bash
 # Extra proteome QC beyond BUSCO: OMArk (DessimozLab) and/or Compleasm.
+# Docs: docs/tools/omark_compleasm.md
+# Wire OMAMER_DB to the .h5 path; set RUN=1 to execute (otherwise print).
 set -euo pipefail
 
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
-OUT="${OMARK_OUT:-$WORK_DIR/omark}"
+OUT="${OMARK_OUT:-$WORK_DIR/qc/omark}"
+OMAMER_DB="${OMAMER_DB:-}"
+THREADS="${THREADS:-16}"
+RUN="${RUN:-0}"
 mkdir -p "$OUT"
 
-if command -v omark >/dev/null || command -v OMArk >/dev/null; then
-  echo "[INFO] OMArk — https://github.com/DessimozLab/OMArk"
-  echo "  Typical: omamer search --db <LUCA/clade>.h5 --query $PROTEINS_FA --out $OUT/omamer.tsv"
-  echo "           omark -f $OUT/omamer.tsv -o $OUT -d <OMAmer DB dir> ..."
-  echo "[STOP] Wire OMAmer DB path for Viridiplantae / eudicots on your cluster"
+run_or_print() {
+  printf '[CMD]'; printf '%q ' "$@"; echo
+  if [[ "$RUN" == "1" ]]; then
+    "$@"
+  else
+    echo "[DRY] export RUN=1 to execute"
+  fi
+}
+
+if command -v omamer >/dev/null && command -v omark >/dev/null; then
+  if [[ -z "$OMAMER_DB" || ! -f "$OMAMER_DB" ]]; then
+    echo "[STOP] Set OMAMER_DB to an OMAmer .h5 (prefer LUCA.h5 for S5)."
+    echo "       See docs/tools/omark_compleasm.md"
+    echo "  Example download: curl -fL -O https://omabrowser.org/All/LUCA.h5"
+  else
+    echo "[INFO] OMArk via OMAmer DB: $OMAMER_DB"
+    run_or_print omamer search --db "$OMAMER_DB" --query "$PROTEINS_FA" --out "$OUT/proteins.omamer"
+    mkdir -p "$OUT/omark_output"
+    OMARK_ARGS=(omark -f "$OUT/proteins.omamer" -d "$OMAMER_DB" -o "$OUT/omark_output")
+    if [[ -n "${OMARK_TAXID:-}" ]]; then
+      OMARK_ARGS+=(-t "$OMARK_TAXID")
+    fi
+    run_or_print "${OMARK_ARGS[@]}"
+  fi
 else
-  echo "[WARN] OMArk/OMAmer not on PATH"
+  echo "[WARN] omamer/omark not both on PATH — install or load modules"
+  echo "       https://github.com/DessimozLab/OMArk"
 fi
 
 if command -v compleasm >/dev/null; then
-  echo "[INFO] Compleasm (miniprot BUSCO-like) — https://github.com/huangnengCSU/compleasm"
-  compleasm protein -p "$PROTEINS_FA" -l "${COMPLEASM_LINEAGE:-eudicots}" \
-    -o "$OUT/compleasm" -t "${THREADS:-16}" \
-    || echo "[WARN] compleasm failed — check lineage pack"
+  echo "[INFO] Compleasm protein mode — lineage=${COMPLEASM_LINEAGE:-eudicots}"
+  run_or_print compleasm protein -p "$PROTEINS_FA" -l "${COMPLEASM_LINEAGE:-eudicots}" \
+    -o "$OUT/compleasm" -t "$THREADS"
 else
   echo "[WARN] compleasm not on PATH (optional)"
 fi
 
-echo "[OK] review $OUT — flag missing / duplicated / inconsistent placements for priority.tsv"
+echo "[OK] review $OUT — export missing/inconsistent IDs into priority_r2 (02b_merge_priority_r2.py)"
