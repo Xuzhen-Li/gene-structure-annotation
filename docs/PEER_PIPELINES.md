@@ -71,6 +71,7 @@ Do not replace the default S1 spine with MAKER unless the lab already standardiz
 | **Helixer** | *Nat Methods* 2025; Usadel/Weber | **S13**; [`notes/helixer.md`](notes/helixer.md) |
 | **Tiberius** | *Bioinformatics* 2024 (+ multi-clade); Stanke/Hoff | S13-class peer; [`notes/tiberius.md`](notes/tiberius.md) |
 | **ANNEVO** | Kai Ye 叶凯 / XJTU `xjtu-omics`; genomic MoE LM | S13-class peer; [`notes/annevo.md`](notes/annevo.md) |
+| **OrionGeno** | BGI Research; phylogeny-aware DL | S13-class; [`notes/oriongeno.md`](notes/oriongeno.md) |
 
 **Rule:** AI drafts are evidence-light starts. Soft-mask first; still run protein BUSCO / PSAURON; when RNA+proteins exist, prefer **S1 BRAKER** and treat AI GFFs as comparison tracks (or EVM inputs with low–medium weight), not automatic truth.
 
@@ -158,6 +159,41 @@ Gene annotation is not one tool: **mask → evidence transcripts → ab initio/A
 ### FA complexity (sibling)
 
 After proteins: F1 core stays DIAMOND+eggNOG+InterProScan. DL/KO extras: ProteInfer, DeepFRI, DeepKOALA, IsoAnnot/FIT — see gene-function-annotation notes.
+
+
+
+
+## Deep hunt fold-in (2026-09-13c) — executor haul
+
+Verified extras beyond prior sections (skipping duplicates already listed).
+
+### AI / Chinese full stacks
+| Peer | Hook |
+|------|------|
+| **OrionGeno** (BGI) | S13-class AI ab initio; [`notes/oriongeno.md`](notes/oriongeno.md) |
+| **GETA** | One-command CN pipeline; [`notes/geta.md`](notes/geta.md) |
+
+### Protein evidence engines
+| Peer | Hook |
+|------|------|
+| **ProtHint · miniprothint** | BRAKER-EP vs GALBA2 lanes; [`notes/prothint_miniprothint.md`](notes/prothint_miniprothint.md) |
+| **CESAR2.0** | WGA exon realign (w/ TOGA); [`notes/cesar2.md`](notes/cesar2.md) |
+| ProSplign · GenomeThreader · Exonerate | Institutional/legacy transfer (EGAPx/Ensembl/MAKER) |
+
+### Transcriptomes (short + long)
+| Peer | Hook |
+|------|------|
+| **LR peers** (bambu, FLAIR, FLAMES, TALON, PsiCLASS, Scallop2) | [`notes/lr_isoform_peers.md`](notes/lr_isoform_peers.md) |
+
+### Combiners / QC packs / side-lanes
+| Peer | Hook |
+|------|------|
+| **combinr · InGenAnnot** | EVM/TSEBRA peers; [`notes/combinr_ingenannot.md`](notes/combinr_ingenannot.md) |
+| **PSAURON · GAQET2 · AnnoAudit** | QC packs; [`notes/psauron_gaqet_annoaudit.md`](notes/psauron_gaqet_annoaudit.md) |
+| **tRNAscan-SE · Infernal/Rfam · TEsorter** | ncRNA + TE class; [`notes/ncrna_tesorter.md`](notes/ncrna_tesorter.md) |
+
+### FA (sibling)
+NetGO 3.0, dbCAN3, DeepLoc 2.0, SignalP 6.0 — gene-function-annotation notes.
 
 
 ## How to use this list

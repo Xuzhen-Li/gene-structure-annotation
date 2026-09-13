@@ -33,7 +33,7 @@ Raw reads
 | **S10** | TE gene inflation | Remask → re-enter draft |
 | **S11** | Quick IDs | Liftoff / LiftOn (vertebrates: consider TOGA2) provisional |
 | **S12** | Stop rules | Freeze when stable |
-| **S13** | GPU / AI ab initio | Helixer / Tiberius / ANNEVO (± Mikado); compare to S1 when evidence exists |
+| **S13** | GPU / AI ab initio | Helixer / Tiberius / ANNEVO / OrionGeno (± Mikado); compare to S1 when evidence exists |
 | **S14** | EVM consensus (PASA→EVM→polish) | PASA → Augustus/GeneMark → EVM → PASA polish → filter → rename |
 
 Recipes: [`../SCENARIOS.md`](../SCENARIOS.md).  
