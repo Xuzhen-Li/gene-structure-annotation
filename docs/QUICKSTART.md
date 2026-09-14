@@ -6,6 +6,7 @@
 
 | If you need… | Open |
 |--------------|------|
+| Branch map (trunk / draft / overlay) | [`ROADMAP.md`](ROADMAP.md) |
 | Evidence → which S-branch | [README “Evidence → branch”](../README.md#evidence--branch-chooser) |
 | Every stage’s inputs/outputs | [`STAGE_IO.md`](STAGE_IO.md) |
 | Full qualification checklist | [`PLAYBOOK.md`](PLAYBOOK.md) |

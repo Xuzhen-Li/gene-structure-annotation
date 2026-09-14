@@ -10,6 +10,7 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 
 | Doc | |
 |-----|--|
+| **[`docs/ROADMAP.md`](docs/ROADMAP.md)** | **Branch map** — trunk vs pick-one draft vs overlays |
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — run default S1 and learn each product |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | Every stage: inputs → outputs → how to check |
 | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) | **TE scheme** → soft-mask (EDTA→curate→A0; docks [vitis-te](https://github.com/Xuzhen-Li/vitis-te)) |
@@ -78,7 +79,7 @@ Asm0 → Asm1 → A0 soft-mask
 | Long-read / Iso-seq heavy | **S3** (± EviAnn) | Ignoring SQANTI filters |
 | WGA to close clade | TOGA2 / LiftOn (with S11 or S1) | Blind TOGA on tough monocots without BUSCO check |
 
-Unsure with RNA+proteins? **S1**. Recipes: [`docs/SCENARIOS.md`](docs/SCENARIOS.md).
+Unsure with RNA+proteins? **S1**. Full map (draft vs overlay): [`docs/ROADMAP.md`](docs/ROADMAP.md). Recipes: [`docs/SCENARIOS.md`](docs/SCENARIOS.md).
 
 
 ```bash

@@ -2,6 +2,8 @@
 
 Biology-general (any species with a genome + evidence). **This repo’s primary deliverable is structural annotation** (GFF + proteins). Functional FA → [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
 
+One-page map (trunk / pick-one / overlays): [`../ROADMAP.md`](../ROADMAP.md).
+
 This is the **main** annotation process. S1–S14 are not side docs; they are named exits from the same spine. The EVM consensus path is **S14** and is fully specified under [`dclab/`](dclab/).
 
 ```text
