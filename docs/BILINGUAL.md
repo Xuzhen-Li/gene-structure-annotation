@@ -12,3 +12,5 @@ Chinese pages link to English ops docs; they do not replace them.
 Do not put private paths or Chinese-only METHODS into a paper supplement without an English twin.
 
 Function sibling: [gene-function-annotation `docs/zh/`](https://github.com/Xuzhen-Li/gene-function-annotation/tree/main/docs/zh).
+
+Full zh curriculum listed in [`docs/zh/README.md`](zh/README.md).

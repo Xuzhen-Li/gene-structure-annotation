@@ -1,13 +1,13 @@
 # 中文教学入口 — 基因**结构**注释
 
-> 本目录用中文讲清「是什么、为什么、怎么选路」。  
+> 本目录用中文讲清「是什么、为什么、怎么选路、怎么验收」。  
 > **真正跑命令、写 METHODS、工具安装**仍以英文文档为准（国际可引用）。
 
 [English bilingual policy](../BILINGUAL.md) · [仓库首页](../../README.md)
 
 ---
 
-## 先建立直觉（建议按序读）
+## 完整课程（建议按序）
 
 | 顺序 | 文档 | 你学到什么 |
 |------|------|------------|
@@ -15,6 +15,16 @@
 | 2 | [02_TE与基因的关系.md](02_TE与基因的关系.md) | 为什么要 soft-mask；trusted lib |
 | 3 | [03_怎么开始跑.md](03_怎么开始跑.md) | 三步上手 + flow 工具 |
 | 4 | [04_分支怎么选.md](04_分支怎么选.md) | S11/S1/S2… 对照表 |
+| 5 | [05_softmask与A0.md](05_softmask与A0.md) | soft vs hard；trusted vs working；A0/A0b |
+| 6 | [06_质控课.md](06_质控课.md) | BUSCO/PSAURON/OMArk/AGAT；为何单靠 BUSCO 不够 |
+| 7 | [07_S1精讲_BRAKER路线.md](07_S1精讲_BRAKER路线.md) | 默认草稿支逐步讲 |
+| 8 | [08_S11精讲_liftover优先.md](08_S11精讲_liftover优先.md) | 近缘参考时先投影再补洞 |
+| 9 | [09_S2_S3_S13_S14速览.md](09_S2_S3_S13_S14速览.md) | 其他草稿支一张课 |
+| 10 | [10_合并与GSAman.md](10_合并与GSAman.md) | 合并、优先表、策展、S12 停手 |
+| 11 | [11_验收L0L1L2.md](11_验收L0L1L2.md) | L0/L1/L2 门禁（指针到英文 EVALUATION） |
+| 12 | [12_flow工具怎么用.md](12_flow工具怎么用.md) | answers → plan；print-first 边界 |
+| 13 | [13_常见翻车.md](13_常见翻车.md) | Helixer 过召、hard-mask、假 curatedlib… |
+| 99 | [99_术语表.md](99_术语表.md) | GFF / BUSCO / soft-mask / curatedlib… |
 
 ## 英文操作文档（跑起来时打开）
 
@@ -25,6 +35,7 @@
 | 合不合格 | [`../EVALUATION.md`](../EVALUATION.md) |
 | 完整路线图 | [`../ROADMAP.md`](../ROADMAP.md) |
 | TE 方案（英文） | [`../TE_LIBRARY.md`](../TE_LIBRARY.md) |
+| 上手长文 | [`../QUICKSTART.md`](../QUICKSTART.md) |
 
 ## 一句话自测
 

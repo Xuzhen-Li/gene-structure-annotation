@@ -1,0 +1,43 @@
+# S11 精讲：Liftover 优先
+
+何时选：有**近缘、已整理**的参考基因组 + 参考 GFF。  
+英文：[`../ROADMAP.md`](../ROADMAP.md) · STAGE_IO「Liftover-first」表。
+
+## 为什么优先搬坐标，而不是先 invent
+
+Ji *Nat Rev Genet* 2026：证据决定方法。近缘参考已经人工/社区打磨过的模型，**先投影再补洞**，通常比从零 BRAKER 更快、更稳——前提是参考真的「近」且 GFF 可信。
+
+```text
+REF_FA + REF_GFF + 目标基因组
+        │
+        ▼
+Liftoff / LiftOn / CAT（± TOGA2 若有全基因组比对）
+        │
+        ▼
+Lifted GFF（先标 status=provisional）
+        │
+        ▼
+空洞 / 未映射区 → 用 S1 或 S2 补
+        │
+        ▼
+合并 → 主干质控（同 S1 后半）
+```
+
+## 教学要点
+
+1. **S11 是草稿支，不是「已经合格」。** 投影完只算 L0，直到补洞 + AGAT + 蛋白 BUSCO + 分诊过关。
+2. **写清「哪些是 lift、哪些是 de novo」。** METHODS 读者要能复现哪些基因座来自参考、哪些是本地发明。
+3. **参考远了不要硬 lift。** 科级距离过大时 liftover 会系统性变差；改走 S1/S2。
+4. **CAT / LiftOn / Liftoff** 目标都是「坐标搬家 + 保留基因结构语义」，输出仍要 gffread/AGAT 验。
+
+## 和 S1 的关系
+
+| | S11 | S1 |
+|--|-----|-----|
+| 主证据 | 近缘参考 GFF | RNA + 蛋白 |
+| 典型顺序 | Lift → 补洞 | 直接预测 |
+| 可叠加 | 补洞时跑 S1/S2 | 有参考时仍可事后对照 lift |
+
+有完美近缘参考时：**先 S11，再补**；不要为了「显得更原创」跳过 liftover。
+
+下一页：[09_S2_S3_S13_S14速览.md](09_S2_S3_S13_S14速览.md)
