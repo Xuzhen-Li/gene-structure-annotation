@@ -1,5 +1,10 @@
 # gene-structure-annotation
 
+> **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / TE与基因 / 怎么跑 / 怎么选支）  
+> **English ops:** runnable docs stay in English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)
+
+---
+
 ## What this repo is
 
 **Find genes on a genome** — where are the exons / CDS?

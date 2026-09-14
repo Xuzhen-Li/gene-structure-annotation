@@ -1,5 +1,8 @@
 # Start here — gene **structure**
 
+**中文请从这里进：** [`zh/README.md`](zh/README.md)
+
+
 You want **gene models** (GFF), not GO tables.
 
 1. Run the flow tool → [`../pipeline/flow_tool/README.md`](../pipeline/flow_tool/README.md)  
