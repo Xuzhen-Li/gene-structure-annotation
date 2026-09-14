@@ -1,5 +1,7 @@
 # Quickstart — run once, understand the project
 
+> Ultra-short door: [`START_HERE.md`](START_HERE.md). This page is still **structure only** (GFF + proteins), not GO/KEGG.
+
 **Audience:** first time through eukaryotic **gene structure** annotation with this playbook.  
 **Goal:** finish a **default S1-shaped** draft → proteins → QC, and know **what each file means**.  
 **Not covered here:** full FA (GO/KEGG) — that is the sibling repo after proteins exist.

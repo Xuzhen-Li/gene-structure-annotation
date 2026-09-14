@@ -1,105 +1,93 @@
 # gene-structure-annotation
 
-> **New here?** Start with [`docs/QUICKSTART.md`](docs/QUICKSTART.md) (run + understand) and [`docs/STAGE_IO.md`](docs/STAGE_IO.md) (what each step produces).
+## What this repo is
 
-**Main product: structural gene annotation** — genome → qualified GFF + proteins.
-
-Biology-general teaching / METHODS playbook (not grape-only, not plant-only). Plant engines (BRAKER / GALBA / GeMoMa) are the richest worked examples; set BUSCO lineage, OrthoDB partition, and soft-mask libraries for your clade. Formerly `plant-gene-annotation`.
-
-Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation).
-
-| Doc | |
-|-----|--|
-| **[`docs/ROADMAP.md`](docs/ROADMAP.md)** | **Branch map** — trunk vs pick-one draft vs overlays |
-| **[`docs/EVALUATION.md`](docs/EVALUATION.md)** | **Final criteria** — L0/L1/L2 gates, soft metrics, stop rules |
-| **[`pipeline/flow_tool/`](pipeline/flow_tool/)** | **Flow tool (step 1)** — answers → auto branch → narrated plan |
-| **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — run default S1 and learn each product |
-| [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | Every stage: inputs → outputs → how to check |
-| [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) | **TE scheme** → soft-mask (EDTA→curate→A0; docks [vitis-te](https://github.com/Xuzhen-Li/vitis-te)) |
-| [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) | **Delivery case:** *Vitis* T2T × S1 engine + S5 bar |
-| **[`docs/PLAYBOOK.md`](docs/PLAYBOOK.md)** | End-to-end spine + qualification checklist |
-| **[`docs/steps/MAIN.md`](docs/steps/MAIN.md)** | Branch pick S1–S14 |
-| **[`docs/SCENARIOS.md`](docs/SCENARIOS.md)** | Scenario recipes |
-| **[`docs/DETAILED_GUIDE.md`](docs/DETAILED_GUIDE.md)** | Copy-paste steps |
-| [`docs/steps/dclab/`](docs/steps/dclab/) | S14 EVM / PASA path |
-| [`docs/AI_ASSIST.md`](docs/AI_ASSIST.md)| Co-pilot prompts / checks |
-| [`docs/TOOLS.md`](docs/TOOLS.md) | Tool index |
-| [`config/example.env`](config/example.env) | Paths / threads / lineages |
-| [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) | Biology-wide peer stacks (GALBA2 / TOGA2 / funannotate2; Haul 2026-09-14) |
-| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & chooser (Ji *NRG* 2026 + Freedman *GR* 2025; Haul 2026-09-14) |
-| [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md) | 2026-09-14 self-audit gap table (lit + peers) |
-
-## Inputs → outputs
-
-| | What |
-|--|------|
-| **In** | Genome FASTA (+ RNA BAM and/or proteins; TE lib) |
-| **Out (primary)** | Curated / qualified GFF + `proteins.faa` + METHODS |
-| **Next** | Hand proteins to [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) for F1 FA |
-
-
-## Evidence → branch (chooser)
-
-Framed like Ji, Pertea & Salzberg (*Nat Rev Genet* 2026 Fig. 2): **what evidence you have** decides the draft path. Details and citations: [`docs/REVIEWS.md`](docs/REVIEWS.md).
+**Find genes on a genome** — where are the exons / CDS?
 
 ```text
-Asm0 → Asm1 → A0 soft-mask
-        │
-        ▼
-   What do you have?
-        │
-        ├─ Close, curated reference annotation
-        │     → S11 first: Liftoff / LiftOn / CAT (± TOGA2 if WGA)
-        │       then qualify; de novo only to fill gaps
-        │
-        ├─ RNA-seq + proteins (no close ref)
-        │     → S1: BRAKER4/3 (± GeMoMa) + StringTie→TransDecoder compare
-        │
-        ├─ Proteins only
-        │     → S2: GALBA / GALBA2 / GeMoMa
-        │
-        ├─ Deep Iso-seq / want traceable evidence CDS
-        │     → S3: IsoQuant→SQANTI3 (± EviAnn)
-        │
-        ├─ GPU / thin evidence ab initio compare
-        │     → S13: Helixer / Tiberius / ANNEVO (not a silent S1 replace)
-        │
-        └─ NCBI / GenBank package compare
-              → S8: EGAPx / Gnomon
-        │
-        ▼
-   Merge / AGAT → proteins → BUSCO + PSAURON → GSAman → qualify → release
-        │
-        ▼
-   Hand proteins to gene-function-annotation (F1)  ← function is a second layer
+genome FASTA  (+ RNA and/or proteins)
+        ↓
+ soft-mask → predict gene models → QC → curate
+        ↓
+  qualified GFF3  +  proteins.faa  +  METHODS
 ```
 
-| Evidence | Prefer | Avoid as sole draft |
-|----------|--------|---------------------|
-| Near-identical / same-species curated GFF | **S11** liftover | Starting BRAKER from scratch |
-| Illumina RNA + OrthoDB/proteins | **S1** + StringTie compare | Ab initio-only (no UTRs / multi-isoform) |
-| Proteins, little/no RNA | **S2** | Claiming complete UTRs |
-| Long-read / Iso-seq heavy | **S3** (± EviAnn) | Ignoring SQANTI filters |
-| WGA to close clade | TOGA2 / LiftOn (with S11 or S1) | Blind TOGA on tough monocots without BUSCO check |
+That is **structural** annotation.  
+**Not** GO / KEGG / domain tables — those are the sibling  
+[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) **after** proteins exist.
 
-Unsure with RNA+proteins? **S1**. Full map (draft vs overlay): [`docs/ROADMAP.md`](docs/ROADMAP.md). Recipes: [`docs/SCENARIOS.md`](docs/SCENARIOS.md).
+---
 
+## Three steps (start here)
+
+### 1. Tell the tool what evidence you have
 
 ```bash
 git clone https://github.com/Xuzhen-Li/gene-structure-annotation.git
 cd gene-structure-annotation
-cp config/example.env config/local.env   # set GENOME_FA, BUSCO_LINEAGE, evidence paths
-# docs/PLAYBOOK.md → docs/SCENARIOS.md (one branch) → release checklist
+cp pipeline/flow_tool/answers.example.yaml my_answers.yaml
+# edit yes/no: RNA? proteins? close reference? paper bar?
+python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_plan.md
 ```
+
+Open `my_plan.md`: it picks an **S-branch** and explains every stage  
+(**input → software purpose → process → output**).
+
+### 2. Fill paths once
+
+```bash
+cp config/example.env config/local.env
+# set GENOME_FA, BUSCO_LINEAGE, RNA_BAM / PROTEIN_DB, TE lib, WORK_DIR, THREADS
+```
+
+### 3. Follow the plan → release GFF + proteins
+
+Walk the stages in `my_plan.md` (helpers under `pipeline/`).  
+When done, tick [`docs/EVALUATION.md`](docs/EVALUATION.md) (L1 default; L2 = paper/T2T).
+
+**Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
+
+---
+
+## Plain map (one glance)
+
+| You have | Branch | Engine (short) |
+|----------|--------|----------------|
+| Close curated reference GFF | **S11** | Liftoff / LiftOn / CAT |
+| RNA + proteins | **S1** | BRAKER4/3 + StringTie compare |
+| Proteins only | **S2** | GALBA / GeMoMa |
+| Heavy Iso-seq | **S3** | IsoQuant / SQANTI (± EviAnn) |
+| Want GPU ab initio **compare** | **S13** | Helixer / Tiberius / ANNEVO |
+| Classic EVM/PASA | **S14** | `docs/steps/dclab/` |
+
+Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
+
+---
+
+## Docs (only when you need them)
+
+| Need | Open |
+|------|------|
+| Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) · [`docs/FLOW_TOOL.md`](docs/FLOW_TOOL.md) |
+| Human walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| What each folder means | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) |
+| Done? (L0/L1/L2) | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| TE → soft-mask | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
+| *Vitis* T2T example | [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) |
+| Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) |
+| Recipes S1–S14 | [`docs/SCENARIOS.md`](docs/SCENARIOS.md) |
+| Reviews / peers | [`docs/REVIEWS.md`](docs/REVIEWS.md) · [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) |
+
+More: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) · [`docs/steps/MAIN.md`](docs/steps/MAIN.md) · [`docs/DETAILED_GUIDE.md`](docs/DETAILED_GUIDE.md) · [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md).
+
+---
 
 ## This is not
 
-- Not functional annotation — [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)
-- Not TE-only — species TE lib (grape example: [vitis-te](https://github.com/Xuzhen-Li/vitis-te))
-- Not graphs / synteny — [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome), [vitis-synteny](https://github.com/Xuzhen-Li/vitis-synteny)
+- **Not** functional annotation (GO/KEGG) → [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)
+- **Not** TE library build alone → [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + `docs/TE_LIBRARY.md`
+- **Not** pangenome graphs → [vitis-pangenome](https://github.com/Xuzhen-Li/vitis-pangenome)
 
 No private FASTQ/BAM in git.
-
-**Agent skill:** `skills/gene-structure-annotation/` (optional Cursor skill install).
 
 **Author:** Xuzhen Li · [ORCID](https://orcid.org/0000-0003-3670-6657)

@@ -385,7 +385,7 @@ cp "$PROTEINS_FA" "$WORK_DIR/release/${RELEASE_TAG}.faa"
 # write release/METHODS.md — then freeze
 ```
 
-Optional **A6** eggNOG after freeze.
+Optional **A6**: hand proteins to gene-function-annotation (no eggNOG in this repo).
 
 ---
 

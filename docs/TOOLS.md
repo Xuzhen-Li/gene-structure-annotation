@@ -1,30 +1,17 @@
-# Tools — structural annotation (this repo)
+# Tools — gene **structure** (this repo)
+
+How to install/run each **structure** program. Workflow order: [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) · auto-plan: [`../pipeline/flow_tool/`](../pipeline/flow_tool/).
 
 Functional tools → [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
-
-# Tools — how to install and run each piece
 
 Workflow order lives in [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md).  
 This page is **tool literacy**: what each program is for, how to get it, a minimal working command, outputs, and common failures.
 
 Prefer **containers** (Docker / Singularity / Apptainer) over compiling by hand. Paths below are templates — put your image tags and module names in `config/local.env`.
 
-## Functional tools (main product)
+## Functional tools
 
-| Order | Tool | Makes |
-|-------|------|-------|
-| F0 | [BUSCO](tools/busco.md) proteins | completeness |
-| F1a | [DIAMOND](tools/diamond_func.md) | SwissProt hits |
-| F1b | [eggNOG-mapper](tools/eggnog_mapper.md) | GO/KEGG/COG/Pfam |
-| F1c | [InterProScan](tools/interproscan.md) | domains + GO |
-| F4 | [AHRD](tools/ahrd.md) / [PANNZER2](tools/pannzer2.md) | readable names / GO |
-| F3 | [EnTAP](tools/entap.md) | alt frame |
-| F5 | [Trinotate](tools/trinotate.md) | transcriptome |
-| F2+ | [KEGGaNOG](tools/kegganog.md) | pathway plots |
-| F1+ | [Phobius/SignalP](tools/phobius_signalp.md) | secreted/TM |
-| F8 | [HRP](tools/hrp.md) | NLR |
-
-Merge: `pipeline/F_merge_tables.py`. Guide: [`FUNCTIONAL_GUIDE.md`](FUNCTIONAL_GUIDE.md).
+**Not in this repo.** After `proteins.faa` exists, use [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) (`docs/TOOLS.md` / F1). Do not look for eggNOG / InterProScan / AHRD pages here.
 
 ---
 ## Order (upstream structural S1 — do not skip around)

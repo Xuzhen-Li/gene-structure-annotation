@@ -1,13 +1,17 @@
-# Optional functional annotation
+# A6 — Hand-off only (not a product of this repo)
 
-**Do this in the sibling repo** [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) (F1 spine).
+This repository’s **primary product** is structural:
 
-Below are legacy notes kept for cross-reference.
+- qualified **GFF3** (gene / mRNA / CDS), and  
+- **`proteins.faa`**, plus METHODS.
 
-# A6 — Functional annotation (PRIMARY product of this repo)
+**GO / KEGG / domains / readable names are not done here.**
 
-Structural curation ends at a stable GFF/proteins. **Functional work starts there.**
+When structure release is frozen (`RELEASE_TAG`):
 
-→ Follow [`../docs/steps/FUNCTIONAL_MAIN.md`](../docs/steps/FUNCTIONAL_MAIN.md) and [`../docs/FUNCTIONAL_GUIDE.md`](../docs/FUNCTIONAL_GUIDE.md).
+1. Point `PROTEINS_FA` at this release’s proteins.  
+2. Continue in sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)  
+   (`pipeline/flow_tool/` → F1 default).
 
-Scripts: `F1_diamond.sh`, `F2_eggnog.sh`, `F3_interproscan.sh`, `F_merge_tables.py`.
+There is no `F1_diamond.sh` / eggNOG / InterProScan in *this* repo.  
+Ignore any old note that called functional annotation the “PRIMARY product” here — that was a leftover from before the structure/function split.

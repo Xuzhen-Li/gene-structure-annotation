@@ -242,7 +242,7 @@ Goal: paper|fast|names|NLR. Recommend F1–F8. No invented GO counts.
 ### Next functional command
 
 ```text
-Branch F1. Done: F0. Next step only: eggNOG-mapper or InterProScan
+Structure frozen. Next: sibling gene-function-annotation (F1) — not an S-branch here
 using config/example.env. Point to pipeline/F*.sh.
 ```
 
