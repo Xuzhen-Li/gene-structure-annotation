@@ -1,5 +1,8 @@
 # TE library scheme → soft-mask (A0)
 
+> **Teaching (Chinese, illustrated):** [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md)  
+> Lab notebook on the analyst machine: `Desktop/script/00_pan&genome/03_TE/` (not vendored here).
+
 **Canonical public stub:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te).  
 **Lab source of truth (this machine):** `Desktop/script/00_pan&genome/03_TE/`  
 (`README.md`, `TEannotation_guide.md`, stage folders `01_`…`08_`).  

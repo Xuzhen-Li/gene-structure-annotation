@@ -56,3 +56,25 @@ Hard-mask 把重复区改成 `N` — **序列没了**。
 英文四层产品 → [`../TE_LIBRARY.md`](../TE_LIBRARY.md)
 
 下一课建议回到主干 [06](06_质控课.md)，或查术语 [99](99_术语表.md)。
+
+## 图：信任边界
+
+```mermaid
+flowchart TB
+  subgraph ok [可信任边界]
+    U[trusted curatedlib]
+  end
+  subgraph no [边界外]
+    E[生 EDTA]
+    W[整份 working]
+    Cat[cat + CD-HIT]
+    Cls[TEsorter all.cls.lib]
+  end
+  U --> Soft[基因 soft-mask]
+  E -.->|✗| Soft
+  W -.->|✗| Soft
+  Cat -.->|✗| Soft
+  Cls -.->|✗| Soft
+```
+
+实验室漏斗课：[18_TE流程课_借鉴实验室03_TE.md](18_TE流程课_借鉴实验室03_TE.md)

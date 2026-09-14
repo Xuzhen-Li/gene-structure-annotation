@@ -2,6 +2,19 @@
 
 英文细则：[`../TE_LIBRARY.md`](../TE_LIBRARY.md) · [`../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md)
 
+
+## 图：A0 只吃 trusted
+
+```mermaid
+flowchart LR
+  W[working] -->|禁止| RM[RepeatMasker]
+  U[trusted] -->|允许| RM
+  RM --> Soft[GENOME_SOFT]
+  Soft --> Br[BRAKER3/4 等]
+```
+
+完整漏斗与红线（借鉴 `03_TE`）：[18_TE流程课_借鉴实验室03_TE.md](18_TE流程课_借鉴实验室03_TE.md)
+
 ## 为什么
 
 1. Soft-mask **保留碱基**，预测器仍可跨真基因；hard-mask 会毁序列。  

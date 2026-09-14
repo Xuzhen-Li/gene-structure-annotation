@@ -15,6 +15,26 @@
 
 深课：[14_为什么这样选证据.md](14_为什么这样选证据.md)
 
+
+## 小问答：为何结构仓里会出现 BRAKER3？
+
+**因为 BRAKER 就是「结构注释」默认引擎之一**，不是功能注释软件。
+
+| 问题 | 答案 |
+|------|------|
+| BRAKER 产出什么？ | **基因坐标 GFF**（外显子/CDS），供后面抽蛋白 |
+| 为何常写 BRAKER3？ | 论文与 [Galaxy 教程](../TUTORIALS_AND_MEETINGS.md) 仍大量用 **BRAKER3**；本仓默认 **BRAKER4（或 BRAKER3）** |
+| 和 TE 什么关系？ | TE → **trusted soft-mask** → 再跑 BRAKER；BRAKER **不**做 TE 家族库 |
+| 和 GO/KEGG？ | 无关。GO 在功能仓 F1 |
+
+```mermaid
+flowchart LR
+  Soft[GENOME_SOFT] --> BK[BRAKER3/4]
+  RNA[RNA BAM] --> BK
+  Prot[蛋白库] --> BK
+  BK --> GFF[DRAFT_GFF 基因结构]
+```
+
 ## 这条线在干什么
 
 用 RNA 的剪接证据 + 蛋白同源，让 GeneMark/Augustus（经 BRAKER3/4）学出基因模型；再用 **StringTie→TransDecoder** 当对照轨，而不是偷偷换掉 BRAKER。

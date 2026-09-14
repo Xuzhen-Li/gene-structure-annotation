@@ -5,6 +5,17 @@
 
 [English bilingual policy](../BILINGUAL.md) · [仓库首页](../../README.md)
 
+```mermaid
+flowchart LR
+  TE[TE trusted] --> A0[soft-mask]
+  A0 --> S[S支 基因模型]
+  S --> Q[质控与验收]
+  Q --> P[proteins]
+  P --> FA[功能仓]
+```
+
+读图：本仓主线是 **A0 → 基因 GFF → 蛋白**；TE 是前置地板；功能在隔壁。
+
 ---
 
 ## 完整课程（建议按序）
@@ -29,6 +40,7 @@
 | 15 | [15_为什么质控是这些指标.md](15_为什么质控是这些指标.md) | **WHY**：BUSCO 盲区；谱系；PSAURON/OMArk；S12 |
 | 16 | [16_为什么TE要trusted.md](16_为什么TE要trusted.md) | **WHY**：禁生 EDTA / cat+CD-HIT / hard-mask |
 | **17** | [外部教程与会议](17_外部教程与会议.md) | Galaxy / 会议 |
+| **18** | [TE流程课_借鉴实验室03_TE](18_TE流程课_借鉴实验室03_TE.md) | 四层产品·漏斗·红线·接 A0（图文） |
 | 99 | [99_术语表.md](99_术语表.md) | GFF / BUSCO / soft-mask / curatedlib… |
 
 > 课 00 / 14–16 是 **WHY 层**；课 01–13 正文里也有短 `## 为什么`（含反例）。操作与门禁仍以英文为准。
