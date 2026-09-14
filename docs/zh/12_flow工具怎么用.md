@@ -2,6 +2,15 @@
 
 英文：[`../FLOW_TOOL.md`](../FLOW_TOOL.md) · [`../../pipeline/flow_tool/README.md`](../../pipeline/flow_tool/README.md)
 
+## 为什么
+
+1. 选路错误的成本高于「多敲几行命令」。  
+2. 分阶段讲解强迫你看见**输入→目的→输出**，而不是复制神秘脚本。  
+3. Print-first 适配异构集群（module/路径各异）。  
+4. 与 ROADMAP chooser 对齐，减少「口头选 S1、实际跑 S13」。  
+5. Step 1 不假装已自动投递作业 — 边界写清才可信。
+
+**反例：** 把 flow 生成的 plan 当已跑通的 METHODS，却从未执行 BRAKER。
 ## 它现在能做什么（Step 1）
 
 填一份「你有什么证据」的答案 → 自动选 **S 支** → 生成 Markdown 计划：每个阶段写清 **输入 / 软件目的 / 流程 / 输出**。

@@ -3,6 +3,18 @@
 何时选：有 **Illumina RNA + 蛋白证据**，没有近缘已整理参考 GFF。  
 英文流程：[`../QUICKSTART.md`](../QUICKSTART.md) · [`../SCENARIOS.md`](../SCENARIOS.md) · [`../STAGE_IO.md`](../STAGE_IO.md)
 
+## 为什么
+
+1. 无近缘好参考时，**RNA+蛋白**是最强常用证据组合（Freedman 基准）。  
+2. BRAKER 把剪接与蛋白同源收进可训模型，适合当**默认草稿**。  
+3. **StringTie 对照**捕捉 isoform/UTR 线索，误差模式与 ab initio 互补。  
+4. 对照 ≠ 偷换 — 终稿合并权重必须可写进 METHODS。  
+5. 蛋白必须从**本轮** GFF 重抽，否则 QC 评幽灵。
+
+**反例：** 有 RNA 却只用 Helixer，并在 METHODS 写成 S1。  
+
+深课：[14_为什么这样选证据.md](14_为什么这样选证据.md)
+
 ## 这条线在干什么
 
 用 RNA 的剪接证据 + 蛋白同源，让 GeneMark/Augustus（经 BRAKER3/4）学出基因模型；再用 **StringTie→TransDecoder** 当对照轨，而不是偷偷换掉 BRAKER。

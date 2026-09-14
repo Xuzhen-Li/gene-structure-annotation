@@ -2,6 +2,15 @@
 
 英文：[`../STAGE_IO.md`](../STAGE_IO.md) · [`../ERROR_CLASSES.md`](../ERROR_CLASSES.md) · EVALUATION「Stop rules」
 
+## 为什么
+
+1. 多套草稿坐标会打架 — 无合并权重就**不可复现**。  
+2. 坏父本权重过高会污染终稿；AGAT 计数是第一道 sanity。  
+3. 蛋白不同步 = 用旧序列做 BUSCO/FA。  
+4. 优先表把有限人工对准**最差点**（碎裂/融合/剪接/串联）。  
+5. **S12** 防止无限打磨成为不交付。
+
+**反例：** 合并后基因数翻倍却不查父本，仍写 L1。
 ## 合并（A4）在解决什么
 
 多套草稿（BRAKER + GeMoMa、lift + de novo、StringTie ORF…）坐标会打架。合并器（EVM / TSEBRA / Mikado 等）按**权重**挑一套共识。

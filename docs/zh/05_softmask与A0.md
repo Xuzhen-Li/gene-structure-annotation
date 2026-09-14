@@ -2,6 +2,18 @@
 
 英文细则：[`../TE_LIBRARY.md`](../TE_LIBRARY.md) · [`../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md)
 
+## 为什么
+
+1. Soft-mask **保留碱基**，预测器仍可跨真基因；hard-mask 会毁序列。  
+2. `--curatedlib` 把库抬成高信任 — 脏库 → **基因 wipe 或 TE 膨胀**。  
+3. Working / 生 EDTA / `cat`+CD-HIT **都不是** trusted。  
+4. A0b（ProtExcluder）用于怀疑宿主蛋白污染时，METHODS 要记 exclusion。  
+5. A0 产出的 `GENOME_SOFT` 是所有草稿支的共同地板。
+
+**反例：** 把 hard-mask 基因组当 soft 喂 BRAKER（G2 自动不合格）。  
+
+深课：[16_为什么TE要trusted.md](16_为什么TE要trusted.md)
+
 ## Soft vs hard mask
 
 | 方式 | 重复区变成什么 | 对基因预测的影响 |
