@@ -81,6 +81,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | *Vitis* T2T example | [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) |
 | Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) |
 | Recipes S1–S14 | [`docs/SCENARIOS.md`](docs/SCENARIOS.md) |
+| Audit 2026-09-14 | [`docs/AUDIT_2026-09-14.md`](docs/AUDIT_2026-09-14.md) |
 | Reviews / peers | [`docs/REVIEWS.md`](docs/REVIEWS.md) · [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) |
 
 More: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) · [`docs/steps/MAIN.md`](docs/steps/MAIN.md) · [`docs/DETAILED_GUIDE.md`](docs/DETAILED_GUIDE.md) · [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md).

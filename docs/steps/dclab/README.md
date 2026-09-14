@@ -21,4 +21,4 @@ Further reading: [AnnotationPipeline2-EVM_based-DClab](https://github.com/CantuL
 
 Weights: [`../../../config/evm_weights_cantulab.txt`](../../../config/evm_weights_cantulab.txt).  
 Env: `config/example.env` (S14 block).  
-Notes: [`../../notes/cantulab_evm.md`](../../notes/cantulab_evm.md).
+Notes: this directory is the CantuLab/DClab EVM walkthrough (replaces the old `notes/cantulab_evm.md` stub).

@@ -224,14 +224,14 @@ cp "$WORK_DIR/priority_rounds/priority_r1.tsv" "$PRIORITY_TSV"
 
 ### 5.2 Evidence pack + GSAman
 
-Load per [`../pipeline/03_evidence_checklist.md`](../pipeline/03_evidence_checklist.md):
+Load per [`../../pipeline/03_evidence_checklist.md`](../../pipeline/03_evidence_checklist.md):
 
 - genome + merged/curated GFF  
 - `RNA_BAM`  
 - homolog / PN40024 proteins or GFF  
 - priority list  
 
-Curate in order ([`../pipeline/04_gsaman_curation.md`](../pipeline/04_gsaman_curation.md)):
+Curate in order ([`../../pipeline/04_gsaman_curation.md`](../../pipeline/04_gsaman_curation.md)):
 
 1. Fragmentation  
 2. Adjacent fusion  

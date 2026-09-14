@@ -221,7 +221,7 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 2. Build `families.tsv`:  
    `gene_id<TAB>family_or_window` for Orthogroups / QTL interval genes.  
-   For NLR: run [HRP](../tools/hrp.md) / nf-annotate `--r_genes` and add those IDs.
+   For NLR: run [HRP](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/tools/hrp.md) / nf-annotate `--r_genes` and add those IDs.
 
 3. Re-rank:  
    ```bash
@@ -351,7 +351,7 @@ Do not endless-polish for a 0.1% BUSCO bump.
 9–12. Same as S1 from proteins / BUSCO / PSAURON / priority / GSAman / release.  
     Still apply Copetti stage QC if you also have a BRAKER set for comparison.
 
-Peers: [`notes/ragnarok.md`](notes/ragnarok.md).
+Peers: [`PEER_PIPELINES.md` §RAGNAROK](PEER_PIPELINES.md).
 
 ---
 
@@ -385,14 +385,14 @@ If BRAKER << other sets: TSEBRA rescue ([`tools/tsebra.md`](tools/tsebra.md)) be
 
 2. **01 External evidences** — Iso-Seq HQ and/or related CDS / RNA assemblies.
 
-3. **02 Repeats** — RepeatMasker `-xsmall`; build `repeats.gff3` for EVM ([`../tools/repeatmasker.md`](../tools/repeatmasker.md)).
+3. **02 Repeats** — RepeatMasker `-xsmall`; build `repeats.gff3` for EVM ([`tools/repeatmasker.md`](tools/repeatmasker.md)).
 
-4. **03–04 PASA training set → train Augustus + GeneMark-ET** ([`../tools/pasa.md`](../tools/pasa.md)).
+4. **03–04 PASA training set → train Augustus + GeneMark-ET** ([`tools/pasa.md`](tools/pasa.md)).
 
 5. **05–06** Genome-wide ab initio + transcript alignment tracks.
 
 6. **07 EVM** with [`../config/evm_weights_cantulab.txt`](../config/evm_weights_cantulab.txt); then **PASA polish**.  
-   Notes: [`notes/cantulab_evm.md`](notes/cantulab_evm.md).
+   Notes: [`steps/dclab/README.md`](steps/dclab/README.md).
 
 7. **08 Filter** — no stop / &lt;50 aa:  
    ```bash

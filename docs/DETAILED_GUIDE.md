@@ -545,4 +545,4 @@ Peers: [`RELATED_SOFTWARE.md`](RELATED_SOFTWARE.md).
 ## S14 — EVM consensus (part of the main process)
 
 Follow [`steps/dclab/`](steps/dclab/) 00→09, then return here at Step 8 (proteins/QC) through release.  
-Notes: [`notes/cantulab_evm.md`](notes/cantulab_evm.md). Upstream: https://github.com/CantuLab/AnnotationPipeline2-EVM_based-DClab
+Notes: [`steps/dclab/README.md`](steps/dclab/README.md). Upstream: https://github.com/CantuLab/AnnotationPipeline2-EVM_based-DClab

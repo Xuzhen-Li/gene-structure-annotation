@@ -21,7 +21,7 @@ Use tools **in this sequence**. Later steps assume earlier outputs exist.
 | # | Tool | Makes | Next needs |
 |---|------|-------|------------|
 | 1 | [hifiasm](tools/hifiasm.md) | contigs | scaffolding / QC |
-| 2 | [YaHS](tools/yahs.md) *(if you have Hi-C)* | chrom-scale `GENOME_FA` | Asm1 |
+| 2 | [YaHS](https://github.com/c-zhou/yahs) *(external; optional Hi-C scaffold)* *(if you have Hi-C)* | chrom-scale `GENOME_FA` | Asm1 |
 | 3 | [BUSCO](tools/busco.md) *(genome mode)* | Asm1 pass/fail | soft-mask only if pass |
 | 4 | [EDTA](tools/edta.md) *(or curated lib)* + [ProtExcluder](tools/protexcluder.md) | TE lib / anno | soft-mask |
 | 5 | [RepeatMasker](tools/repeatmasker.md) / EDTA `make_masked.pl` | `GENOME_SOFT` | RNA + drafts |
@@ -64,14 +64,14 @@ Use tools **in this sequence**. Later steps assume earlier outputs exist.
 
 | Stage | Tools |
 |-------|--------|
-| Assembly | [`tools/hifiasm.md`](tools/hifiasm.md), [`tools/yahs.md`](tools/yahs.md) |
+| Assembly | [`tools/hifiasm.md`](tools/hifiasm.md), [YaHS](https://github.com/c-zhou/yahs) |
 | Soft-mask | [`tools/edta.md`](tools/edta.md), [`tools/repeatmasker.md`](tools/repeatmasker.md), [`tools/protexcluder.md`](tools/protexcluder.md) |
 | RNA / Iso-seq | [`tools/hisat2_star.md`](tools/hisat2_star.md), [`tools/stringtie.md`](tools/stringtie.md), [`tools/minimap2.md`](tools/minimap2.md) |
 | Draft genes | [`tools/braker4.md`](tools/braker4.md), [`tools/braker3.md`](tools/braker3.md), [`tools/galba.md`](tools/galba.md), [`tools/gemoma.md`](tools/gemoma.md), [`tools/eviann.md`](tools/eviann.md), [`tools/liftoff.md`](tools/liftoff.md), [`tools/helixer.md`](tools/helixer.md), [`tools/maker_p.md`](tools/maker_p.md), [`tools/miniprot.md`](tools/miniprot.md) |
 | Merge | [`tools/evm.md`](tools/evm.md), [`tools/tsebra.md`](tools/tsebra.md), [`tools/mikado.md`](tools/mikado.md), [`tools/pasa.md`](tools/pasa.md) |
 | GFF / proteins | [`tools/agat_gffread.md`](tools/agat_gffread.md) |
 | QC | [`tools/busco.md`](tools/busco.md), [`tools/psauron.md`](tools/psauron.md), [`tools/omark_compleasm.md`](tools/omark_compleasm.md) |
-| Curation | [`tools/gsaman.md`](tools/gsaman.md), [`tools/syngap.md`](tools/syngap.md), [`tools/hrp.md`](tools/hrp.md) |
+| Curation | [`tools/gsaman.md`](tools/gsaman.md), [`tools/syngap.md`](tools/syngap.md), [HRP (FA repo)](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/tools/hrp.md) |
 | Optional NCBI | [`tools/egapx.md`](tools/egapx.md) |
 
 ## Shared habits

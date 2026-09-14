@@ -6,7 +6,7 @@
 1. **Rabiosa (Italian ryegrass)** release notes — MAKER-P + custom TE library + RepeatMasker for genes/repeats/ncRNA ([CyVerse dataset](https://doi.org/10.25739/1e5z-pc33), Copetti 2021).  
 2. **Live BRAKER troubleshooting** on a haploid plant assembly ([BRAKER issue #949](https://github.com/Gaius-Augustus/BRAKER/issues/949), 2025) — EDTA tracks, HISAT2/StringTie, BRAKER3-style run, miniprot from a related genus, stage-wise BUSCO and mono:multi ratios, TSEBRA over-filtering.
 
-For the EVM consensus path, see [`cantulab_evm.md`](cantulab_evm.md) → [CantuLab/AnnotationPipeline2-EVM_based-DClab](https://github.com/CantuLab/AnnotationPipeline2-EVM_based-DClab). This page keeps Copetti’s **diagnostics** (stage counts, TSEBRA rescue, TE/browser habits). 
+For the EVM consensus path, see [`../steps/dclab/README.md`](../steps/dclab/README.md) → [CantuLab/AnnotationPipeline2-EVM_based-DClab](https://github.com/CantuLab/AnnotationPipeline2-EVM_based-DClab). This page keeps Copetti’s **diagnostics** (stage counts, TSEBRA rescue, TE/browser habits). 
 
 ## Pattern A — Classical MAKER-P (Rabiosa-style)
 
