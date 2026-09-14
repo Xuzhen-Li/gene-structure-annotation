@@ -11,6 +11,7 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 | Doc | |
 |-----|--|
 | **[`docs/ROADMAP.md`](docs/ROADMAP.md)** | **Branch map** — trunk vs pick-one draft vs overlays |
+| **[`docs/EVALUATION.md`](docs/EVALUATION.md)** | **Final criteria** — L0/L1/L2 gates, soft metrics, stop rules |
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — run default S1 and learn each product |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | Every stage: inputs → outputs → how to check |
 | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) | **TE scheme** → soft-mask (EDTA→curate→A0; docks [vitis-te](https://github.com/Xuzhen-Li/vitis-te)) |

@@ -41,7 +41,9 @@ A6    Optional: hand proteins to gene-function-annotation (F1)
 
 ## Qualification checklist (release = “合格”)
 
-A release is **qualified** for this lab when:
+**Full criteria (L0/L1/L2, hard gates, stop rules):** [`EVALUATION.md`](EVALUATION.md).
+
+A release is **qualified** (L1) for this lab when:
 
 - [ ] `ASSEMBLY_OK` documented (Asm1)
 - [ ] Soft-masked genome used for ab initio (A0)

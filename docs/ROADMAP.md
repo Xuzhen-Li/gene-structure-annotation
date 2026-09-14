@@ -132,7 +132,8 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 |-----|-----|
 | [`QUICKSTART.md`](QUICKSTART.md) | Run default S1 once |
 | [`STAGE_IO.md`](STAGE_IO.md) | Inputs → products per stage |
-| [`PLAYBOOK.md`](PLAYBOOK.md) | Qualification checklist |
+| [`EVALUATION.md`](EVALUATION.md) | **Final** L0/L1/L2 criteria |
+| [`PLAYBOOK.md`](PLAYBOOK.md) | Short qualification checklist |
 | [`SCENARIOS.md`](SCENARIOS.md) | Step recipes per S-ID |
 | [`steps/MAIN.md`](steps/MAIN.md) | Same map, tool-oriented |
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
