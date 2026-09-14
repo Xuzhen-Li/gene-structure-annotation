@@ -1,0 +1,19 @@
+# Copy to answers.yaml and edit. Used by: python3 pipeline/flow_tool/flow.py --answers ...
+# All keys are required unless noted.
+
+# Evidence inventory (chooser — docs/ROADMAP.md)
+close_curated_ref: false   # same-species / near-identical curated GFF available?
+has_rna: true              # Illumina (or similar) RNA-seq aligned or alignable?
+has_proteins: true         # OrthoDB / proteins for training or GALBA?
+deep_isoseq: false         # heavy Iso-seq / want evidence CDS backbone?
+want_gpu_abinitio_compare: false  # Helixer / Tiberius / ANNEVO as compare?
+want_evm_pasa: false       # classic S14 EVM/PASA stack instead of BRAKER-first?
+
+# Goal overlays
+goal: qualified            # provisional | qualified | paper_t2t
+multi_hap: false
+plant_tandem_focus: true   # NLR / stilbene / QTL windows matter?
+
+# Optional free text for METHODS / plan header
+species_label: "Species_v1"
+notes: ""
