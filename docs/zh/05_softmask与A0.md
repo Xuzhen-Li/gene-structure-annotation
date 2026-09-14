@@ -13,14 +13,14 @@ flowchart LR
   Soft --> Br[BRAKER3/4 等]
 ```
 
-完整漏斗与红线（借鉴 `03_TE`）：[18_TE流程课_借鉴实验室03_TE.md](18_TE流程课_借鉴实验室03_TE.md)
+完整漏斗与红线：[18_TE流程课_借鉴实验室03_TE.md](18_TE流程课_借鉴实验室03_TE.md)
 
 ## 为什么
 
 1. Soft-mask **保留碱基**，预测器仍可跨真基因；hard-mask 会毁序列。  
 2. `--curatedlib` 把库抬成高信任 — 脏库 → **基因 wipe 或 TE 膨胀**。  
 3. Working / 生 EDTA / `cat`+CD-HIT **都不是** trusted。  
-4. A0b（ProtExcluder）用于怀疑宿主蛋白污染时，METHODS 要记 exclusion。  
+4. A0b（ProtExcluder）**可选**；实验室门控本体是 CDS+emit trusted，不是 A0b。  
 5. A0 产出的 `GENOME_SOFT` 是所有草稿支的共同地板。
 
 **反例：** 把 hard-mask 基因组当 soft 喂 BRAKER（G2 自动不合格）。  
@@ -69,7 +69,7 @@ GENOME_SOFT  →  交给 S11/S1/S2…
 ```
 
 - **A0**：用 **trusted** 库 soft-mask，产出 `GENOME_SOFT`。  
-- **A0b**：怀疑库里还混着宿主 CDS 时再排一次；METHODS 记下 exclusion list。  
+- **A0b**：**可选**再扫；有完整 CDS-gated trusted + sha256 时可跳过，METHODS 写清。  
 - 验证：soft-mask 比例别是 0% 或离谱全灭（见 pipeline 笔记）。
 
 ## 基因结构仓要记什么

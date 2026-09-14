@@ -1,24 +1,25 @@
-# A0b — Keep real genes out of the repeat library
+# A0b — Optional host-gene purge (ProtExcluder-style)
 
-Part of the lab TE scheme: [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md) step 5–6a.  
-Pattern: Krabbenhoft / [ProtExcluder](https://github.com/NBISweden/ProtExcluder) · tool notes [`../docs/tools/protexcluder.md`](../docs/tools/protexcluder.md).
+**Optional** extra filter if your TE library may still contain host CDS fragments.  
+**Not** the laboratory grape gate itself (that gate is CDS BLAST + class rules → `emit_trusted`; see [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md)).
 
-## Why
+Pattern: [ProtExcluder](https://github.com/NBISweden/ProtExcluder) · [`../docs/tools/protexcluder.md`](../docs/tools/protexcluder.md).
 
-In the grape pangenome TE scheme, **working** consensi still contain gene-like and Unknown entries; only **trusted** (post-CDS / motif gate) is allowed as curatedlib / soft-mask gold. A0b is the host-gene purge step inside that gate (see local `03_TE/04_library_curation/01_cds.md`).
+## Why (optional)
 
-EDTA/RepeatModeler consensi often include **host gene fragments**. If those stay in the RepeatMasker library, soft-mask will lowercase real exons (NLR, LRR, kinase, stilbene synthase, …) and structure annotation will miss or shatter them — fatal for grape T2T / S5 delivery.
+Even after a trusted emit, some projects re-check the lib against a proteome before soft-mask.  
+Skipping A0b is OK when METHODS already documents a **CDS-gated trusted** file with version/sha256.  
+Do **not** treat A0b as a substitute for building trusted (working → curatedlib is wrong).
 
-## Order
+## Order (if you run it)
 
-1. Start from **trimmed** consensi (post-TEtrimmer), not only raw EDTA if you already trimmed.  
-2. BLAST/DIAMOND the library against a curated plant proteome / UniProt plant subset / grape proteins.  
-3. Exclude significant gene hits from the lib (or quarantine into a “held_out_genelike.fasta” for METHODS).  
-4. Soft-mask **only** with the purged lib (`A0_softmask.md`).  
-5. Keep a list of removed consensi IDs in `WORK_DIR/mask/te_hostgene_excluded.txt`.
+1. Start from the **trusted** FASTA you will soft-mask with (not raw EDTA / not whole working).  
+2. BLAST/DIAMOND against a curated proteome for your species/clade.  
+3. Quarantine gene-like hits; keep an exclusion ID list for METHODS.  
+4. Soft-mask with the purged lib (`A0_softmask.md`).
 
 ## Red lines
 
-- Never put NLR / R-gene / clear CDS peptides into the TE lib.  
-- Pair with [vitis-te](https://github.com/Xuzhen-Li/vitis-te) curation — do not publish another group’s raw TE calls as yours.  
-- Skipping A0b to “save time” is not allowed on S5 / publication soft-mask.
+- Never put NLR / clear CDS peptides into the TE lib.  
+- Do not claim “S5 requires A0b” — S5 requires **trusted** soft-mask + structure QC; A0b is optional hygiene.  
+- Public stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).

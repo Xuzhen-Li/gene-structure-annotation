@@ -1,7 +1,7 @@
 # A0 — Soft-mask (detailed)
 
 **Full TE scheme:** [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md)  
-**Lab notebook:** `Desktop/script/00_pan&genome/03_TE/` · public stub [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+**Lab TE notebook:** not vendored in git — see [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md).
 
 ## Goal
 
@@ -40,7 +40,7 @@ cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
 ## Verify
 
 ```bash
-python3 - <<'PY'
+python3 - "$GENOME_SOFT" <<'PY'
 from pathlib import Path
 import sys
 fa = Path(sys.argv[1]).read_text().splitlines()
@@ -48,7 +48,6 @@ seq = "".join(l for l in fa if not l.startswith(">"))
 low = sum(1 for c in seq if c.islower())
 print(f"softmasked_fraction={low/max(len(seq),1):.4f} total={len(seq)}")
 PY
-"$GENOME_SOFT"
 ```
 
 **Never** hard-mask to `N` for BRAKER/GALBA.  

@@ -1,11 +1,11 @@
 # TE library scheme → soft-mask (A0)
 
 > **Teaching (Chinese, illustrated):** [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md)  
-> Lab notebook on the analyst machine: `Desktop/script/00_pan&genome/03_TE/` (not vendored here).
+> **Lab notebook:** kept private (not in git). Public stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
 
 **Canonical public stub:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te).  
-**Lab source of truth (this machine):** `Desktop/script/00_pan&genome/03_TE/`  
-(`README.md`, `TEannotation_guide.md`, stage folders `01_`…`08_`).  
+**Lab source of truth:** private pangenome TE notebook (not vendored).  
+This file is the **public hand-off** into gene soft-mask.  
 
 This file is the **structure-annotation hand-off**: what gene prediction is allowed to soft-mask with, and which TE products must never be confused.
 
@@ -28,12 +28,20 @@ From the live grape TE pipeline (`03_TE/README.md`):
 |---------|----------------------|-------------|
 | **Working lib** | `grape_TElib_v0_cdhit95.fa` (~2530) | Sensitive consensus set after TEtrimmer+CD-HIT; **not** whole-file `--curatedlib` |
 | **Family catalog** | `grape_TElib_v0_tetrimmer.fa` (~812, 80-80) | Family directory; Unknowns out before treating as curated |
-| **Trusted curatedlib** | `grape_TElib_trusted_v*.fa` (gate → e.g. 240) | **Only** this goes to EDTA `--curatedlib` / gene soft-mask gold path |
+| **Trusted curatedlib** | R1 archive example `grape_TElib_trusted_v1.0` (~240) | **Only** trusted goes to `--curatedlib` / gene soft-mask |
 | **panEDTA combine** | `grape_panEDTA_v*.fa` | Official pan combine **after** trusted; **not** `cat` of per-genome TElibs |
 
 TEsorter `all.cls.lib` / domain table = **labels on a subset** of the working lib. **Never** replace the working FASTA with `all.cls.lib`.
 
-Non-TE repeats (TRF, telomere, rDNA, …) live in **`03b_structure`** — **never** enter `--curatedlib`.
+Non-TE repeats (TRF, telomere, rDNA, …) are a **separate non-TE track** — **never** enter `--curatedlib`.
+
+### Lab status note (grape panel — teaching)
+
+- **R1 trusted v1.0 (~240)** is an **archive / teaching example**, not automatically “panel gold forever.”  
+- Notebook status (2026-09): R2 working-lib draft in progress; **v1.1** trusted expected after TEsorter/gating; until then do **not** silently treat v1.0 as final curatedlib for new panel EDTA v2.  
+- If you soft-mask with v1.0 anyway: METHODS must record **filename + version + sha256** and that it is R1 archive.
+- **How ~240 was defined (R1):** named superfamilies from TEsorter `cls.tsv` (e.g. Copia/Gypsy/hAT classes kept) **plus** CDS (PN40024.v4.1) decontamination / emit rules — **not** “hand-clicked 240 random consensi.” Helitron/TIR motif gates and LINE-`unknown` policy follow the lab emit rules (LINE unknown stays out of curatedlib).
+
 
 ---
 
@@ -54,7 +62,7 @@ Non-TE repeats (TRF, telomere, rDNA, …) live in **`03b_structure`** — **neve
 Then for **gene structure** on one assembly:
 
 ```text
-trusted curatedlib  →  ProtExcluder check if needed  →  RepeatMasker -xsmall
+trusted curatedlib  →  RepeatMasker -xsmall  (± optional A0b)
                     →  GENOME_SOFT  →  BRAKER / GALBA / …
 ```
 
@@ -117,13 +125,13 @@ Use domain calls in the **04 gate**, not as a replacement library.
 
 ## Curation gate → trusted (what soft-mask may trust)
 
-Follow `03_TE/04_library_curation/` SOP (CDS BLAST, Helitron motif, TIR RC, LTR/TEsorter classes, LINE/SINE policy, human ledger).  
+Lab gate (public summary): **CDS BLAST** (frozen reference CDS for the panel) + **TEsorter class filters** + emit rules (optional motif gates as the notebook evolves).  
 Emit:
 
-- `grape_TElib_trusted_vX.fa` → **`--curatedlib` + gene soft-mask**  
-- `grape_TElib_working_vX.fa` → sensitive archive, not curatedlib  
+- `grape_TElib_trusted_vX.fa` → **`--curatedlib` + gene soft-mask** (record sha256)  
+- `grape_TElib_working_vX.fa` → sensitive archive, **not** curatedlib  
 
-If you only annotate **one** new T2T genome and a trusted grape lib already exists: **prefer that trusted lib** for A0 soft-mask; do not reinvent a raw EDTA gold lib.
+Prefer an existing **current** trusted lib for A0 over inventing raw EDTA gold. For the grape panel, check whether you need **v1.1+** rather than R1 v1.0 archive — see status note above.
 
 ---
 
@@ -169,10 +177,14 @@ This is owned by the pangenome TE notebook; structure playbook only needs the **
 ## METHODS bullets (copy)
 
 ```text
-TE: lab scheme per 00_pan&genome/03_TE (EDTA others/sensitive/anno; TEtrimmer working lib;
-TEsorter domains; gated trusted curatedlib). Soft-mask: RepeatMasker -xsmall with trusted lib
-only — not raw EDTA, not full working lib, not cat+CD-HIT. Non-TE repeats excluded from curatedlib.
-Optional panEDTA / LAI after trusted freeze (pangenome TE track).
+TE library: EDTA (others/sensitive/anno; document --u) → TEtrimmer → CD-HIT~95% working →
+TEsorter labels → CDS-gated trusted curatedlib.
+Soft-mask lib example: grape_TElib_trusted_v1.0.fa
+  sha256:<paste>   (R1 archive — replace with current emit when available)
+Soft-mask: RepeatMasker -xsmall with that trusted file only.
+working ≠ curatedlib; raw EDTA / cat+CD-HIT / all.cls.lib / non-TE repeats ≠ curatedlib.
+Optional A0b ProtExcluder; optional panEDTA/LAI after trusted (TE track, not gene A0).
+Do not cite private notebook or cluster absolute paths in METHODS.
 ```
 
 ---
@@ -181,8 +193,6 @@ Optional panEDTA / LAI after trusted freeze (pangenome TE track).
 
 | Need | Where |
 |------|--------|
-| Live status / funnel numbers | Local `03_TE/README.md` |
-| Biology + traps + §3.9.5 | Local `03_TE/TEannotation_guide.md` |
-| Curation SOP | Local `03_TE/04_library_curation/` |
-| panEDTA / v2 reanno | Local `03_TE/07_pan_annotation/` |
-| Public stub | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| Public stub / summary | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| Chinese teaching funnel | [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md) |
+| Lab detailed notebook | Private (not in git); do not paste cluster paths into METHODS |
