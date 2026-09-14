@@ -88,3 +88,37 @@ If you remembered “Nature + 棕榈 + 基因注释”, the closest *Nature revi
 3. **TOGA2** when WGA+reference exist (check monocots).  
 4. Nat Methods trio → S13 / S13 / S3 — not silent S1 replacements.  
 5. Qualify with BUSCO + OMArk + PSAURON; single BUSCO% is not enough.
+
+---
+
+## Haul 2026-09-14 (self-audit)
+
+Search: WebSearch + CrossRef (PubMed/EuropePMC fallback). Goal: sources **beyond** Ji *NRG* 2026, Freedman *GR* 2025, Yandell 2012, Mudge 2016, and the Nat Methods Helixer/ANNEVO/EviAnn trio already Tier A/B above.
+
+### Tier A additions (shape chooser or QC honesty)
+
+| Paper | Venue | Role here |
+|-------|--------|-----------|
+| Vuruputoor et al., **Welcome to the big leaves: Best practices for improving genome annotation in non-model plant genomes** | *Appl Plant Sci* **11**:e11533 (2023) doi:[10.1002/aps3.11533](https://doi.org/10.1002/aps3.11533) | Plant-focused **best-practice** essay (BRAKER/MAKER inputs, soft-mask, short+long RNA, post-filters). Not Nature-family, but the clearest plant METHODS checklist beyond Freedman. |
+| Sarrasin, Burger & Lang, **Eukan: a fully automated nuclear genome annotation pipeline for less studied and divergent eukaryotes** | *NAR Genom Bioinform* **8**:lqag003 (2026) doi:[10.1093/nargab/lqag003](https://doi.org/10.1093/nargab/lqag003) | Benchmark narrative on **protists / divergent eukaryotes**; pipelines still leave fragmented/fused/missing models; Eukan as alternate full stack. |
+| van Workum et al., **MoGAAAP** | *NAR Genom Bioinform* **8**:lqag008 (2026) doi:[10.1093/nargab/lqag008](https://doi.org/10.1093/nargab/lqag008) | Peer-reviewed Liftoff+Helixer **provisional** + OMArk/BUSCO QC pack — reinforces S6/S11/S13 + A5b, not a new default draft. |
+
+### Tier B additions (methods / commentary; do not silently replace S1)
+
+| Paper | Venue | Maps to |
+|-------|--------|---------|
+| de Almeida et al., **Annotating the genome at single-nucleotide resolution with DNA foundation models** (SegmentNT) | *Nat Methods* (2025) doi:[10.1038/s41592-025-02881-2](https://doi.org/10.1038/s41592-025-02881-2) | S13 **watchlist** — foundation-model segmentation (genic + regulatory); not a BRAKER replacement when RNA+proteins exist. |
+| Hiller, **Learning genes deeply** | *Nat Methods* (2026) doi:[10.1038/s41592-026-03035-8](https://doi.org/10.1038/s41592-026-03035-8) | Commentary on ANNEVO; keeps AI ab initio as **compare track**. |
+| Kuster et al., **Ragnarok** (preprint) | bioRxiv (2025) doi:[10.1101/2025.10.03.680343](https://doi.org/10.1101/2025.10.03.680343) | Helixer + StringTie + miniprot → **Mikado** combiner — peer to S13+Mikado notes; wait for peer review before METHODS primacy. |
+
+### Takeaways — what changes ROADMAP vs what does **not**
+
+| Finding | Changes our package? |
+|---------|----------------------|
+| Plant soft-mask + combined evidence + structural/functional **filters** (Vuruputoor) | **No spine change** — already A0 soft-mask, S1 ETP, AGAT/GSAman; cite in TE/QC honesty. |
+| Divergent eukaryotes / protists need dedicated stacks (Eukan) | **Minimal** — document as S14-class peer; default plant/animal chooser unchanged. |
+| Provisional Liftoff+Helixer is publishable *with* OMArk/BUSCO caveats (MoGAAAP) | **No** — already S6/S11/S13 + A5b; strengthens “provisional” language. |
+| SegmentNT / foundation models | **Watchlist only** — S13 compare; do **not** add a new draft ID. |
+| RAGNAROK Mikado combiner | **Peer only** — maps to existing Mikado+Portcullis + S13 notes. |
+
+**Palm / Arecaceae:** still **0** Nature-family gene-annotation *reviews* (rechecked 2026-09-14).

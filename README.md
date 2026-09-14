@@ -23,8 +23,9 @@ Functional annotation (GO / KEGG / domains) lives in sibling [`gene-function-ann
 | [`docs/AI_ASSIST.md`](docs/AI_ASSIST.md)| Co-pilot prompts / checks |
 | [`docs/TOOLS.md`](docs/TOOLS.md) | Tool index |
 | [`config/example.env`](config/example.env) | Paths / threads / lineages |
-| [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) | Biology-wide peer stacks (GALBA2 / TOGA2 / funannotate2) |
-| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & chooser (Ji *NRG* 2026 + Freedman *GR* 2025) |
+| [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) | Biology-wide peer stacks (GALBA2 / TOGA2 / funannotate2; Haul 2026-09-14) |
+| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Reviews & chooser (Ji *NRG* 2026 + Freedman *GR* 2025; Haul 2026-09-14) |
+| [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md) | 2026-09-14 self-audit gap table (lit + peers) |
 
 ## Inputs → outputs
 

@@ -32,3 +32,17 @@ Functional tools: [gene-function-annotation](https://github.com/Xuzhen-Li/gene-f
 | Mikado · Portcullis | Transcript combiner |
 | [EGAPx](https://github.com/ncbi/egapx) | NCBI public EGAP / Gnomon |
 | OMArk · compleasm | Annotation QC |
+
+## Haul 2026-09-14 peers (links)
+
+| Software | Role here |
+|----------|-----------|
+| [GenePAL](https://github.com/Plant-Food-Research-Open/genepal) | Nextflow S1+S11+light FA (pan-genome capable) |
+| [Eukan](https://github.com/BFL-lab/eukan) | Divergent eukaryote / protist full stack (S14-class) |
+| [RAGNAROK](https://github.com/ryandkuster/ragnarok) | Helixer + Mikado combiner (preprint) |
+| [EXOGAP](https://github.com/dorinemerlat/exogap) | MAKER-centric exotic multi-genome Nextflow |
+| [nf-core/genomeannotator](https://github.com/nf-core/genomeannotator) | nf-core EVM/AUGUSTUS/PASA (metazoan) |
+| [nf-annotate](https://github.com/nschan/nf-annotate) | Plant Liftoff+EVM+NLR Nextflow |
+| [AnnoCheck](https://github.com/adlnosk/AnnoCheck) | Helixer + EGAPx + OMArk/PSAURON pack |
+| [SegmentNT](https://github.com/instadeepai/nucleotide-transformer) | Foundation-model segmentation (S13 watchlist) |
+| [sanger-tol/ensemblgenedownload](https://github.com/sanger-tol/ensemblgenedownload) | Download DToL/Ensembl genesets (not a predictor) |

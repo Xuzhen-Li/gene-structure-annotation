@@ -202,3 +202,84 @@ NetGO 3.0, dbCAN3, DeepLoc 2.0, SignalP 6.0 — gene-function-annotation notes.
 2. Only swap in a peer when evidence matches (GALBA2 ≠ distant OrthoDB; TOGA2 needs WGA).  
 3. Rejoin at AGAT → proteins → BUSCO → qualify.  
 4. Do not widen every run into “run all peers”.
+
+---
+
+## Haul 2026-09-14 — new peer projects
+
+Verified GitHub / institutional stacks **not** already given a full entry above (nf-annotate / nf-core/genomeannotator / MoGAAAP / GETA were name-dropped earlier — fleshed or newly added here).
+
+### GenePAL (Plant & Food Research NZ)
+
+- https://github.com/Plant-Food-Research-Open/genepal  
+- Zenodo: doi:[10.5281/zenodo.14195006](https://doi.org/10.5281/zenodo.14195006)  
+- **What:** Nextflow pipeline for single / phased / **pan-genome** annotation — EDTA/RepeatModeler → BRAKER (ETP when RNA+protein) → optional Liftoff merge (TSEBRA/AGAT) → eggNOG-mapper → OrthoFinder / BUSCO / MultiQC.  
+- **When to consider:** horticultural / crop labs wanting one Nextflow entrypoint for BRAKER+liftover+light FA; multi-assembly panels.  
+- **Map:** **S1** draft + **S11** liftover overlay + hand-off to FA F1 (eggNOG). Not a new S-ID — teaching parallel to our trunk.  
+- **Out of spine:** pangene R Markdown extras; GeneMark commercial license still applies.
+
+### Eukan (BFL lab)
+
+- https://github.com/BFL-lab/eukan · paper *NAR Genom Bioinform* 2026 doi:[10.1093/nargab/lqag003](https://doi.org/10.1093/nargab/lqag003)  
+- **What:** Docker-wrapped full stack for **divergent / protist** nuclear genomes (GeneMark-ET, AUGUSTUS, Spaln, EVM, PASA; RNA coverage + intron-aware homology).  
+- **When:** Apicomplexa, Chlorophyta, Kinetoplastida, Rhodophyta, compact genomes where BRAKER/MAKER/GeMoMa stumble.  
+- **Map:** **S14-class** alternate full stack (EVM/PASA family); not default for plant/vertebrate S1.
+
+### RAGNAROK
+
+- https://github.com/ryandkuster/ragnarok · bioRxiv doi:[10.1101/2025.10.03.680343](https://doi.org/10.1101/2025.10.03.680343)  
+- **What:** Nextflow — Helixer ab initio + StringTie2 + miniprot (+ optional Liftoff) → **Mikado** locus pick; plant-oriented scoring.  
+- **When:** GPU Helixer available; want evidence-ranked combiner instead of TSEBRA/EVM.  
+- **Map:** **S13** + Mikado notes; preprint — do not replace S1 in METHODS yet.
+
+### EXOGAP
+
+- https://github.com/dorinemerlat/exogap  
+- **What:** Nextflow DSL2 for non-model / “exotic” eukaryotes — RepeatModeler/Masker, MAKER2/AUGUSTUS/SNAP, ncRNA (tRNAscan, Infernal, Barrnap), multi-genome batch.  
+- **When:** MAKER-centric lab; multi-species exotic panel; need ncRNA tracks in one run.  
+- **Map:** **S14 / MAKER** alternate; **out of spine** for default BRAKER labs.
+
+### nf-core/genomeannotator (fleshed)
+
+- https://github.com/nf-core/genomeannotator · https://nf-co.re/genomeannotator  
+- **What:** nf-core metazoan-focused Nextflow — protein/transcript/RNA evidence → AUGUSTUS ± PASA → **EvidenceModeler**; optional Trinity, Satsuma2/Kraken lift.  
+- **When:** want community-maintained EVM stack; metazoan genomes.  
+- **Map:** **S14** institutional peer (not S1 BRAKER).
+
+### nf-annotate (nschan) (fleshed)
+
+- https://github.com/nschan/nf-annotate  
+- **What:** Plant Nextflow companion to nf-core/genomeassembler — Liftoff + ab initio + PASA + EVM; HRP NLR; InterPro/BLAST FA; bambu quant.  
+- **When:** Arabidopsis-style / plant NLR interest after long-read assembly.  
+- **Map:** structure ≈ **S11+S14**; FA pieces → sibling F1/F8 (do not fork FA spine).
+
+### AnnoCheck
+
+- https://github.com/adlnosk/AnnoCheck  
+- **What:** Snakemake — Helixer + EGAPx coding genes, repeats, ncRNA; QC with compleasm / PSAURON / OMArk / MultiQC.  
+- **When:** compare AI + NCBI tracks under one QC pack.  
+- **Map:** **S13 + S8** overlays + A5b QC peers.
+
+### SegmentNT (InstaDeep)
+
+- Paper *Nat Methods* 2025 doi:[10.1038/s41592-025-02881-2](https://doi.org/10.1038/s41592-025-02881-2) · https://github.com/instadeepai/nucleotide-transformer  
+- **What:** DNA foundation-model multilabel segmentation (genic + regulatory) at single-nucleotide resolution.  
+- **When:** exploratory compare / regulatory interest; GPU research track.  
+- **Map:** **S13 watchlist** — **out of spine** as primary gene-finder.
+
+### DToL / Ensembl genebuild (institutional)
+
+- DToL annotation overview: https://projects.ensembl.org/darwin-tree-of-life/  
+- Ensembl genebuild notes: https://www.ensembl.org/info/genome/genebuild/index.html (and ensembl-analysis docs)  
+- Download peer (not a producer): https://github.com/sanger-tol/ensemblgenedownload  
+- **What:** Ensembl re-engineered genebuild for DToL (transcript-driven; BRAKER2 when no transcriptome); Sanger-ToL pipelines mostly **download/QC**, not DIY annotation.  
+- **When:** consume DToL/Ensembl genesets as references (S11) or METHODS compare.  
+- **Map:** **out of spine** as runnable draft; **S11/S8** reference source.
+
+### Still not promoted to spine
+
+| Peer | Why deferred |
+|------|----------------|
+| CantuLab / grapegenomics | Domain resources, not a portable annotator (already known). |
+| sanger-tol Genome After Party | Assembly/download/QC suite — not gene prediction. |
+| CAFA / DL-GO servers | FA sibling only. |

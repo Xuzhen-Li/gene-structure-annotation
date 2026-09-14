@@ -76,7 +76,7 @@ These decide *how gene models are invented*. Start from evidence (Ji *NRG* 2026)
 | **S1** | Illumina RNA + proteins, no close ref | BRAKER4/3 (± GeMoMa) + StringTie→TransDecoder compare | Ab initio-only story |
 | **S2** | Proteins, little/no RNA | GALBA / GALBA2 / GeMoMa | Complete UTR claims |
 | **S3** | Deep Iso-seq / evidence CDS | IsoQuant→SQANTI3 (± EviAnn) + BRAKER orphans | Ignoring SQANTI filters |
-| **S13** | GPU / thin-evidence ab initio **compare** | Helixer / Tiberius / ANNEVO | Silent replace of S1 when RNA exists |
+| **S13** | GPU / thin-evidence ab initio **compare** | Helixer / Tiberius / ANNEVO (± SegmentNT watchlist) | Silent replace of S1 when RNA exists |
 | **S14** | Classic EVM consensus stack | PASA → Augustus/GeneMark → EVM → polish ([`steps/dclab/`](steps/dclab/)) | Required for every genome |
 | **S6** | Thin evidence, provisional OK | Homology-first draft | “Publication-final” without saying provisional |
 
@@ -135,3 +135,5 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`PLAYBOOK.md`](PLAYBOOK.md) | Qualification checklist |
 | [`SCENARIOS.md`](SCENARIOS.md) | Step recipes per S-ID |
 | [`steps/MAIN.md`](steps/MAIN.md) | Same map, tool-oriented |
+| [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
+| [`PEER_PIPELINES.md`](PEER_PIPELINES.md) | Peer stacks (incl. Haul 2026-09-14) |
