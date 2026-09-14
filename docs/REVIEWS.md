@@ -122,3 +122,15 @@ Search: WebSearch + CrossRef (PubMed/EuropePMC fallback). Goal: sources **beyond
 | RAGNAROK Mikado combiner | **Peer only** — maps to existing Mikado+Portcullis + S13 notes. |
 
 **Palm / Arecaceae:** still **0** Nature-family gene-annotation *reviews* (rechecked 2026-09-14).
+
+## Haul 2026-09-14b — tutorials & JOBIM meeting
+
+Hands-on + symposium index: [`TUTORIALS_AND_MEETINGS.md`](TUTORIALS_AND_MEETINGS.md).
+
+| Source | Role |
+|--------|------|
+| Galaxy GTN BRAKER3 / Helixer comparison (2025) | Teach S1 + S13-compare on public tiny genomes |
+| JOBIM 2026 structural annotation mini-symposium (PEPI IBIS) | Community pitfalls: Helixer over-call; Tiberius/ANNEVO stronger; EGAPx ≠ RefSeq |
+| Tiberius multi-clade preprint doi:10.64898/2026.04.24.720536 | Strengthens S13 plant/fungi/insect applicability |
+
+**Chooser unchanged:** evidence-first; S13 remains compare-not-replace when RNA exists.

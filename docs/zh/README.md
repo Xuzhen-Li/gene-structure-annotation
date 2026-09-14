@@ -28,6 +28,7 @@
 | 14 | [14_为什么这样选证据.md](14_为什么这样选证据.md) | **WHY**：证据→方法；S11；StringTie；S13≠静默 S1 |
 | 15 | [15_为什么质控是这些指标.md](15_为什么质控是这些指标.md) | **WHY**：BUSCO 盲区；谱系；PSAURON/OMArk；S12 |
 | 16 | [16_为什么TE要trusted.md](16_为什么TE要trusted.md) | **WHY**：禁生 EDTA / cat+CD-HIT / hard-mask |
+| **17** | [外部教程与会议](17_外部教程与会议.md) | Galaxy / 会议 |
 | 99 | [99_术语表.md](99_术语表.md) | GFF / BUSCO / soft-mask / curatedlib… |
 
 > 课 00 / 14–16 是 **WHY 层**；课 01–13 正文里也有短 `## 为什么`（含反例）。操作与门禁仍以英文为准。
