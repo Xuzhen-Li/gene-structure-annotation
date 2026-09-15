@@ -76,6 +76,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
 | Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
 | Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| QC methods / papers / repos | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
 | TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 

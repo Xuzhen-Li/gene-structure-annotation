@@ -16,6 +16,16 @@ Full rules: [`EVALUATION.md`](EVALUATION.md). Chinese tick sheet: [`zh/验收勾
 - [ ] G8 `release/<TAG>/` = GFF + proteins + METHODS
 - [ ] G9 Tandem/disease/QTL windows if relevant
 
+## Soft / optional (report; strengthen METHODS)
+
+- [ ] Compleasm cross-check (same lineage family as BUSCO)
+- [ ] gffcompare vs ref or second draft (if available)
+- [ ] RNA support % and/or BRH (if RNA / proteome available)
+- [ ] Optional wrapper: none / GAQET2 / AnnoAudit / atol-qc…
+- [ ] OMArk tables (required if claiming L2)
+
+Shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
+
 ## Auto-fail (any grade)
 
 - [ ] No hard-mask for BRAKER/GALBA

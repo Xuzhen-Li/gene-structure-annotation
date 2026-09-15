@@ -134,3 +134,12 @@ Hands-on + symposium index: [`TUTORIALS_AND_MEETINGS.md`](TUTORIALS_AND_MEETINGS
 | Tiberius multi-clade preprint doi:10.64898/2026.04.24.720536 | Strengthens S13 plant/fungi/insect applicability |
 
 **Chooser unchanged:** evidence-first; S13 remains compare-not-replace when RNA exists.
+
+## QC packs & completeness cross-checks (2026-09-15)
+
+| Source | Role for us |
+|--------|-------------|
+| Compleasm (Huang & Li *Bioinformatics* 2023) | Soft cross-check vs BUSCO; keep named BUSCO lineage |
+| GAQET2 | Optional one-stop AGAT+BUSCO+PSAURON+OMArk |
+| AnnoAudit (ERGA) | Optional RNA support + BRH + BUSCO/OMArk |
+| Full shelf | [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md) |

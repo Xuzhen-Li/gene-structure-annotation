@@ -6,6 +6,7 @@ Not a second roadmap: [`ROADMAP.md`](ROADMAP.md) picks the path; **this page jud
 Sibling FA criteria: [gene-function-annotation `EVALUATION.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/EVALUATION.md).
 
 Lit map: [`REVIEWS.md`](REVIEWS.md) · peer stacks: [`PEER_PIPELINES.md`](PEER_PIPELINES.md) · gaps: [`SELF_AUDIT.md`](SELF_AUDIT.md).
+QC methods/repos shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
 
 ---
 
@@ -138,6 +139,13 @@ This playbook **does not** ship a single BUSCO-C ≥ X% for all eukaryotes. Set 
 | OMArk | **Required for L2/S5**; optional-but-recommended for L1 plant/T2T | Skipping OMArk and still claiming S5 |
 | AGAT gene count | Stability across rounds | Exploding count after Helixer-only with no filter |
 | StringTie↔BRAKER compare (when RNA) | Conflict list informs merge | Ignoring transcript evidence when it exists (Freedman) |
+| Compleasm (optional) | Fast completeness cross-check vs BUSCO; same lineage **family** | Replacing named BUSCO lineage with Compleasm-only |
+| gffcompare (when ref or 2nd draft) | Missing/novel/overlap loci for merge triage | Treating overlap % as biology truth |
+| RNA exon/intron support (when RNA) | Fraction of models with coverage — AnnoAudit-style | Claiming “supported” without stating threshold |
+| BRH to trusted proteome (optional) | Ortholog-ish sanity for L2 narrative | Equating BRH with function annotation |
+| TE-in-genes flag (DeTEnGA / GAQET2) | Soft plant check beside G2 mask honesty | Skipping trusted lib because a TE flagger exists |
+
+**Optional one-stop wrappers** (still tick this page): [GAQET2](https://github.com/victorgcb1987/GAQET2), [AnnoAudit](https://github.com/ERGA-consortium/AnnoAudit), [atol-qc-annotation](https://github.com/TomHarrop/atol-qc-annotation). Source shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
 
 ### Background — soft metrics
 
@@ -203,6 +211,9 @@ G7 PSAURON + priority (curated / deferred) ________
 G8 release/<TAG>/ pack ________
 G9 tandems (if applicable) ________
 OMArk (L2 required) ________
+Compleasm (optional) ________
+RNA support / BRH (if applicable) ________
+QC wrapper (none/GAQET2/AnnoAudit/…) ________
 Stop rule used ________
 ```
 
