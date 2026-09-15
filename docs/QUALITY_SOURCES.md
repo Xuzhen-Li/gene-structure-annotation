@@ -65,3 +65,12 @@ QC spine: BUSCO protein (<lineage>) ; PSAURON ; AGAT counts ; [OMArk if L2].
 Optional: Compleasm (<same lineage family>) ; gffcompare vs <ref/draft> ;
 RNA exon support % ; BRH vs <proteome> ; [GAQET2|AnnoAudit run id].
 ```
+
+## Print recommended commands
+
+```bash
+set -a && source config/local.env && set +a
+python3 pipeline/print_qc_commands.py          # default L1
+python3 pipeline/print_qc_commands.py --grade L2
+```
+Print-first only — see also `pipeline/01_qc_busco_psauron.sh`, `A5_agat_stats.sh`, `A5b_omark_compleasm.sh`.

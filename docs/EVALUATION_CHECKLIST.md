@@ -43,3 +43,9 @@ python3 pipeline/check_release_pack.py path/to/release/TAG
 ```
 
 Checks files exist; does **not** replace the gates above.
+
+## Print commands
+
+```bash
+python3 pipeline/print_qc_commands.py
+```

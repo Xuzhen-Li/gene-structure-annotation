@@ -31,6 +31,8 @@ flowchart LR
 
 **TE 只要一件事：** soft-mask 用 **trusted** 库文件（文件名 + 版本/sha256）。深漏斗见 [18](18_TE流程课_借鉴实验室03_TE.md)；日常基因注释不必先读完 TE 全课。
 
+验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
+
 **英文操作入口：** [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../EVALUATION.md`](../EVALUATION.md) · [`../STAGE_IO.md`](../STAGE_IO.md)
 
 ---
