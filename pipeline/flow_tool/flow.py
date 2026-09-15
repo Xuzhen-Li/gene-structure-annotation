@@ -112,7 +112,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     primary = choice["primary"]
     stages = []
 
-    def add(sid, title, inputs, software, process, outputs, helper=""):
+    def add(sid, title, inputs, software, process, outputs, helper="", note=""):
+        # helper = one path only (for --emit-commands). Extra docs go in note.
         stages.append(
             {
                 "id": sid,
@@ -122,6 +123,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
                 "process": process,
                 "outputs": outputs,
                 "helper": helper,
+                "note": note,
             }
         )
 
@@ -150,7 +152,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "RepeatMasker -xsmall; TE scheme in docs/TE_LIBRARY.md; optional ProtExcluder (A0b).",
         "Soft-mask only; never hard-mask for BRAKER/GALBA.",
         "GENOME_SOFT (+ lib version/sha in METHODS).",
-        "pipeline/A0_softmask.md · docs/TE_LIBRARY.md",
+        "pipeline/A0_softmask.md",
+        "docs/TE_LIBRARY.md",
     )
 
     if a.get("has_rna") and primary in ("S1", "S3", "S14", "S5"):
@@ -232,7 +235,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "BRAKER4/3 (± GeMoMa); StringTie→TransDecoder as compare set.",
             "Train/predict with RNA+proteins; keep StringTie as compare, not silent replace.",
             "DRAFT_GFF (+ compare track)",
-            "pipeline/A2_run_draft.sh · A2b_second_predictor.md",
+            "pipeline/A2_run_draft.sh",
+            "pipeline/A2b_second_predictor.md",
         )
 
     if "S13_compare" in choice["overlays"]:
@@ -280,7 +284,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "BUSCO (protein), PSAURON; optional OMArk (required if S5/L2).",
         "Report C/D/F/M + lineage; triage low-quality loci.",
         "BUSCO summary + PSAURON_TSV (+ OMArk if L2)",
-        "pipeline/01_qc_busco_psauron.sh · A5b_omark_compleasm.sh",
+        "pipeline/01_qc_busco_psauron.sh",
+        "pipeline/A5b_omark_compleasm.sh (optional / L2)",
     )
     add(
         "02",
@@ -317,7 +322,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "gffread validate; copy to release/<TAG>/; fill METHODS",
         "Tick docs/EVALUATION.md gates for target grade; freeze tag.",
         "release/<TAG>/ GFF + proteins + METHODS + qc snapshot",
-        "pipeline/06_release_gff.md · docs/EVALUATION.md",
+        "pipeline/06_release_gff.md",
+        "docs/EVALUATION.md",
     )
     add(
         "A6",
@@ -381,15 +387,25 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
             f"**Output:** {st['outputs']}",
             "",
         ]
-        if st.get("helper"):
-            lines.append(f"**Helper / doc:** `{st['helper']}`")
+        h = (st.get("helper") or "").strip()
+        note = (st.get("note") or "").strip()
+        if h:
+            lines.append(f"**Helper:** `{h}`")
             lines.append("")
-        if emit_commands and st.get("helper", "").endswith(".sh"):
-            lines.append("```bash")
-            lines.append(f"# Print-first helper (review before running on cluster):")
-            lines.append(f"bash {st['helper']}")
-            lines.append("```")
+        if note:
+            lines.append(f"**Also see:** {note}")
             lines.append("")
+        if emit_commands and h.endswith(".sh"):
+            hp = REPO / h
+            if hp.is_file():
+                lines.append("```bash")
+                lines.append("# Print-first helper (review before running on cluster):")
+                lines.append(f"bash {h}")
+                lines.append("```")
+                lines.append("")
+            else:
+                lines.append(f"> **emit skipped:** `{h}` not found under repo root.")
+                lines.append("")
 
     lines += [
         "---",

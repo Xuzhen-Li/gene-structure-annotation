@@ -57,13 +57,13 @@ def main() -> int:
     work = g(env, "WORK_DIR", "$WORK_DIR")
     proteins = g(env, "PROTEINS_FA", "$PROTEINS_FA")
     gff = g(env, "CURATED_GFF", "") or g(env, "MERGED_GFF", "") or g(env, "DRAFT_GFF", "$MERGED_GFF")
-    lineage = g(env, "BUSCO_LINEAGE", "viridiplantae_odb12")
+    lineage = g(env, "BUSCO_LINEAGE", "eukaryota_odb10")  # PLACEHOLDER — set YOUR lineage
     busco_out = g(env, "BUSCO_OUT", f"{work}/busco_prot")
     psauron = g(env, "PSAURON_TSV", f"{work}/psauron.tsv")
     agat = g(env, "AGAT_OUT", f"{work}/agat")
     omark = g(env, "OMARK_OUT", f"{work}/qc/omark")
     omamer = g(env, "OMAMER_DB", "$OMAMER_DB")
-    compleasm_l = g(env, "COMPLEASM_LINEAGE", "eudicots")
+    compleasm_l = g(env, "COMPLEASM_LINEAGE", "YOUR_COMPLEASM_LINEAGE")  # PLACEHOLDER
     threads = g(env, "THREADS", "16")
     tag = g(env, "RELEASE_TAG", "release_tag")
     release = f"{work}/release/{tag}"
@@ -74,6 +74,7 @@ def main() -> int:
     print(f"# Target grade: {args.grade}  ·  checklist: docs/EVALUATION_CHECKLIST.md")
     print(f"# Sources: docs/QUALITY_SOURCES.md")
     print("# Does NOT install tools or run BRAKER. Review then paste on your cluster.")
+print("# !!! MUST set YOUR BUSCO_LINEAGE / COMPLEASM_LINEAGE in local.env — defaults are placeholders, not plant dogma.")
     print()
 
     print("## 0) Pack smoke (files present?)")

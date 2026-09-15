@@ -13,7 +13,7 @@ mkdir -p "$WORK_DIR/draft" "$(dirname "$DRAFT_GFF")"
 
 case "$DRAFT_ENGINE" in
   braker3)
-    : "${PROTEIN_DB:?OrthoDB Viridiplantae/eudicots FASTA}"
+    : "${PROTEIN_DB:?clade-matched protein DB FASTA (OrthoDB or equivalent for YOUR species)}"
     RNA_BAM="${RNA_BAM:-none}"
     WD="$WORK_DIR/draft/braker3"
     mkdir -p "$WD"
