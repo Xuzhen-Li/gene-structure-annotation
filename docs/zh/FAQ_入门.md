@@ -6,6 +6,12 @@
 
 ## TE / soft-mask
 
+**Q：soft-mask 会弄丢抗病基因吗？**  
+A：正确 soft-mask 是改**小写**（碱基还在），不是改成 N。Hard-mask / 假 curatedlib 才会毁掉 NLR。A0 的 softmasked_fraction 只是全局占比，葡萄正常范围问课题组。  
+
+**Q：命令行弱，能不能 Galaxy？**  
+A：可先只要到 trusted FASTA；soft-mask 可请人按 A0 跑。Galaxy RepeatMasker 见 [17](17_外部教程与会议.md)。
+
 **Q：trusted TE 长什么样？**  
 A：通常是**一个** FASTA（共识序列库），例如 `grape_TElib_trusted_v1.1.fa`。METHODS 写：**文件名 + 版本 + sha256**。不是「一堆原始 EDTA 目录」。
 
