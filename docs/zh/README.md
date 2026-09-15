@@ -5,16 +5,20 @@
 
 [English bilingual policy](../BILINGUAL.md) · [仓库首页](../../README.md)
 
+![结构注释总览](../figures/structure_overview.png)
+
 ```mermaid
 flowchart LR
-  TE[TE trusted] --> A0[soft-mask]
+  G[genome] --> A0[A0 soft-mask\n前置 trusted TE]
   A0 --> S[S支 基因模型]
   S --> Q[质控与验收]
-  Q --> P[proteins]
-  P --> FA[功能仓]
+  Q --> P[proteins 本仓产品]
+  P --> FA[功能仓 隔壁]
 ```
 
-读图：本仓主线是 **A0 → 基因 GFF → 蛋白**；TE 是前置地板；功能在隔壁。
+读图：本仓主线是 **genome → A0 → 基因 GFF → 蛋白**；TE trusted 只是**前置地板**；功能在隔壁。
+
+英文 Start here：[`../START_HERE.md`](../START_HERE.md)
 
 ---
 

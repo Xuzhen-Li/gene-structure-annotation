@@ -21,6 +21,10 @@ That is **structural** annotation.
 **Not** GO / KEGG / domain tables — those are the sibling  
 [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) **after** proteins exist.
 
+![Structure overview](docs/figures/structure_overview.png)
+
+**中文最短路径：** [`docs/zh/README.md`](docs/zh/README.md) · English door: [`docs/START_HERE.md`](docs/START_HERE.md)
+
 ---
 
 ## Three steps (start here)
@@ -73,7 +77,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 | Need | Open |
 |------|------|
-| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
+| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) · [`docs/START_HERE.md`](docs/START_HERE.md) |
 | Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
 | Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | QC methods / papers / repos | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |

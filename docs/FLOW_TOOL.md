@@ -13,3 +13,5 @@ Details: [`../pipeline/flow_tool/README.md`](../pipeline/flow_tool/README.md).
 **Not yet:** one-click BRAKER/EVM on your cluster. Helpers remain print-first; step 2 will emit ordered commands from `local.env`.
 
 FA sibling: [gene-function-annotation flow_tool](https://github.com/Xuzhen-Li/gene-function-annotation/tree/main/pipeline/flow_tool).
+
+Also: [`START_HERE.md`](START_HERE.md) · [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md).

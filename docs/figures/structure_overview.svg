@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220">
+  <rect width="960" height="220" fill="#ffffff"/>
+  <text x="24" y="28" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#111">gene-structure-annotation — overview</text>
+  <!-- boxes -->
+  <rect x="24" y="60" width="130" height="56" rx="8" fill="#f3f4f6" stroke="#374151"/>
+  <text x="89" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#111">genome</text>
+  <text x="89" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#4b5563">FASTA</text>
+
+  <rect x="180" y="52" width="150" height="72" rx="8" fill="#ecfdf5" stroke="#059669"/>
+  <text x="255" y="78" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#065f46">A0 soft-mask</text>
+  <text x="255" y="96" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#047857">trusted TE lib</text>
+  <text x="255" y="112" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#6b7280">(TE = floor, not product)</text>
+
+  <rect x="360" y="60" width="150" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="435" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">S-branch</text>
+  <text x="435" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8">gene models</text>
+
+  <rect x="540" y="60" width="160" height="56" rx="8" fill="#fef3c7" stroke="#d97706"/>
+  <text x="620" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#92400e">GFF + proteins</text>
+  <text x="620" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#b45309">this repo product</text>
+
+  <rect x="730" y="60" width="200" height="56" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-dasharray="4 3"/>
+  <text x="830" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#5b21b6">function repo</text>
+  <text x="830" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9">GO / domains (next door)</text>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <line x1="154" y1="88" x2="176" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="330" y1="88" x2="356" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="510" y1="88" x2="536" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="700" y1="88" x2="726" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="24" y="180" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">Main product = gene structure (exons/CDS). TE trusted lib is a prerequisite floor. Functional labels live in the sibling repo.</text>
+  <text x="24" y="200" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Start: docs/zh/README.md (Chinese short path) · docs/START_HERE.md · pipeline/flow_tool/</text>
+</svg>
