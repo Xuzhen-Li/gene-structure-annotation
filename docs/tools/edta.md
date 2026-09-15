@@ -2,7 +2,7 @@
 
 **Role:** Usual *de novo* starter (`01_discovery`). **Not** a finished library / not curatedlib.  
 **Full order:** [`../TE_LIBRARY.md`](../TE_LIBRARY.md) — EDTA → TEtrimmer **working** → TEsorter labels → gate **trusted** → soft-mask; panEDTA/LAI after.  
-**Home:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te) · lab notebook `03_TE/`.
+**Home:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te). Lab detailed notebook is private (not in git).
 
 ## Get it
 
@@ -22,7 +22,8 @@ EDTA.pl \
 # Sequence names ≤13 chars; keep id_map.tsv
 ```
 
-Next for structure A0: TEtrimmer → working lib → TEsorter → curation gate → **trusted** → A0b if needed → RepeatMasker `-xsmall`.  
+Next for structure A0: TEtrimmer → working lib → TEsorter → CDS+class **emit trusted** → RepeatMasker `-xsmall`.  
+**Optional:** A0b / ProtExcluder as extra hygiene after trusted (not the lab gate itself).  
 Do **not** feed raw EDTA / whole working lib / `cat`+CD-HIT into `--curatedlib` or BRAKER soft-mask.  
 Do **not** feed hard-mask / MAKER.masked into BRAKER.
 
@@ -31,5 +32,8 @@ Do **not** feed hard-mask / MAKER.masked into BRAKER.
 - Treating EDTA raw as gold-standard TE lib.  
 - Feeding the entire **working** lib as `--curatedlib`.  
 - Using hard-masked MAKER file for BRAKER.  
-- Putting 03b non-TE (TRF/telomere/rDNA) into curatedlib.  
-- Running LAI / K2P on uncurated EDTA output.
+- Putting **non-TE-track** repeats (TRF/telomere/rDNA) into curatedlib.  
+- Running LAI / K2P on uncurated EDTA output.  
+- `--overwrite` on a frozen EDTA discovery tree.
+
+Related soft-mask: [`../../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md) · optional [`../../pipeline/A0b_protexcluder.md`](../../pipeline/A0b_protexcluder.md).

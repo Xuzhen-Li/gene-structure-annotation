@@ -22,7 +22,7 @@ For grape pangenome work the lab already learned: **a big FASTA after `cat`+CD-H
 
 ## Four products (do not crush into one FASTA)
 
-From the live grape TE pipeline (`03_TE/README.md`):
+From the live grape TE panel scheme (public summary):
 
 | Product | Example (R1 archive) | Allowed use |
 |---------|----------------------|-------------|
@@ -45,14 +45,14 @@ Non-TE repeats (TRF, telomere, rDNA, …) are a **separate non-TE track** — **
 
 ---
 
-## Lab order (pangenome `03_TE`)
+## Lab order (pangenome TE track)
 
 ```text
 01 discovery   per-haplotype EDTA (de novo)
 02 consensus   TEtrimmer per hap → merge Perfect/Good → CD-HIT ~95% working lib
                (+ optional 80-80 family catalog; do not overwrite working)
 03 classify    TEsorter (rexdb-plant) — paste domains; does not shrink the FASTA
-04 curation    CDS BLAST + Helitron/TIR/LTR gates → human trusted/working/exclude
+04 curation    CDS BLAST (frozen CDS) + TEsorter named-superfamily filters → emit trusted/working/exclude
 05 release     emit trusted / working FASTAs (trusted = curatedlib only)
 06 pilot       EDTA v2 + --curatedlib on a few genomes (new folder; no --overwrite on 01)
 07 pan anno    panEDTA combine (−c CDS −f 3 −l trusted) → panel reannotate
@@ -76,9 +76,9 @@ trusted curatedlib  →  RepeatMasker -xsmall  (± optional A0b)
 | Feed **entire working** lib to `--curatedlib` | Unknowns / gene fragments get 100% trust |
 | Replace working FASTA with TEsorter `all.cls.lib` | Classifier output ≠ library |
 | Hard-mask for BRAKER/GALBA | Use `-xsmall` soft-mask |
-| Put NLR / CDS / 03b non-TE into curatedlib | Host-gene wipe / nonsense repeats |
+| Put NLR / CDS / non-TE-track repeats into curatedlib | Host-gene wipe / nonsense repeats |
 | Treat LAI / K2P on **raw** EDTA as delivery | Only after curated / pan GFF |
-| HiTE / MCHelper / Terrier / DeepTE as this project default | Explicitly out of scope in `03_TE` |
+| HiTE / MCHelper / Terrier / DeepTE as this project default | Explicitly out of scope for this panel scheme |
 
 ---
 
@@ -180,7 +180,7 @@ This is owned by the pangenome TE notebook; structure playbook only needs the **
 TE library: EDTA (others/sensitive/anno; document --u) → TEtrimmer → CD-HIT~95% working →
 TEsorter labels → CDS-gated trusted curatedlib.
 Soft-mask lib example: grape_TElib_trusted_v1.0.fa
-  sha256:<paste>   (R1 archive — replace with current emit when available)
+  sha256:<from your SHA256SUMS for that file>   # never leave a literal <paste> in METHODS
 Soft-mask: RepeatMasker -xsmall with that trusted file only.
 working ≠ curatedlib; raw EDTA / cat+CD-HIT / all.cls.lib / non-TE repeats ≠ curatedlib.
 Optional A0b ProtExcluder; optional panEDTA/LAI after trusted (TE track, not gene A0).

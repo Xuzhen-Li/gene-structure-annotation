@@ -395,8 +395,11 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         "## After this plan",
         "",
         "1. Copy `config/example.env` → `config/local.env` and fill paths.",
-        "2. Walk stages in order; tick `docs/EVALUATION.md` for your target grade.",
-        "3. Hand proteins to `gene-function-annotation` (`pipeline/flow_tool/flow.py` there).",
+        "2. Walk stages in order; tick `docs/EVALUATION_CHECKLIST.md` "
+        "(Chinese: `docs/zh/验收勾选表.md`; full rules: `docs/EVALUATION.md`).",
+        "3. Optional QC command print: `python3 pipeline/print_qc_commands.py` "
+        "(after `source config/local.env`).",
+        "4. Hand proteins to `gene-function-annotation` (`pipeline/flow_tool/flow.py` there).",
         "",
         "This tool does **not** claim one-click BRAKER on your HPC yet — helpers often print commands.",
         "",

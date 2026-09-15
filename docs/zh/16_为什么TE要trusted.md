@@ -42,7 +42,7 @@ Hard-mask 把重复区改成 `N` — **序列没了**。
 
 | 产品 | 角色 |
 |------|------|
-| Working（TEtrimmer+CD-HIT 等） | 敏感工作集 / 后续人工门控的原料 |
+| Working（TEtrimmer+CD-HIT 等） | 敏感工作集 / 后续 **CDS+类规则 emit** 的原料 |
 | Family catalog | 目录与命名 |
 | **Trusted curatedlib** | **唯一** soft-mask / curatedlib 金标准 |
 | panEDTA combine | 泛基因组 TE **轨道**，不是 `cat` 替代品 |

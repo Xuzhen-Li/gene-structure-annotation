@@ -40,6 +40,7 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml --emit-commands | l
 
 1. flow 选出 S 支、写出 plan。  
 2. `cp config/example.env config/local.env`，填 `GENOME_FA`、`BUSCO_LINEAGE`、`RNA_BAM` / `PROTEIN_DB`、TE 库、`WORK_DIR`、`THREADS`…  
-3. 按 plan + [`../STAGE_IO.md`](../STAGE_IO.md) 做到 [`../EVALUATION.md`](../EVALUATION.md) 放行。
+3. 按 plan + [`../STAGE_IO.md`](../STAGE_IO.md) 做到放行：先勾 [验收勾选表.md](验收勾选表.md) / [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)；细则 [`../EVALUATION.md`](../EVALUATION.md)。  
+   打印推荐 QC：`python3 pipeline/print_qc_commands.py`。
 
 下一页：[13_常见翻车.md](13_常见翻车.md)
