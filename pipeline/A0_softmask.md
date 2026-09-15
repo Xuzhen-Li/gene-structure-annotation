@@ -15,7 +15,7 @@ Produce `GENOME_SOFT` (lowercase) safe for BRAKER/GALBA — without wiping NLR e
 | Host-gene–purged lib (A0b) | Entire **working** lib as `--curatedlib` / RM lib |
 | | `cat` of many haplotype TElibs + CD-HIT |
 | | TEsorter `all.cls.lib` as the library |
-| | 03b non-TE (TRF/telomere/rDNA) |
+| | non-TE-track (TRF/telomere/rDNA) |
 
 ## Order (pangenome TE → gene soft-mask)
 
@@ -32,9 +32,13 @@ Details: [`TE_LIBRARY.md`](../docs/TE_LIBRARY.md).
 
 ```bash
 # CLEAN_TE_LIB = trusted curatedlib
+# -pa is RM "parallel chunks" (legacy), not always 1:1 with CPU threads; check your RM/rmblast docs.
 RepeatMasker -lib "$CLEAN_TE_LIB" -xsmall -pa "$THREADS" \
   -dir "$WORK_DIR/mask" "$GENOME_FA"
-cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
+# Prefer a single predictable masked path (avoid picking the wrong *.masked after re-runs):
+cp "$WORK_DIR/mask/$(basename "$GENOME_FA").masked" "$GENOME_SOFT"
+# fallback if RM naming differs:
+# cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
 ```
 
 ## Verify
@@ -49,6 +53,8 @@ low = sum(1 for c in seq if c.islower())
 print(f"softmasked_fraction={low/max(len(seq),1):.4f} total={len(seq)}")
 PY
 ```
+
+**Read this number correctly:** `softmasked_fraction` is the fraction of bases that are **lowercase after RepeatMasker against *this* trusted lib** — i.e. homology coverage to your curatedlib — **not** “genome TE content %”. A lean trusted set (e.g. only named Copia/Gypsy/hAT) often yields a **lower** fraction than the true TE landscape (plants frequently >>40–50% TE bases). That can be expected. **Do not** chase a higher fraction by feeding raw EDTA / the whole **working** lib into `-lib` (G2 / TE red lines).
 
 **Never** hard-mask to `N` for BRAKER/GALBA.  
 Gene explosion in repeats later → **S10** (remask with trusted lib).

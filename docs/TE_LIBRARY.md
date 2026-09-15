@@ -92,13 +92,13 @@ EDTA.pl \
   --species others \
   --sensitive 1 \
   --anno 1 \
-  --u 5.4e-9 \
+  --u 5.4e-9 \   # GRAPE ONLY — Zhou 2019; other taxa: own μ or omit
   --threads "$THREADS"
 # First grape round: no --cds (CDS locked later for gating / panEDTA)
 # Sequence names: ≤13 chars (EDTA requirement); keep id_map.tsv
 ```
 
-μ `5.4e-9`: Zhou et al. 2019 (population-calibrated; document in METHODS).  
+μ `5.4e-9` (**grape teaching default only**): Zhou et al. 2019. Non-grape: do not copy; pick μ from literature or omit and say so in METHODS.  
 CDS for gating / panEDTA: **PN40024.v4.1** (lab freeze — not an arbitrary newer T2T CDS unless you reopen the gate).
 
 ---
@@ -139,6 +139,7 @@ Prefer an existing **current** trusted lib for A0 over inventing raw EDTA gold. 
 
 ```bash
 # CLEAN_TE_LIB = trusted curatedlib (host-gene purged)
+# -pa = RM parallel chunks (legacy), not always 1:1 CPU; engine often rmblast — see your RM docs.
 RepeatMasker -lib "$CLEAN_TE_LIB" -xsmall -pa "$THREADS" \
   -dir "$WORK_DIR/mask" "$GENOME_FA"
 cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
@@ -173,6 +174,10 @@ This is owned by the pangenome TE notebook; structure playbook only needs the **
 | Host-gene exclusion list (if A0b re-run) | METHODS / S10 |
 
 ---
+
+### Soft-mask fraction ≠ TE content
+
+`softmasked_fraction` after A0 = lowercase bases vs **this trusted lib**, not genome-wide TE%. Do not inflate it with working/raw EDTA libs.
 
 ## METHODS bullets (copy)
 

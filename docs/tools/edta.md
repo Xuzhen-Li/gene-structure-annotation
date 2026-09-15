@@ -6,11 +6,27 @@
 
 ## Get it
 
-https://github.com/oushujun/EDTA · biocontainer / Singularity recommended.
+https://github.com/oushujun/EDTA · biocontainer / Singularity recommended.  
+Pin the **EDTA major version** (v1 vs v2 behaviour for LINE/SINE etc.) in METHODS.
 
-## Minimal (grape panel defaults)
+## Minimal command (edit flags for your species)
 
 ```bash
+EDTA.pl \
+  --genome "$GENOME_FA" \
+  --species others \
+  --sensitive 1 \
+  --anno 1 \
+  --threads "$THREADS"
+# --species: use EDTA special cases only when documented (e.g. rice/maize); else others.
+# --sensitive 1: pulls a heavier RepeatModeler-class path — expect much more CPU/time.
+# --u <mu>: OPTIONAL substitution rate for LTR age. **Do not copy grape values blindly.**
+```
+
+### Grape-panel example only (do not paste for other species)
+
+```bash
+# Vitis teaching defaults — μ from Zhou et al. 2019 (population-calibrated). Non-grape: choose μ from literature or omit/document.
 EDTA.pl \
   --genome "$GENOME_FA" \
   --species others \
@@ -19,28 +35,27 @@ EDTA.pl \
   --u 5.4e-9 \
   --threads "$THREADS"
 # First grape round often without --cds (CDS = PN40024.v4.1 later for gate / panEDTA)
-# Sequence names ≤13 chars; keep id_map.tsv
 ```
 
-Next for structure A0: TEtrimmer → working lib → TEsorter → CDS+class **emit trusted** → RepeatMasker `-xsmall`.  
-**Optional:** A0b / ProtExcluder as extra hygiene after trusted (not the lab gate itself).  
-Do **not** feed raw EDTA / whole working lib / `cat`+CD-HIT into `--curatedlib` or BRAKER soft-mask.  
-Do **not** feed hard-mask / MAKER.masked into BRAKER.
+Sequence names **≤13 chars**; keep your own `id_map.tsv` if you rename.
 
-## Non-grape / long contig names
+Next for structure A0: TEtrimmer → working → TEsorter → CDS+class **emit trusted** → RepeatMasker `-xsmall`.  
+**Optional:** A0b / ProtExcluder after trusted.  
+Do **not** feed raw EDTA / whole working / `cat`+CD-HIT into `--curatedlib` or BRAKER soft-mask.
 
-- `--species others` unless you are on EDTA’s special-cased taxa (e.g. rice/maize).  
-- `--cds` only when your **gating** plan needs it (panel grape often waits for a frozen CDS).  
-- Contig/scaffold IDs **>13 characters**: rename **before** EDTA and keep your own `id_map.tsv` — EDTA does not invent a lab map for you.  
-- After trusted exists, gene A0 only needs soft-mask (`pipeline/A0_softmask.md`); TEtrimmer/TEsorter live in the TE track / [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+## Non-grape / classifiers
+
+- TEsorter clade DB: plants often `rexdb-plant`; **animals/other clades need the matching DB** — do not assume plant.  
+- Contig IDs >13 characters: rename before EDTA.
 
 ## Pitfalls
 
 - Treating EDTA raw as gold-standard TE lib.  
-- Feeding the entire **working** lib as `--curatedlib`.  
-- Using hard-masked MAKER file for BRAKER.  
-- Putting **non-TE-track** repeats (TRF/telomere/rDNA) into curatedlib.  
-- Running LAI / K2P on uncurated EDTA output.  
-- `--overwrite` on a frozen EDTA discovery tree.
+- Copying grape `--u 5.4e-9` into unrelated taxa METHODS.  
+- Feeding the entire **working** lib as `--curatedlib` to inflate soft-mask %.  
+- Hard-masked MAKER file for BRAKER.  
+- Non-TE-track repeats (TRF/telomere/rDNA) in curatedlib.  
+- `--overwrite` on a frozen EDTA discovery tree.  
+- Running LAI / K2P on uncurated EDTA output.
 
-Related soft-mask: [`../../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md) · optional [`../../pipeline/A0b_protexcluder.md`](../../pipeline/A0b_protexcluder.md).
+Related: [`../../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md) · optional [`../../pipeline/A0b_protexcluder.md`](../../pipeline/A0b_protexcluder.md).

@@ -40,7 +40,7 @@ Use these to **strengthen METHODS**, not to invent new universal %-cutoffs.
 | **AnnoAudit** | Nextflow: GFF stats + RNA support + BUSCO/OMArk + BRH | Optional community audit pack (esp. if you already have BAM) | https://github.com/ERGA-consortium/AnnoAudit · WorkflowHub [1330](https://workflowhub.eu/workflows/1330) |
 | **atol-qc-annotation** | AGAT extract → BUSCO + OMArk for AToL-style reports | Optional thin QC | https://github.com/TomHarrop/atol-qc-annotation |
 | **AnnoOddities** (EI) | Standardise / flag GFF oddities before QC | Optional pre-clean before AGAT counts | https://github.com/EI-CoreBioinformatics/annooddities |
-| **DeTEnGA** (via GAQET2) | TE-like content inside gene models | Soft plant metric — complements trusted soft-mask honesty (G2) | Bundled with GAQET2 |
+| **DeTEnGA** (via GAQET2) | TE-like content inside gene models **after** soft-mask | Soft plant metric beside G2 (genes still looking TE-like) | Bundled with GAQET2 |
 
 Internal notes: [`notes/omark_compleasm.md`](notes/omark_compleasm.md) · [`notes/psauron_gaqet_annoaudit.md`](notes/psauron_gaqet_annoaudit.md) · [`PEER_PIPELINES.md`](PEER_PIPELINES.md)
 

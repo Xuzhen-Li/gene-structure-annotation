@@ -6,8 +6,11 @@
 
 ## TE / soft-mask
 
+**Q：A0 打印的 softmasked_fraction 是不是基因组 TE%？**  
+A：**不是。** 那是「相对**这份 trusted 库**被打成小写的碱基比例」（同源覆盖），不是全基因组 TE 含量。瘦 trusted（例如主要是有名 Copia/Gypsy/hAT）占比偏低可以是预期；葡萄真实 TE 碱基常很高。**禁止**为刷高数字改用整份 working / 生 EDTA 当 `-lib`（正好踩红线）。
+
 **Q：soft-mask 会弄丢抗病基因吗？**  
-A：正确 soft-mask 是改**小写**（碱基还在），不是改成 N。Hard-mask / 假 curatedlib 才会毁掉 NLR。A0 的 softmasked_fraction 只是全局占比，葡萄正常范围问课题组。  
+A：正确 soft-mask 是改**小写**（碱基还在），不是改成 N。Hard-mask / 假 curatedlib 才会毁掉 NLR。A0 的 softmasked_fraction **不是**「基因组 TE%」，只是相对这份 trusted 的同源覆盖（见上一问）。  
 
 **Q：命令行弱，能不能 Galaxy？**  
 A：可先只要到 trusted FASTA；soft-mask 可请人按 A0 跑。Galaxy RepeatMasker 见 [17](17_外部教程与会议.md)。
