@@ -27,6 +27,13 @@ Next for structure A0: TEtrimmer → working lib → TEsorter → CDS+class **em
 Do **not** feed raw EDTA / whole working lib / `cat`+CD-HIT into `--curatedlib` or BRAKER soft-mask.  
 Do **not** feed hard-mask / MAKER.masked into BRAKER.
 
+## Non-grape / long contig names
+
+- `--species others` unless you are on EDTA’s special-cased taxa (e.g. rice/maize).  
+- `--cds` only when your **gating** plan needs it (panel grape often waits for a frozen CDS).  
+- Contig/scaffold IDs **>13 characters**: rename **before** EDTA and keep your own `id_map.tsv` — EDTA does not invent a lab map for you.  
+- After trusted exists, gene A0 only needs soft-mask (`pipeline/A0_softmask.md`); TEtrimmer/TEsorter live in the TE track / [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+
 ## Pitfalls
 
 - Treating EDTA raw as gold-standard TE lib.  

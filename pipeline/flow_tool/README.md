@@ -27,6 +27,9 @@ Requires PyYAML if you want full YAML (`pip install pyyaml`); a tiny fallback pa
 
 Chooser logic matches [`docs/ROADMAP.md`](../../docs/ROADMAP.md).  
 Finish grades: tick [`docs/EVALUATION_CHECKLIST.md`](../../docs/EVALUATION_CHECKLIST.md) (Chinese [`docs/zh/验收勾选表.md`](../../docs/zh/验收勾选表.md); full [`docs/EVALUATION.md`](../../docs/EVALUATION.md)).
-QC command printer (side path, not inside `flow.py`): `python3 pipeline/print_qc_commands.py`.
+QC command printer (side path, not inside `flow.py`): `python3 pipeline/print_qc_commands.py` (try `--env config/example.env` before your real `local.env`).
+
+Do not confuse: **plan markdown** (chooser + narration) vs **`--emit-commands`** (helper stubs in the plan) vs **`print_qc_commands.py`** (evaluation QC spine).
+Chinese FAQ: [`docs/zh/FAQ_入门.md`](../../docs/zh/FAQ_入门.md).
 
 Also: [`../../docs/START_HERE.md`](../../docs/START_HERE.md). Prefer `my_answers.yaml` in the repo root (same as root README).

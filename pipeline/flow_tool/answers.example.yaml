@@ -2,17 +2,17 @@
 # All keys are required unless noted.
 
 # Evidence inventory (chooser — docs/ROADMAP.md)
-close_curated_ref: false   # same-species / near-identical curated GFF available?
+close_curated_ref: false   # trusted near/same-sp curated GFF for S11? half-done Liftoff → still false; Liftoff as compare
 has_rna: true              # Illumina (or similar) RNA-seq aligned or alignable?
 has_proteins: true         # OrthoDB / proteins for training or GALBA?
 deep_isoseq: false         # heavy Iso-seq / want evidence CDS backbone?
-want_gpu_abinitio_compare: false  # Helixer / Tiberius / ANNEVO as compare?
+want_gpu_abinitio_compare: false  # S13 compare only; no GPU → leave false (Helixer CPU possible but slow)
 want_evm_pasa: false       # classic S14 EVM/PASA stack instead of BRAKER-first?
 
 # Goal overlays
-goal: qualified            # provisional | qualified | paper_t2t
+goal: qualified            # provisional=L0 | qualified=L1 | paper_t2t=L2/S5
 multi_hap: false
-plant_tandem_focus: true   # NLR / stilbene / QTL windows matter?
+plant_tandem_focus: true   # true → G9 tandem/disease windows in scope; false if N/A (ask PI if unsure)
 
 # Optional free text for METHODS / plan header
 species_label: "Species_v1"
