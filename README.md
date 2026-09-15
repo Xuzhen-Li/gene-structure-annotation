@@ -73,19 +73,13 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 | Need | Open |
 |------|------|
-| Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) · [`docs/FLOW_TOOL.md`](docs/FLOW_TOOL.md) |
-| Human walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
-| What each folder means | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) |
-| Done? (L0/L1/L2) | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
-| TE → soft-mask | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
-| *Vitis* T2T example | [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) |
-| Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) |
-| Recipes S1–S14 | [`docs/SCENARIOS.md`](docs/SCENARIOS.md) |
-| Audit 2026-09-14 | [`docs/AUDIT_2026-09-14.md`](docs/AUDIT_2026-09-14.md) |
-| [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) | External **tutorials** (Galaxy BRAKER/Helixer) & **JOBIM 2026** |
-| Reviews / peers | [`docs/REVIEWS.md`](docs/REVIEWS.md) · [`docs/PEER_PIPELINES.md`](docs/PEER_PIPELINES.md) |
+| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
+| Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
+| Stage I/O · Done? | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
+| Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 
-More: [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md) · [`docs/steps/MAIN.md`](docs/steps/MAIN.md) · [`docs/DETAILED_GUIDE.md`](docs/DETAILED_GUIDE.md) · [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md).
+More (recipes, tools, case, tutorials): [`docs/SCENARIOS.md`](docs/SCENARIOS.md) · [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) · [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 
 ---
 

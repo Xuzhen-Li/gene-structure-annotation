@@ -1,5 +1,7 @@
 # flow_tool (structure) — step 1
 
+Chinese short path: [`docs/zh/`](../../docs/zh/) (今天最短路径).
+
 **Goal:** user answers → automatic branch → full narrated plan  
 (inputs · software purpose · process · outputs).
 
