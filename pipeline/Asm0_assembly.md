@@ -30,6 +30,16 @@ hifiasm -o "$WORK_DIR/asm/genome" -t "$THREADS" hifi.fastq.gz
 # 4) Manual / juicebox review of scaffolds → GENOME_FA
 ```
 
+
+## Finished-genome checklist (if FASTA was handed to you)
+1. **Source** — accession / provider / version string for METHODS  
+2. **BUSCO lineage** — name you will use in Asm1 (not a silent eukaryota default)  
+3. **N50 / ploidy** — record in `asm/README.txt`  
+4. **ASSEMBLY_OK** — set only after Asm1 passes your clade criteria  
+5. **Headers** — stable, unique contig/chr names  
+
+Skip re-assembly; do **not** skip Asm1 / G1.
+
 ## Decisions to record in `asm/README.txt`
 - Primary only vs dual haplotype annotation  
 - Chromosome naming scheme (chr01… vs scaffold)  

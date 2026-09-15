@@ -92,7 +92,8 @@ EDTA.pl \
   --species others \
   --sensitive 1 \
   --anno 1 \
-  --u 5.4e-9 \   # GRAPE ONLY — Zhou 2019; other taxa: own μ or omit
+  # GRAPE ONLY μ — Zhou 2019; other taxa: own μ or omit (do not copy this line)
+  --u 5.4e-9 \
   --threads "$THREADS"
 # First grape round: no --cds (CDS locked later for gating / panEDTA)
 # Sequence names: ≤13 chars (EDTA requirement); keep id_map.tsv
@@ -142,7 +143,9 @@ Prefer an existing **current** trusted lib for A0 over inventing raw EDTA gold. 
 # -pa = RM parallel chunks (legacy), not always 1:1 CPU; engine often rmblast — see your RM docs.
 RepeatMasker -lib "$CLEAN_TE_LIB" -xsmall -pa "$THREADS" \
   -dir "$WORK_DIR/mask" "$GENOME_FA"
-cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
+# Prefer one predictable masked path (multi-round dirs can have several *.masked):
+cp "$WORK_DIR/mask/$(basename "$GENOME_FA").masked" "$GENOME_SOFT" \
+  || cp "$WORK_DIR/mask/"*.masked "$GENOME_SOFT"
 ```
 
 Optional: EDTA `--curatedlib "$CLEAN_TE_LIB"` in a **new** output directory for a TE track (S10 / METHODS) — never `--overwrite` the frozen discovery tree.

@@ -14,6 +14,10 @@ goal: qualified            # provisional=L0 | qualified=L1 | paper_t2t=L2/S5
 multi_hap: false
 plant_tandem_focus: false  # plant disease/NLR windows → true (adds S7 overlay + G9). Animals/default: false
 
+# Optional — only if you truly have two gene sets to combine (NOT StringTie compare alone):
+# dual_draft_merge: false
+# has_second_predictor: false
+
 # Optional free text for METHODS / plan header
 species_label: "Species_v1"
 notes: ""

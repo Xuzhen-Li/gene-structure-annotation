@@ -4,12 +4,26 @@
 set -euo pipefail
 : "${WORK_DIR:?}"
 : "${DRAFT_GFF:?primary GFF/GTF}"
-: "${DRAFT_GFF_B:?second GFF/GTF — use same as DRAFT_GFF if single track}"
 MERGE_MODE="${MERGE_MODE:-evm}"
 MERGED_GFF="${MERGED_GFF:-$WORK_DIR/draft/merged.gff3}"
 EVM_WEIGHTS="${EVM_WEIGHTS:-}"
 REPO_ROOT="${REPO_ROOT:-}"
 mkdir -p "$(dirname "$MERGED_GFF")" "$WORK_DIR/draft"
+
+# Dual-track only. StringTie compare ≠ second gene set for EVM — skip A4 if no real B.
+if [[ -z "${DRAFT_GFF_B:-}" || "$DRAFT_GFF_B" == "$DRAFT_GFF" ]]; then
+  cat <<'SKIP'
+[A4 skip] DRAFT_GFF_B unset or identical to DRAFT_GFF — merge not applicable.
+  Pure S1 + StringTie compare does not need EVM/TSEBRA.
+  Export MERGED_GFF=$DRAFT_GFF and continue to AGAT/proteins, OR set a true second
+  predictor/Liftoff GFF as DRAFT_GFF_B (A2b/A2c) before re-running.
+SKIP
+  exit 0
+fi
+if [[ ! -f "$DRAFT_GFF_B" ]]; then
+  echo "[A4 error] DRAFT_GFF_B=$DRAFT_GFF_B not found — skip A4 or fix path." >&2
+  exit 1
+fi
 
 case "$MERGE_MODE" in
   evm)

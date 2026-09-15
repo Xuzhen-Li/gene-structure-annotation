@@ -78,6 +78,13 @@ def choose_branch(a: dict) -> dict:
     elif a.get("has_proteins") and not a.get("has_rna"):
         primary = "S2"
         reason = "Proteins only → GALBA/GALBA2/GeMoMa."
+    elif a.get("has_rna") and not a.get("has_proteins"):
+        # Do NOT emit walkable S1: A2 braker3 requires PROTEIN_DB.
+        primary = "BLOCKED_RNA_ONLY"
+        reason = (
+            "RNA without proteins: refuse broken S1 (BRAKER needs PROTEIN_DB). "
+            "Set has_proteins=true + PROTEIN_DB, or choose S11/S13/S6 / deep_isoseq S3."
+        )
     elif a.get("want_gpu_abinitio_compare") and not a.get("has_rna"):
         primary = "S13"
         reason = "Thin evidence + GPU ab initio compare (not a silent S1 replace)."
@@ -88,16 +95,20 @@ def choose_branch(a: dict) -> dict:
         primary = "S1"
         reason = "Default fallback: S1 when unsure with any RNA/proteins signal."
 
-    if a.get("want_gpu_abinitio_compare") and primary != "S13":
+    if a.get("want_gpu_abinitio_compare") and primary not in ("S13", "BLOCKED_RNA_ONLY"):
         overlays.append("S13_compare")
 
     grade = {"provisional": "L0", "qualified": "L1", "paper_t2t": "L2", "paper": "L2", "t2t": "L2", "l2": "L2"}.get(
         goal, "L1"
     )
-    if primary in ("S6",) or (primary == "S11" and grade != "L2"):
+    if primary in ("S6", "BLOCKED_RNA_ONLY"):
+        grade = "L0"
+    elif primary == "S13" and not a.get("has_rna") and not a.get("has_proteins"):
+        # No RNA/proteins → treat like S6 provisional
+        grade = "L0"
+    elif primary == "S11" and grade != "L2":
         # raw liftover stays provisional until QC unless user forces L2 path with gap-fill
-        if primary == "S6":
-            grade = "L0"
+        pass
 
     return {
         "primary": primary,
@@ -132,7 +143,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "Assembly / haplotype decision",
         "Raw HiFi / Hi-C / ONT (or an already-finished genome FASTA).",
         "Assembler stack you already trust (hifiasm, etc.) — see pipeline/Asm0_assembly.md.",
-        "Build or accept GENOME_FA; write down ploidy / hap choice. If the FASTA was given to you, skip assembling — document source for G1.",
+        "Build or accept GENOME_FA; write down ploidy / hap choice. If the FASTA was given to you, skip assembling — document source for G1. Finished-genome checklist: (1) source/version, (2) BUSCO lineage name for Asm1, (3) N50/ploidy note, (4) ASSEMBLY_OK gate, (5) stable headers.",
         "GENOME_FA with stable headers.",
         "pipeline/Asm0_assembly.md",
     )
@@ -227,13 +238,24 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "DRAFT_GFF (provisional)",
             "docs/SCENARIOS.md S6",
         )
+    elif primary == "BLOCKED_RNA_ONLY":
+        add(
+            "WARN",
+            "RNA-only — do not run protein-requiring S1",
+            "RNA_BAM present; PROTEIN_DB / has_proteins missing",
+            "N/A (chooser block)",
+            "A2_run_draft.sh braker3 requires PROTEIN_DB. Fix answers (has_proteins + PROTEIN_DB), switch to S2/S11/S13/S6, or deep_isoseq→S3. METHODS: do not claim qualified S1.",
+            "No DRAFT_GFF from this plan until evidence is fixed.",
+            "pipeline/A1_choose_engine.md",
+            "Honest L0: RNA-only without proteins is not a walkable BRAKER S1.",
+        )
     else:  # S1 default
         add(
             "S1",
             "BRAKER draft + transcript compare",
             "GENOME_SOFT + PROTEIN_DB + RNA_BAM",
             "BRAKER4/3 (± GeMoMa); StringTie→TransDecoder as compare set.",
-            "Train/predict with RNA+proteins; keep StringTie as compare, not silent replace.",
+            "Train/predict with RNA+proteins; keep StringTie as compare, not silent replace. Note: StringTie compare ≠ a second gene set for EVM — do not force A4 for compare-only.",
             "DRAFT_GFF (+ compare track)",
             "pipeline/A2_run_draft.sh",
             "pipeline/A2b_second_predictor.md",
@@ -250,15 +272,38 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "docs/ROADMAP.md overlays",
         )
 
-    add(
-        "A4",
-        "Merge drafts (if dual track)",
-        "DRAFT_GFF ± DRAFT_GFF_B / compare",
-        "EVM or TSEBRA (weights in config on structure repo).",
-        "Combine with logged weights; prefer evidence-supported models.",
-        "MERGED_GFF",
-        "pipeline/A4_merge_sets.sh",
+    # A4 only when dual-track merge is actually needed.
+    # StringTie compare alone must NOT force A4 (not a second EVM gene set).
+    eng_b = str(a.get("draft_engine_b", a.get("DRAFT_ENGINE_B", "")) or "").strip().lower()
+    need_a4 = (
+        primary in ("S14",)
+        or bool(a.get("dual_draft_merge"))
+        or bool(a.get("has_second_predictor"))
+        or (eng_b not in ("", "none", "false", "0"))
+        or bool(a.get("draft_gff_b") or a.get("DRAFT_GFF_B"))
     )
+    if need_a4:
+        add(
+            "A4",
+            "Merge drafts (dual track)",
+            "DRAFT_GFF + DRAFT_GFF_B (or EVM evidence tracks)",
+            "EVM or TSEBRA (weights in config on structure repo).",
+            "Combine with logged weights; prefer evidence-supported models. Skip this stage if you only have StringTie compare beside a single BRAKER draft.",
+            "MERGED_GFF",
+            "pipeline/A4_merge_sets.sh",
+            "StringTie compare ≠ second gene set for EVM.",
+        )
+    elif primary not in ("BLOCKED_RNA_ONLY",):
+        add(
+            "A4skip",
+            "Merge skipped (single draft / compare-only)",
+            "Primary DRAFT_GFF only",
+            "N/A — set MERGED_GFF=$DRAFT_GFF or enable dual_draft_merge / has_second_predictor / DRAFT_ENGINE_B",
+            "Pure S1 + StringTie compare does not require EVM/TSEBRA. Promote primary GFF forward; run A4 only when a true second predictor / Liftoff set / S14 combiner applies.",
+            "Use DRAFT_GFF as release-candidate input to AGAT/proteins",
+            "",
+            "pipeline/A4_merge_sets.sh (optional if dual track later)",
+        )
     add(
         "A5",
         "AGAT structure counts",
@@ -292,19 +337,51 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "Priority loci list",
         "PSAURON_TSV (± family boost TSV)",
         "pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)",
-        "Rank worst models; expand for tandems/BUSCO fragments on L2.",
+        "Rank worst models; expand for tandems/BUSCO fragments on L2. Requires -i PSAURON_TSV -o PRIORITY_TSV.",
         "PRIORITY_TSV",
         "pipeline/02_priority_loci.py",
     )
-    add(
-        "04",
-        "GSAman / manual curation",
-        "Priority windows + evidence tracks",
-        "GSAman (browser curation)",
-        "Fix or defer each priority locus; depth scales with S5/S7.",
-        "CURATED_GFF",
-        "pipeline/04_gsaman_curation.md",
-    )
+    if a.get("plant_tandem_focus") or "S7" in choice["overlays"]:
+        add(
+            "S7a",
+            "S7 / G9 — build families.tsv",
+            "OrthoGroups / QTL / NLR ID lists (from FA HRP / nf-annotate --r_genes or curated windows)",
+            "Lab tables → families.tsv (gene_id\tfamily_or_window)",
+            "Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter.",
+            "curate/families.tsv",
+            "docs/SCENARIOS.md S7",
+            "docs/EVALUATION.md G9",
+        )
+        add(
+            "S7b",
+            "S7 / G9 — re-rank priority with --families",
+            "PSAURON_TSV + curate/families.tsv",
+            "pipeline/02_priority_loci.py --families",
+            "python3 pipeline/02_priority_loci.py -i $PSAURON_TSV -o curate/priority.tsv --threshold 90 --families curate/families.tsv",
+            "PRIORITY_TSV with family:… reasons",
+            "pipeline/02_priority_loci.py",
+            "docs/SCENARIOS.md S7",
+        )
+        add(
+            "S7c",
+            "S7 / G9 — window curation (±100 kb tandems)",
+            "Priority windows + evidence tracks",
+            "GSAman on family/QTL windows only (rest may stay draft)",
+            "Curate NLR/stilbene/QTL tandems; no unreviewed collapse, or list open items in METHODS (G9).",
+            "CURATED_GFF (± curated_windows track / curated=yes attrs)",
+            "pipeline/04_gsaman_curation.md",
+            "docs/SCENARIOS.md S7 · G9",
+        )
+    if not (a.get("plant_tandem_focus") or "S7" in choice["overlays"]):
+        add(
+            "04",
+            "GSAman / manual curation",
+            "Priority windows + evidence tracks",
+            "GSAman (browser curation)",
+            "Fix or defer each priority locus; depth scales with S5/S7.",
+            "CURATED_GFF",
+            "pipeline/04_gsaman_curation.md",
+        )
     if a.get("multi_hap") or "S4" in choice["overlays"]:
         add(
             "05",

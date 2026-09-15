@@ -57,7 +57,7 @@ def main() -> int:
     work = g(env, "WORK_DIR", "$WORK_DIR")
     proteins = g(env, "PROTEINS_FA", "$PROTEINS_FA")
     gff = g(env, "CURATED_GFF", "") or g(env, "MERGED_GFF", "") or g(env, "DRAFT_GFF", "$MERGED_GFF")
-    lineage = g(env, "BUSCO_LINEAGE", "eukaryota_odb10")  # PLACEHOLDER — set YOUR lineage
+    lineage = g(env, "BUSCO_LINEAGE", "YOUR_BUSCO_LINEAGE_odb10")  # PLACEHOLDER — set YOUR clade
     busco_out = g(env, "BUSCO_OUT", f"{work}/busco_prot")
     psauron = g(env, "PSAURON_TSV", f"{work}/psauron.tsv")
     agat = g(env, "AGAT_OUT", f"{work}/agat")
@@ -75,6 +75,12 @@ def main() -> int:
     print(f"# Sources: docs/QUALITY_SOURCES.md")
     print("# Does NOT install tools or run BRAKER. Review then paste on your cluster.")
     print("# !!! MUST set YOUR BUSCO_LINEAGE / COMPLEASM_LINEAGE in local.env — defaults are placeholders, not plant dogma.")
+    print("#     Plant teaching often: viridiplantae_odb12; animals: metazoa_*; bare eukaryota = EVALUATION anti-pattern for clade papers.")
+    print()
+    print("## Reminders G1–G3 (tick before trusting later QC)")
+    print("# G1 ASSEMBLY_OK=yes only after Asm1; document source if genome was handed to you.")
+    print("# G2 Soft-mask: verify GENOME_SOFT is -xsmall soft-mask (not hard-mask).")
+    print("# G3 CLEAN_TE_LIB / TRUSTED_TE_LIB = curated FASTA + sha256 in METHODS (≠ working ≠ raw EDTA ≠ RM .lib).")
     print()
 
     print("## 0) Pack smoke (files present?)")

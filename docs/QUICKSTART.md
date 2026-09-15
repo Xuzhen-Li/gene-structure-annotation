@@ -59,9 +59,10 @@ Edit `config/local.env`. **Minimum to attempt S1** (RNA + proteins):
 | `WORK_DIR` | Scratch directory you own (create it) |
 | `GENOME_FA` | Assembly FASTA |
 | `GENOME_SOFT` | Soft-masked genome (after A0) |
+| `TRUSTED_TE_LIB` / `CLEAN_TE_LIB` | Curated TE FASTA for soft-mask (≠ RM `.lib` ≠ raw EDTA ≠ whole working) |
 | `PROTEIN_DB` | Protein evidence FASTA (e.g. OrthoDB clade) |
 | `RNA_BAM` | Aligned RNA-seq BAM (or set workflow to S2 if none) |
-| `BUSCO_LINEAGE` | Lineage name you will report (e.g. `viridiplantae_odb12`) |
+| `BUSCO_LINEAGE` | **Your** clade lineage (set explicitly; plant teaching often `viridiplantae_odb12`, animals `metazoa_*` — do not leave bare `eukaryota` for clade papers) |
 | `THREADS` | Cores for your machine/cluster |
 | `RELEASE_TAG` | Name for the output folder |
 
@@ -143,14 +144,20 @@ bash pipeline/A5_agat_stats.sh "$DRAFT_GFF"
 
 **Produces:** alternative gene set(s), not yet “the truth”.
 
-### Step F — Merge (A4)
+### Step F — Merge (A4) — only if two+ drafts
+
+Skip A4 when you have a **single** BRAKER draft plus StringTie **compare** only  
+(compare ≠ a second gene set for EVM). Set `MERGED_GFF="$DRAFT_GFF"` and go to Step G.
+
+Run A4 when you truly have dual tracks (`DRAFT_GFF_B` from A2b/A2c/GeMoMa/Liftoff, or S14 EVM):
 
 ```bash
+# Requires DRAFT_GFF_B ≠ DRAFT_GFF and file present; else the helper skips with a clear message
 MERGE_MODE=evm bash pipeline/A4_merge_sets.sh
 bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
 ```
 
-**Produces:** `$MERGED_GFF`.  
+**Produces:** `$MERGED_GFF` (or unchanged primary if skipped).  
 **Check:** counts sit between or near the better parent; record EVM weights path in METHODS.
 
 ### Step G — Proteins (A3)
@@ -174,9 +181,10 @@ bash pipeline/01_qc_busco_psauron.sh
 ### Step I — Priority list → curation → release
 
 ```bash
-python3 pipeline/02_priority_loci.py   # → PRIORITY_TSV
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90
+# S7 / G9 (plant tandems): add --families curate/families.tsv  (see docs/SCENARIOS.md S7)
 # GSAman / browser: pipeline/04_gsaman_curation.md
-# When stable: pipeline/06_release_gff.md + PLAYBOOK checklist
+# When stable: pipeline/06_release_gff.md → release/<TAG>/ + PLAYBOOK checklist
 ```
 
 **Produces:** `$CURATED_GFF` / `release/$RELEASE_TAG/` with GFF + proteins + METHODS.  
