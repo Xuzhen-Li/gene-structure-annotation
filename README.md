@@ -48,7 +48,7 @@ cp config/example.env config/local.env
 ### 3. Follow the plan → release GFF + proteins
 
 Walk the stages in `my_plan.md` (helpers under `pipeline/`).  
-When done, tick [`docs/EVALUATION.md`](docs/EVALUATION.md) (L1 default; L2 = paper/T2T).
+When done, tick the one-page checklist [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
 **Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
 
@@ -75,7 +75,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 |------|------|
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
 | Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
-| Stage I/O · Done? | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 

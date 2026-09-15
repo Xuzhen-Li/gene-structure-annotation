@@ -1,7 +1,7 @@
 # Final evaluation criteria — gene structure
 
 **What “done” means** for a release in this playbook.  
-Not a second roadmap: [`ROADMAP.md`](ROADMAP.md) picks the path; **this page judges the finish**.
+Not a second roadmap: [`ROADMAP.md`](ROADMAP.md) picks the path; **this page judges the finish**. One-page tick sheet: [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md).
 
 Sibling FA criteria: [gene-function-annotation `EVALUATION.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/EVALUATION.md).
 
