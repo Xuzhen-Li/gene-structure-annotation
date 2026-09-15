@@ -130,7 +130,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "Assembly / haplotype decision",
         "Raw HiFi / Hi-C / ONT (or an already-finished genome FASTA).",
         "Assembler stack you already trust (hifiasm, etc.) — see pipeline/Asm0_assembly.md.",
-        "Build or accept GENOME_FA; write down ploidy / hap choice.",
+        "Build or accept GENOME_FA; write down ploidy / hap choice. If the FASTA was given to you, skip assembling — document source for G1.",
         "GENOME_FA with stable headers.",
         "pipeline/Asm0_assembly.md",
     )
@@ -342,7 +342,9 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         "## Chooser decision",
         "",
         f"- **Primary draft:** `{choice['primary']}`",
-        f"- **Overlays:** {', '.join(choice['overlays']) if choice['overlays'] else '(none)'}",
+        f"- **Overlays:** {', '.join(choice['overlays']) if choice['overlays'] else '(none)'}"
+        + (" — S7 = plant tandem/disease windows (G9); not a second primary draft"
+           if "S7" in choice.get("overlays", []) else ""),
         f"- **Target grade:** `{choice['grade_target']}` (see docs/EVALUATION.md)",
         f"- **Reason:** {choice['reason']}",
         "",
@@ -398,7 +400,10 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         "2. Walk stages in order; tick `docs/EVALUATION_CHECKLIST.md` "
         "(Chinese: `docs/zh/验收勾选表.md`; full rules: `docs/EVALUATION.md`).",
         "3. Optional QC command print: `python3 pipeline/print_qc_commands.py` "
-        "(after `source config/local.env`).",
+        "(try `--env config/example.env`, or after `source config/local.env`).",
+        "   Re-run with `--emit-commands` to embed stage helper stubs in this plan.",
+        "   Already have GENOME_FA from someone else: treat Asm0/Asm1 as a checklist "
+        "(document source + `ASSEMBLY_OK`), do not re-assemble.",
         "4. Hand proteins to `gene-function-annotation` (`pipeline/flow_tool/flow.py` there).",
         "",
         "This tool does **not** claim one-click BRAKER on your HPC yet — helpers often print commands.",

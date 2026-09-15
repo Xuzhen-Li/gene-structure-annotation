@@ -41,7 +41,29 @@ A：是。对照：`provisional`→L0，`qualified`→L1，`paper_t2t`→L2/S5�
 A：指**可信任的近缘/同种已策展 GFF** 适合当投影主路径（S11）。「半成品 Liftoff」通常仍勾 false，主草稿走 S1，Liftoff 当对照轨——METHODS 写清**一个 primary draft**。
 
 **Q：`plant_tandem_focus: true` 会怎样？先 false？**  
-A：true 时 plan/验收更强调串联/抗病窗口（硬门槛 **G9** 适用）。不懂 NLR 可先 false，但若你物种明显有抗病串联、却宣称 L1 且窗口未审，仍可能在 G9 上不合格——不确定就问课题导师。
+A：true 时 plan 会出现 overlay **S7**（植物串联/抗病/QTL 窗口关注），验收硬门槛 **G9** 适用。example 默认 **false**（动物/普通教学勿照抄 true）。做植物抗病再 true；本科不确定先 false 并问导师。
+
+**Q：plan 里 Overlays: S7 是什么？**  
+A：**不是**另一条主草稿支（主草稿仍是 S1/S11…）。S7 = 因 `plant_tandem_focus` 打开而附加的「串联/抗病窗口」关注层，和 G9 同一件事。动物基因组不应默认出现。
+
+**Q：手里已有老师给的基因组，plan 还从 Asm0 讲起？**  
+A：把 Asm0/Asm1 当**检查清单**：接受成品 FASTA、写来源、跑/抄基因组 BUSCO、设 `ASSEMBLY_OK=yes`。**不必**自己再跑 hifiasm。宿舍只有 conda、没有集群：最短路径停在「读懂 plan + 填好将需要的路径清单」也算诚实进度；BRAKER 等到有 HPC/容器再跑。
+
+**Q：怎么一次看齐「三种打印」？**  
+A：```bash
+python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_plan.md --emit-commands
+python3 pipeline/print_qc_commands.py --env config/example.env
+```
+同一份 plan 里会带阶段助手草稿；QC 打印是另一个命令。
+
+**Q：近缘 trusted 同科可以、跨纲不行？**  
+A：没有硬尺子。越近缘越好；跨纲风险大。METHODS 必须写来源；更稳是 L0/暂缓或等本物种 trusted。问导师。
+
+**Q：plan 全英文，本科生怎么读？**  
+A：先看 Chooser（Primary draft / Target grade / Reason）和文末 After this plan；阶段名用 [99_术语表](99_术语表.md) 对照。不必第一天读懂每一段 BRAKER 旗标。
+
+**Q：非葡萄 / 动物用户？**  
+A：示例常带葡萄/eudicots 教学味。换你的：`BUSCO_LINEAGE`（动物常见 `metazoa_odb*`）、`PROTEIN_DB`、trusted TE、关掉 `plant_tandem_focus`。勿照抄 OMARK_TAXID=29760 或 viridiplantae。
 
 **Q：`my_answers.yaml` 和 `answers.yaml`？**  
 A：都行；仓库约定示例用根目录 **`my_answers.yaml`**（已在 `.gitignore` 思路上：勿提交私有答案）。不要提交填了路径的答案文件。

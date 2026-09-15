@@ -35,7 +35,8 @@ flowchart LR
 
 完整课表 **02/04/05… 第一天不必通读**——最短路径卡了再点开对应课即可。
 
-**TE 只要一件事：** soft-mask 用 **trusted** 库文件（文件名 + 版本/sha256）。深漏斗见 [18](18_TE流程课_借鉴实验室03_TE.md)；日常基因注释不必先读完 TE 全课。
+**TE 只要一件事：** soft-mask 用 **trusted** 库文件（文件名 + 版本/sha256）。  
+soft-mask = 重复区**小写**（碱基还在），**不是**改成 N；没有 trusted 就问实验室要，**不要**用生 EDTA 去 mask（抗病基因怕 hard-mask/假库）。深漏斗见 [18](18_TE流程课_借鉴实验室03_TE.md)；Galaxy 指针见 [17](17_外部教程与会议.md)。
 
 EDTA 安装/命令页（文件名是 edta）：[`../tools/edta.md`](../tools/edta.md) · 总表 [`../TOOLS.md`](../TOOLS.md)。
 
