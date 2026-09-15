@@ -74,7 +74,7 @@ def main() -> int:
     print(f"# Target grade: {args.grade}  ·  checklist: docs/EVALUATION_CHECKLIST.md")
     print(f"# Sources: docs/QUALITY_SOURCES.md")
     print("# Does NOT install tools or run BRAKER. Review then paste on your cluster.")
-print("# !!! MUST set YOUR BUSCO_LINEAGE / COMPLEASM_LINEAGE in local.env — defaults are placeholders, not plant dogma.")
+    print("# !!! MUST set YOUR BUSCO_LINEAGE / COMPLEASM_LINEAGE in local.env — defaults are placeholders, not plant dogma.")
     print()
 
     print("## 0) Pack smoke (files present?)")
