@@ -30,6 +30,8 @@ Structure and **function** are separate layers (Ji 2026): this repo stops at qua
 | **L1 Qualified** | `status=qualified` (default lab release) | All hard gates G1–G8 (and G9 if applicable) |
 | **L2 Paper / T2T bar** | `status=qualified` + note S5 | L1 **plus** S5 overlays — [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) |
 
+Write **`grade=L0|L1|L2`** and **`status=provisional|qualified`** separately in METHODS. Do **not** write `status=L1`.
+
 Do not call an L0 package “publication-final.” Do not call L1 “S5” without OMArk + second curation round.
 
 ### Background — grades
@@ -66,7 +68,7 @@ These are **binary**. Clade-specific *numbers* are yours to set in Asm1 / METHOD
 
 | | |
 |--|--|
-| **Pass** | One primary draft ID (S11/S1/S2/S3/S13/S14/S6) + tool **versions** in METHODS |
+| **Pass** | One primary draft ID (S11 / **S11-lite** / S1/S2/S3/S13/S14/S6) + tool **versions** in METHODS. Lift-only with no gap-fill → **S11-lite** + `status=provisional` (not full S11/L1). |
 | **Fail** | “We ran annotation” with no engine |
 
 **Background:** Freedman 2025 shows method rank depends on clade and evidence; Ji 2026 frames the chooser as evidence→method. Without a named path, results are not comparable or reproducible. Version pins matter because BRAKER3/4, GALBA2, Helixer, Tiberius, EviAnn change defaults quickly (*Nat Methods* 2025–2026 wave).

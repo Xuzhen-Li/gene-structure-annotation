@@ -11,7 +11,16 @@
 4. 参考过远硬 lift 会系统性变差 → 改 S1/S2。  
 5. METHODS 必须区分 lift 与 de novo 基因座。
 
-**反例：** Lift 完直接标 L1，空洞未补、蛋白 BUSCO 未跑。  
+**反例：** Lift 完直接标 L1，空洞未补、蛋白 BUSCO 未跑。
+
+## S11 vs S11-lite
+
+| | **S11**（完整） | **S11-lite** |
+|--|--|--|
+| 做什么 | liftover **+ 补洞** + 主干 QC | **只** lift，不补洞 |
+| METHODS | `primary=S11`；可达 `grade=L1` + `status=qualified` | `primary=S11-lite`；`grade=L0` + `status=provisional` |
+| 口播 | 「先 lift 再补洞」 | 「快搬 / lift-only」——**不要**叫完整 S11 |
+  
 
 深课：[14_为什么这样选证据.md](14_为什么这样选证据.md)
 

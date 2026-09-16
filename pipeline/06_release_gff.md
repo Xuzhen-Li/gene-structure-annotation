@@ -39,7 +39,8 @@ if [[ -f "$WORK_DIR/METHODS.md" ]]; then
 else
   cat > "$REL/METHODS.md" <<EOF
 # METHODS — ${RELEASE_TAG}
-status: provisional   # or qualified / paper_t2t after gates
+grade: L0            # L0|L1|L2
+status: provisional   # provisional|qualified only — never status=L1
 # Fill: assembly + Asm1; TE lib + soft-mask; branch + tool versions;
 # OrthoDB/ref; RNA libs; BUSCO lineage + C/D/F/M; curation scope.
 EOF
