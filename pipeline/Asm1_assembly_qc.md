@@ -8,7 +8,9 @@ Annotating a fragmented or collapsed genome wastes months of GSAman time and fre
 ## Required commands
 
 ```bash
-busco -i "$GENOME_FA" -l viridiplantae_odb12 \
+# Set BUSCO_LINEAGE in local.env for YOUR species (rice often poales_*; grape teaching often viridiplantae_odb12).
+: "${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env}"
+busco -i "$GENOME_FA" -l "$BUSCO_LINEAGE" \
   -o genome_busco --out_path "$WORK_DIR/asm" -m genome -c "$THREADS"
 
 seqkit stats -a "$GENOME_FA" | tee "$WORK_DIR/asm/seqkit_stats.txt"
@@ -17,8 +19,9 @@ seqkit stats -a "$GENOME_FA" | tee "$WORK_DIR/asm/seqkit_stats.txt"
 ## Recommended extras
 
 ```bash
-# Compleasm (fast BUSCO-like)
-# compleasm run -a "$GENOME_FA" -l eudicots -t "$THREADS" -o "$WORK_DIR/asm/compleasm"
+# Compleasm — use COMPLEASM_LINEAGE from env (not a hard-coded eudicots)
+# : "${COMPLEASM_LINEAGE:?}"
+# compleasm run -a "$GENOME_FA" -l "$COMPLEASM_LINEAGE" -t "$THREADS" -o "$WORK_DIR/asm/compleasm"
 
 # Merqury QV if you have Illumina / HiFi k-mers
 # merqury.sh reads.meryl "$GENOME_FA" "$WORK_DIR/asm/merqury"
