@@ -84,6 +84,14 @@ These decide *how gene models are invented*. Start from evidence (Ji *NRG* 2026)
 
 ```text
 Close curated ref?     → S11 first
+
+### When is a reference “close” enough for S11?
+
+1. **Yes (prefer S11):** same species / cultivar (or near-identical haplotype) with a **curated** GFF you trust.
+2. **Maybe:** same genus — use LiftOn/CAT carefully; plan gap-fill; if lift quality collapses, switch to **S1**.
+3. **No (use S1/S2):** only “same family/order GFF exists,” half-done Liftoff, or untrusted models — do **not** hard-lift and call it S11/L1.
+4. Full **S11** = liftover **+ gap-fill + trunk QC** (can reach L1). Lift with no gap-fill = **S11-lite / provisional L0** only.
+
 RNA + proteins?        → S1
 Proteins only?         → S2
 Heavy Iso-seq?         → S3

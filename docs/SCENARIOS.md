@@ -301,22 +301,30 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 ---
 
-## S11 — Lift-only (quick transfer)
+## S11 — Liftover-first (+ gap-fill to L1)
 
-**When:** Need a fast working GFF for another cultivar / close assembly; not a publication annotation.
+**When:** You have a **close, curated** reference GFF (same species / cultivar / clearly close taxon with a trusted gene set). Evidence-first: project before inventing (Ji *Nat Rev Genet* 2026).
 
-### Steps
+**Not the same as “lift-only lite”:** a quick Liftoff with **no** gap-fill stays **L0 / provisional**. Calling **S11** as the primary draft means: liftover → **fill gaps** (S1/S2 tools) → trunk QC → can reach **L1**.
 
-1. Asm1 light check (stats + optional BUSCO). Soft-mask recommended.
+### Close? (operational)
 
-2. **Only Liftoff** from best grape GFF — no BRAKER required.  
+- Prefer: same species / cultivar, or near-identical haplotypes with a curated GFF you trust.
+- Same genus *may* work with LiftOn/CAT and extra caution; **order/family-only** “a GFF exists” is usually **too far** — fall back to **S1** (or S2).
+- Half-finished Liftoff → still `close_curated_ref: false` until you finish or treat lift as compare-only.
+
+### Steps (qualified path)
+
+1. Asm1 checklist + soft-mask (trusted TE).
+2. Liftoff / LiftOn / CAT (± TOGA2 if WGA) → mark lift models provisional.  
    [`../pipeline/A2c_liftoff.md`](../pipeline/A2c_liftoff.md)
+3. **Gap-fill** unmapped / broken loci with S1 or S2 engines (document which).
+4. Merge → AGAT + protein BUSCO + triage (same trunk as after S1).
+5. METHODS: primary=`S11`, note gap-fill engines; claim **L1** only after EVALUATION gates — not after lift alone.
 
-3. AGAT (+ optional protein BUSCO). Flag `valid_ORF=False` for later.
+### Lift-only lite (optional L0)
 
-4. METHODS: `status=provisional`, `method=liftoff-only`.
-
-5. **Do not** claim qualified / last-mile complete.
+If you truly need a fast working GFF and will **not** gap-fill: say `method=liftoff-only`, `status=provisional`, **do not** claim L1. Prefer labeling that path **S11-lite** in METHODS so it is not confused with full S11.
 
 ---
 
@@ -428,5 +436,6 @@ If BRAKER << other sets: TSEBRA rescue ([`tools/tsebra.md`](tools/tsebra.md)) be
 | Want NCBI parallel | **S8** |
 | High BUSCO-D | **S9** |
 | Gene count exploded | **S10** |
-| Quick lift | **S11** |
+| Liftover-first (+ gap-fill) | **S11** |
+| Lift-only L0 (no gap-fill) | **S11-lite** (METHODS label) |
 | Done polishing | **S12** |

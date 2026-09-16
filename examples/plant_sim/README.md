@@ -29,4 +29,6 @@ Same IDs under `gene-function-annotation/examples/plant_sim/`.
 
 These sims do **not** download genomes or run BRAKER/IPS. They only show the plan/QC command surface.
 
-**03 Solanum:** follow the generated `plan.md` (S11), not QUICKSTART’s default BRAKER steps.
+**02 Oryza:** intentionally **no** close-ref (practice plain S1 + poales lineage). This does **not** teach “rice must never use S11.”
+
+**03 Solanum:** tomato ≠ always S11 — the switch is `close_curated_ref: true` + a trusted near GFF. Follow generated `plan.md` (S11 = lift **+ gap-fill**), not QUICKSTART’s default BRAKER steps. Match BUSCO odb generation (odb10 vs odb12); do not mix.

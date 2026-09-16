@@ -55,14 +55,14 @@ A release is **qualified** (L1) for this lab when:
 - [ ] GFF validates (`gffread` / AGAT); proteins regenerated
 - [ ] Tag `RELEASE_TAG`; no private BAM/FASTQ in the repo
 
-Provisional releases (S6, S11) must say `status=provisional` in METHODS.
+Provisional releases (**S6**, or **S11 before gap-fill** / **S11-lite**) must say `status=provisional` in METHODS. Full S11 (lift + gap-fill + trunk QC) may claim L1 when EVALUATION passes.
 
 ---
 
 ## How to use the branches
 
 1. Finish **Asm0 → Asm1 → A0**.  
-2. Run the **evidence chooser** ([`README.md`](../README.md#evidence--branch-chooser) or [`steps/MAIN.md`](steps/MAIN.md)): close ref → **S11**; else RNA+proteins → **S1**; proteins only → **S2**; Iso-seq/EviAnn → **S3**; GPU compare → **S13**.  
+2. Run the **evidence chooser** ([`README.md`](../README.md#plain-map-one-glance) or [`steps/MAIN.md`](steps/MAIN.md)): close ref → **S11**; else RNA+proteins → **S1**; proteins only → **S2**; Iso-seq/EviAnn → **S3**; GPU compare → **S13**.  
 3. Open **one** scenario in [`SCENARIOS.md`](SCENARIOS.md) and follow it to a merged draft.  
 4. Rejoin spine at **A3 → 01 → 02 → 04 → 06**.  
 5. Tick the qualification checklist above.  

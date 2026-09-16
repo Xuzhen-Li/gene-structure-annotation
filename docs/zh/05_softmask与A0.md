@@ -18,7 +18,7 @@ flowchart LR
 ## 为什么
 
 1. Soft-mask **保留碱基**，预测器仍可跨真基因；hard-mask 会毁序列。  
-2. `--curatedlib` 把库抬成高信任 — 脏库 → **基因 wipe 或 TE 膨胀**。  
+2. `--curatedlib` 把库抬成高信任 — 脏库 → **真基因被当成 TE 而降权/漏检，或假 TE 膨胀**（soft-mask 碱基仍在，不是改成 N）。  
 3. Working / 生 EDTA / `cat`+CD-HIT **都不是** trusted。  
 4. A0b（ProtExcluder）**可选**；实验室门控本体是 CDS+emit trusted，不是 A0b。  
 5. A0 产出的 `GENOME_SOFT` 是所有草稿支的共同地板。
@@ -52,7 +52,7 @@ flowchart LR
 > **Dedup ≠ curation。**  
 > `cat` 多个 haplotype 的 TElib 再 CD-HIT，**不等于** trusted curatedlib。
 
-生 EDTA 粗库、整份 working 库、或把 NLR/CDS 塞进 curatedlib → 宿主基因会被「信任」成 TE → soft-mask 后真基因被抹掉或假基因爆炸。
+生 EDTA 粗库、整份 working 库、或把 NLR/CDS 塞进 curatedlib → 宿主基因会被「信任」成 TE → soft-mask 后预测器**降权/漏报**真基因，或假基因爆炸（碱基仍是小写，**不是** hard-mask 改成 N）。
 
 ## A0 / A0b 在干什么
 
@@ -82,5 +82,11 @@ GENOME_SOFT  →  交给 S11/S1/S2…
 | A0b exclusion（若跑了） | METHODS / S10 |
 
 基因数爆炸、怀疑 TE 污染 → 叠加 **S10**（回炉 remask，再进同一草稿支）。
+
+
+## softmasked_fraction ≠ 基因组 TE%
+
+`softmasked_fraction`（小写碱基占比）**不是**「基因组 TE 含量」论文数字。  
+为刷高这个比例去用 working / 生 EDTA 当 mask 库 = 踩红线。真正 TE% 来自 trusted 库注释与实验室约定产品，见 FAQ / TE_LIBRARY。
 
 下一页：[06_质控课.md](06_质控课.md)
