@@ -9,7 +9,7 @@
 | If you need… | Open |
 |--------------|------|
 | Branch map (trunk / draft / overlay) | [`ROADMAP.md`](ROADMAP.md) |
-| Evidence → which S-branch | [README “Evidence → branch”](../README.md#evidence--branch-chooser) |
+| Evidence → which S-branch | [README “Plain map”](../README.md#plain-map-one-glance) |
 | Every stage’s inputs/outputs | [`STAGE_IO.md`](STAGE_IO.md) |
 | Full qualification checklist | [`PLAYBOOK.md`](PLAYBOOK.md) |
 | Copy-paste depth | [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) |
@@ -82,7 +82,7 @@ This repo is a **METHODS playbook + helpers**, not a single `conda install` blac
 
 ## 3. Choose your branch (do not skip)
 
-Open the [Evidence → branch](../README.md#evidence--branch-chooser) section.
+Open the [Plain map (one glance)](../README.md#plain-map-one-glance) section.
 
 | You have | Branch | Why |
 |----------|--------|-----|

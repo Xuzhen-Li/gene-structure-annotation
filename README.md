@@ -31,6 +31,9 @@ That is **structural** annotation.
 
 ## Three steps (start here)
 
+Chinese teaching door: [`docs/zh/`](docs/zh/)（今天最短路径）.
+
+
 ### 1. Tell the tool what evidence you have
 
 ```bash
