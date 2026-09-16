@@ -10,6 +10,8 @@ You want **gene models** (GFF), not GO tables.
    (Chinese: [`zh/验收勾选表.md`](zh/验收勾选表.md); full rules: [`EVALUATION.md`](EVALUATION.md))  
 4. Optional: `python3 pipeline/print_qc_commands.py` after sourcing `local.env`
 
+**Classroom minimum ≠ finish BRAKER tonight.** Honest stop: understand `my_plan.md` + list real paths in `local.env` + know what L1 ticks mean. Run `RUN=1` only when you have HPC/containers.
+
 One-sentence test: *Does this step change exon coordinates or only protein labels?*  
 Coordinates → this repo. Labels (GO/KEGG/names) → [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
 
