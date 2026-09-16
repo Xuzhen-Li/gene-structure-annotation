@@ -87,16 +87,16 @@ trusted curatedlib  →  RepeatMasker -xsmall  (± optional A0b)
 As run in `01_discovery` (provenance; do not casually `--overwrite`):
 
 ```bash
+# GRAPE ONLY — μ from Zhou et al. 2019. Non-grape: do not copy; use docs/tools/edta.md Minimal (no --u) or own μ.
+# First grape round: no --cds (CDS locked later for gating / panEDTA).
+# Sequence names: ≤13 chars (EDTA requirement); keep id_map.tsv
 EDTA.pl \
   --genome genome_mod.fa \
   --species others \
   --sensitive 1 \
   --anno 1 \
-  # GRAPE ONLY μ — Zhou 2019; other taxa: own μ or omit (do not copy this line)
   --u 5.4e-9 \
   --threads "$THREADS"
-# First grape round: no --cds (CDS locked later for gating / panEDTA)
-# Sequence names: ≤13 chars (EDTA requirement); keep id_map.tsv
 ```
 
 μ `5.4e-9` (**grape teaching default only**): Zhou et al. 2019. Non-grape: do not copy; pick μ from literature or omit and say so in METHODS.  

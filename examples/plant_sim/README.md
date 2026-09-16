@@ -4,6 +4,8 @@ Three **print-first** plant setups that stress the L1 fixes (TE honesty, lineage
 conditional A4, S7 narration, S11 chooser). Paths in `env.snippet` are placeholders — do not
 commit real cluster paths.
 
+**TE honesty (01 especially):** soft-mask lib = trusted FASTA (`TRUSTED_TE_LIB`); `softmasked_fraction` ≠ genome TE%. Never paste a comment *between* bash `\` continuations (see `docs/TE_LIBRARY.md` grape EDTA — comments go *above* `EDTA.pl`).
+
 | ID | Species | Structure chooser stress | Function stress |
 |----|---------|--------------------------|-----------------|
 | `01_vitis_s1_s7` | Grape | S1 + S7 overlay; `TRUSTED_TE_LIB`; no forced A4 | F1 + `want_nlr` |
