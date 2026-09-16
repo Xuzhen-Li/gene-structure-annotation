@@ -64,3 +64,5 @@ Lifted GFF（先标 status=provisional）
 有完美近缘参考时：**先 S11，再补**；不要为了「显得更原创」跳过 liftover。
 
 下一页：[09_S2_S3_S13_S14速览.md](09_S2_S3_S13_S14速览.md)
+
+> 英文 Wiki 验收句：[S11 gap-fill — Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Choose-branch#s11-gap-fill--done-when)（lift-only 必须标 S11-lite）。
