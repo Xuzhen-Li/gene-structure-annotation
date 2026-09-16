@@ -1,6 +1,6 @@
 # Soft-mask 与 A0（地板怎么铺）
 
-英文细则：[`../TE_LIBRARY.md`](../TE_LIBRARY.md) · [`../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md)
+英文细则：[`../TE_LIBRARY.md`](../TE_LIBRARY.md) · checklist [`../TRUSTED_TE_PATH.md`](../TRUSTED_TE_PATH.md) · [`../../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md)
 
 
 ## 图：A0 只吃 trusted

@@ -96,7 +96,10 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
 | Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | QC methods / papers / repos | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
-| TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) · **EDTA tool page:** [`docs/tools/edta.md`](docs/tools/edta.md) |
+| TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) · checklist [`docs/TRUSTED_TE_PATH.md`](docs/TRUSTED_TE_PATH.md) · **EDTA:** [`docs/tools/edta.md`](docs/tools/edta.md) |
+| BUSCO / Compleasm lineages | [`docs/LINEAGES.md`](docs/LINEAGES.md) |
+| S11 gap-fill (after lift) | [`pipeline/A2e_s11_gapfill.md`](pipeline/A2e_s11_gapfill.md) · Liftoff [`pipeline/A2c_liftoff.md`](pipeline/A2c_liftoff.md) |
+| Golden pack checklist (EXAMPLE) | [`examples/golden_pack/`](examples/golden_pack/) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 
 More (recipes, tools, case, tutorials): [`docs/SCENARIOS.md`](docs/SCENARIOS.md) · [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) · [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).

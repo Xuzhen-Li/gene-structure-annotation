@@ -146,3 +146,7 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`steps/MAIN.md`](steps/MAIN.md) | Same map, tool-oriented |
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
 | [`PEER_PIPELINES.md`](PEER_PIPELINES.md) | Peer stacks (incl. Haul 2026-09-14) |
+| [`LINEAGES.md`](LINEAGES.md) | BUSCO/Compleasm plant lineage names (odb10 vs odb12) |
+| [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) | Trusted TE → A0 checklist (own build / borrow) |
+| [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md) | S11 gap-fill after Liftoff (S11 vs S11-lite) |
+| [`../examples/golden_pack/`](../examples/golden_pack/) | EXAMPLE L0/L1 pack file list + METHODS stub |

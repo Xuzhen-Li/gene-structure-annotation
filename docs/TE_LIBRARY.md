@@ -9,7 +9,7 @@ This file is the **public hand-off** into gene soft-mask.
 
 This file is the **structure-annotation hand-off**: what gene prediction is allowed to soft-mask with, and which TE products must never be confused.
 
-Sibling: [`../pipeline/A0_softmask.md`](../pipeline/A0_softmask.md) · [`../pipeline/A0b_protexcluder.md`](../pipeline/A0b_protexcluder.md) · [`tools/edta.md`](tools/edta.md).
+Sibling: [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) (copy-paste A0 checklist) · [`../pipeline/A0_softmask.md`](../pipeline/A0_softmask.md) · [`../pipeline/A0b_protexcluder.md`](../pipeline/A0b_protexcluder.md) · [`tools/edta.md`](tools/edta.md).
 
 ---
 
@@ -202,5 +202,6 @@ Do not cite private notebook or cluster absolute paths in METHODS.
 | Need | Where |
 |------|--------|
 | Public stub / summary | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| A0 trusted path checklist | [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) |
 | Chinese teaching funnel | [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md) |
 | Lab detailed notebook | Private (not in git); do not paste cluster paths into METHODS |
