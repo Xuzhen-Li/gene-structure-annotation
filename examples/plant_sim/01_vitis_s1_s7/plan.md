@@ -1,6 +1,6 @@
 # Structure flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 02:21 UTC  
+Generated: 2026-09-16 02:30 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision

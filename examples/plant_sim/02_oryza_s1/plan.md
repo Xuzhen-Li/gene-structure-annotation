@@ -1,6 +1,6 @@
 # Structure flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 02:21 UTC  
+Generated: 2026-09-16 02:30 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -173,7 +173,7 @@ bash pipeline/01_qc_busco_psauron.sh
 
 **Helper:** `pipeline/02_priority_loci.py`
 
-**Also see:** QUICKSTART G7 / docs/SCENARIOS.md
+**Also see:** docs/EVALUATION.md G7 · docs/EVALUATION_CHECKLIST.md · docs/SCENARIOS.md
 
 ```bash
 # Print-first (review before running on cluster):
@@ -186,7 +186,7 @@ python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 
 **Software & purpose:** GSAman (browser curation)
 
-**Process:** Fix or defer each priority locus; depth scales with S5/S7.
+**Process:** Fix or defer each priority locus (no S7 overlay on this plan — genome-wide or PSAURON-priority only).
 
 **Output:** CURATED_GFF
 

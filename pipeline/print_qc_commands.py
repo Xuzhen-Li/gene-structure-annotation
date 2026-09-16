@@ -79,8 +79,9 @@ def main() -> int:
     print()
     print("## Reminders G1–G3 (tick before trusting later QC)")
     print("# G1 ASSEMBLY_OK=yes only after Asm1; document source if genome was handed to you.")
-    print("# G2 Soft-mask: verify GENOME_SOFT is -xsmall soft-mask (not hard-mask).")
-    print("# G3 CLEAN_TE_LIB / TRUSTED_TE_LIB = curated FASTA + sha256 in METHODS (≠ working ≠ raw EDTA ≠ RM .lib).")
+    print("# G2 Soft-mask honesty: GENOME_SOFT is -xsmall (not hard-mask); CLEAN_TE_LIB/TRUSTED_TE_LIB + sha256 in METHODS")
+    print("#     (≠ working ≠ raw EDTA ≠ RM .lib).")
+    print("# G3 Named draft path + tool versions in METHODS (BRAKER/Liftoff/GALBA/… branch ID).")
     print()
 
     print("## 0) Pack smoke (files present?)")

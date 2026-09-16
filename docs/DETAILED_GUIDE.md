@@ -75,11 +75,13 @@ Refuse to annotate broken assemblies.
 ### Commands
 
 ```bash
-busco -i "$GENOME_FA" -l viridiplantae_odb12 \
+# BUSCO_LINEAGE from local.env (plant teaching often viridiplantae_odb12)
+busco -i "$GENOME_FA" -l "$BUSCO_LINEAGE" \
+
   -o genome_busco --out_path "$WORK_DIR/asm" -m genome -c "$THREADS"
 seqkit stats -a "$GENOME_FA" | tee "$WORK_DIR/asm/seqkit_stats.txt"
 # Optional:
-# compleasm run -a "$GENOME_FA" -l eudicots -t "$THREADS" -o "$WORK_DIR/asm/compleasm"
+# compleasm run -a "$GENOME_FA" -l "$COMPLEASM_LINEAGE" -t "$THREADS" -o "$WORK_DIR/asm/compleasm"
 # merqury.sh best.meryl "$GENOME_FA" "$WORK_DIR/asm/merqury"
 ```
 

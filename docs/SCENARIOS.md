@@ -37,17 +37,21 @@ Every scenario below is a full recipe. Shared early steps always mean:
    ```
    Step 5
 
-6. **Second draft** — GeMoMa or Liftoff from PN40024 → `DRAFT_GFF_B`.  
+6. **Second draft (optional)** — only if you truly have a second **gene set** (GeMoMa / Liftoff / second BRAKER) → `DRAFT_GFF_B`.  
+   StringTie→TransDecoder is a **compare** track, not `DRAFT_GFF_B`. Skip this step for default single-BRAKER S1.  
    Step 6 · [`../pipeline/A2b_second_predictor.md`](../pipeline/A2b_second_predictor.md) · [`../pipeline/A2c_liftoff.md`](../pipeline/A2c_liftoff.md)
 
-7. **Merge** — EVM (or TSEBRA if two BRAKER-family sets) → `MERGED_GFF`.  
+7. **Merge or A4skip** — run A4 **only** with a real `DRAFT_GFF_B`; else export `MERGED_GFF=$DRAFT_GFF` (A4skip).  
    ```bash
-   MERGE_MODE=evm bash pipeline/A4_merge_sets.sh
+   # Dual-track only:
+   # MERGE_MODE=evm bash pipeline/A4_merge_sets.sh
+   # Single draft (default S1):
+   export MERGED_GFF="$DRAFT_GFF"
    bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
    ```
    Step 7
 
-8. **Proteins** — representative `PROTEINS_FA` from merged GFF.  
+8. **Proteins** — representative `PROTEINS_FA` from release-candidate GFF.  
    ```bash
    DRAFT_GFF="$MERGED_GFF" bash pipeline/A3_proteins_from_gff.sh
    ```
@@ -57,9 +61,11 @@ Every scenario below is a full recipe. Shared early steps always mean:
    bash pipeline/01_qc_busco_psauron.sh
    ```
 
-10. **Priority** — low PSAURON + NLR/stilbene boost → `priority.tsv`.  
+10. **Priority** — low PSAURON first → `priority.tsv`. For NLR/stilbene/QTL **boost**, build `curate/families.tsv` and pass `--families` (S7 / G9); without it, “NLR boost” does nothing.  
     ```bash
     python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 90
+    # S7 / plant_tandem_focus:
+    # python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 90 --families curate/families.tsv
     ```
 
 11. **GSAman** — load genome, GFF, BAM, homologs; fix priority loci; tag [`ERROR_CLASSES.md`](ERROR_CLASSES.md); export `CURATED_GFF`.  

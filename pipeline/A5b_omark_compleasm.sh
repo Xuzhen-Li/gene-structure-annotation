@@ -42,8 +42,9 @@ else
 fi
 
 if command -v compleasm >/dev/null; then
-  echo "[INFO] Compleasm protein mode — lineage=${COMPLEASM_LINEAGE:-eudicots}"
-  run_or_print compleasm protein -p "$PROTEINS_FA" -l "${COMPLEASM_LINEAGE:-eudicots}" \
+  : "${COMPLEASM_LINEAGE:?set COMPLEASM_LINEAGE in local.env (no silent eudicots default)}"
+  echo "[INFO] Compleasm protein mode — lineage=$COMPLEASM_LINEAGE"
+  run_or_print compleasm protein -p "$PROTEINS_FA" -l "$COMPLEASM_LINEAGE" \
     -o "$OUT/compleasm" -t "$THREADS"
 else
   echo "[WARN] compleasm not on PATH (optional)"

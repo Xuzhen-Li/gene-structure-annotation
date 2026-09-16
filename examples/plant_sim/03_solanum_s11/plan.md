@@ -1,6 +1,6 @@
 # Structure flow plan — Solanum_lycopersicum_sim
 
-Generated: 2026-09-16 02:29 UTC  
+Generated: 2026-09-16 02:30 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
