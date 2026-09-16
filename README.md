@@ -100,6 +100,8 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | BUSCO / Compleasm lineages | [`docs/LINEAGES.md`](docs/LINEAGES.md) |
 | S11 gap-fill (after lift) | [`pipeline/A2e_s11_gapfill.md`](pipeline/A2e_s11_gapfill.md) · Liftoff [`pipeline/A2c_liftoff.md`](pipeline/A2c_liftoff.md) |
 | Golden pack checklist (EXAMPLE) | [`examples/golden_pack/`](examples/golden_pack/) |
+| **Post-assembly one-pager** | [`docs/POST_ASSEMBLY.md`](docs/POST_ASSEMBLY.md) |
+| PROTEIN_DB (BRAKER/GALBA) | [`pipeline/A2_protein_db.md`](pipeline/A2_protein_db.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 
 More (recipes, tools, case, tutorials): [`docs/SCENARIOS.md`](docs/SCENARIOS.md) · [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) · [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).

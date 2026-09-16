@@ -1,6 +1,6 @@
 # Structure flow plan — Solanum_lycopersicum_sim
 
-Generated: 2026-09-16 03:39 UTC  
+Generated: 2026-09-16 12:37 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -89,7 +89,7 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Output:** Gap-filled DRAFT_GFF (candidate for trunk QC)
 
-**Helper:** `docs/SCENARIOS.md (S11)`
+**Helper:** `pipeline/A2e_s11_gapfill.md`
 
 **Also see:** Lift-only delivery must rename primary to S11-lite and keep grade=L0.
 

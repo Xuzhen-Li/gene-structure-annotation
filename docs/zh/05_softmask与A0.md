@@ -84,6 +84,17 @@ GENOME_SOFT  →  交给 S11/S1/S2…
 基因数爆炸、怀疑 TE 污染 → 叠加 **S10**（回炉 remask，再进同一草稿支）。
 
 
+## Soft-mask Done when（进 A0 / `RUN=1` 前）
+
+与英文 Wiki [Soft-mask — Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE#soft-mask--done-when-before-a0--run1) 对齐；勾选用英文清单 [`../TRUSTED_TE_PATH.md`](../TRUSTED_TE_PATH.md)：
+
+- [ ] curatedlib 路径 + 版本 + **真 sha256**（近缘借库须写清来源；禁止 `YOUR_SHA256` / 空校验）
+- [ ] 确认不是 working / 生 EDTA / `cat`+CD-HIT 冒充
+- [ ] 口头：soft ≠ hard，且 `softmasked_fraction` ≠ 基因组 TE%
+- [ ] METHODS 已预留 trusted TE 行
+
+任一未勾 → **禁止 A0** / 禁止 `RUN=1` RepeatMasker。中文指针：[TRUSTED_TE_PATH.md](TRUSTED_TE_PATH.md)。
+
 ## 课上口头检查（交 A0 前）
 
 能用一句话说清：**soft ≠ hard**，且 **`softmasked_fraction` ≠ 基因组 TE%**。说不清就先别跑 mask。

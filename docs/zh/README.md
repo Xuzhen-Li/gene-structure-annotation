@@ -67,6 +67,18 @@
 
 > 课 00 / 14–16 是 **WHY 层**。操作与门禁仍以英文为准。
 
+
+## 英文助手中文指针（3–5 行）
+
+| 指针 | 对应英文 |
+|------|----------|
+| [TRUSTED_TE_PATH.md](TRUSTED_TE_PATH.md) | trusted TE 借库/自建清单 |
+| [LINEAGES.md](LINEAGES.md) | BUSCO/Compleasm 谱系名 |
+| [A2e_s11_gapfill.md](A2e_s11_gapfill.md) | S11 补洞 |
+| [golden_pack.md](golden_pack.md) | 放行包 EXAMPLE 目录 |
+
+英文一页路径：[`../POST_ASSEMBLY.md`](../POST_ASSEMBLY.md)。
+
 ## 一句话自测
 
 > 这一步改的是**外显子坐标**，还是只改**蛋白的名字/GO**？  

@@ -9,7 +9,8 @@ You want **gene models** (GFF), not GO tables.
 3. Follow the printed plan; finish by ticking [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md)  
    (Chinese: [`zh/验收勾选表.md`](zh/验收勾选表.md); full rules: [`EVALUATION.md`](EVALUATION.md))  
 4. Optional: `python3 pipeline/print_qc_commands.py` after sourcing `local.env`  
-5. Lineages / trusted TE / S11 gap-fill: [`LINEAGES.md`](LINEAGES.md) · [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) · [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md)
+5. Lineages / trusted TE / S11 gap-fill: [`LINEAGES.md`](LINEAGES.md) · [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) · [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md) · proteins DB [`../pipeline/A2_protein_db.md`](../pipeline/A2_protein_db.md)
+6. One-page path + EXAMPLE pack: [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) · [`../examples/golden_pack/`](../examples/golden_pack/)
 
 **Classroom minimum ≠ finish BRAKER tonight.** Honest stop: understand `my_plan.md` + list real paths in `local.env` + know what L1 ticks mean. Run `RUN=1` only when you have HPC/containers.
 

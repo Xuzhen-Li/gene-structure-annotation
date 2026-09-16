@@ -198,7 +198,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
                 "S1/S2 tools on unmapped/broken loci (BRAKER/GALBA/GeMoMa orphans) then optional merge",
                 "Fill holes after lift; do not claim grade=L1 on lift-only. Stopping here without this stage = S11-lite (L0 provisional).",
                 "Gap-filled DRAFT_GFF (candidate for trunk QC)",
-                "docs/SCENARIOS.md (S11)",
+                "pipeline/A2e_s11_gapfill.md",
                 "Lift-only delivery must rename primary to S11-lite and keep grade=L0.",
             )
     elif primary == "S2":

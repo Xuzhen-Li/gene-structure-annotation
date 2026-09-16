@@ -150,3 +150,5 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) | Trusted TE → A0 checklist (own build / borrow) |
 | [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md) | S11 gap-fill after Liftoff (S11 vs S11-lite) |
 | [`../examples/golden_pack/`](../examples/golden_pack/) | EXAMPLE L0/L1 pack file list + METHODS stub |
+| [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) | One-page Asm1 → TE → draft → golden → FA |
+| [`../pipeline/A2_protein_db.md`](../pipeline/A2_protein_db.md) | PROTEIN_DB for BRAKER / GALBA |
