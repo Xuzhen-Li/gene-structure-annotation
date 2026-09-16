@@ -58,12 +58,12 @@ python3 pipeline/check_release_pack.py "$REL"
 ## 4. METHODS.md (required fields)
 - Assembly version + Asm1 metrics  
 - TE lib + soft-mask (trusted lib version + sha256)  
-- Branch ID (S1…) + BRAKER/GeMoMa/EVM/Liftoff versions  
+- Branch ID (S1… / **S11-lite** if lift-only) + tool versions  
 - OrthoDB / ref GFF used  
 - RNA libraries  
 - BUSCO lineage + C/D/F/M  
 - Curation scope (genome-wide vs priority / S7 windows)  
-- `status=qualified` or `provisional`
+- `grade=L0|L1|L2` and `status=provisional|qualified` (never `status=L1`)
 
 ## 5. Do not upload
 Private BAM, FASTQ, unpublished sample matrices.

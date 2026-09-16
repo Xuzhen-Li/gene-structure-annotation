@@ -46,7 +46,8 @@ Use tools **in this sequence**. Later steps assume earlier outputs exist.
 | Multi-hap (**S4**) | After #13 on ref: Liftoff each hap → [SynGAP](tools/syngap.md) → GSAman conflicts only |
 | NCBI parallel (**S8**) | Run [EGAPx](tools/egapx.md) beside #7–#11; compare, do not auto-replace |
 | TE inflation (**S10**) | Stop; go back to #4–#5; restart from #7 |
-| Lift-only (**S11**) | After #3 (light): only Liftoff → AGAT; skip BRAKER/EVM/GSAman claim |
+| Liftover-first (**S11**) | Lift + gap-fill + trunk QC → may reach L1 |
+| Lift-only (**S11-lite**) | After #3 (light): only Liftoff → AGAT; `grade=L0` + `status=provisional`; no L1 claim |
 | Helixer path (**S13**) | #8b Helixer → #9 Mikado instead of BRAKER+EVM |
 | EVM consensus (**S14**) | Repeats → [PASA](tools/pasa.md) train Augustus/GeneMark → EVM (cantulab weights) → PASA polish → A5e filter → A6b rename |
 | BRAKER gene collapse | After #7 run #9b; TSEBRA `-k` rescue (Copetti) |

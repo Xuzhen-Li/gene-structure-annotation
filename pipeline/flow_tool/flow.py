@@ -185,11 +185,22 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "Liftover-first draft",
             "REF_FA + REF_GFF + target GENOME_SOFT",
             "Liftoff / LiftOn / CAT (± TOGA2 if WGA).",
-            "Transfer models; mark provisional until QC; plan gap-fill with S1/S2.",
-            "Lifted DRAFT_GFF (status=provisional until G7).",
+            "Transfer models; mark provisional until gap-fill+QC. Full S11 may reach L1; lift-only stop is S11-lite (L0).",
+            "Lifted DRAFT_GFF (provisional).",
             "pipeline/A2c_liftoff.md",
             "No one-liner bash yet — follow the md (Liftoff/LiftOn). Do not hunt for a missing bash block.",
         )
+        if choice.get("grade_target") in ("L1", "L2"):
+            add(
+                "S11gap",
+                "S11 gap-fill (required for L1+)",
+                "Lifted DRAFT_GFF + GENOME_SOFT + evidence (RNA and/or proteins)",
+                "S1/S2 tools on unmapped/broken loci (BRAKER/GALBA/GeMoMa orphans) then optional merge",
+                "Fill holes after lift; do not claim grade=L1 on lift-only. Stopping here without this stage = S11-lite (L0 provisional).",
+                "Gap-filled DRAFT_GFF (candidate for trunk QC)",
+                "docs/SCENARIOS.md (S11)",
+                "Lift-only delivery must rename primary to S11-lite and keep grade=L0.",
+            )
     elif primary == "S2":
         add(
             "S2",

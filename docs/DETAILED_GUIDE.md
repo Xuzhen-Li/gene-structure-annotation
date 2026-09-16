@@ -505,13 +505,22 @@ MERGE_MODE=evi_backbone bash pipeline/A4_merge_sets.sh
 
 ---
 
-## S11 — Lift only
+## S11 — Liftover-first (+ gap-fill)
+
+Full **S11** = lift → gap-fill (S1/S2 tools) → trunk QC → may claim `grade=L1` + `status=qualified`.
+
+1. Asm1 + A0 (trusted soft-mask).  
+2. Liftoff / LiftOn / CAT → provisional lift set.  
+3. Gap-fill unmapped / broken loci; merge; AGAT + protein BUSCO + triage.  
+4. METHODS: `primary=S11`; `grade=L1`; `status=qualified` only after EVALUATION gates.
+
+### S11-lite — lift-only (L0)
 
 1. Asm1 minimal; A0 recommended.  
-2. Liftoff only (Step 6 option B).  
+2. Liftoff only (no gap-fill).  
 3. AGAT + optional protein BUSCO.  
-4. METHODS `status=provisional`.  
-5. No qualification claim.
+4. METHODS: `primary=S11-lite`; `grade=L0`; `status=provisional`.  
+5. No L1 / qualified claim.
 
 ---
 

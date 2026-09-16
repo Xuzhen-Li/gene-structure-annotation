@@ -1,6 +1,6 @@
 # Structure flow plan — Solanum_lycopersicum_sim
 
-Generated: 2026-09-16 03:23 UTC  
+Generated: 2026-09-16 03:39 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -71,15 +71,29 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Software & purpose:** Liftoff / LiftOn / CAT (± TOGA2 if WGA).
 
-**Process:** Transfer models; mark provisional until QC; plan gap-fill with S1/S2.
+**Process:** Transfer models; mark provisional until gap-fill+QC. Full S11 may reach L1; lift-only stop is S11-lite (L0).
 
-**Output:** Lifted DRAFT_GFF (status=provisional until G7).
+**Output:** Lifted DRAFT_GFF (provisional).
 
 **Helper:** `pipeline/A2c_liftoff.md`
 
 **Also see:** No one-liner bash yet — follow the md (Liftoff/LiftOn). Do not hunt for a missing bash block.
 
-### 5. A4skip — Merge skipped (single draft / compare-only)
+### 5. S11gap — S11 gap-fill (required for L1+)
+
+**Input:** Lifted DRAFT_GFF + GENOME_SOFT + evidence (RNA and/or proteins)
+
+**Software & purpose:** S1/S2 tools on unmapped/broken loci (BRAKER/GALBA/GeMoMa orphans) then optional merge
+
+**Process:** Fill holes after lift; do not claim grade=L1 on lift-only. Stopping here without this stage = S11-lite (L0 provisional).
+
+**Output:** Gap-filled DRAFT_GFF (candidate for trunk QC)
+
+**Helper:** `docs/SCENARIOS.md (S11)`
+
+**Also see:** Lift-only delivery must rename primary to S11-lite and keep grade=L0.
+
+### 6. A4skip — Merge skipped (single draft / compare-only)
 
 **Input:** Primary DRAFT_GFF only
 
@@ -91,7 +105,7 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Also see:** pipeline/A4_merge_sets.sh (optional if dual track later)
 
-### 6. A5 — AGAT structure counts
+### 7. A5 — AGAT structure counts
 
 **Input:** MERGED_GFF or primary GFF
 
@@ -109,7 +123,7 @@ bash pipeline/A5_agat_stats.sh          # dry
 RUN=1 bash pipeline/A5_agat_stats.sh    # execute on cluster after review
 ```
 
-### 7. A3 — Proteins from GFF
+### 8. A3 — Proteins from GFF
 
 **Input:** Release-candidate GFF + genome
 
@@ -127,7 +141,7 @@ bash pipeline/A3_proteins_from_gff.sh          # dry
 RUN=1 bash pipeline/A3_proteins_from_gff.sh    # execute on cluster after review
 ```
 
-### 8. 01 — Protein BUSCO + PSAURON
+### 9. 01 — Protein BUSCO + PSAURON
 
 **Input:** PROTEINS_FA
 
@@ -147,7 +161,7 @@ bash pipeline/01_qc_busco_psauron.sh          # dry
 RUN=1 bash pipeline/01_qc_busco_psauron.sh    # execute on cluster after review
 ```
 
-### 9. 02 — Priority loci list (G7)
+### 10. 02 — Priority loci list (G7)
 
 **Input:** PSAURON_TSV (± family boost TSV)
 
@@ -166,7 +180,7 @@ RUN=1 bash pipeline/01_qc_busco_psauron.sh    # execute on cluster after review
 python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 ```
 
-### 10. 04 — GSAman / manual curation
+### 11. 04 — GSAman / manual curation
 
 **Input:** Priority windows + evidence tracks
 
@@ -178,7 +192,7 @@ python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 
 **Helper:** `pipeline/04_gsaman_curation.md`
 
-### 11. 06 — Qualify + package release
+### 12. 06 — Qualify + package release
 
 **Input:** Curated GFF + proteins + qc/
 
@@ -192,7 +206,7 @@ python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 
 **Also see:** docs/EVALUATION.md
 
-### 12. A6 — Hand-off to functional annotation
+### 13. A6 — Hand-off to functional annotation
 
 **Input:** Released PROTEINS_FA
 

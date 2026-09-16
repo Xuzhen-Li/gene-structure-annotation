@@ -8,7 +8,7 @@ Full rules: [`EVALUATION.md`](EVALUATION.md). Chinese tick sheet: [`zh/验收勾
 
 - [ ] G1 Assembly OK (`ASSEMBLY_OK` + Asm1)
 - [ ] G2 Soft-mask + **trusted** TE lib
-- [ ] G3 Named draft path + tool versions
+- [ ] G3 Named draft path + tool versions (lift-only → **S11-lite** + provisional; full S11 = lift+gap-fill)
 - [ ] G4 Valid GFF (AGAT/gffread) + counts
 - [ ] G5 Proteins from **this** release GFF
 - [ ] G6 Protein BUSCO Completeness **+ lineage**
@@ -34,7 +34,7 @@ Shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
 - [ ] No GO/KEGG claimed in this repo
 - [ ] No private reads in git/release
 
-**Verdict:** status=________ TAG=________
+**Verdict:** grade=L0|L1|L2 status=provisional|qualified primary=S__|S11-lite TAG=________
 
 ## Pack smoke (optional)
 

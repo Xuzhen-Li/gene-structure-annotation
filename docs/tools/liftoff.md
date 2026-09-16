@@ -1,6 +1,6 @@
 # Liftoff — map annotation GFF to a new assembly
 
-**Role:** S1 second set, S2, S4 haplotype transfer, S6, S11 quick provisional.
+**Role:** S1 second set, S2, S4 haplotype transfer, S6, **S11** (then gap-fill) or **S11-lite** (lift-only provisional).
 
 ## Get it
 - https://github.com/agshumate/Liftoff · `pip install liftoff` / bioconda
@@ -30,5 +30,5 @@ grep -E 'valid_ORF=False|partial' "$WORK_DIR/draft/liftoff.gff3" | head
 ```
 
 ## Pitfalls
-- Claiming Liftoff-only as publication-qualified (**S11** is provisional).  
+- Claiming Liftoff-only as publication-qualified (**S11-lite** is provisional L0; full S11 needs gap-fill + gates).  
 - Blind trust of `-copies` in resistance-gene clusters.

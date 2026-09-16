@@ -27,4 +27,5 @@ grep -E 'valid_ORF=False|partial_mapping|low_identity' "$OUT" | head -n 50 || tr
 ## Notes
 - Prefer polished PN40024 (or your best curated grape) as reference.  
 - `-copies` helps tandem arrays but can create extras — GSAman NLR windows.  
-- Liftoff alone is **S11 provisional**, not qualified.
+- Liftoff alone (no gap-fill) is **S11-lite**: `grade=L0` + `status=provisional`, not qualified.
+- Full **S11** continues with gap-fill + trunk QC before claiming `grade=L1`.

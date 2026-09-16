@@ -3,7 +3,7 @@
 **Status:** delivery template (fill bracketed metrics with *your* run).  
 **Honest scope:** this repo’s `pipeline/*.sh` helpers often **print** cluster commands (BRAKER/EVM/OMArk) rather than execute opaque black boxes — you still run the printed lines under your modules.  
 **Audience:** someone who must ship a non-provisional GFF + proteins for a grapevine (or close *Vitis*) **T2T / near-T2T** genome.  
-**Not this case:** liftoff-only cultivar draft (that is **S11**, provisional) · FA/GO tables (sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)).
+**Not this case:** liftoff-only cultivar draft (that is **S11-lite**, provisional L0; full S11 = lift+gap-fill) · FA/GO tables (sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)).
 
 | Layer | What you use |
 |-------|----------------|
@@ -30,7 +30,7 @@ A run is **deliverable** only when all of the following exist under `$WORK_DIR/r
 | `priority_rounds/` | Round-1 and round-2 priority lists + curation log (TSV or notes) |
 | Optional | EGAPx side-by-side table (S8), SynGAP if dual-hap (S4) |
 
-**Hard rule:** no `status=provisional` on a S5 delivery. If evidence is thin, stop and downgrade to S1 provisional or S11 — do not relabel.
+**Hard rule:** no `status=provisional` on a S5 delivery. If evidence is thin, stop and downgrade to S1 provisional or **S11-lite** — do not relabel.
 
 ---
 
