@@ -57,10 +57,12 @@ cp config/example.env config/local.env
 # set GENOME_FA, BUSCO_LINEAGE, RNA_BAM / PROTEIN_DB, TE lib, WORK_DIR, THREADS
 ```
 
-### 3. Follow the plan → release GFF + proteins
+### 3. Plan tonight; run when you have cluster + data
 
-Walk the stages in `my_plan.md` (helpers under `pipeline/`).  
-When done, tick the one-page checklist [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
+**Classroom / honest stop:** finish `my_plan.md` (± list paths in `local.env`). That is enough for tonight without BRAKER/Liftoff.
+
+**When ready:** walk stages in `my_plan.md` with `RUN=1` only after review →  
+tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
 **Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
 
@@ -70,7 +72,7 @@ When done, tick the one-page checklist [`docs/EVALUATION_CHECKLIST.md`](docs/EVA
 
 | You have | Branch | Engine (short) |
 |----------|--------|----------------|
-| Close curated reference GFF | **S11** | Liftoff / LiftOn / CAT |
+| Close curated reference GFF | **S11** (lift+gap-fill; lift-only = **S11-lite**) | Liftoff / LiftOn / CAT |
 | RNA + proteins | **S1** | BRAKER4/3 + StringTie compare |
 | Proteins only | **S2** | GALBA / GeMoMa |
 | Heavy Iso-seq | **S3** | IsoQuant / SQANTI (± EviAnn) |
