@@ -7,7 +7,7 @@
 RepeatMasker `--curatedlib` / `-lib` 会把库里的序列当作**高信任重复**来 mask。  
 若库里混进宿主基因片段、未知垃圾、或未门控的 ORF：
 
-- **基因 wipe：** 真基因（尤其嵌在重复区的 NLR 等）被当成 TE → soft-mask 后预测器绕开或截断；  
+- **真基因降权/漏检：** 真基因（尤其嵌在重复区的 NLR 等）被当成 TE → soft-mask 后预测器绕开或截断（碱基仍是小写，不是改成 N）；  
 - **TE inflation：** 库太松 → 假基因仍在，基因数爆炸。
 
 所以本仓只认 **trusted curatedlib** 当 soft-mask 金标准。
