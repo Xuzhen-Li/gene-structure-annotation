@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 1080 420">
+  <rect width="1080" height="420" fill="#fff"/>
+  <text x="28" y="34" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#111">Plant sims — three classroom lines (print-first)</text>
+  <text x="28" y="56" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">examples/plant_sim/ · paired structure → function. Not three ways to do the same crop.</text>
+
+  <!-- 01 Vitis -->
+  <rect x="28" y="80" width="320" height="280" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="188" y="112" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#065f46">01 Vitis (grape)</text>
+  <text x="188" y="140" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#047857">Disease / NLR windows</text>
+  <text x="48" y="178" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#065f46">Structure: S1 + overlay S7</text>
+  <text x="48" y="202" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">plant_tandem_focus: true</text>
+  <text x="48" y="236" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#065f46">Function: F1 + F8 (NLR)</text>
+  <text x="48" y="260" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">optional plant add-ons</text>
+  <text x="48" y="300" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">≠ plain S1-only crop</text>
+  <text x="48" y="330" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Folder: 01_vitis_s1_s7</text>
+
+  <!-- 02 Oryza -->
+  <rect x="380" y="80" width="320" height="280" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="540" y="112" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">02 Oryza (rice)</text>
+  <text x="540" y="140" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1d4ed8">Swap-crop / no grape copy</text>
+  <text x="400" y="178" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">Structure: S1 only</text>
+  <text x="400" y="202" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">poales lineage — not eudicots</text>
+  <text x="400" y="236" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">Function: plain F1</text>
+  <text x="400" y="260" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">no NLR / Mercator required</text>
+  <text x="400" y="300" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">≠ 01 tandem / ≠ 03 liftover</text>
+  <text x="400" y="330" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Folder: 02_oryza_s1</text>
+
+  <!-- 03 Solanum -->
+  <rect x="732" y="80" width="320" height="280" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="892" y="112" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#5b21b6">03 Solanum (tomato)</text>
+  <text x="892" y="140" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#6d28d9">Near-ref available</text>
+  <text x="752" y="178" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#5b21b6">Structure: S11 first</text>
+  <text x="752" y="202" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">close_curated_ref: true</text>
+  <text x="752" y="236" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#5b21b6">Function: F1 + F6 Mercator</text>
+  <text x="752" y="260" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">ingest after merge</text>
+  <text x="752" y="300" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">≠ default BRAKER-first</text>
+  <text x="752" y="330" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Folder: 03_solanum_s11</text>
+
+  <text x="28" y="400" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">Chinese lesson: docs/zh/植物三种模拟.md · FA plant_sim mirrors structure choices.</text>
+</svg>

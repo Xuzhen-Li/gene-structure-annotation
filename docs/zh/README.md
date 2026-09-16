@@ -7,16 +7,7 @@
 
 ![结构注释总览](../figures/structure_overview.png)
 
-```mermaid
-flowchart LR
-  G[genome] --> A0[A0 soft-mask\n前置 trusted TE]
-  A0 --> S[S支 基因模型]
-  S --> Q[质控与验收]
-  Q --> P[proteins 本仓产品]
-  P --> FA[功能仓 隔壁]
-```
-
-读图：本仓主线是 **genome → A0 → 基因 GFF → 蛋白**；TE trusted 只是**前置地板**；功能在隔壁。
+读图：本仓主线是 **genome → A0 → 一主草稿支 → GFF/蛋白**；TE trusted 是**前置地板**；功能在隔壁。选支一眼见图内 S11 vs S1；课堂换作物另见图 [`plant_sim_three_lines.png`](../figures/plant_sim_three_lines.png)。
 
 英文 Start here：[`../START_HERE.md`](../START_HERE.md)
 

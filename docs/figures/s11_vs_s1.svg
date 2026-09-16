@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380">
+  <rect width="1000" height="380" fill="#fff"/>
+  <text x="28" y="34" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#111">Primary draft fork: S11 vs S1</text>
+  <text x="28" y="56" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">Pick ONE primary. Overlays (S5/S7) are not this choice.</text>
+
+  <rect x="360" y="80" width="280" height="56" rx="10" fill="#f3f4f6" stroke="#374151" stroke-width="2"/>
+  <text x="500" y="114" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#111">Close curated ref GFF?</text>
+
+  <!-- Yes S11 -->
+  <path d="M400 136 L220 180" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+  <text x="250" y="168" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#5b21b6">yes</text>
+  <rect x="60" y="180" width="320" height="140" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="220" y="214" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#5b21b6">S11 — liftover first</text>
+  <text x="80" y="244" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#4c1d95">Liftoff / LiftOn / CAT → provisional</text>
+  <text x="80" y="268" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#4c1d95">Fill gaps with S1/S2 tools</text>
+  <text x="80" y="292" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">close_curated_ref: true</text>
+  <text x="80" y="312" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Tomato sim: plant_sim/03_solanum_s11</text>
+
+  <!-- No S1 -->
+  <path d="M600 136 L780 180" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+  <text x="720" y="168" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#1d4ed8">no</text>
+  <rect x="620" y="180" width="320" height="140" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="780" y="214" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">S1 — BRAKER + compare</text>
+  <text x="640" y="244" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">RNA + proteins → default draft</text>
+  <text x="640" y="268" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">StringTie compare ≠ second EVM set</text>
+  <text x="640" y="292" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">close_curated_ref: false</text>
+  <text x="640" y="312" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Rice/grape default sims use S1</text>
+
+  <text x="28" y="360" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">Half-done Liftoff still counts as false for chooser — finish or treat as compare only.</text>
+</svg>
