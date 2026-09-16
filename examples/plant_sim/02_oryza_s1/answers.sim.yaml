@@ -1,0 +1,12 @@
+# Plant sim 2 — Oryza (rice): RNA+proteins → S1; no NLR overlay; EDTA may use --species rice (not grape μ)
+close_curated_ref: false
+has_rna: true
+has_proteins: true
+deep_isoseq: false
+want_gpu_abinitio_compare: false
+want_evm_pasa: false
+goal: qualified
+multi_hap: false
+plant_tandem_focus: false
+species_label: "Oryza_sativa_sim"
+notes: "Simulates non-grape lineage + EDTA species exception. Do NOT copy Vitis --u 5.4e-9. BUSCO poales/viridiplantae as lab chooses."

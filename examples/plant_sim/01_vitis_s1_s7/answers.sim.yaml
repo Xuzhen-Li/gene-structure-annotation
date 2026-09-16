@@ -1,0 +1,12 @@
+# Plant sim 1 — Vitis (grape): RNA+proteins → S1; disease tandems → S7; TE trusted critical
+close_curated_ref: false
+has_rna: true
+has_proteins: true
+deep_isoseq: false
+want_gpu_abinitio_compare: false
+want_evm_pasa: false
+goal: qualified
+multi_hap: false
+plant_tandem_focus: true
+species_label: "Vitis_vinifera_sim"
+notes: "Simulates TE soft-mask honesty + S7/G9. Use TRUSTED_TE_LIB (not working/raw EDTA). BUSCO viridiplantae_odb12."

@@ -1,0 +1,12 @@
+# Plant sim 3 — Solanum (tomato) with close curated ref → S11 liftover-first (not silent S1)
+close_curated_ref: true
+has_rna: true
+has_proteins: true
+deep_isoseq: false
+want_gpu_abinitio_compare: false
+want_evm_pasa: false
+goal: qualified
+multi_hap: false
+plant_tandem_focus: false
+species_label: "Solanum_lycopersicum_sim"
+notes: "Simulates S11 when a trusted near-species curated GFF exists. Gap-fill with S1/S2 later; do not force A4 on single lift."
