@@ -28,11 +28,23 @@ Structure and **function** are separate layers (Ji 2026): this repo stops at qua
 |-------|------------------|------------------|
 | **L0 Provisional** | `status=provisional` | Thin evidence (S6), raw liftover (S11 before gap-fill), or open curation debt |
 | **L1 Qualified** | `status=qualified` (default lab release) | All hard gates G1–G8 (and G9 if applicable) |
-| **L2 Paper / T2T bar** | `status=qualified` + note S5 | L1 **plus** S5 overlays — [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) |
+| **L2 Paper / T2T bar** | `status=qualified` + note S5 | L1 **plus** S5 overlays — see **Non-grape L2** below; grape T2T case is an *example*, not the only template ([`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md)) |
 
 Write **`grade=L0|L1|L2`** and **`status=provisional|qualified`** separately in METHODS. Do **not** write `status=L1`.
 
 Do not call an L0 package “publication-final.” Do not call L1 “S5” without OMArk + second curation round.
+
+## Non-grape / non-Vitis L2 (minimum you must self-report)
+
+The Vitis T2T case shows *one* S5 packaging path. For another clade, L2 still requires **your** lineage and curation story — do not copy grape OMArk/window depth as a checkbox.
+
+1. **Lineage bar** — name the protein BUSCO (and Compleasm if used) dataset that matches *your* clade generation; no bare `eukaryota` / `YOUR_*`.
+2. **OMArk** — tables in `qc/` with the OMAmer database you actually ran; state version in METHODS.
+3. **Second curation round** — expanded priority (BUSCO fragments, tandems, OMArk flags) + GSAman (or equivalent) on those windows; write stop rules.
+4. **Trusted TE** — curatedlib version + sha256 (own build **or** near-species borrow with provenance in METHODS). Never raw EDTA / whole working lib as curatedlib.
+5. **Case link optional** — cite `cases/vitis-t2t-s1-s5.md` only as a worked example of packaging, not as the acceptance template.
+
+Classroom / L1 work does **not** need this section.
 
 ### Background — grades
 
