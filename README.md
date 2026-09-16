@@ -75,6 +75,11 @@ When done, tick the one-page checklist [`docs/EVALUATION_CHECKLIST.md`](docs/EVA
 | Want GPU ab initio **compare** | **S13** | Helixer / Tiberius / ANNEVO |
 | Classic EVM/PASA | **S14** | `docs/steps/dclab/` |
 
+| Goal / overlay (not a primary draft) | What it means |
+|--------------------------------------|---------------|
+| Paper / T2T bar **L2** | Acceptance level = L1 **plus** overlay **S5** (OMArk, deeper curation). Say “L2 with S5 overlay”, **not** “take the S5 branch”. |
+| Plant NLR / tandem windows | Overlay **S7** when `plant_tandem_focus: true` |
+
 Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---

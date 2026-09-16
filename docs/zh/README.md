@@ -24,29 +24,25 @@ flowchart LR
 
 ## 今天最短路径（先做这个）
 
-**前提（多数课题）：组装已完成。** 老师已给 FASTA → plan 里的 **Asm0/Asm1 当检查清单**，设 `ASSEMBLY_OK=yes`，**不要**再跑 hifiasm。详见 [FAQ「已有基因组」](FAQ_入门.md)。
+**前提：** 组装已完成 → `ASSEMBLY_OK=yes`（Asm0 是清单，勿重装）。[FAQ](FAQ_入门.md)
 
 | 步 | 打开 | 做什么 |
 |----|------|--------|
-| 0 | 确认 `GENOME_FA` 已有 | 成品基因组进仓；Asm 只验收不重装 |
-| 1 | [01_什么是结构注释.md](01_什么是结构注释.md) | 搞清：本仓找外显子，不是做 GO |
-| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 复制 `answers` → 跑 `flow.py` → 得到 `my_plan.md` |
-| 3 | 按 plan 填 [`../../config/example.env`](../../config/example.env) → 集群执行 | 默认常见情况走 **S1**；有近缘好 GFF 走 **S11** |
-| 3b（可选） | [**植物三种模拟**](植物三种模拟.md)（[`examples/plant_sim/`](../../examples/plant_sim/)） | **葡萄抗病**先看 **01_vitis**（`plant_tandem_focus: true`）；水稻 **02**；近缘参考 **03** |
-| 4 | [**验收勾选表**](验收勾选表.md)（或英文 [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)） | 勾完才知道 **行不行**；默认目标 **L1** |
+| 1 | [01_什么是结构注释.md](01_什么是结构注释.md) | 找外显子，不是做 GO |
+| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | `answers` → `flow.py` → `my_plan.md` |
+| 3 | [`../../config/example.env`](../../config/example.env) → 集群 | 默认 **S1**；近缘好 GFF → **S11** |
+| 4 | [**验收勾选表**](验收勾选表.md) | 默认目标 **L1** |
 
-卡住再查：[04_分支怎么选](04_分支怎么选.md) · [13_常见翻车](13_常见翻车.md) · [99_术语表](99_术语表.md) · **[FAQ_入门.md](FAQ_入门.md)** · [植物三种模拟](植物三种模拟.md)（换作物）
+<details>
+<summary>卡住再查 / 可选练习（默认折叠）</summary>
 
-需要自己装 EDTA 时再开：[`../tools/edta.md`](../tools/edta.md) · [`../TOOLS.md`](../TOOLS.md)（有 trusted 库可跳过 EDTA）。
+- [FAQ](FAQ_入门.md) · [04 分支](04_分支怎么选.md) · [13 翻车](13_常见翻车.md) · [术语](99_术语表.md)
+- 可选：[植物三种模拟](植物三种模拟.md)（葡萄抗病开 `plant_tandem_focus`）
+- TE：**trusted** 库 soft-mask（小写，不是 N）；深课 [18](18_TE流程课_借鉴实验室03_TE.md)；EDTA 工具页事后再开
+- 打印 QC：`python3 pipeline/print_qc_commands.py`（先 `source config/local.env`）
+- 英文：[`flow_tool/`](../../pipeline/flow_tool/) · [`EVALUATION.md`](../EVALUATION.md)
 
-完整课表 **02/04/05… 第一天不必通读**——最短路径卡了再点开对应课即可。
-
-**TE 只要一件事：** soft-mask 用 **trusted** 库文件（文件名 + 版本/sha256）。  
-soft-mask = 重复区**小写**（碱基还在），**不是**改成 N；没有 trusted 就问实验室要，**不要**用生 EDTA 去 mask（抗病基因怕 hard-mask/假库）。深漏斗见 [18](18_TE流程课_借鉴实验室03_TE.md)；Galaxy 指针见 [17](17_外部教程与会议.md)。
-
-验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
-
-**英文操作入口：** [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../EVALUATION.md`](../EVALUATION.md) · [`../STAGE_IO.md`](../STAGE_IO.md)
+</details>
 
 ---
 
