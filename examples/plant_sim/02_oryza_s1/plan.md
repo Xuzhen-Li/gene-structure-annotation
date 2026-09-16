@@ -1,6 +1,6 @@
 # Structure flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 01:30 UTC  
+Generated: 2026-09-16 02:21 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -102,7 +102,7 @@ bash pipeline/A2_run_draft.sh
 
 **Software & purpose:** N/A — set MERGED_GFF=$DRAFT_GFF or enable dual_draft_merge / has_second_predictor / DRAFT_ENGINE_B
 
-**Process:** Pure S1 + StringTie compare does not require EVM/TSEBRA. Promote primary GFF forward; run A4 only when a true second predictor / Liftoff set / S14 combiner applies.
+**Process:** Single primary draft (S1) does not require EVM/TSEBRA. Promote that GFF forward; run A4 only with a true second predictor / dual Liftoff set / S14 combiner. StringTie compare alone is not a second gene set.
 
 **Output:** Use DRAFT_GFF as release-candidate input to AGAT/proteins
 
@@ -161,17 +161,24 @@ bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
 ```
 
-### 10. 02 — Priority loci list
+### 10. 02 — Priority loci list (G7)
 
 **Input:** PSAURON_TSV (± family boost TSV)
 
 **Software & purpose:** pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)
 
-**Process:** Rank worst models; expand for tandems/BUSCO fragments on L2. Requires -i PSAURON_TSV -o PRIORITY_TSV.
+**Process:** Rank worst models; expand for tandems/BUSCO fragments on L2.
 
 **Output:** PRIORITY_TSV
 
 **Helper:** `pipeline/02_priority_loci.py`
+
+**Also see:** QUICKSTART G7 / docs/SCENARIOS.md
+
+```bash
+# Print-first (review before running on cluster):
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
+```
 
 ### 11. 04 — GSAman / manual curation
 

@@ -1,6 +1,6 @@
 # Structure flow plan — Solanum_lycopersicum_sim
 
-Generated: 2026-09-16 01:30 UTC  
+Generated: 2026-09-16 02:21 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -77,13 +77,15 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Helper:** `pipeline/A2c_liftoff.md`
 
+**Also see:** No one-liner bash yet — follow the md (Liftoff/LiftOn). Do not hunt for a missing bash block.
+
 ### 5. A4skip — Merge skipped (single draft / compare-only)
 
 **Input:** Primary DRAFT_GFF only
 
 **Software & purpose:** N/A — set MERGED_GFF=$DRAFT_GFF or enable dual_draft_merge / has_second_predictor / DRAFT_ENGINE_B
 
-**Process:** Pure S1 + StringTie compare does not require EVM/TSEBRA. Promote primary GFF forward; run A4 only when a true second predictor / Liftoff set / S14 combiner applies.
+**Process:** Single primary draft (S11) does not require EVM/TSEBRA. Promote that GFF forward; run A4 only with a true second predictor / dual Liftoff set / S14 combiner. StringTie compare alone is not a second gene set.
 
 **Output:** Use DRAFT_GFF as release-candidate input to AGAT/proteins
 
@@ -142,17 +144,24 @@ bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
 ```
 
-### 9. 02 — Priority loci list
+### 9. 02 — Priority loci list (G7)
 
 **Input:** PSAURON_TSV (± family boost TSV)
 
 **Software & purpose:** pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)
 
-**Process:** Rank worst models; expand for tandems/BUSCO fragments on L2. Requires -i PSAURON_TSV -o PRIORITY_TSV.
+**Process:** Rank worst models; expand for tandems/BUSCO fragments on L2.
 
 **Output:** PRIORITY_TSV
 
 **Helper:** `pipeline/02_priority_loci.py`
+
+**Also see:** QUICKSTART G7 / docs/SCENARIOS.md
+
+```bash
+# Print-first (review before running on cluster):
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
+```
 
 ### 10. 04 — GSAman / manual curation
 

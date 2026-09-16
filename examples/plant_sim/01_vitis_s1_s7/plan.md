@@ -1,6 +1,6 @@
 # Structure flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 01:30 UTC  
+Generated: 2026-09-16 02:21 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -102,7 +102,7 @@ bash pipeline/A2_run_draft.sh
 
 **Software & purpose:** N/A — set MERGED_GFF=$DRAFT_GFF or enable dual_draft_merge / has_second_predictor / DRAFT_ENGINE_B
 
-**Process:** Pure S1 + StringTie compare does not require EVM/TSEBRA. Promote primary GFF forward; run A4 only when a true second predictor / Liftoff set / S14 combiner applies.
+**Process:** Single primary draft (S1) does not require EVM/TSEBRA. Promote that GFF forward; run A4 only with a true second predictor / dual Liftoff set / S14 combiner. StringTie compare alone is not a second gene set.
 
 **Output:** Use DRAFT_GFF as release-candidate input to AGAT/proteins
 
@@ -161,25 +161,13 @@ bash pipeline/A3_proteins_from_gff.sh
 bash pipeline/01_qc_busco_psauron.sh
 ```
 
-### 10. 02 — Priority loci list
-
-**Input:** PSAURON_TSV (± family boost TSV)
-
-**Software & purpose:** pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)
-
-**Process:** Rank worst models; expand for tandems/BUSCO fragments on L2. Requires -i PSAURON_TSV -o PRIORITY_TSV.
-
-**Output:** PRIORITY_TSV
-
-**Helper:** `pipeline/02_priority_loci.py`
-
-### 11. S7a — S7 / G9 — build families.tsv
+### 10. S7a — S7 / G9 — build families.tsv
 
 **Input:** OrthoGroups / QTL / NLR ID lists (from FA HRP / nf-annotate --r_genes or curated windows)
 
 **Software & purpose:** Lab tables → families.tsv (gene_id	family_or_window)
 
-**Process:** Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter.
+**Process:** Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter. (Replaces the generic stage-02 priority pass — do not run 02 without --families first.)
 
 **Output:** curate/families.tsv
 
@@ -187,13 +175,13 @@ bash pipeline/01_qc_busco_psauron.sh
 
 **Also see:** docs/EVALUATION.md G9
 
-### 12. S7b — S7 / G9 — re-rank priority with --families
+### 11. S7b — S7 / G9 — re-rank priority with --families (G7)
 
 **Input:** PSAURON_TSV + curate/families.tsv
 
 **Software & purpose:** pipeline/02_priority_loci.py --families
 
-**Process:** python3 pipeline/02_priority_loci.py -i $PSAURON_TSV -o curate/priority.tsv --threshold 90 --families curate/families.tsv
+**Process:** Build PRIORITY_TSV with family boosts; this is the G7 command for S7 runs.
 
 **Output:** PRIORITY_TSV with family:… reasons
 
@@ -201,7 +189,12 @@ bash pipeline/01_qc_busco_psauron.sh
 
 **Also see:** docs/SCENARIOS.md S7
 
-### 13. S7c — S7 / G9 — window curation (±100 kb tandems)
+```bash
+# Print-first (review before running on cluster):
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90 --families curate/families.tsv
+```
+
+### 12. S7c — S7 / G9 — window curation (±100 kb tandems)
 
 **Input:** Priority windows + evidence tracks
 
@@ -215,7 +208,7 @@ bash pipeline/01_qc_busco_psauron.sh
 
 **Also see:** docs/SCENARIOS.md S7 · G9
 
-### 14. 06 — Qualify + package release
+### 13. 06 — Qualify + package release
 
 **Input:** Curated GFF + proteins + qc/
 
@@ -229,7 +222,7 @@ bash pipeline/01_qc_busco_psauron.sh
 
 **Also see:** docs/EVALUATION.md
 
-### 15. A6 — Hand-off to functional annotation
+### 14. A6 — Hand-off to functional annotation
 
 **Input:** Released PROTEINS_FA
 

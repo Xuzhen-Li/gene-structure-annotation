@@ -123,8 +123,8 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     primary = choice["primary"]
     stages = []
 
-    def add(sid, title, inputs, software, process, outputs, helper="", note=""):
-        # helper = one path only (for --emit-commands). Extra docs go in note.
+    def add(sid, title, inputs, software, process, outputs, helper="", note="", emit=""):
+        # helper = one path only; note = extra docs; emit = optional full command for --emit-commands
         stages.append(
             {
                 "id": sid,
@@ -135,6 +135,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
                 "outputs": outputs,
                 "helper": helper,
                 "note": note,
+                "emit": emit,
             }
         )
 
@@ -187,6 +188,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "Transfer models; mark provisional until QC; plan gap-fill with S1/S2.",
             "Lifted DRAFT_GFF (status=provisional until G7).",
             "pipeline/A2c_liftoff.md",
+            "No one-liner bash yet — follow the md (Liftoff/LiftOn). Do not hunt for a missing bash block.",
         )
     elif primary == "S2":
         add(
@@ -299,7 +301,9 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "Merge skipped (single draft / compare-only)",
             "Primary DRAFT_GFF only",
             "N/A — set MERGED_GFF=$DRAFT_GFF or enable dual_draft_merge / has_second_predictor / DRAFT_ENGINE_B",
-            "Pure S1 + StringTie compare does not require EVM/TSEBRA. Promote primary GFF forward; run A4 only when a true second predictor / Liftoff set / S14 combiner applies.",
+            f"Single primary draft ({primary}) does not require EVM/TSEBRA. "
+            "Promote that GFF forward; run A4 only with a true second predictor / dual Liftoff set / S14 combiner. "
+            "StringTie compare alone is not a second gene set.",
             "Use DRAFT_GFF as release-candidate input to AGAT/proteins",
             "",
             "pipeline/A4_merge_sets.sh (optional if dual track later)",
@@ -332,35 +336,41 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "pipeline/01_qc_busco_psauron.sh",
         "pipeline/A5b_omark_compleasm.sh (optional / L2)",
     )
-    add(
-        "02",
-        "Priority loci list",
-        "PSAURON_TSV (± family boost TSV)",
-        "pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)",
-        "Rank worst models; expand for tandems/BUSCO fragments on L2. Requires -i PSAURON_TSV -o PRIORITY_TSV.",
-        "PRIORITY_TSV",
-        "pipeline/02_priority_loci.py",
-    )
-    if a.get("plant_tandem_focus") or "S7" in choice["overlays"]:
+    s7 = bool(a.get("plant_tandem_focus") or "S7" in choice["overlays"])
+    if not s7:
+        add(
+            "02",
+            "Priority loci list (G7)",
+            "PSAURON_TSV (± family boost TSV)",
+            "pipeline/02_priority_loci.py (± 02b_merge_priority_r2.py)",
+            "Rank worst models; expand for tandems/BUSCO fragments on L2.",
+            "PRIORITY_TSV",
+            "pipeline/02_priority_loci.py",
+            "QUICKSTART G7 / docs/SCENARIOS.md",
+            'python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"',
+        )
+    if s7:
         add(
             "S7a",
             "S7 / G9 — build families.tsv",
             "OrthoGroups / QTL / NLR ID lists (from FA HRP / nf-annotate --r_genes or curated windows)",
             "Lab tables → families.tsv (gene_id\tfamily_or_window)",
-            "Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter.",
+            "Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter. "
+            "(Replaces the generic stage-02 priority pass — do not run 02 without --families first.)",
             "curate/families.tsv",
             "docs/SCENARIOS.md S7",
             "docs/EVALUATION.md G9",
         )
         add(
             "S7b",
-            "S7 / G9 — re-rank priority with --families",
+            "S7 / G9 — re-rank priority with --families (G7)",
             "PSAURON_TSV + curate/families.tsv",
             "pipeline/02_priority_loci.py --families",
-            "python3 pipeline/02_priority_loci.py -i $PSAURON_TSV -o curate/priority.tsv --threshold 90 --families curate/families.tsv",
+            "Build PRIORITY_TSV with family boosts; this is the G7 command for S7 runs.",
             "PRIORITY_TSV with family:… reasons",
             "pipeline/02_priority_loci.py",
             "docs/SCENARIOS.md S7",
+            'python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90 --families curate/families.tsv',
         )
         add(
             "S7c",
@@ -472,7 +482,14 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         if note:
             lines.append(f"**Also see:** {note}")
             lines.append("")
-        if emit_commands and h.endswith(".sh"):
+        emit_cmd = (st.get("emit") or "").strip()
+        if emit_commands and emit_cmd:
+            lines.append("```bash")
+            lines.append("# Print-first (review before running on cluster):")
+            lines.append(emit_cmd)
+            lines.append("```")
+            lines.append("")
+        elif emit_commands and h.endswith(".sh"):
             hp = REPO / h
             if hp.is_file():
                 lines.append("```bash")
