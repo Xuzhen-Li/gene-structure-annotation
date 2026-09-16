@@ -227,7 +227,7 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 2. Build `families.tsv`:  
    `gene_id<TAB>family_or_window` for Orthogroups / QTL interval genes.  
-   For NLR: run [HRP](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/tools/hrp.md) / nf-annotate `--r_genes` and add those IDs.
+   FA F8 later writes `nlr_candidates.tsv` (not this file); convert with [F8b_nlr_to_families.py](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/pipeline/F8b_nlr_to_families.py) if looping FA NLR hits back into `--families`. For NLR: run [HRP](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/tools/hrp.md) / nf-annotate `--r_genes` and add those IDs.
 
 3. Re-rank:  
    ```bash
