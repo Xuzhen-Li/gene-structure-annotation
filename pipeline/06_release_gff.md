@@ -26,9 +26,12 @@ gffread "$CURATED_GFF" -g "$GENOME_FA" -y /dev/null   # dies on many broken CDS
 REL="$WORK_DIR/release/${RELEASE_TAG}"
 mkdir -p "$REL" "$REL/qc"
 
-# Required public products
+# Required public products (tagged names + stable aliases for FA hand-off)
 cp "$CURATED_GFF" "$REL/${RELEASE_TAG}.gff3"
 cp "$PROTEINS_FA" "$REL/${RELEASE_TAG}.proteins.faa"
+# Stable names used by A6 / function plant_sim env.snippet / STAGE_IO:
+cp "$REL/${RELEASE_TAG}.gff3" "$REL/genes.gff3"
+cp "$REL/${RELEASE_TAG}.proteins.faa" "$REL/proteins.faa"
 
 # METHODS — stub if you have not written one yet (edit before claiming L1)
 if [[ -f "$WORK_DIR/METHODS.md" ]]; then

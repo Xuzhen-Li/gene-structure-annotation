@@ -3,13 +3,18 @@
 This repository’s **primary product** is structural:
 
 - qualified **GFF3** (gene / mRNA / CDS), and  
-- **`proteins.faa`**, plus METHODS.
+- **proteins** FASTA, plus METHODS.
 
 **GO / KEGG / domains / readable names are not done here.**
 
-When structure release is frozen (`RELEASE_TAG`):
+When structure release is frozen (`RELEASE_TAG`), `pipeline/06_release_gff.md` writes under `release/<TAG>/`:
 
-1. Point `PROTEINS_FA` at this release’s proteins.  
+| File | Role |
+|------|------|
+| `<TAG>.gff3` / `<TAG>.proteins.faa` | Versioned names |
+| `genes.gff3` / **`proteins.faa`** | Stable aliases — **point function `PROTEINS_FA` here** |
+
+1. Set function `PROTEINS_FA` to `…/release/<TAG>/proteins.faa` (not a missing path).  
 2. Continue in sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation)  
    (`pipeline/flow_tool/` → F1 default).
 

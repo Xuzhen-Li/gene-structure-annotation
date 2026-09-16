@@ -9,7 +9,7 @@ Paths assume `WORK_DIR` from `config/local.env`. Names can vary; **role** matter
 
 | Layer | Repo | Primary product |
 |-------|------|-----------------|
-| Structure | **this repo** | Qualified GFF + `proteins.faa` + METHODS |
+| Structure | **this repo** | Qualified GFF + proteins (`proteins.faa` stable alias in `release/<TAG>/`) + METHODS |
 | Function | [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) | `functional_master.tsv` (+ METHODS) |
 
 ```text

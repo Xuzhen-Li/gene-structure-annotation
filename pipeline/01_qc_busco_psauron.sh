@@ -7,7 +7,7 @@ set -euo pipefail
 
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
-BUSCO_LINEAGE="${BUSCO_LINEAGE:-viridiplantae_odb12}"
+BUSCO_LINEAGE="${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env (no silent plant default)}"
 BUSCO_OUT="${BUSCO_OUT:-$WORK_DIR/busco_prot}"
 PSAURON_TSV="${PSAURON_TSV:-$WORK_DIR/psauron.tsv}"
 THREADS="${THREADS:-16}"
