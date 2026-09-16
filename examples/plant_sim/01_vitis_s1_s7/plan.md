@@ -1,6 +1,6 @@
 # Structure flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 03:11 UTC  
+Generated: 2026-09-16 03:23 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -57,7 +57,7 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Software & purpose:** RepeatMasker -xsmall; TE scheme in docs/TE_LIBRARY.md; optional ProtExcluder (A0b).
 
-**Process:** Soft-mask only; never hard-mask for BRAKER/GALBA.
+**Process:** Soft-mask only (-xsmall); never hard-mask for BRAKER/GALBA. softmasked_fraction ≠ genome TE%; never use working/raw EDTA to inflate %. Trusted lib + sha256 in METHODS.
 
 **Output:** GENOME_SOFT (+ lib version/sha in METHODS).
 
@@ -166,11 +166,11 @@ RUN=1 bash pipeline/01_qc_busco_psauron.sh    # execute on cluster after review
 
 ### 10. S7a — S7 / G9 — build families.tsv
 
-**Input:** OrthoGroups / QTL / NLR ID lists (from FA HRP / nf-annotate --r_genes or curated windows)
+**Input:** Curated gene_id lists (OrthoGroups / QTL / known NLR windows). First pass: lab tables — NOT FA yet.
 
 **Software & purpose:** Lab tables → families.tsv (gene_id	family_or_window)
 
-**Process:** Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter. (Replaces the generic stage-02 priority pass — do not run 02 without --families first.)
+**Process:** FIRST PASS: build families.tsv from curated/known NLR·QTL gene_ids (or empty table + METHODS defer G9). Do NOT wait for FA — plant_sim 01 runs structure S7 before function. LATER LOOP: after FA F8, convert nlr_candidates.tsv via F8b_nlr_to_families.py and re-rank. Replaces generic stage-02 without --families.
 
 **Output:** curate/families.tsv
 

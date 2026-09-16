@@ -31,4 +31,4 @@ These sims do **not** download genomes or run BRAKER/IPS. They only show the pla
 
 **02 Oryza:** intentionally **no** close-ref (practice plain S1 + poales lineage). This does **not** teach “rice must never use S11.”
 
-**03 Solanum:** tomato ≠ always S11 — the switch is `close_curated_ref: true` + a trusted near GFF. Follow generated `plan.md` (S11 = lift **+ gap-fill**), not QUICKSTART’s default BRAKER steps. Match BUSCO odb generation (odb10 vs odb12); do not mix.
+**03 Solanum:** ONLY if trusted near curated GFF; tomato ≠ always S11 — the switch is `close_curated_ref: true` + a trusted near GFF. Follow generated `plan.md` (S11 = lift **+ gap-fill**), not QUICKSTART’s default BRAKER steps. Match BUSCO odb generation (odb10 vs odb12); do not mix.

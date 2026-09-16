@@ -35,6 +35,8 @@ Chinese teaching door: [`docs/zh/`](docs/zh/)（今天最短路径）.
 
 **Finished genome already?** Treat Asm0/Asm1 in the plan as a checklist and set `ASSEMBLY_OK=yes` — do not reassemble. Edit every `/path/to` in `local.env` before any `mkdir`.
 
+**Close curated reference GFF?** Set `close_curated_ref: true` in answers (see `examples/plant_sim/03_solanum_s11`). Default `false` → S1; half-done Liftoff stays `false`.
+
 ### 1. Tell the tool what evidence you have
 
 ```bash

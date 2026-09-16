@@ -1,3 +1,5 @@
+# RED LINE: use this template ONLY if you have a trusted near/same-sp curated REF_GFF.
+# No close ref → copy examples/plant_sim/02_oryza_s1 (or answers.example) instead — do not force S11.
 # Plant sim 3 — Solanum (tomato) with close curated ref → S11 liftover-first (not silent S1)
 close_curated_ref: true
 has_rna: true

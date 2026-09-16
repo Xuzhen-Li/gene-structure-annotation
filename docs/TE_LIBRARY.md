@@ -76,7 +76,7 @@ trusted curatedlib  →  RepeatMasker -xsmall  (± optional A0b)
 | Feed **entire working** lib to `--curatedlib` | Unknowns / gene fragments get 100% trust |
 | Replace working FASTA with TEsorter `all.cls.lib` | Classifier output ≠ library |
 | Hard-mask for BRAKER/GALBA | Use `-xsmall` soft-mask |
-| Put NLR / CDS / non-TE-track repeats into curatedlib | Host-gene wipe / nonsense repeats |
+| Put NLR / CDS / non-TE-track repeats into curatedlib | True genes downweighted/missed under soft-mask (not deleted to N) / nonsense repeats |
 | Treat LAI / K2P on **raw** EDTA as delivery | Only after curated / pan GFF |
 | HiTE / MCHelper / Terrier / DeepTE as this project default | Explicitly out of scope for this panel scheme |
 
@@ -150,7 +150,7 @@ cp "$WORK_DIR/mask/$(basename "$GENOME_FA").masked" "$GENOME_SOFT" \
 
 Optional: EDTA `--curatedlib "$CLEAN_TE_LIB"` in a **new** output directory for a TE track (S10 / METHODS) — never `--overwrite` the frozen discovery tree.
 
-Verify soft-mask fraction (`pipeline/A0_softmask.md`). Extreme 0% or absurd wipe → check lib / A0b.
+Verify soft-mask fraction (`pipeline/A0_softmask.md`). Extreme 0% or absurd soft-mask fraction → check lib / A0b (soft-mask does not delete sequence to N).
 
 ---
 

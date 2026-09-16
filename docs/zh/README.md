@@ -27,6 +27,8 @@
 
 **课堂最低（今晚可交）：** 读懂 plan 主草稿支 + 填好/列清 local.env 键 + 能解释勾选表在考什么。有 HPC/容器再冲 `RUN=1`。
 
+**放行交接（A6）：** 功能仓 `PROTEINS_FA` 指 `release/<TAG>/proteins.faa`（稳定别名），不要默认用 `WORK_DIR/proteins.faa` 可能过期的根副本。
+
 <details>
 <summary>卡住再查 / 可选练习（默认折叠）</summary>
 

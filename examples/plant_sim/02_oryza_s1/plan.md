@@ -1,6 +1,6 @@
 # Structure flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 03:11 UTC  
+Generated: 2026-09-16 03:23 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -57,7 +57,7 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 **Software & purpose:** RepeatMasker -xsmall; TE scheme in docs/TE_LIBRARY.md; optional ProtExcluder (A0b).
 
-**Process:** Soft-mask only; never hard-mask for BRAKER/GALBA.
+**Process:** Soft-mask only (-xsmall); never hard-mask for BRAKER/GALBA. softmasked_fraction ≠ genome TE%; never use working/raw EDTA to inflate %. Trusted lib + sha256 in METHODS.
 
 **Output:** GENOME_SOFT (+ lib version/sha in METHODS).
 

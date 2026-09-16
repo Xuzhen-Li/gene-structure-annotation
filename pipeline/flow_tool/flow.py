@@ -162,7 +162,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "Soft-mask with trusted TE library",
         "GENOME_FA + trusted curatedlib (not raw EDTA / not full working lib).",
         "RepeatMasker -xsmall; TE scheme in docs/TE_LIBRARY.md; optional ProtExcluder (A0b).",
-        "Soft-mask only; never hard-mask for BRAKER/GALBA.",
+        "Soft-mask only (-xsmall); never hard-mask for BRAKER/GALBA. softmasked_fraction ≠ genome TE%; never use working/raw EDTA to inflate %. Trusted lib + sha256 in METHODS.",
         "GENOME_SOFT (+ lib version/sha in METHODS).",
         "pipeline/A0_softmask.md",
         "docs/TE_LIBRARY.md",
@@ -353,10 +353,12 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         add(
             "S7a",
             "S7 / G9 — build families.tsv",
-            "OrthoGroups / QTL / NLR ID lists (from FA HRP / nf-annotate --r_genes or curated windows)",
+            "Curated gene_id lists (OrthoGroups / QTL / known NLR windows). First pass: lab tables — NOT FA yet.",
             "Lab tables → families.tsv (gene_id\tfamily_or_window)",
-            "Mirror docs/SCENARIOS.md S7: list tandem/disease/QTL genes for boost; G9 applies when these windows matter. "
-            "(Replaces the generic stage-02 priority pass — do not run 02 without --families first.)",
+            "FIRST PASS: build families.tsv from curated/known NLR·QTL gene_ids (or empty table + METHODS defer G9). "
+            "Do NOT wait for FA — plant_sim 01 runs structure S7 before function. "
+            "LATER LOOP: after FA F8, convert nlr_candidates.tsv via F8b_nlr_to_families.py and re-rank. "
+            "Replaces generic stage-02 without --families.",
             "curate/families.tsv",
             "docs/SCENARIOS.md S7",
             "docs/EVALUATION.md G9",

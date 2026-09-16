@@ -1,3 +1,6 @@
+# WARNING: If you have a trusted close curated reference GFF, set close_curated_ref: true
+# (see examples/plant_sim/03_solanum_s11). Half-done Liftoff → keep false; treat lift as compare only.
+# Default false → S1 when RNA+proteins — do not silently skip S11 when a real near ref exists.
 # Copy to answers.yaml and edit. Used by: python3 pipeline/flow_tool/flow.py --answers ...
 # All keys are required unless noted.
 
