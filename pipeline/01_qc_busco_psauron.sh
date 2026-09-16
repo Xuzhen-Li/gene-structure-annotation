@@ -5,6 +5,13 @@
 # See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
 
+# Print-first: default DRY. Export RUN=1 to execute on the cluster.
+if [[ "${RUN:-0}" != "1" ]]; then
+  echo "[DRY] 01_qc_busco_psauron.sh: not executing. Review script, then: RUN=1 bash pipeline/01_qc_busco_psauron.sh"
+  exit 0
+fi
+
+
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
 BUSCO_LINEAGE="${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env (no silent plant default)}"

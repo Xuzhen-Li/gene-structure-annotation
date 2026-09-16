@@ -91,20 +91,20 @@ def main() -> int:
     print("## G4 — AGAT / counts  (hard)")
     print(f"# uses pipeline/A5_agat_stats.sh")
     print(f'export WORK_DIR="{work}" AGAT_OUT="{agat}" MERGED_GFF="{gff}"')
-    print("bash pipeline/A5_agat_stats.sh")
+    print("RUN=1 bash pipeline/A5_agat_stats.sh  # default without RUN=1 is DRY")
     print()
 
     print("## G5 — proteins from this GFF  (hard; regenerate if stale)")
     print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" MERGED_GFF="{gff}" DRAFT_GFF="{gff}"')
     print("# After A4skip: set both MERGED_GFF and DRAFT_GFF to the primary GFF (A3 reads DRAFT_GFF).")
-    print("bash pipeline/A3_proteins_from_gff.sh")
+    print("RUN=1 bash pipeline/A3_proteins_from_gff.sh  # default DRY")
     print()
 
     print("## G6 + G7 — BUSCO + PSAURON  (hard)")
     print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" \\')
     print(f'  BUSCO_LINEAGE="{lineage}" BUSCO_OUT="{busco_out}" \\')
     print(f'  PSAURON_TSV="{psauron}" THREADS="{threads}"')
-    print("bash pipeline/01_qc_busco_psauron.sh")
+    print("RUN=1 bash pipeline/01_qc_busco_psauron.sh  # default DRY")
     print("# then build / refresh PRIORITY_TSV — pipeline/02_priority_loci.py")
     print()
 

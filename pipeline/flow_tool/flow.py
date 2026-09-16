@@ -485,16 +485,23 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         emit_cmd = (st.get("emit") or "").strip()
         if emit_commands and emit_cmd:
             lines.append("```bash")
-            lines.append("# Print-first (review before running on cluster):")
+            lines.append("# Print-first emit (review; may still need RUN=1 for .sh helpers):")
             lines.append(emit_cmd)
             lines.append("```")
             lines.append("")
         elif emit_commands and h.endswith(".sh"):
             hp = REPO / h
             if hp.is_file():
+                body = hp.read_text(encoding="utf-8", errors="replace")
+                dry = ("${RUN:-0}" in body) or ('RUN:-0' in body) or ('[[ "${RUN' in body)
                 lines.append("```bash")
-                lines.append("# Print-first helper (review before running on cluster):")
-                lines.append(f"bash {h}")
+                if dry:
+                    lines.append("# Print-first: DRY unless RUN=1 (see script header).")
+                    lines.append(f"bash {h}          # dry")
+                    lines.append(f"RUN=1 bash {h}    # execute on cluster after review")
+                else:
+                    lines.append("# Needs real inputs; no RUN= dry mode — review before paste.")
+                    lines.append(f"bash {h}")
                 lines.append("```")
                 lines.append("")
             else:

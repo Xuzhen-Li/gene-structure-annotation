@@ -4,6 +4,13 @@
 # See: docs/STAGE_IO.md
 set -euo pipefail
 
+# Print-first: default DRY. Export RUN=1 to execute on the cluster.
+if [[ "${RUN:-0}" != "1" ]]; then
+  echo "[DRY] A5_agat_stats.sh: not executing. Review script, then: RUN=1 bash pipeline/A5_agat_stats.sh"
+  exit 0
+fi
+
+
 : "${WORK_DIR:?}"
 GFF="${1:-${MERGED_GFF:-${DRAFT_GFF:?}}}"
 OUT="${AGAT_OUT:-$WORK_DIR/agat}"

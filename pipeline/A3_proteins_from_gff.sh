@@ -3,6 +3,13 @@
 # Produces: PROTEINS_FA (representative translations for BUSCO / FA).
 # See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
+
+# Print-first: default DRY. Export RUN=1 to execute on the cluster.
+if [[ "${RUN:-0}" != "1" ]]; then
+  echo "[DRY] A3_proteins_from_gff.sh: not executing. Review script, then: RUN=1 bash pipeline/A3_proteins_from_gff.sh"
+  exit 0
+fi
+
 # After A4skip: export DRAFT_GFF="$MERGED_GFF" (or set both to the primary GFF).
 
 : "${GENOME_FA:?unmasked or soft-masked genome OK for gffread CDS}"
