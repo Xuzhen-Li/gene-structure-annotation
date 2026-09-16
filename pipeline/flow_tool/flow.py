@@ -346,7 +346,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "Rank worst models; expand for tandems/BUSCO fragments on L2.",
             "PRIORITY_TSV",
             "pipeline/02_priority_loci.py",
-            "QUICKSTART G7 / docs/SCENARIOS.md",
+            "docs/EVALUATION.md G7 · docs/EVALUATION_CHECKLIST.md · docs/SCENARIOS.md",
             'python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"',
         )
     if s7:
@@ -388,7 +388,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "GSAman / manual curation",
             "Priority windows + evidence tracks",
             "GSAman (browser curation)",
-            "Fix or defer each priority locus; depth scales with S5/S7.",
+            "Fix or defer each priority locus (no S7 overlay on this plan — genome-wide or PSAURON-priority only).",
             "CURATED_GFF",
             "pipeline/04_gsaman_curation.md",
         )

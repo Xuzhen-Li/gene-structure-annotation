@@ -3,6 +3,7 @@
 # Produces: PROTEINS_FA (representative translations for BUSCO / FA).
 # See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
+# After A4skip: export DRAFT_GFF="$MERGED_GFF" (or set both to the primary GFF).
 
 : "${GENOME_FA:?unmasked or soft-masked genome OK for gffread CDS}"
 : "${DRAFT_GFF:?}"

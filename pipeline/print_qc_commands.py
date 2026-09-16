@@ -94,9 +94,9 @@ def main() -> int:
     print()
 
     print("## G5 — proteins from this GFF  (hard; regenerate if stale)")
-    print("# see pipeline/A3_proteins_from_gff.sh")
-    print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}"')
-    print(f"# gffread {gff} -g $GENOME_FA -y {proteins}")
+    print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" MERGED_GFF="{gff}" DRAFT_GFF="{gff}"')
+    print("# After A4skip: set both MERGED_GFF and DRAFT_GFF to the primary GFF (A3 reads DRAFT_GFF).")
+    print("bash pipeline/A3_proteins_from_gff.sh")
     print()
 
     print("## G6 + G7 — BUSCO + PSAURON  (hard)")
