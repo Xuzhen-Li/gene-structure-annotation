@@ -84,6 +84,10 @@ GENOME_SOFT  →  交给 S11/S1/S2…
 基因数爆炸、怀疑 TE 污染 → 叠加 **S10**（回炉 remask，再进同一草稿支）。
 
 
+## 课上口头检查（交 A0 前）
+
+能用一句话说清：**soft ≠ hard**，且 **`softmasked_fraction` ≠ 基因组 TE%**。说不清就先别跑 mask。
+
 ## softmasked_fraction ≠ 基因组 TE%
 
 `softmasked_fraction`（小写碱基占比）**不是**「基因组 TE 含量」论文数字。  
