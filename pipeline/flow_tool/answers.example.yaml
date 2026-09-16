@@ -12,7 +12,7 @@ want_evm_pasa: false       # classic S14 EVM/PASA stack instead of BRAKER-first?
 # Goal overlays
 goal: qualified            # provisional=L0 | qualified=L1 | paper_t2t=L2/S5
 multi_hap: false
-plant_tandem_focus: false  # plant disease/NLR windows → true (adds S7 overlay + G9). Animals/default: false
+plant_tandem_focus: false  # DEFAULT off (generic). Grape / NLR / disease tandem windows → true (S7+G9). Or copy examples/plant_sim/01_vitis_s1_s7/answers.sim.yaml
 
 # Optional — only if you truly have two gene sets to combine (NOT StringTie compare alone):
 # dual_draft_merge: false
