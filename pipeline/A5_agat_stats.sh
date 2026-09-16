@@ -12,6 +12,10 @@ fi
 
 
 : "${WORK_DIR:?}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+_gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
+
 GFF="${1:-${MERGED_GFF:-${DRAFT_GFF:?}}}"
 OUT="${AGAT_OUT:-$WORK_DIR/agat}"
 mkdir -p "$OUT"

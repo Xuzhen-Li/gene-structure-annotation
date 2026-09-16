@@ -7,9 +7,9 @@ Layout must match **G8** / [`../docs/EVALUATION.md`](../docs/EVALUATION.md) / [`
 ```bash
 export CURATED_GFF=...   # from GSAman
 export DRAFT_GFF="$CURATED_GFF"
-bash pipeline/A3_proteins_from_gff.sh
-bash pipeline/01_qc_busco_psauron.sh
-bash pipeline/A5_agat_stats.sh "$CURATED_GFF"
+RUN=1 bash pipeline/A3_proteins_from_gff.sh
+RUN=1 bash pipeline/01_qc_busco_psauron.sh  # bare bash = DRY only
+RUN=1 bash pipeline/A5_agat_stats.sh "$CURATED_GFF"
 ```
 
 ## 2. Validate

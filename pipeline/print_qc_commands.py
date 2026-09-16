@@ -7,7 +7,7 @@ Usage:
   set -a && source config/local.env && set +a
   python3 pipeline/print_qc_commands.py
   python3 pipeline/print_qc_commands.py --env config/example.env
-  python3 pipeline/print_qc_commands.py --grade L2   # include OMArk block as required
+  python3 pipeline/print_qc_commands.py --grade L2
 """
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ def load_env(path: Path | None) -> dict[str, str]:
         k, v = s.split("=", 1)
         k = k.strip()
         v = v.strip().strip('"').strip("'")
-        # expand $VAR from already-seen keys / environ
+
         def repl(m: re.Match[str]) -> str:
             name = m.group(1) or m.group(2)
             return env.get(name, os.environ.get(name, m.group(0)))
@@ -42,14 +42,27 @@ def load_env(path: Path | None) -> dict[str, str]:
     return env
 
 
-def g(env: dict[str, str], key: str, default: str = "/path/to/…") -> str:
+def g(env: dict[str, str], key: str, default: str = "") -> str:
     v = env.get(key, "").strip()
     return v if v else default
 
 
+def is_placeholder(v: str) -> bool:
+    if not v:
+        return True
+    low = v.lower()
+    if "/path/to" in low or v.startswith("/path/"):
+        return True
+    if "your_" in low or "YOUR_" in v:
+        return True
+    if "…" in v or "..." == v:
+        return True
+    return False
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--env", type=Path, default=None, help="optional .env to read (else use shell env)")
+    ap.add_argument("--env", type=Path, default=None)
     ap.add_argument("--grade", choices=["L0", "L1", "L2"], default="L1")
     args = ap.parse_args()
 
@@ -57,31 +70,54 @@ def main() -> int:
     work = g(env, "WORK_DIR", "$WORK_DIR")
     proteins = g(env, "PROTEINS_FA", "$PROTEINS_FA")
     gff = g(env, "CURATED_GFF", "") or g(env, "MERGED_GFF", "") or g(env, "DRAFT_GFF", "$MERGED_GFF")
-    lineage = g(env, "BUSCO_LINEAGE", "YOUR_BUSCO_LINEAGE_odb10")  # PLACEHOLDER — set YOUR clade
-    busco_out = g(env, "BUSCO_OUT", f"{work}/busco_prot")
-    psauron = g(env, "PSAURON_TSV", f"{work}/psauron.tsv")
-    agat = g(env, "AGAT_OUT", f"{work}/agat")
-    omark = g(env, "OMARK_OUT", f"{work}/qc/omark")
+    lineage = g(env, "BUSCO_LINEAGE", "")
+    busco_out = g(env, "BUSCO_OUT", f"{work}/busco_prot" if work else "$BUSCO_OUT")
+    psauron = g(env, "PSAURON_TSV", f"{work}/psauron.tsv" if work else "$PSAURON_TSV")
+    agat = g(env, "AGAT_OUT", f"{work}/agat" if work else "$AGAT_OUT")
+    omark = g(env, "OMARK_OUT", f"{work}/qc/omark" if work else "$OMARK_OUT")
     omamer = g(env, "OMAMER_DB", "$OMAMER_DB")
-    compleasm_l = g(env, "COMPLEASM_LINEAGE", "YOUR_COMPLEASM_LINEAGE")  # PLACEHOLDER
+    compleasm_l = g(env, "COMPLEASM_LINEAGE", "")
     threads = g(env, "THREADS", "16")
     tag = g(env, "RELEASE_TAG", "release_tag")
-    release = f"{work}/release/{tag}"
+    release = f"{work}/release/{tag}" if work and not work.startswith("$") else f"$WORK_DIR/release/{tag}"
     rna = g(env, "RNA_BAM", "")
     ref_gff = g(env, "REF_GFF", "")
 
+    bad = []
+    for label, val in [
+        ("WORK_DIR", work),
+        ("PROTEINS_FA", proteins),
+        ("BUSCO_LINEAGE", lineage),
+        ("GFF", gff),
+    ]:
+        if is_placeholder(val) or val.startswith("$"):
+            bad.append(f"{label}={val or '(empty)'}")
+    if lineage and re.search(r"(?i)eukaryota", lineage) and "YOUR_" not in lineage:
+        # bare eukaryota is anti-pattern for clade papers — treat as STOP for pasteable G6
+        bad.append(f"BUSCO_LINEAGE={lineage} (bare eukaryota anti-pattern — set clade lineage)")
+
     print("# Structure QC — print-first (commands are suggestions)")
     print(f"# Target grade: {args.grade}  ·  checklist: docs/EVALUATION_CHECKLIST.md")
-    print(f"# Sources: docs/QUALITY_SOURCES.md")
     print("# Does NOT install tools or run BRAKER. Review then paste on your cluster.")
-    print("# !!! MUST set YOUR BUSCO_LINEAGE / COMPLEASM_LINEAGE in local.env — defaults are placeholders, not plant dogma.")
-    print("#     Plant teaching often: viridiplantae_odb12; animals: metazoa_*; bare eukaryota = EVALUATION anti-pattern for clade papers.")
+    print("# Bare `bash pipeline/01_…` without RUN=1 only prints [DRY] — it does NOT run BUSCO.")
     print()
+
+    if bad:
+        print("# [STOP] Placeholders / unset keys — do NOT paste RUN=1 blocks yet:")
+        for b in bad:
+            print(f"#   - {b}")
+        print("# Edit config/local.env (real paths + clade BUSCO_LINEAGE), then re-run this printer.")
+        print("# Example lineage: viridiplantae_odb12 | poales_odb10 | metazoa_odb10 — never leave YOUR_*")
+        print()
+        print("## Reminders only (no executable G4–G6 until env is real)")
+        print("# G1 ASSEMBLY_OK=yes after Asm1; G2 trusted TE soft-mask; G3 named draft + versions")
+        print(f"# Would-be release smoke: python3 pipeline/check_release_pack.py {release}")
+        return 0
+
     print("## Reminders G1–G3 (tick before trusting later QC)")
     print("# G1 ASSEMBLY_OK=yes only after Asm1; document source if genome was handed to you.")
-    print("# G2 Soft-mask honesty: GENOME_SOFT is -xsmall (not hard-mask); CLEAN_TE_LIB/TRUSTED_TE_LIB + sha256 in METHODS")
-    print("#     (≠ working ≠ raw EDTA ≠ RM .lib).")
-    print("# G3 Named draft path + tool versions in METHODS (BRAKER/Liftoff/GALBA/… branch ID).")
+    print("# G2 Soft-mask honesty: GENOME_SOFT is -xsmall; TRUSTED_TE_LIB + sha256 in METHODS")
+    print("# G3 Named draft path + tool versions in METHODS")
     print()
 
     print("## 0) Pack smoke (files present?)")
@@ -89,64 +125,45 @@ def main() -> int:
     print()
 
     print("## G4 — AGAT / counts  (hard)")
-    print(f"# uses pipeline/A5_agat_stats.sh")
     print(f'export WORK_DIR="{work}" AGAT_OUT="{agat}" MERGED_GFF="{gff}"')
-    print("RUN=1 bash pipeline/A5_agat_stats.sh  # default without RUN=1 is DRY")
+    print("RUN=1 bash pipeline/A5_agat_stats.sh  # without RUN=1 = DRY only")
     print()
 
-    print("## G5 — proteins from this GFF  (hard; regenerate if stale)")
+    print("## G5 — proteins from this GFF  (hard)")
     print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" MERGED_GFF="{gff}" DRAFT_GFF="{gff}"')
-    print("# After A4skip: set both MERGED_GFF and DRAFT_GFF to the primary GFF (A3 reads DRAFT_GFF).")
-    print("RUN=1 bash pipeline/A3_proteins_from_gff.sh  # default DRY")
+    print("RUN=1 bash pipeline/A3_proteins_from_gff.sh")
     print()
 
     print("## G6 + G7 — BUSCO + PSAURON  (hard)")
     print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" \\')
     print(f'  BUSCO_LINEAGE="{lineage}" BUSCO_OUT="{busco_out}" \\')
     print(f'  PSAURON_TSV="{psauron}" THREADS="{threads}"')
-    print("RUN=1 bash pipeline/01_qc_busco_psauron.sh  # default DRY")
-    print("# then build / refresh PRIORITY_TSV — pipeline/02_priority_loci.py")
+    print("RUN=1 bash pipeline/01_qc_busco_psauron.sh")
     print()
 
     print("## OMArk + Compleasm  (OMArk required at L2; Compleasm soft)")
-    if args.grade == "L2":
-        print("# L2: OMArk is required before claiming S5/L2")
+    if is_placeholder(omamer) or is_placeholder(compleasm_l) or compleasm_l.startswith("$"):
+        print("# [STOP OMArk block] set OMAMER_DB + COMPLEASM_LINEAGE (not YOUR_*) before RUN=1")
+        print(f"# export … COMPLEASM_LINEAGE=… OMAMER_DB=…")
+        print("# RUN=1 bash pipeline/A5b_omark_compleasm.sh")
     else:
-        print("# L1: OMArk optional-but-recommended for plant/T2T; Compleasm soft cross-check")
-    print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" \\')
-    print(f'  OMARK_OUT="{omark}" OMAMER_DB="{omamer}" \\')
-    print(f'  COMPLEASM_LINEAGE="{compleasm_l}" THREADS="{threads}" RUN=0')
-    print("bash pipeline/A5b_omark_compleasm.sh   # print-first; RUN=1 to execute")
+        print(f'export WORK_DIR="{work}" PROTEINS_FA="{proteins}" \\')
+        print(f'  OMARK_OUT="{omark}" OMAMER_DB="{omamer}" \\')
+        print(f'  COMPLEASM_LINEAGE="{compleasm_l}" THREADS="{threads}"')
+        print("RUN=1 bash pipeline/A5b_omark_compleasm.sh")
     print()
 
-    print("## Soft — gffcompare (if you have a second draft or REF_GFF)")
-    if ref_gff and not ref_gff.startswith("/path/"):
+    print("## Soft — gffcompare / RNA (optional)")
+    if ref_gff and not is_placeholder(ref_gff):
         print(f"gffcompare -r {ref_gff} -o {work}/qc/gffcompare {gff}")
     else:
-        print(f"# gffcompare -r $REF_GFF -o {work}/qc/gffcompare {gff}")
-        print("# or: gffcompare -r $DRAFT_GFF_B -o ... $MERGED_GFF")
-    print()
-
-    print("## Soft — RNA support (if RNA_BAM set; AnnoAudit-style idea)")
-    if rna and not rna.startswith("/path/"):
-        print(f"# You have RNA_BAM={rna}")
-        print("# Option A: run ERGA AnnoAudit (Nextflow) with --genome_bam")
-        print("#   https://github.com/ERGA-consortium/AnnoAudit")
-        print("# Option B: featureCounts / custom exon coverage → METHODS %")
+        print("# gffcompare -r $REF_GFF -o $WORK_DIR/qc/gffcompare $MERGED_GFF")
+    if rna and not is_placeholder(rna):
+        print(f"# RNA_BAM={rna} — AnnoAudit or featureCounts → METHODS")
     else:
-        print("# No RNA_BAM in env — skip or set RNA_BAM / use AnnoAudit with reads")
+        print("# No real RNA_BAM — skip soft RNA support")
     print()
-
-    print("## Soft — optional one-stop wrappers (still tick EVALUATION_CHECKLIST)")
-    print("# GAQET2:  https://github.com/victorgcb1987/GAQET2")
-    print("# AnnoAudit: https://github.com/ERGA-consortium/AnnoAudit")
-    print("# atol-qc-annotation: https://github.com/TomHarrop/atol-qc-annotation")
-    print("# Do not treat wrapper exit 0 as L1 — tick gates G1–G8 yourself.")
-    print()
-
-    print("## Finish")
-    print("# Tick docs/zh/验收勾选表.md or docs/EVALUATION_CHECKLIST.md")
-    print(f"# METHODS: status={args.grade}; BUSCO lineage={lineage}; TE trusted lib + sha256; stop rule…")
+    print("## Finish — tick EVALUATION_CHECKLIST; bare bash without RUN=1 ≠ QC done")
     return 0
 
 

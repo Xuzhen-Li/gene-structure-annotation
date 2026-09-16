@@ -13,7 +13,12 @@ fi
 
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+_gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
+_gsa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
 BUSCO_LINEAGE="${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env (no silent plant default)}"
+_gsa_reject_busco_lineage "$BUSCO_LINEAGE" || exit 1
 BUSCO_OUT="${BUSCO_OUT:-$WORK_DIR/busco_prot}"
 PSAURON_TSV="${PSAURON_TSV:-$WORK_DIR/psauron.tsv}"
 THREADS="${THREADS:-16}"

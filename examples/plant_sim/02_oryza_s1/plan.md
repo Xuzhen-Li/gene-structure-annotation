@@ -1,6 +1,6 @@
 # Structure flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 02:30 UTC  
+Generated: 2026-09-16 03:11 UTC  
 Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 
 ## Chooser decision
@@ -92,7 +92,7 @@ Tool: `pipeline/flow_tool/flow.py` (plan + explain; print-first execution).
 **Also see:** pipeline/A2b_second_predictor.md
 
 ```bash
-# Print-first helper (review before running on cluster):
+# Needs real inputs; no RUN= dry mode — review before paste.
 bash pipeline/A2_run_draft.sh
 ```
 
@@ -121,8 +121,9 @@ bash pipeline/A2_run_draft.sh
 **Helper:** `pipeline/A5_agat_stats.sh`
 
 ```bash
-# Print-first helper (review before running on cluster):
-bash pipeline/A5_agat_stats.sh
+# Print-first: DRY unless RUN=1 (see script header).
+bash pipeline/A5_agat_stats.sh          # dry
+RUN=1 bash pipeline/A5_agat_stats.sh    # execute on cluster after review
 ```
 
 ### 8. A3 — Proteins from GFF
@@ -138,8 +139,9 @@ bash pipeline/A5_agat_stats.sh
 **Helper:** `pipeline/A3_proteins_from_gff.sh`
 
 ```bash
-# Print-first helper (review before running on cluster):
-bash pipeline/A3_proteins_from_gff.sh
+# Print-first: DRY unless RUN=1 (see script header).
+bash pipeline/A3_proteins_from_gff.sh          # dry
+RUN=1 bash pipeline/A3_proteins_from_gff.sh    # execute on cluster after review
 ```
 
 ### 9. 01 — Protein BUSCO + PSAURON
@@ -157,8 +159,9 @@ bash pipeline/A3_proteins_from_gff.sh
 **Also see:** pipeline/A5b_omark_compleasm.sh (optional / L2)
 
 ```bash
-# Print-first helper (review before running on cluster):
-bash pipeline/01_qc_busco_psauron.sh
+# Print-first: DRY unless RUN=1 (see script header).
+bash pipeline/01_qc_busco_psauron.sh          # dry
+RUN=1 bash pipeline/01_qc_busco_psauron.sh    # execute on cluster after review
 ```
 
 ### 10. 02 — Priority loci list (G7)
@@ -176,7 +179,7 @@ bash pipeline/01_qc_busco_psauron.sh
 **Also see:** docs/EVALUATION.md G7 · docs/EVALUATION_CHECKLIST.md · docs/SCENARIOS.md
 
 ```bash
-# Print-first (review before running on cluster):
+# Print-first emit (review; may still need RUN=1 for .sh helpers):
 python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 ```
 

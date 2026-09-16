@@ -15,7 +15,13 @@ fi
 : "${GENOME_FA:?unmasked or soft-masked genome OK for gffread CDS}"
 : "${DRAFT_GFF:?}"
 : "${PROTEINS_FA:?}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+_gsa_reject_placeholder_path GENOME_FA "$GENOME_FA" || exit 1
+_gsa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
+_gsa_reject_placeholder_path DRAFT_GFF "$DRAFT_GFF" || exit 1
 WORK_DIR="${WORK_DIR:-$(dirname "$PROTEINS_FA")}"
+_gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
 mkdir -p "$(dirname "$PROTEINS_FA")"
 
 if ! command -v gffread >/dev/null; then

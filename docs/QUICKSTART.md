@@ -72,6 +72,7 @@ Load env in every shell:
 set -a
 source config/local.env
 set +a
+case "$WORK_DIR" in /path/to*|*/path/to*) echo "edit WORK_DIR in local.env before mkdir"; exit 1;; esac
 mkdir -p "$WORK_DIR"/{genome,rna,draft,agat,qc,curated,release}
 ```
 
@@ -133,7 +134,7 @@ bash pipeline/A2_run_draft.sh
 **Check:**
 
 ```bash
-bash pipeline/A5_agat_stats.sh "$DRAFT_GFF"
+RUN=1 bash pipeline/A5_agat_stats.sh   # bare bash without RUN=1 = DRY only
 # look at $AGAT_OUT/*.counts.txt — genes / mRNAs / CDS
 ```
 
@@ -154,7 +155,7 @@ Run A4 when you truly have dual tracks (`DRAFT_GFF_B` from A2b/A2c/GeMoMa/Liftof
 ```bash
 # Requires DRAFT_GFF_B ≠ DRAFT_GFF and file present; else the helper skips with a clear message
 MERGE_MODE=evm bash pipeline/A4_merge_sets.sh
-bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
+RUN=1 bash pipeline/A5_agat_stats.sh
 ```
 
 **Produces:** `$MERGED_GFF` (or unchanged primary if skipped).  
@@ -163,7 +164,7 @@ bash pipeline/A5_agat_stats.sh "$MERGED_GFF"
 ### Step G — Proteins (A3)
 
 ```bash
-bash pipeline/A3_proteins_from_gff.sh
+RUN=1 bash pipeline/A3_proteins_from_gff.sh
 ```
 
 **Produces:** `$PROTEINS_FA`.  
@@ -172,7 +173,7 @@ bash pipeline/A3_proteins_from_gff.sh
 ### Step H — Protein QC (01)
 
 ```bash
-bash pipeline/01_qc_busco_psauron.sh
+RUN=1 bash pipeline/01_qc_busco_psauron.sh  # without RUN=1 you only get [DRY], not BUSCO
 ```
 
 **Produces:** BUSCO summary under `$BUSCO_OUT`, scores in `$PSAURON_TSV`.  
