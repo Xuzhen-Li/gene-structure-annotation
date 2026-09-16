@@ -25,7 +25,8 @@
 | 3b（有集群） | 按 plan `RUN=1` 执行助手 | 默认 **S1**；近缘好 GFF → **S11** |
 | 4 | [**验收勾选表**](验收勾选表.md) | 认清目标 **L1**（档位认知；≠今晚必交满勾） |
 
-**课堂最低（今晚可交）：** 读懂 plan 主草稿支 + 填好/列清 local.env 键 + 能解释勾选表在考什么。有 HPC/容器再冲 `RUN=1`。
+**课堂最低（今晚可交）：** 读懂 plan 主草稿支 + 填好/列清 local.env 键 + 能解释勾选表在考什么。
+**上集群前：** 未勾 [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) / `print_qc` 未绿（仍有 `[STOP]`）= **不许** `RUN=1`。
 
 **放行交接（A6）：** 功能仓 `PROTEINS_FA` 指 `release/<TAG>/proteins.faa`（稳定别名），不要默认用 `WORK_DIR/proteins.faa` 可能过期的根副本。
 

@@ -61,8 +61,8 @@ cp config/example.env config/local.env
 
 **Classroom / honest stop:** finish `my_plan.md` (± list paths in `local.env`). That is enough for tonight without BRAKER/Liftoff.
 
-**When ready:** walk stages in `my_plan.md` with `RUN=1` only after review →  
-tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
+**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1` / cluster. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)).  
+Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
 **Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
 
