@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220">
-  <rect width="960" height="220" fill="#ffffff"/>
-  <text x="24" y="28" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#111">gene-structure-annotation — overview</text>
-  <!-- boxes -->
-  <rect x="24" y="60" width="130" height="56" rx="8" fill="#f3f4f6" stroke="#374151"/>
-  <text x="89" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#111">genome</text>
-  <text x="89" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#4b5563">FASTA</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+  <rect width="1100" height="520" fill="#ffffff"/>
+  <text x="28" y="36" font-family="Helvetica,Arial,sans-serif" font-size="20" font-weight="700" fill="#111827">gene-structure-annotation — beginner map</text>
+  <text x="28" y="58" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#6b7280">Find exons / CDS on a genome. Not GO / KEGG (that is the sibling function repo).</text>
 
-  <rect x="180" y="52" width="150" height="72" rx="8" fill="#ecfdf5" stroke="#059669"/>
-  <text x="255" y="78" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#065f46">A0 soft-mask</text>
-  <text x="255" y="96" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#047857">trusted TE lib</text>
-  <text x="255" y="112" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10" fill="#6b7280">(TE = floor, not product)</text>
+  <!-- Premise strip -->
+  <rect x="28" y="78" width="1044" height="44" rx="8" fill="#fefce8" stroke="#ca8a04"/>
+  <text x="44" y="105" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#854d0e">Premise (most courses): finished assembly already. Asm0/Asm1 = checklist → set ASSEMBLY_OK=yes. Do not re-run hifiasm.</text>
 
-  <rect x="360" y="60" width="150" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
-  <text x="435" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1e3a8a">S-branch</text>
-  <text x="435" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8">gene models</text>
+  <!-- Pipeline boxes row -->
+  <rect x="28" y="150" width="150" height="88" rx="10" fill="#f3f4f6" stroke="#374151" stroke-width="2"/>
+  <text x="103" y="185" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#111">1. Genome</text>
+  <text x="103" y="208" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#4b5563">FASTA in hand</text>
+  <text x="103" y="226" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">GENOME_FA</text>
 
-  <rect x="540" y="60" width="160" height="56" rx="8" fill="#fef3c7" stroke="#d97706"/>
-  <text x="620" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#92400e">GFF + proteins</text>
-  <text x="620" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#b45309">this repo product</text>
+  <rect x="210" y="150" width="170" height="88" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="295" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#065f46">2. A0 soft-mask</text>
+  <text x="295" y="202" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#047857">trusted TE library</text>
+  <text x="295" y="222" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">floor, not the product</text>
 
-  <rect x="730" y="60" width="200" height="56" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-dasharray="4 3"/>
-  <text x="830" y="85" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#5b21b6">function repo</text>
-  <text x="830" y="102" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9">GO / domains (next door)</text>
+  <rect x="412" y="150" width="190" height="88" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="507" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a8a">3. One S-branch</text>
+  <text x="507" y="202" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#1d4ed8">S1 default · S11 if close ref</text>
+  <text x="507" y="222" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">answers.yaml → flow.py</text>
 
-  <!-- arrows -->
+  <rect x="634" y="150" width="190" height="88" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="729" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#92400e">4. Product</text>
+  <text x="729" y="202" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#b45309">GFF3 + proteins.faa</text>
+  <text x="729" y="222" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">+ METHODS · L1 bar</text>
+
+  <rect x="856" y="150" width="216" height="88" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="964" y="180" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#5b21b6">5. Next door</text>
+  <text x="964" y="202" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6d28d9">gene-function-annotation</text>
+  <text x="964" y="222" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#7c3aed">labels on proteins</text>
+
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#6b7280"/>
     </marker>
   </defs>
-  <line x1="154" y1="88" x2="176" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="330" y1="88" x2="356" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="510" y1="88" x2="536" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="700" y1="88" x2="726" y2="88" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="178" y1="194" x2="206" y2="194" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="380" y1="194" x2="408" y2="194" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="602" y1="194" x2="630" y2="194" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="824" y1="194" x2="852" y2="194" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arr)"/>
 
-  <text x="24" y="180" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#374151">Main product = gene structure (exons/CDS). TE trusted lib is a prerequisite floor. Functional labels live in the sibling repo.</text>
-  <text x="24" y="200" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6b7280">Start: docs/zh/README.md (Chinese short path) · docs/START_HERE.md · pipeline/flow_tool/</text>
+  <!-- Branch chooser card -->
+  <rect x="28" y="270" width="520" height="150" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="48" y="300" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Pick ONE primary branch (Plain map)</text>
+  <text x="48" y="328" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Close curated ref GFF → S11 (liftover first)</text>
+  <text x="48" y="352" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• RNA + proteins, no close ref → S1 (BRAKER + StringTie compare)</text>
+  <text x="48" y="376" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Proteins only → S2 · Heavy Iso-seq → S3 · EVM/PASA → S14</text>
+  <text x="48" y="400" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#64748b">Grape / NLR windows: set plant_tandem_focus=true (or plant_sim/01_vitis)</text>
+
+  <!-- Start here card -->
+  <rect x="572" y="270" width="500" height="150" rx="10" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="592" y="300" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#065f46">Start here tonight</text>
+  <text x="592" y="328" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#047857">Chinese short path: docs/zh/README.md</text>
+  <text x="592" y="352" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#047857">English ops: docs/START_HERE.md · flow_tool/</text>
+  <text x="592" y="376" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#047857">Done?: docs/EVALUATION_CHECKLIST.md (default L1)</text>
+  <text x="592" y="400" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#059669">Edit /path/to in local.env before mkdir</text>
+
+  <text x="28" y="460" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">Public figure labels: English. Chinese teaching prose lives under docs/zh/.</text>
+  <text x="28" y="482" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#9ca3af">Sibling: gene-function-annotation — run only after proteins.faa exists.</text>
 </svg>

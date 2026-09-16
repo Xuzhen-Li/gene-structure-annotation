@@ -11,7 +11,6 @@ if [[ "${RUN:-0}" != "1" ]]; then
   exit 0
 fi
 
-
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
 BUSCO_LINEAGE="${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env (no silent plant default)}"
@@ -20,22 +19,36 @@ PSAURON_TSV="${PSAURON_TSV:-$WORK_DIR/psauron.tsv}"
 THREADS="${THREADS:-16}"
 mkdir -p "$WORK_DIR" "$BUSCO_OUT"
 
+busco_rc=0
+psauron_rc=0
+
 if command -v busco >/dev/null; then
-  busco -i "$PROTEINS_FA" -l "$BUSCO_LINEAGE" -o "$(basename "$BUSCO_OUT")" \
-    --out_path "$(dirname "$BUSCO_OUT")" -m proteins -c "$THREADS" \
-    || echo "[WARN] busco failed — check lineage download"
+  if ! busco -i "$PROTEINS_FA" -l "$BUSCO_LINEAGE" -o "$(basename "$BUSCO_OUT")" \
+    --out_path "$(dirname "$BUSCO_OUT")" -m proteins -c "$THREADS"; then
+    echo "[WARN] busco failed — check lineage download" >&2
+    busco_rc=1
+  fi
 else
-  echo "[WARN] busco not on PATH"
+  echo "[WARN] busco not on PATH" >&2
+  busco_rc=1
 fi
 
 if command -v psauron >/dev/null; then
   # CLI flags vary by PSAURON version — confirm with psauron --help
-  psauron -i "$PROTEINS_FA" -o "$PSAURON_TSV" \
-    || echo "[WARN] psauron invocation failed — adjust flags for your install"
+  if ! psauron -i "$PROTEINS_FA" -o "$PSAURON_TSV"; then
+    echo "[WARN] psauron invocation failed — adjust flags for your install" >&2
+    psauron_rc=1
+  fi
 else
-  echo "[WARN] psauron not on PATH — install from upstream (see GSAman paper Methods)"
+  echo "[WARN] psauron not on PATH — install from upstream (see GSAman paper Methods)" >&2
   echo "gene_id	psauron_score" > "$PSAURON_TSV"
   echo "# placeholder — fill after install" >> "$PSAURON_TSV"
+  psauron_rc=1
 fi
 
-echo "[OK] review $BUSCO_OUT and $PSAURON_TSV"
+if [[ "$busco_rc" -eq 0 && "$psauron_rc" -eq 0 ]]; then
+  echo "[OK] review $BUSCO_OUT and $PSAURON_TSV"
+  exit 0
+fi
+echo "[FAIL] QC incomplete (busco_rc=$busco_rc psauron_rc=$psauron_rc) — do not treat as passed" >&2
+exit 1
