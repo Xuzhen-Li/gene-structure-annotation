@@ -112,7 +112,8 @@ def main() -> int:
         print("## Reminders only (no executable G4–G6 until env is real)")
         print("# G1 ASSEMBLY_OK=yes after Asm1; G2 trusted TE soft-mask; G3 named draft + versions")
         print(f"# Would-be release smoke: python3 pipeline/check_release_pack.py {release}")
-        return 0
+        print("# exit 1: fix local.env before treating this as a runnable QC plan")
+        return 1
 
     print("## Reminders G1–G3 (tick before trusting later QC)")
     print("# G1 ASSEMBLY_OK=yes only after Asm1; document source if genome was handed to you.")
