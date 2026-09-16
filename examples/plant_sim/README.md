@@ -28,3 +28,5 @@ done
 Same IDs under `gene-function-annotation/examples/plant_sim/`.
 
 These sims do **not** download genomes or run BRAKER/IPS. They only show the plan/QC command surface.
+
+**03 Solanum:** follow the generated `plan.md` (S11), not QUICKSTART’s default BRAKER steps.

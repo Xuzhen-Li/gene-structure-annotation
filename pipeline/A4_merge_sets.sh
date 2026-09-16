@@ -14,9 +14,10 @@ mkdir -p "$(dirname "$MERGED_GFF")" "$WORK_DIR/draft"
 if [[ -z "${DRAFT_GFF_B:-}" || "$DRAFT_GFF_B" == "$DRAFT_GFF" ]]; then
   cat <<'SKIP'
 [A4 skip] DRAFT_GFF_B unset or identical to DRAFT_GFF — merge not applicable.
-  Pure S1 + StringTie compare does not need EVM/TSEBRA.
-  Export MERGED_GFF=$DRAFT_GFF and continue to AGAT/proteins, OR set a true second
-  predictor/Liftoff GFF as DRAFT_GFF_B (A2b/A2c) before re-running.
+  Single primary draft (S1 BRAKER, S11 Liftoff, S2, …) does not need EVM/TSEBRA.
+  Export MERGED_GFF=$DRAFT_GFF (and DRAFT_GFF stays the primary) then AGAT/proteins.
+  OR set a true second predictor/Liftoff GFF as DRAFT_GFF_B (A2b/A2c) before re-running.
+  StringTie compare alone is not DRAFT_GFF_B.
 SKIP
   exit 0
 fi
