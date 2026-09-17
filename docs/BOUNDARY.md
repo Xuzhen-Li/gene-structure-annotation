@@ -10,3 +10,5 @@ Short English map of who owns what. Structure never ships FA tables.
 
 **Hard rule:** TE soft-mask is a **prerequisite floor inside structure** (trusted lib only). TE library *construction* is layer 3 — not function, not optional garnish on structure.  
 **Hard rule:** GO/KEGG/names live **only** in gene-function-annotation. After structure release, hand off via [`HANDOFF_STRUCTURE_TO_FUNCTION.md`](HANDOFF_STRUCTURE_TO_FUNCTION.md) / [`pipeline/A6_handoff_to_function.md`](../pipeline/A6_handoff_to_function.md).
+
+**Board:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2) — structure → function.

@@ -5,6 +5,7 @@
 [![Last commit](https://img.shields.io/github/last-commit/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/commits/main)
 [![Issues](https://img.shields.io/github/issues/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/issues)
 [![Sibling: function](https://img.shields.io/badge/sibling-gene--function--annotation-2E7D32?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation)
+[![Project](https://img.shields.io/badge/Project-structure→function-informational?style=flat-square)](https://github.com/users/Xuzhen-Li/projects/2)
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / TE与基因 / 怎么跑 / 怎么选支）  
 > **English ops:** runnable docs stay English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
@@ -49,6 +50,8 @@ Full boundary: [`docs/BOUNDARY.md`](docs/BOUNDARY.md).
 **中文最短路径：** [`docs/zh/README.md`](docs/zh/README.md) · English door: [`docs/START_HERE.md`](docs/START_HERE.md)
 
 **One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone) · offline [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+
+**Track work:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2).
 
 ---
 
