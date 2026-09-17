@@ -106,6 +106,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | PROTEIN_DB (BRAKER/GALBA) | [`pipeline/A2_protein_db.md`](pipeline/A2_protein_db.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 | Helixer ↔ BRAKER compare (classroom) | [`docs/COMPARE_HELIXER_BRAKER.md`](docs/COMPARE_HELIXER_BRAKER.md) |
+| Entry modes + merge QC | [`docs/MERGE_AND_ENTRIES.md`](docs/MERGE_AND_ENTRIES.md) |
 
 More (recipes, tools, case, tutorials): [`docs/SCENARIOS.md`](docs/SCENARIOS.md) · [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) · [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 
