@@ -7,24 +7,35 @@ Sibling function layer (after proteins): [gene-function-annotation `ROADMAP`](ht
 
 ---
 
-## Big picture (two layers)
+## Big picture (three layers)
+
+**Structure is primary and hard** (coordinates / GFF / proteins).  
+TE soft-mask = prerequisite **inside** structure (trusted lib). TE *library construction* = separate job.  
+GO/KEGG/names = **only** in function — structure never ships FA tables.  
+Boundary: [`BOUNDARY.md`](BOUNDARY.md).
 
 ```text
 genome + evidence
         │
         ▼
 ┌───────────────────────────────┐
-│  gene-structure-annotation    │  ← this repo
+│  1. Structure (PRIMARY)       │  ← this repo
+│  A0 soft-mask (trusted TE)    │
 │  trunk → ONE draft branch     │
 │  → merge → QC → curated GFF   │
 │  → proteins.faa + METHODS     │
 └───────────────┬───────────────┘
-                │ hand proteins
+                │ hand proteins (A6)
                 ▼
 ┌───────────────────────────────┐
-│  gene-function-annotation     │
+│  2. Function                  │  gene-function-annotation
 │  F0 → F1 → optional add-ons   │
 │  → functional_master.tsv      │
+└───────────────────────────────┘
+
+┌───────────────────────────────┐
+│  3. TE library build          │  vitis-te / TE_LIBRARY.md
+│  (separate job — not FA)      │
 └───────────────────────────────┘
 ```
 

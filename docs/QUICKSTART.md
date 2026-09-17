@@ -38,7 +38,7 @@ Evidence you have  →  pick ONE branch (S1, S2, S11, …)
                    →  merge + QC
                    →  curate hard loci
                    →  release GFF + proteins
-                   →  (optional) functional tables next door
+                   →  hand-off: functional tables in sibling only
 ```
 
 ---
@@ -191,12 +191,14 @@ python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --thre
 **Produces:** `$CURATED_GFF` / `release/$RELEASE_TAG/` with GFF + proteins + METHODS.  
 **Check:** every box in [`PLAYBOOK.md`](PLAYBOOK.md) qualification list.
 
-### Step J — Function (optional next repo)
+### Step J — Hand-off to function (next repo; FA never built here)
 
-Copy or point `PROTEINS_FA` into  
-[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) and follow its [`docs/QUICKSTART.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/QUICKSTART.md).
+Point `PROTEINS_FA` at this release’s `proteins.faa` and continue in  
+[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) ([`docs/QUICKSTART.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/QUICKSTART.md)).  
+Handoff card: [`HANDOFF_STRUCTURE_TO_FUNCTION.md`](HANDOFF_STRUCTURE_TO_FUNCTION.md) · [`../pipeline/A6_handoff_to_function.md`](../pipeline/A6_handoff_to_function.md).  
+Boundary: [`BOUNDARY.md`](BOUNDARY.md).
 
-**Produces:** `functional_master.tsv` (names/GO/domains) — **not** a replacement GFF.
+**Produces (in the sibling repo):** `functional_master.tsv` (names/GO/domains) — **not** a replacement GFF, and **not** a product of this repo.
 
 ---
 

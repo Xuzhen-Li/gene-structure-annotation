@@ -14,6 +14,7 @@ RELEASE_TAG="species_ann.v0.1"
 PROTEINS_FA="/path/to/work/release/${RELEASE_TAG}/proteins.faa"
 ```
 
-Details: [`../pipeline/A6_functional_optional.md`](../pipeline/A6_functional_optional.md) · [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) step 7.  
+Boundary: [`BOUNDARY.md`](BOUNDARY.md).  
+Details: [`../pipeline/A6_handoff_to_function.md`](../pipeline/A6_handoff_to_function.md) · [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) step 7.  
 Function door: [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) · FAQ [`zh/FAQ_入门.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/zh/FAQ_入门.md).  
 中文指针：[`zh/交接_结构到功能.md`](zh/交接_结构到功能.md).

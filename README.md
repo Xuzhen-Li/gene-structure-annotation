@@ -15,19 +15,34 @@
 
 ## What this repo is
 
-**Find genes on a genome** — where are the exons / CDS?
+**Structural annotation is the hard, primary layer** — coordinates / GFF3 / proteins.
+
+Find genes on a genome: where are the exons / CDS?
 
 ```text
 genome FASTA  (+ RNA and/or proteins)
         ↓
- soft-mask → predict gene models → QC → curate
+ soft-mask (trusted TE lib) → predict gene models → QC → curate
         ↓
   qualified GFF3  +  proteins.faa  +  METHODS
 ```
 
-That is **structural** annotation.  
-**Not** GO / KEGG / domain tables — those are the sibling  
-[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) **after** proteins exist.
+**TE soft-mask** is a **prerequisite floor inside structure** (trusted lib only).  
+**TE library construction** is a separate job ([vitis-te](https://github.com/Xuzhen-Li/vitis-te) / [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md)) — not function, not optional garnish.
+
+**GO / KEGG / readable names** live **only** in sibling  
+[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) **after** proteins exist.  
+This repo **never** ships FA tables.
+
+### Three layers
+
+| # | Layer | Repo / home |
+|---|--------|-------------|
+| **1** | **Structure** (+ TE soft-mask for gene calling) | **this repo** — primary / hard |
+| **2** | **Function** (labels after proteins) | [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) |
+| **3** | **TE library build** (separate job) | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + [`TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
+
+Full boundary: [`docs/BOUNDARY.md`](docs/BOUNDARY.md).
 
 ![Structure overview](docs/figures/structure_overview.png)
 
@@ -115,6 +130,7 @@ Chinese teaching + start door: [`docs/zh/`](docs/zh/) · [`docs/START_HERE.md`](
 | Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) · checklist [`docs/TRUSTED_TE_PATH.md`](docs/TRUSTED_TE_PATH.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| **Three-layer boundary** | [`docs/BOUNDARY.md`](docs/BOUNDARY.md) |
 | **Post-assembly one-pager** | [`docs/POST_ASSEMBLY.md`](docs/POST_ASSEMBLY.md) |
 | QC methods / papers / repos | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
 | EDTA how-to | [`docs/tools/edta.md`](docs/tools/edta.md) |

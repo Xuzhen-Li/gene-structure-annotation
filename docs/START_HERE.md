@@ -4,7 +4,9 @@
 
 **Tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (not in clone) · offline [`CLASSROOM_TONIGHT.md`](CLASSROOM_TONIGHT.md).
 
-You want **gene models** (GFF), not GO tables.
+**Structural annotation is the hard, primary layer** (coordinates / GFF / proteins).  
+You want **gene models** (GFF), not GO tables. TE soft-mask = floor inside structure; TE *library build* → vitis-te. Function labels → sibling after proteins.  
+Boundary: [`BOUNDARY.md`](BOUNDARY.md).
 
 1. Run the flow tool → [`../pipeline/flow_tool/README.md`](../pipeline/flow_tool/README.md)  
 2. Fill `config/local.env`  

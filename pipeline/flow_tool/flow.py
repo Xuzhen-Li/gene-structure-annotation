@@ -438,12 +438,12 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     )
     add(
         "A6",
-        "Hand-off to functional annotation",
+        "Hand-off to function (FA never a product here)",
         "Released PROTEINS_FA",
         "Sibling gene-function-annotation flow tool (F1 default).",
-        "Do not invent GO here; point FA at this RELEASE_TAG.",
-        "FA functional_master.tsv (next repo)",
-        "pipeline/A6_functional_optional.md",
+        "Do not invent GO/KEGG/names here; point FA at this RELEASE_TAG only.",
+        "FA functional_master.tsv (next repo — not this one)",
+        "pipeline/A6_handoff_to_function.md",
     )
     return stages
 

@@ -216,7 +216,7 @@ python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV"
 
 **Output:** FA functional_master.tsv (next repo)
 
-**Helper:** `pipeline/A6_functional_optional.md`
+**Helper:** `pipeline/A6_handoff_to_function.md`
 
 ---
 
