@@ -63,7 +63,7 @@ cp config/example.env config/local.env
 
 | | |
 |--|--|
-| **Tonight (classroom)** | Finish `my_plan.md` (± list paths in `local.env`). No BRAKER/Liftoff required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) (or zh `05_softmask与A0` three sentences). Write `grade=` and `status=` separately — do **not** write `status=L1`. |
+| **Tonight (classroom)** | Finish `my_plan.md` (± list paths in `local.env`). No BRAKER/Liftoff required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) **or** offline [`docs/zh/05_softmask与A0.md`](docs/zh/05_softmask与A0.md) (three sentences). Write `grade=` and `status=` separately — do **not** write `status=L1`. |
 | **Later (cluster)** | Only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise **no** `RUN=1`. Browsing with `--env config/example.env` **will** show `[STOP]` — **expected**. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)). |
 
 Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
