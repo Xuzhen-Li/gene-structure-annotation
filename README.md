@@ -100,7 +100,8 @@ Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/
 
 ---
 
-## Plain map (one glance)
+## Board map (left → right)
+It is a plan, not a release claim: choose the branch from available evidence and stop at the stated gates.
 
 | You have | Branch | Engine (short) |
 |----------|--------|----------------|
