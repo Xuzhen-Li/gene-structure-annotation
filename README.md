@@ -1,19 +1,24 @@
 # gene-structure-annotation
 
-[![Sibling: function](https://img.shields.io/badge/sibling-gene--function--annotation-2E7D32?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation)
+[![Stars](https://img.shields.io/github/stars/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/stargazers)
+[![Forks](https://img.shields.io/github/forks/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/network/members)
 [![Last commit](https://img.shields.io/github/last-commit/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/commits/main)
+[![Issues](https://img.shields.io/github/issues/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/issues)
+[![Sibling: function](https://img.shields.io/badge/sibling-gene--function--annotation-2E7D32?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation)
+[![Project](https://img.shields.io/badge/Project-structure→function-informational?style=flat-square)](https://github.com/users/Xuzhen-Li/projects/2)
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / TE与基因 / 怎么跑 / 怎么选支）  
 > **English ops:** runnable docs stay English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — Vitis S1+S7 / Oryza S1 / Solanum S11 (print-first plans).
 
-**Doors:** [`docs/START_HERE.md`](docs/START_HERE.md) · [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) · [Annotation board](https://github.com/users/Xuzhen-Li/projects/2)
 
 ---
 
 ## What this repo is
 
-Structural annotation: find genes on a genome (exons / CDS → GFF3 + proteins).
+**Structural annotation is the hard, primary layer** — coordinates / GFF3 / proteins.
+
+Find genes on a genome: where are the exons / CDS?
 
 ```text
 genome FASTA  (+ RNA and/or proteins)
@@ -23,11 +28,12 @@ genome FASTA  (+ RNA and/or proteins)
   qualified GFF3  +  proteins.faa  +  METHODS
 ```
 
-![Structure overview](docs/figures/structure_overview.png)
+**TE soft-mask** is a **prerequisite floor inside structure** (trusted lib only).  
+**TE library construction** is a separate job ([vitis-te](https://github.com/Xuzhen-Li/vitis-te) / [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md)) — not function, not optional garnish.
 
-**TE soft-mask** is a prerequisite floor inside structure (trusted lib only).  
-**TE library construction** is a separate job ([vitis-te](https://github.com/Xuzhen-Li/vitis-te) / [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md)).  
-**GO / KEGG / names** live only in sibling [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) after proteins exist — this repo never ships FA tables.
+**GO / KEGG / readable names** live **only** in sibling  
+[`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) **after** proteins exist.  
+This repo **never** ships FA tables.
 
 ### Three layers
 
@@ -37,7 +43,15 @@ genome FASTA  (+ RNA and/or proteins)
 | **2** | **Function** (labels after proteins) | [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) |
 | **3** | **TE library build** (separate job) | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + [`TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
 
-Full boundary: [`docs/BOUNDARY.md`](docs/BOUNDARY.md). Offline classroom: [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+Full boundary: [`docs/BOUNDARY.md`](docs/BOUNDARY.md).
+
+![Structure overview](docs/figures/structure_overview.png)
+
+**中文最短路径：** [`docs/zh/README.md`](docs/zh/README.md) · English door: [`docs/START_HERE.md`](docs/START_HERE.md)
+
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone) · offline [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+
+**Track work:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2).
 
 ---
 
