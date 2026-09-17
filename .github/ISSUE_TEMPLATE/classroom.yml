@@ -1,0 +1,44 @@
+name: Classroom tonight
+description: Plan-only homework — my_plan.md (± path list). Honest stop OK.
+title: "[classroom] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tonight is **plan-only**. Deliverable is **`my_plan.md`** (filename locked).
+        Do **not** claim L1 / finished BRAKER / soft-mask done.
+        Wiki: [Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) · offline [`docs/CLASSROOM_TONIGHT.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/CLASSROOM_TONIGHT.md)
+  - type: checkboxes
+    id: done_when
+    attributes:
+      label: Done when (tick before you stop)
+      options:
+        - label: Generated and **read** `my_plan.md` (stages make sense)
+          required: true
+        - label: Paths in `local.env` listed **or** honestly left empty for tonight
+          required: true
+        - label: Can say one line — write `grade=` and `status=` separately (never `status=L1`)
+          required: true
+  - type: textarea
+    id: plan_note
+    attributes:
+      label: What my_plan.md says (primary branch + tonight stop)
+      description: Name the primary draft (S1 / S11 / S11-lite / …) and what you will **not** run tonight.
+      placeholder: "primary=S1; tonight stop = plan + path list; no RUN=1"
+    validations:
+      required: true
+  - type: dropdown
+    id: honest_stop
+    attributes:
+      label: Honest stop?
+      options:
+        - Plan complete — paths listed
+        - Plan complete — paths empty (honest stop; no RUN=1)
+        - Stuck — need help reading my_plan.md
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers / questions (optional)
+      placeholder: print_qc [STOP] on example.env is expected…

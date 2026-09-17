@@ -1,0 +1,53 @@
+name: Soft-mask / trusted TE
+description: Trusted curatedlib before A0 — Soft-mask Done when. TE is hard.
+title: "[TE soft-mask] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **TE soft-mask is a hard floor inside structure** — not garnish.
+        Soft ≠ hard; `softmasked_fraction` ≠ genome TE%; curatedlib only (no working / raw EDTA / `YOUR_SHA256`).
+        Wiki: [Soft-mask-TE](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE) · [`docs/TRUSTED_TE_PATH.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/TRUSTED_TE_PATH.md)
+  - type: checkboxes
+    id: softmask_done_when
+    attributes:
+      label: Soft-mask — Done when (before A0 / RUN=1)
+      description: Any unchecked box ⇒ **no A0** / no RUN=1 RepeatMasker.
+      options:
+        - label: curatedlib path + version + **real sha256** filled (near-species borrow OK with provenance)
+          required: true
+        - label: Confirmed **not** working lib / raw EDTA / `YOUR_SHA256` / empty checksum
+          required: true
+        - label: Oral check — soft ≠ hard **and** softmasked_fraction ≠ genome TE%
+          required: true
+        - label: METHODS lines ready (filename · version · sha256 · source)
+          required: true
+  - type: input
+    id: te_lib
+    attributes:
+      label: Trusted TE lib (filename + version)
+      placeholder: "species_trusted_te.vX.fa / near-species borrow name"
+    validations:
+      required: true
+  - type: input
+    id: te_sha256
+    attributes:
+      label: sha256 (hex — no YOUR_SHA256 / FILL)
+      placeholder: "abcdef…"
+    validations:
+      required: true
+  - type: dropdown
+    id: a0_ready
+    attributes:
+      label: A0 readiness
+      options:
+        - Soft-mask Done when ticked — ready to discuss A0
+        - Not ready — stopping before A0 (fail closed)
+        - Question only — need help choosing curatedlib
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / provenance
+      placeholder: Borrow source, panel evidence, why this lib is trusted…

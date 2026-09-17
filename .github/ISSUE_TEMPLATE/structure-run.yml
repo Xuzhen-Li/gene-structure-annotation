@@ -1,0 +1,68 @@
+name: Structure run / release
+description: S-branch · L0/L1 · release proteins (after Soft-mask Done when).
+title: "[structure-run] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For cluster / release work — **not** tonight’s classroom plan.
+        Write `grade=` and `status=` separately — never `status=L1`.
+        Wiki: [Choose-branch](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Choose-branch) · [Evaluate-release](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Evaluate-release)
+  - type: dropdown
+    id: primary
+    attributes:
+      label: Primary S-branch
+      options:
+        - S1 (RNA+proteins, no close curated GFF)
+        - S2 (proteins only)
+        - S11 (lift + gap-fill)
+        - S11-lite (lift only → grade=L0, status=provisional)
+        - S13 / S14 / other (explain below)
+    validations:
+      required: true
+  - type: dropdown
+    id: grade
+    attributes:
+      label: grade=
+      options:
+        - L0
+        - L1
+        - L2
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: status= (not a grade)
+      options:
+        - provisional
+        - qualified
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: Before claiming L1 / release proteins
+      options:
+        - label: Soft-mask Done when was ticked before drafts that need GENOME_SOFT
+          required: false
+        - label: If S11 — gap-fill Done when ticked (else label S11-lite, not L1)
+          required: false
+        - label: `print_qc` exit 0 with **no** `[STOP]` on real local.env
+          required: false
+        - label: Proteins extracted from **this** release GFF; pack under `release/TAG/`
+          required: false
+        - label: METHODS required checklist draftable (grade · status · primary · TE sha256 · BUSCO lineage)
+          required: false
+  - type: input
+    id: release_tag
+    attributes:
+      label: RELEASE_TAG (if packing)
+      placeholder: "species_ann.v0.1"
+  - type: textarea
+    id: summary
+    attributes:
+      label: What you ran / what is stuck
+      placeholder: Engine versions, QC numbers, honest S11-lite stop, handoff proteins path…
+    validations:
+      required: true
