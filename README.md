@@ -61,9 +61,9 @@ cp config/example.env config/local.env
 
 ### 3. Plan tonight; run when you have cluster + data
 
-**Classroom / honest stop:** finish `my_plan.md` (± list paths in `local.env`). That is enough for tonight without BRAKER/Liftoff.
+**Classroom / honest stop:** finish `my_plan.md` (± list paths in `local.env`). That is enough for tonight without BRAKER/Liftoff. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) (or zh `05_softmask与A0` three sentences). Never write `status=L1`.
 
-**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1` / cluster. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)).  
+**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1` / cluster. Browsing `python3 pipeline/print_qc_commands.py --env config/example.env` **will** show `[STOP]` — **expected**. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)).  
 Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
 **Provisional ≠ L1:** Liftoff-only (**S11-lite**), Helixer-only, or MoGAAAP-style provisional merge ≠ evidence-based L1 — see [`docs/EVALUATION.md`](docs/EVALUATION.md) L0 vs L1.

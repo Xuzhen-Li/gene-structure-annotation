@@ -7,11 +7,13 @@
 # close_curated_ref: If you have a trusted close curated reference GFF, set true
 # (see examples/plant_sim/03_solanum_s11). Half-done Liftoff → keep false; treat lift as compare only.
 # Default false → S1 when RNA+proteins — do not silently skip S11 when a real near ref exists.
+# !!!!! Near-ref curated GFF (e.g. tomato teaching pack) → copy examples/plant_sim/03_solanum_s11/
+#       answers.sim.yaml (close_curated_ref: true). Do NOT leave close_curated_ref false and pretend S11.
 # Copy to answers.yaml and edit. Used by: python3 pipeline/flow_tool/flow.py --answers ...
 # All keys are required unless noted.
 
 # Evidence inventory (chooser — docs/ROADMAP.md)
-close_curated_ref: false   # trusted near/same-sp curated GFF for S11? half-done Liftoff → still false; Liftoff as compare
+close_curated_ref: false   # tomato/near curated GFF → true + copy plant_sim/03_solanum (NOT leave false). half-done Liftoff → still false
 has_rna: true              # Illumina (or similar) RNA-seq aligned or alignable?
 has_proteins: true         # OrthoDB / proteins for training or GALBA?
 deep_isoseq: false         # heavy Iso-seq / want evidence CDS backbone?

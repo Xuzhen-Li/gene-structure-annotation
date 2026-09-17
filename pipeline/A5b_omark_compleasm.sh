@@ -6,6 +6,12 @@ set -euo pipefail
 
 : "${WORK_DIR:?}"
 : "${PROTEINS_FA:?}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+# Reject bad Compleasm lineage early (even if compleasm binary is absent).
+if [[ -n "${COMPLEASM_LINEAGE:-}" ]]; then
+  _gsa_reject_compleasm_lineage "$COMPLEASM_LINEAGE" || exit 1
+fi
 OUT="${OMARK_OUT:-$WORK_DIR/qc/omark}"
 OMAMER_DB="${OMAMER_DB:-}"
 THREADS="${THREADS:-16}"
@@ -43,6 +49,7 @@ fi
 
 if command -v compleasm >/dev/null; then
   : "${COMPLEASM_LINEAGE:?set COMPLEASM_LINEAGE in local.env (no silent eudicots default)}"
+  _gsa_reject_compleasm_lineage "$COMPLEASM_LINEAGE" || exit 1
   echo "[INFO] Compleasm protein mode — lineage=$COMPLEASM_LINEAGE"
   run_or_print compleasm protein -p "$PROTEINS_FA" -l "$COMPLEASM_LINEAGE" \
     -o "$OUT/compleasm" -t "$THREADS"

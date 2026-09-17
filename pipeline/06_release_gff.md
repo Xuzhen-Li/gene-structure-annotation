@@ -42,9 +42,10 @@ else
 grade=L0
 status=provisional
 primary=S__
+# Fill primary=S1 / S11 / … (not blank). Do not bump grade=L1 until EVALUATION gates pass.
 # Fill: assembly + Asm1; TE lib + soft-mask; branch + tool versions;
 # OrthoDB/ref; RNA libs; BUSCO lineage + C/D/F/M; curation scope.
-# Never write status=L1 (status is only provisional|qualified).
+# Never write status=L1 (status is only provisional or qualified).
 EOF
 fi
 

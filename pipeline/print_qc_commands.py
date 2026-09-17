@@ -95,6 +95,14 @@ def main() -> int:
     if lineage and re.search(r"(?i)eukaryota", lineage) and "YOUR_" not in lineage:
         # bare eukaryota is anti-pattern for clade papers — treat as STOP for pasteable G6
         bad.append(f"BUSCO_LINEAGE={lineage} (bare eukaryota anti-pattern — set clade lineage)")
+    # Compleasm: same STOP gate as BUSCO when set (YOUR_* / bare eukaryota)
+    if compleasm_l:
+        if is_placeholder(compleasm_l) or compleasm_l.startswith("$"):
+            bad.append(f"COMPLEASM_LINEAGE={compleasm_l or '(empty)'}")
+        elif re.search(r"(?i)eukaryota", compleasm_l):
+            bad.append(
+                f"COMPLEASM_LINEAGE={compleasm_l} (bare eukaryota anti-pattern — set clade lineage)"
+            )
 
     print("# Structure QC — print-first (commands are suggestions)")
     print(f"# Target grade: {args.grade}  ·  checklist: docs/EVALUATION_CHECKLIST.md")
@@ -143,8 +151,14 @@ def main() -> int:
     print()
 
     print("## OMArk + Compleasm  (OMArk required at L2; Compleasm soft)")
-    if is_placeholder(omamer) or is_placeholder(compleasm_l) or compleasm_l.startswith("$"):
-        print("# [STOP OMArk block] set OMAMER_DB + COMPLEASM_LINEAGE (not YOUR_*) before RUN=1")
+    compleasm_bad = (
+        (not compleasm_l)
+        or is_placeholder(compleasm_l)
+        or compleasm_l.startswith("$")
+        or bool(re.search(r"(?i)eukaryota", compleasm_l))
+    )
+    if is_placeholder(omamer) or compleasm_bad:
+        print("# [STOP OMArk block] set OMAMER_DB + COMPLEASM_LINEAGE (clade pack, not YOUR_*/bare eukaryota) before RUN=1")
         print(f"# export … COMPLEASM_LINEAGE=… OMAMER_DB=…")
         print("# RUN=1 bash pipeline/A5b_omark_compleasm.sh")
     else:

@@ -19,12 +19,17 @@
 
 | 步 | 打开 | 做什么 |
 |----|------|--------|
-| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) · [05_softmask与A0.md](05_softmask与A0.md) | **A0/`RUN=1` 前口播：** soft≠hard；`softmasked_fraction`≠基因组 TE%；trusted 库才可 soft-mask |
+| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts)（可选）**或** [05_softmask与A0.md](05_softmask与A0.md) 三句 | **今晚交卷须含口检：** soft≠hard；`softmasked_fraction`≠基因组 TE%；trusted 库才可 soft-mask（Wiki 可不开，但口检不能省） |
 | 1 | [01_什么是结构注释.md](01_什么是结构注释.md) | 找外显子，不是做 GO |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | `answers` → `flow.py` → `my_plan.md` |
-| 3 | 填 [`../../config/example.env`](../../config/example.env) → `local.env` | 列将需要的路径；**无集群可停在「读懂 plan + 路径清单」**（勿以为今晚必须跑完 BRAKER） |
+| 3 | 填 [`../../config/example.env`](../../config/example.env) → `local.env` | 列将需要的路径；**无集群可停在「读懂 plan + 路径清单」**。`print_qc --env config/example.env` → `[STOP]` **属预期**；**永不**写 `status=L1` |
 | 3b（有集群） | 按 plan `RUN=1` 执行助手 | 默认 **S1**；近缘好 GFF → **S11**。**上集群前必勾：** [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) + `python3 pipeline/print_qc_commands.py` 绿（无 `[STOP]`）；未勾 = **不许** `RUN=1` |
 | 4 | [**验收勾选表**](验收勾选表.md) | 认清目标 **L1**（档位认知；≠今晚必交满勾） |
+
+**local交卷勾选（与 Wiki Done when 同文，可离线勾）：**
+- [ ] 已生成并**读过** `my_plan.md`（阶段说得通）
+- [ ] `local.env` 已列路径，或今晚诚实留空
+- [ ] 能口头分开写 `grade=` 与 `status=`（**永不** `status=L1`）
 
 **课堂最低（今晚可交）：** 读懂 plan 主草稿支 + 填好/列清 local.env 键 + 能解释勾选表在考什么。
 
