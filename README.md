@@ -64,6 +64,8 @@ cp config/example.env config/local.env
 **When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1` / cluster. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)).  
 Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
+**Provisional ≠ L1:** Liftoff-only (**S11-lite**), Helixer-only, or MoGAAAP-style provisional merge ≠ evidence-based L1 — see [`docs/EVALUATION.md`](docs/EVALUATION.md) L0 vs L1.
+
 **Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
 
 ---
@@ -103,6 +105,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 | **Post-assembly one-pager** | [`docs/POST_ASSEMBLY.md`](docs/POST_ASSEMBLY.md) |
 | PROTEIN_DB (BRAKER/GALBA) | [`pipeline/A2_protein_db.md`](pipeline/A2_protein_db.md) |
 | Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| Helixer ↔ BRAKER compare (classroom) | [`docs/COMPARE_HELIXER_BRAKER.md`](docs/COMPARE_HELIXER_BRAKER.md) |
 
 More (recipes, tools, case, tutorials): [`docs/SCENARIOS.md`](docs/SCENARIOS.md) · [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/cases/vitis-t2t-s1-s5.md`](docs/cases/vitis-t2t-s1-s5.md) · [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 

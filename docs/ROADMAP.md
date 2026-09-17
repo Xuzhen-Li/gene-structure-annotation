@@ -92,6 +92,9 @@ Close curated ref?     → S11 first
 3. **No (use S1/S2):** only “same family/order GFF exists,” half-done Liftoff, or untrusted models — do **not** hard-lift and call it S11/L1.
 4. Full **S11** = liftover **+ gap-fill + trunk QC** (can reach L1). Lift with no gap-fill = **S11-lite / provisional L0** only.
 
+5. **Provisional ≠ L1:** Liftoff-only / Helixer-only / MoGAAAP-style provisional merge ≠ evidence-based L1. Grades live in [`EVALUATION.md`](EVALUATION.md) (L0 vs L1). Classroom compare of Helixer vs BRAKER: [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md).
+
+
 RNA + proteins?        → S1
 Proteins only?         → S2
 Heavy Iso-seq?         → S3
@@ -150,5 +153,6 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) | Trusted TE → A0 checklist (own build / borrow) |
 | [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md) | S11 gap-fill after Liftoff (S11 vs S11-lite) |
 | [`../examples/golden_pack/`](../examples/golden_pack/) | EXAMPLE L0/L1 pack file list + METHODS stub |
+| [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md) | Classroom Helixer↔BRAKER compare (S13; not default prod) |
 | [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) | One-page Asm1 → TE → draft → golden → FA |
 | [`../pipeline/A2_protein_db.md`](../pipeline/A2_protein_db.md) | PROTEIN_DB for BRAKER / GALBA |

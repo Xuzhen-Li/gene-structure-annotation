@@ -77,6 +77,8 @@
 | [LINEAGES.md](LINEAGES.md) | BUSCO/Compleasm 谱系名 |
 | [A2e_s11_gapfill.md](A2e_s11_gapfill.md) | S11 补洞 |
 | [golden_pack.md](golden_pack.md) | 放行包 EXAMPLE 目录 |
+| [PROVISIONAL_NOT_L1.md](PROVISIONAL_NOT_L1.md) | 临时稿 ≠ L1（Liftoff/Helixer） |
+| [COMPARE_HELIXER_BRAKER.md](COMPARE_HELIXER_BRAKER.md) | Helixer↔BRAKER 对照课 |
 
 英文一页路径：[`../POST_ASSEMBLY.md`](../POST_ASSEMBLY.md)。
 

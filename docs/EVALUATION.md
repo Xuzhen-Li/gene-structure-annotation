@@ -34,6 +34,9 @@ Write **`grade=L0|L1|L2`** and **`status=provisional|qualified`** separately in 
 
 Do not call an L0 package “publication-final.” Do not call L1 “S5” without OMArk + second curation round.
 
+**Provisional ≠ publication / ≠ L1.** Liftoff-only (**S11-lite**), Helixer-only / GPU ab initio alone (**S13** without an evidence primary), or a MoGAAAP-style Liftoff+Helixer **provisional merge** are useful drafts — they are **not** evidence-based **L1**. Lift-only stays **S11-lite / L0** (`grade=L0`, `status=provisional`) until **gap-fill + trunk QC + hard gates** (this page). See L0 vs L1 in the table above.
+
+
 ## Non-grape / non-Vitis L2 (minimum you must self-report)
 
 The Vitis T2T case shows *one* S5 packaging path. For another clade, L2 still requires **your** lineage and curation story — do not copy grape OMArk/window depth as a checkbox.

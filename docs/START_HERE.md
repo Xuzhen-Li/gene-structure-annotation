@@ -14,6 +14,9 @@ You want **gene models** (GFF), not GO tables.
 
 **Classroom minimum ≠ finish BRAKER tonight.** Honest stop: understand `my_plan.md` + list real paths in `local.env` + know what L1 ticks mean. Run `RUN=1` only when you have HPC/containers.
 
+**Provisional ≠ L1:** Liftoff-only / Helixer-only drafts stay **L0** until gap-fill + gates — [`EVALUATION.md`](EVALUATION.md). Optional classroom compare: [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md).
+
+
 One-sentence test: *Does this step change exon coordinates or only protein labels?*  
 Coordinates → this repo. Labels (GO/KEGG/names) → [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
 
