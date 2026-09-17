@@ -16,7 +16,7 @@
 
 ## What this repo is
 
-**Structural annotation is the hard, primary layer** — coordinates / GFF3 / proteins.
+**Structural annotation is the primary, non-optional layer** — coordinates / GFF3 / proteins.
 
 Find genes on a genome: where are the exons / CDS?
 
@@ -39,7 +39,7 @@ This repo **never** ships FA tables.
 
 | # | Layer | Repo / home |
 |---|--------|-------------|
-| **1** | **Structure** (+ TE soft-mask for gene calling) | **this repo** — primary / hard |
+| **1** | **Structure** (+ TE soft-mask for gene calling) | **this repo** — primary (must finish before function) |
 | **2** | **Function** (labels after proteins) | [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) |
 | **3** | **TE library build** (separate job) | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + [`TE_LIBRARY.md`](docs/TE_LIBRARY.md) |
 

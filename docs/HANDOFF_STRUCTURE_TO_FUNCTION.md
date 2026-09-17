@@ -6,7 +6,7 @@ Print-first. After `release/<TAG>/` is frozen, give the function repo:
 |------|--------|
 | `RELEASE_TAG` | Same tag as `release/<TAG>/` |
 | `PROTEINS_FA` | `…/release/<TAG>/proteins.faa` (stable alias — **not** a stale `WORK_DIR/proteins.faa` root copy) |
-| `structure_grade` | Honest `grade=L0|L1|L2` and `status=provisional|qualified` (never `status=L1`). Lift-only / Helixer-only → `grade=L0` ; `status=provisional` |
+| `structure_release_label` | Honest pair: `grade=L0|L1|L2` and `status=provisional|qualified` (never `status=L1`). Lift-only / Helixer-only → `grade=L0` ; `status=provisional` |
 
 ```bash
 # Example shape only — paths are yours

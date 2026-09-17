@@ -77,7 +77,7 @@ These are **binary**. Clade-specific *numbers* are yours to set in Asm1 / METHOD
 | **Pass** | Ab initio / BRAKER-class runs used **soft**-masked genome; TE lib = **trusted** curatedlib ([`TE_LIBRARY.md`](TE_LIBRARY.md)) |
 | **Fail** | Hard-mask to `N`; raw EDTA / whole working lib as curatedlib |
 
-**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence that predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats (**soft** vs **hard** clear). A raw EDTA / whole “working” lib is not curated — if you pass it as `--curatedlib`, gene fragments get trusted as TE and host genes are down-weighted or missed (Ou panEDTA / lab TE red lines). Filter before you mask for genes (Vuruputoor et al. *Appl Plant Sci* 2023).
+**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence that predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats (soft-mask ≠ hard-mask). A raw EDTA / whole “working” lib is not curated — if you pass it as `--curatedlib`, gene fragments get trusted as TE and host genes are down-weighted or missed (Ou panEDTA / lab TE red lines). Filter before you mask for genes (Vuruputoor et al. *Appl Plant Sci* 2023).
 
 ### G3 — Draft path named
 
@@ -175,7 +175,7 @@ L2 / S5 adds: OMArk tables in `qc/`; expanded priority (BUSCO fragments, tandems
 ## Automatic fail (any grade)
 
 - Hard-masked genome fed to BRAKER/GALBA as if soft-masked  
-- Raw EDTA or full **working** TE lib used as `--curatedlib` / soft-mask gold  
+- Raw EDTA or full **working** TE lib used as `--curatedlib` / trusted soft-mask library  
 - S13 (Helixer/Tiberius/ANNEVO/SegmentNT) as **silent replace** of S1 when RNA+proteins exist  
 - Claiming function (GO/KEGG) inside this repo’s release — that is FA next door  
 - Private reads in git / release tarball  
