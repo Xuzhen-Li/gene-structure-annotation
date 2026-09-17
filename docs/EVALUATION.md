@@ -77,7 +77,7 @@ These are **binary**. Clade-specific *numbers* are yours to set in Asm1 / METHOD
 | **Pass** | Ab initio / BRAKER-class runs used **soft**-masked genome; TE lib = **trusted** curatedlib ([`TE_LIBRARY.md`](TE_LIBRARY.md)) |
 | **Fail** | Hard-mask to `N`; raw EDTA / whole working lib as curatedlib |
 
-**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats. EDTA *de novo* libraries are not curated — gene fragments and Unknowns in a “working” lib, if trusted 100% via `--curatedlib`, wipe host genes (Ou panEDTA / lab `03_TE` red lines). Vuruputoor et al. (*Appl Plant Sci* 2023) and plant TE practice: filter before you mask for genes.
+**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats. A raw EDTA / whole “working” lib is not curated — if you pass it as `--curatedlib`, gene fragments get trusted as TE and wipe host genes (Ou panEDTA / lab TE red lines). Filter before you mask for genes (Vuruputoor et al. *Appl Plant Sci* 2023).
 
 ### G3 — Draft path named
 
@@ -217,7 +217,8 @@ Ji 2026: structure and function scale differently and error modes differ (wrong 
 ## Tick list (copy into METHODS)
 
 ```text
-Grade: L0 / L1 / L2
+grade=L0|L1|L2 ; status=provisional|qualified ; primary=S__|S11-lite
+# never status=L1
 G1 Asm1 ASSEMBLY_OK + lineage ________
 G2 Soft-mask + trusted TE lib ________
 G3 Draft ID + versions ________

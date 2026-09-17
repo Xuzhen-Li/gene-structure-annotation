@@ -8,6 +8,7 @@ set -euo pipefail
 : "${PROTEINS_FA:?}"
 # shellcheck source=pipeline/_env_guards.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+# YOUR_* / bare eukaryota in COMPLEASM_LINEAGE → [ERR] and exit 1 (not print-only / DRY).
 # Reject bad Compleasm lineage early (even if compleasm binary is absent).
 if [[ -n "${COMPLEASM_LINEAGE:-}" ]]; then
   _gsa_reject_compleasm_lineage "$COMPLEASM_LINEAGE" || exit 1

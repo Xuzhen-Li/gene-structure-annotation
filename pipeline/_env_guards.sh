@@ -20,7 +20,7 @@ _gsa_reject_odb_lineage() {
   fi
   case "$val" in
     YOUR_*|*YOUR_*)
-      echo "[ERR] $label still placeholder ($val) — set a real odb lineage" >&2
+      echo "[ERR] $label still placeholder ($val) — use a clade package / lineage, not YOUR_* / bare eukaryota" >&2
       return 1
       ;;
   esac

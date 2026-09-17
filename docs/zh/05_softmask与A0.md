@@ -18,7 +18,7 @@ flowchart LR
 ## 为什么
 
 1. Soft-mask **保留碱基**，预测器仍可跨真基因；hard-mask 会毁序列。  
-2. `--curatedlib` 把库抬成高信任 — 脏库 → **真基因被当成 TE 而降权/漏检，或假 TE 膨胀**（soft-mask 碱基仍在，不是改成 N）。  
+2. `--curatedlib` 把库抬成高信任。脏库会把真基因当成 TE。结果是降权/漏检，或假 TE 膨胀（碱基仍是小写，不是改成 N）。  
 3. Working / 生 EDTA / `cat`+CD-HIT **都不是** trusted。  
 4. A0b（ProtExcluder）**可选**；实验室门控本体是 CDS+emit trusted，不是 A0b。  
 5. A0 产出的 `GENOME_SOFT` 是所有草稿支的共同地板。
@@ -52,7 +52,9 @@ flowchart LR
 > **Dedup ≠ curation。**  
 > `cat` 多个 haplotype 的 TElib 再 CD-HIT，**不等于** trusted curatedlib。
 
-生 EDTA 粗库、整份 working 库、或把 NLR/CDS 塞进 curatedlib → 宿主基因会被「信任」成 TE → soft-mask 后预测器**降权/漏报**真基因，或假基因爆炸（碱基仍是小写，**不是** hard-mask 改成 N）。
+生 EDTA 粗库、整份 working 库、或把 NLR/CDS 塞进 curatedlib，都会出问题。  
+宿主基因会被「信任」成 TE。  
+soft-mask 后预测器**降权/漏报**真基因，或假基因爆炸（碱基仍是小写，**不是** hard-mask 改成 N）。
 
 ## A0 / A0b 在干什么
 

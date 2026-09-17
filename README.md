@@ -1,7 +1,7 @@
 # gene-structure-annotation
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / TE与基因 / 怎么跑 / 怎么选支）  
-> **English ops:** runnable docs stay in English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)
+> **English ops:** runnable docs stay English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — Vitis S1+S7 / Oryza S1 / Solanum S11 (print-first plans).
 
 
@@ -35,7 +35,7 @@ That is **structural** annotation.
 
 Chinese teaching door: [`docs/zh/`](docs/zh/)（今天最短路径）.
 
-**Finished genome already?** Treat Asm0/Asm1 in the plan as a checklist and set `ASSEMBLY_OK=yes` — do not reassemble. Edit every `/path/to` in `local.env` before any `mkdir`.
+**Already assembled?** Treat Asm0/Asm1 as a checklist; set `ASSEMBLY_OK=yes` — do not reassemble. Edit every `/path/to` in `local.env` before any `mkdir`.
 
 **Close curated reference GFF?** Set `close_curated_ref: true` in answers (see `examples/plant_sim/03_solanum_s11`). Default `false` → S1; half-done Liftoff stays `false`.
 
@@ -61,14 +61,16 @@ cp config/example.env config/local.env
 
 ### 3. Plan tonight; run when you have cluster + data
 
-**Classroom / honest stop:** finish `my_plan.md` (± list paths in `local.env`). That is enough for tonight without BRAKER/Liftoff. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) (or zh `05_softmask与A0` three sentences). Never write `status=L1`.
+| | |
+|--|--|
+| **Tonight (classroom)** | Finish `my_plan.md` (± list paths in `local.env`). No BRAKER/Liftoff required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) (or zh `05_softmask与A0` three sentences). Write `grade=` and `status=` separately — do **not** write `status=L1`. |
+| **Later (cluster)** | Only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise **no** `RUN=1`. Browsing with `--env config/example.env` **will** show `[STOP]` — **expected**. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)). |
 
-**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1` / cluster. Browsing `python3 pipeline/print_qc_commands.py --env config/example.env` **will** show `[STOP]` — **expected**. Also tick Soft-mask Done when / Concepts oral checks before A0 ([Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)).  
 Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **L1**; paper/T2T = **L2**.
 
 **Provisional ≠ L1:** Liftoff-only (**S11-lite**), Helixer-only, or MoGAAAP-style provisional merge ≠ evidence-based L1 — see [`docs/EVALUATION.md`](docs/EVALUATION.md) L0 vs L1.
 
-**Default if you have RNA + proteins and no close ref:** branch **S1** (BRAKER + StringTie compare).
+**Default (RNA + proteins, no close ref):** branch **S1** (BRAKER + StringTie compare).
 
 ---
 
@@ -92,7 +94,7 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ---
 
-## Docs (only when you need them)
+## Docs (open only when needed)
 
 | Need | Open |
 |------|------|
