@@ -27,6 +27,8 @@ That is **structural** annotation.
 
 **中文最短路径：** [`docs/zh/README.md`](docs/zh/README.md) · English door: [`docs/START_HERE.md`](docs/START_HERE.md)
 
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone tree).
+
 ---
 
 ## Three steps (start here)

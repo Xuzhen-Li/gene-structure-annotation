@@ -110,11 +110,22 @@ def choose_branch(a: dict) -> dict:
         # raw liftover stays provisional until QC unless user forces L2 path with gap-fill
         pass
 
+    # Thin evidence: never advertise evidence-based L1
+    thin = (
+        not a.get("has_rna")
+        and not a.get("has_proteins")
+        and not a.get("close_curated_ref")
+    )
+    if thin and grade != "L0":
+        grade = "L0"
+        reason = reason.rstrip(".") + "; no RNA/proteins/close-ref → force L0/provisional (not evidence-based L1)."
+
     return {
         "primary": primary,
         "overlays": overlays,
         "reason": reason,
         "grade_target": grade,
+        "thin_evidence": thin,
     }
 
 
@@ -453,6 +464,15 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
            if "S7" in choice.get("overlays", []) else ""),
         f"- **Target grade:** `{choice['grade_target']}` (see docs/EVALUATION.md)",
         f"- **Reason:** {choice['reason']}",
+    ]
+    if choice.get("thin_evidence"):
+        lines += [
+            "",
+            "> **WARN:** answers have no RNA, no proteins, and no close curated ref — "
+            "do **not** treat Target as evidence-based L1. Plan grade is **L0 / provisional** "
+            "(see docs/EVALUATION.md).",
+        ]
+    lines += [
         "",
         "### Answers snapshot",
         "",

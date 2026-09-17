@@ -26,9 +26,9 @@ Structure and **function** are separate layers (Ji 2026): this repo stops at qua
 
 | Grade | Label in METHODS | When to claim it |
 |-------|------------------|------------------|
-| **L0 Provisional** | `status=provisional` | Thin evidence (S6), raw liftover (S11 before gap-fill), or open curation debt |
-| **L1 Qualified** | `status=qualified` (default lab release) | All hard gates G1–G8 (and G9 if applicable) |
-| **L2 Paper / T2T bar** | `status=qualified` + note S5 | L1 **plus** S5 overlays — see **Non-grape L2** below; grape T2T case is an *example*, not the only template ([`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md)) |
+| **L0 Provisional** | `grade=L0` ; `status=provisional` | Thin evidence (S6), raw liftover (S11 before gap-fill), or open curation debt |
+| **L1 Qualified** | `grade=L1` ; `status=qualified` (default lab release) | All hard gates G1–G8 (and G9 if applicable) |
+| **L2 Paper / T2T bar** | `grade=L2` ; `status=qualified` + note S5 | L1 **plus** S5 overlays — see **Non-grape L2** below; grape T2T case is an *example*, not the only template ([`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md)) |
 
 Write **`grade=L0|L1|L2`** and **`status=provisional|qualified`** separately in METHODS. Do **not** write `status=L1`.
 

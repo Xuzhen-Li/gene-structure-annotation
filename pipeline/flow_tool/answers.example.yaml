@@ -1,4 +1,10 @@
-# WARNING: If you have a trusted close curated reference GFF, set close_curated_ref: true
+# !!!!! CLASSROOM / EVIDENCE HONESTY (read before editing) !!!!!
+# If you do NOT have RNA-seq → keep has_rna: false.
+# If you do NOT have OrthoDB/proteins → keep has_proteins: false.
+# Do NOT leave both true just because the example looks that way — that pretends evidence.
+# Defaults below stay true only as the documented S1 teaching path WHEN you really have RNA+proteins.
+# No RNA + no proteins + close_curated_ref false → plan targets L0 / provisional (S6), not evidence-based L1.
+# close_curated_ref: If you have a trusted close curated reference GFF, set true
 # (see examples/plant_sim/03_solanum_s11). Half-done Liftoff → keep false; treat lift as compare only.
 # Default false → S1 when RNA+proteins — do not silently skip S11 when a real near ref exists.
 # Copy to answers.yaml and edit. Used by: python3 pipeline/flow_tool/flow.py --answers ...
