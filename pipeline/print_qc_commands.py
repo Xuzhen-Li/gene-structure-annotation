@@ -93,15 +93,15 @@ def main() -> int:
         if is_placeholder(val) or val.startswith("$"):
             bad.append(f"{label}={val or '(empty)'}")
     if lineage and re.search(r"(?i)eukaryota", lineage) and "YOUR_" not in lineage:
-        # bare eukaryota is anti-pattern for clade papers — treat as STOP for pasteable G6
-        bad.append(f"BUSCO_LINEAGE={lineage} (bare eukaryota anti-pattern — set clade lineage)")
+        # bare eukaryota_* is too broad for pasteable G6 — treat as STOP
+        bad.append(f"BUSCO_LINEAGE={lineage} (too broad — set a clade lineage, e.g. viridiplantae_odb12)")
     # Compleasm: same STOP gate as BUSCO when set (YOUR_* / bare eukaryota)
     if compleasm_l:
         if is_placeholder(compleasm_l) or compleasm_l.startswith("$"):
             bad.append(f"COMPLEASM_LINEAGE={compleasm_l or '(empty)'}")
         elif re.search(r"(?i)eukaryota", compleasm_l):
             bad.append(
-                f"COMPLEASM_LINEAGE={compleasm_l} (bare eukaryota anti-pattern — set clade lineage)"
+                f"COMPLEASM_LINEAGE={compleasm_l} (too broad — set a Compleasm clade pack, e.g. eudicots)"
             )
 
     print("# Structure QC — print-first (commands are suggestions)")

@@ -533,7 +533,7 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
                     lines.append(f"bash {h}          # dry")
                     lines.append(f"RUN=1 bash {h}    # execute on cluster after review")
                 else:
-                    lines.append("# Needs real inputs; no RUN= dry mode — review before paste.")
+                    lines.append("# Needs real inputs — 无 DRY/RUN 开关；假路径会直接失败。Review before paste.")
                     lines.append(f"bash {h}")
                 lines.append("```")
                 lines.append("")

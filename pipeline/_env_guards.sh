@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 # Source from pipeline scripts after WORK_DIR / lineage are set.
-# Reject example placeholders and anti-pattern lineages.
+# Reject example placeholders and overly broad lineages.
 _gsa_reject_placeholder_path() {
   local label="$1" val="${2:-}"
   case "$val" in
@@ -25,7 +25,7 @@ _gsa_reject_odb_lineage() {
       ;;
   esac
   if [[ "$val" == eukaryota* || "$val" == *eukaryota_odb* ]]; then
-    echo "[ERR] $label=$val looks like bare eukaryota (EVALUATION anti-pattern for clade papers)" >&2
+    echo "[ERR] $label=$val is too broad — set a clade lineage/pack (not bare eukaryota_*)" >&2
     return 1
   fi
   return 0

@@ -4,10 +4,24 @@
 
 ---
 
+## 今晚交什么 {#今晚交什么}
+
+课堂最低交卷见 [今天最短路径](README.md#今天最短路径先做这个)（与 Wiki [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) 同文）：
+
+- [ ] 已生成并**读过** `my_plan.md`
+- [ ] `local.env` 已列路径，或今晚诚实留空
+- [ ] 能口头分开写 `grade=` 与 `status=`（**永不** `status=L1`）
+
+今晚交付是 **plan ± 路径清单**，不是 BRAKER / Liftoff / 满勾 L1。
+
+---
+
 ## TE / soft-mask
 
 **Q：A0 打印的 softmasked_fraction 是不是基因组 TE%？**  
-A：**不是。** 那是「相对**这份 trusted 库**被打成小写的碱基比例」（同源覆盖），不是全基因组 TE 含量。瘦 trusted（例如主要是有名 Copia/Gypsy/hAT）占比偏低可以是预期；葡萄真实 TE 碱基常很高。**禁止**为刷高数字改用整份 working / 生 EDTA 当 `-lib`（正好踩红线）。
+A：**不是。** 它只量「相对**这份 trusted 库**被打成小写的比例」（同源覆盖）。  
+瘦 trusted（例如主要是有名 Copia/Gypsy/hAT）占比偏低可以是预期。葡萄真实 TE 碱基常很高。  
+**禁止**为刷高数字改用整份 working / 生 EDTA 当 `-lib`（踩红线）。
 
 **Q：soft-mask 会弄丢抗病基因吗？**  
 A：正确 soft-mask 是改**小写**（碱基还在），不是改成 N。Hard-mask / 假 curatedlib 才会毁掉 NLR。A0 的 softmasked_fraction **不是**「基因组 TE%」，只是相对这份 trusted 的同源覆盖（见上一问）。  
@@ -22,10 +36,15 @@ A：通常是**一个** FASTA（共识序列库），例如 `grape_TElib_trusted
 A：看**门控是否做过、文件名/标签是否写 trusted/curatedlib**。整份 working、生 EDTA、`cat`+CD-HIT **都不算** trusted。说不清就向实验室要现行 trusted；不要自己用生 EDTA 顶上 soft-mask。
 
 **Q：只有生 EDTA，最短路径第 3 步是不是卡死？**  
-A：对基因 A0 来说，**没有 trusted 就不要宣称 L1 soft-mask 诚实（G2）**。中间态可以：先做发现、METHODS 写明「仅 EDTA discovery，尚未 emit trusted；基因预测暂缓 / 或仅用外部 trusted」。日常注释不必先读完课 18；建库深链见 [18](18_TE流程课_借鉴实验室03_TE.md) / [vitis-te](https://github.com/Xuzhen-Li/vitis-te)。
+A：对基因 A0：**没有 trusted 就不要宣称 L1 soft-mask 诚实（G2）**。  
+中间态可以：先做发现；METHODS 写明「仅 EDTA discovery，尚未 emit trusted」。基因预测暂缓，或仅用外部 trusted。  
+日常注释不必先读完课 18。建库深链见 [18](18_TE流程课_借鉴实验室03_TE.md) / [vitis-te](https://github.com/Xuzhen-Li/vitis-te)。
 
 **Q：没实验室 trusted、又不想现在啃 vitis-te——能用近缘物种的 trusted 做 soft-mask 吗？**  
-A：**可以作权宜**，但必须在 METHODS 写清：来源物种/文件名/版本/sha256、以及「非本物种自建门控」。风险是近缘库可能漏本物种特有 TE 或过 mask。更稳的两档：(1) 暂缓基因预测直到本面板 emit trusted；(2) 用近缘 trusted 先出 **L0/provisional** 草稿，待本库就绪再 remask（S10）升档。**不要**用近缘 raw EDTA 冒充 trusted。
+A：**可以作权宜**，但 METHODS 必须写清：来源物种、文件名、版本、sha256，以及「非本物种自建门控」。  
+风险：近缘库可能漏本物种特有 TE，或过 mask。  
+更稳两档：(1) 暂缓基因预测，等本面板 emit trusted；(2) 用近缘 trusted 先出 **L0/provisional**，本库就绪后再 remask（S10）升档。  
+**不要**用近缘 raw EDTA 冒充 trusted。
 
 **Q：R1≈240 要不要懂？**  
 A：最短路径**可以先当没看见**。那是葡萄面板档案/教学数字，不是你物种的配额。
