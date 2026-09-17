@@ -4,7 +4,7 @@ GitHub Wiki [Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotati
 
 ## Done when
 
-- [ ] You generated and **read** `my_plan.md` (stages make sense).
+- [ ] You generated and **read** `my_plan.md` (stages make sense). How to scan: [`zh/读plan.md`](zh/读plan.md).
 - [ ] Paths in `local.env` are listed **or** honestly left empty for tonight.
 - [ ] You can say one line: write `grade=` and `status=` separately (never `status=L1`).
 
