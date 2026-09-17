@@ -1,5 +1,11 @@
 # gene-structure-annotation
 
+[![Stars](https://img.shields.io/github/stars/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/stargazers)
+[![Forks](https://img.shields.io/github/forks/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/network/members)
+[![Last commit](https://img.shields.io/github/last-commit/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/commits/main)
+[![Issues](https://img.shields.io/github/issues/Xuzhen-Li/gene-structure-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation/issues)
+[![Sibling: function](https://img.shields.io/badge/sibling-gene--function--annotation-2E7D32?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation)
+
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / TE与基因 / 怎么跑 / 怎么选支）  
 > **English ops:** runnable docs stay English — [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — Vitis S1+S7 / Oryza S1 / Solanum S11 (print-first plans).
