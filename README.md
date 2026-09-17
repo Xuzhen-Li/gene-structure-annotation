@@ -96,20 +96,18 @@ Full map: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Docs (open only when needed)
 
-| Need | Open |
-|------|------|
-| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) · [`docs/START_HERE.md`](docs/START_HERE.md) |
-| Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
-| Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
-| TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) · checklist [`docs/TRUSTED_TE_PATH.md`](docs/TRUSTED_TE_PATH.md) |
-| Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
-| **Post-assembly one-pager** | [`docs/POST_ASSEMBLY.md`](docs/POST_ASSEMBLY.md) |
+Chinese teaching + start door: [`docs/zh/`](docs/zh/) · [`docs/START_HERE.md`](docs/START_HERE.md)
 
 <details>
 <summary>More docs</summary>
 
 | Need | Open |
 |------|------|
+| Narrated auto-plan | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
+| Stage I/O · **Done?** | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| TE → soft-mask (trusted only) | [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md) · checklist [`docs/TRUSTED_TE_PATH.md`](docs/TRUSTED_TE_PATH.md) |
+| Branch map · walkthrough | [`docs/ROADMAP.md`](docs/ROADMAP.md) · [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| **Post-assembly one-pager** | [`docs/POST_ASSEMBLY.md`](docs/POST_ASSEMBLY.md) |
 | QC methods / papers / repos | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
 | EDTA how-to | [`docs/tools/edta.md`](docs/tools/edta.md) |
 | BUSCO / Compleasm lineages | [`docs/LINEAGES.md`](docs/LINEAGES.md) |

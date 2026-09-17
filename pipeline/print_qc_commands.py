@@ -95,13 +95,17 @@ def main() -> int:
     if lineage and re.search(r"(?i)eukaryota", lineage) and "YOUR_" not in lineage:
         # bare eukaryota_* is too broad for pasteable G6 — treat as STOP
         bad.append(f"BUSCO_LINEAGE={lineage} (too broad — set a clade lineage, e.g. viridiplantae_odb12)")
-    # Compleasm: same STOP gate as BUSCO when set (YOUR_* / bare eukaryota)
+    # Compleasm: STOP on YOUR_*/bare eukaryota/BUSCO-style *_odb* names
     if compleasm_l:
         if is_placeholder(compleasm_l) or compleasm_l.startswith("$"):
             bad.append(f"COMPLEASM_LINEAGE={compleasm_l or '(empty)'}")
         elif re.search(r"(?i)eukaryota", compleasm_l):
             bad.append(
-                f"COMPLEASM_LINEAGE={compleasm_l} (too broad — set a Compleasm clade pack, e.g. eudicots)"
+                f"COMPLEASM_LINEAGE={compleasm_l} (too broad — Compleasm clade pack, e.g. eudicots|poales)"
+            )
+        elif re.search(r"(?i)_odb\d*$", compleasm_l) or "_odb" in compleasm_l.lower():
+            bad.append(
+                f"COMPLEASM_LINEAGE={compleasm_l} (BUSCO *_odb* name — use Compleasm pack, e.g. eudicots|poales)"
             )
 
     print("# Structure QC — print-first (commands are suggestions)")
@@ -114,8 +118,10 @@ def main() -> int:
         print("# [STOP] Placeholders / unset keys — do NOT paste RUN=1 blocks yet:")
         for b in bad:
             print(f"#   - {b}")
-        print("# Edit config/local.env (real paths + clade BUSCO_LINEAGE), then re-run this printer.")
-        print("# Example lineage: viridiplantae_odb12 | poales_odb10 | metazoa_odb10 — never leave YOUR_*")
+        print("# Edit config/local.env (real paths + clade lineages), then re-run this printer.")
+        print("# BUSCO_LINEAGE examples: viridiplantae_odb12 | poales_odb10 | metazoa_odb10 (always *_odb*)")
+        print("# COMPLEASM_LINEAGE examples: eudicots | poales | viridiplantae — not BUSCO *_odb* names")
+        print("# Never leave YOUR_* / bare eukaryota for either.")
         print()
         print("## Reminders only (no executable G4–G6 until env is real)")
         print("# G1 ASSEMBLY_OK=yes after Asm1; G2 trusted TE soft-mask; G3 named draft + versions")
@@ -156,9 +162,10 @@ def main() -> int:
         or is_placeholder(compleasm_l)
         or compleasm_l.startswith("$")
         or bool(re.search(r"(?i)eukaryota", compleasm_l))
+        or ("_odb" in compleasm_l.lower())
     )
     if is_placeholder(omamer) or compleasm_bad:
-        print("# [STOP OMArk block] set OMAMER_DB + COMPLEASM_LINEAGE (clade pack, not YOUR_*/bare eukaryota) before RUN=1")
+        print("# [STOP OMArk block] set OMAMER_DB + COMPLEASM_LINEAGE (clade pack e.g. eudicots|poales — not YOUR_*/bare eukaryota/BUSCO *_odb*) before RUN=1")
         print(f"# export … COMPLEASM_LINEAGE=… OMAMER_DB=…")
         print("# RUN=1 bash pipeline/A5b_omark_compleasm.sh")
     else:

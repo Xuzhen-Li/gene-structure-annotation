@@ -77,7 +77,7 @@ These are **binary**. Clade-specific *numbers* are yours to set in Asm1 / METHOD
 | **Pass** | Ab initio / BRAKER-class runs used **soft**-masked genome; TE lib = **trusted** curatedlib ([`TE_LIBRARY.md`](TE_LIBRARY.md)) |
 | **Fail** | Hard-mask to `N`; raw EDTA / whole working lib as curatedlib |
 
-**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats. A raw EDTA / whole “working” lib is not curated — if you pass it as `--curatedlib`, gene fragments get trusted as TE and wipe host genes (Ou panEDTA / lab TE red lines). Filter before you mask for genes (Vuruputoor et al. *Appl Plant Sci* 2023).
+**Background:** Repeats harbour both real genes (e.g. NLRs) and false exons. Hard-masking to `N` deletes sequence that predictors need; soft-mask (`-xsmall`) keeps bases but down-weights repeats (**soft** vs **hard** clear). A raw EDTA / whole “working” lib is not curated — if you pass it as `--curatedlib`, gene fragments get trusted as TE and host genes are down-weighted or missed (Ou panEDTA / lab TE red lines). Filter before you mask for genes (Vuruputoor et al. *Appl Plant Sci* 2023).
 
 ### G3 — Draft path named
 

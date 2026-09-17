@@ -24,7 +24,7 @@ A：**不是。** 它只量「相对**这份 trusted 库**被打成小写的比�
 **禁止**为刷高数字改用整份 working / 生 EDTA 当 `-lib`（踩红线）。
 
 **Q：soft-mask 会弄丢抗病基因吗？**  
-A：正确 soft-mask 是改**小写**（碱基还在），不是改成 N。Hard-mask / 假 curatedlib 才会毁掉 NLR。A0 的 softmasked_fraction **不是**「基因组 TE%」，只是相对这份 trusted 的同源覆盖（见上一问）。  
+A：**正确 soft-mask 不会。** 只改小写，碱基还在；BRAKER 仍能读到 NLR。Hard-mask 成 N、或假 curatedlib 把宿主片段当 TE，才会弄丢/压掉抗病基因。`softmasked_fraction` ≠ 基因组 TE%（见上一问）。  
 
 **Q：命令行弱，能不能 Galaxy？**  
 A：可先只要到 trusted FASTA；soft-mask 可请人按 A0 跑。Galaxy RepeatMasker 见 [17](17_外部教程与会议.md)。
@@ -53,7 +53,7 @@ A：最短路径**可以先当没看见**。那是葡萄面板档案/教学数�
 A：**可以。** 基因 soft-mask 优先用现成 **trusted**；EDTA 是「还没有库」时的 de novo 起点，不是每天必跑。
 
 **Q：不是葡萄，`--species` / `--cds` / 长 contig 名怎么办？**  
-A：见 [`../tools/edta.md`](../tools/edta.md)：多数非稻/玉米用 `--species others`；`--cds` 按你的门控方案；contig 名过长须**先改短名并自备 id_map**（EDTA 要求 ≤13 字符）。本仓 A0 只接到 trusted→RepeatMasker；TEtrimmer 等在 TE 专题/vitis-te。
+A：多数非稻/玉米：`--species others`。`--cds` 只在你的门控方案需要时再加。contig 名 >13 字符：先改短并自备 `id_map`。细节见 [`../tools/edta.md`](../tools/edta.md)。本仓 A0 只接 trusted→RepeatMasker。
 
 ---
 

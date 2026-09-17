@@ -53,7 +53,7 @@ Asm* → A0 soft-mask
 1. **Asm1** — 基因组 BUSCO + N50 + 倍性写清楚；`ASSEMBLY_OK=yes` 再往下。
 2. **A0** — Trusted curatedlib soft-mask → `GENOME_SOFT`（见 [05](05_softmask与A0.md)）。
 3. **A1b** — HISAT2/STAR → `RNA_BAM` + index。看比对率；以后浏览器抽查 junction。
-4. **A2 主草稿** — `bash pipeline/A2_run_draft.sh` 多半是**打印** `braker.pl` 行（print-first），你在集群 module 下自己跑。产出 `DRAFT_GFF`；立刻 `A5_agat_stats.sh` 看 gene/mRNA/CDS 是否非零。
+4. **A2 主草稿** — `bash pipeline/A2_run_draft.sh` 默认 **print-first**（只打印 `braker.pl`，不替你跑）。在集群上 `RUN=1` 或粘贴该行。产出写入 `DRAFT_GFF`。立刻跑 `A5_agat_stats.sh`：gene/mRNA/CDS 须非零。
 5. **对照轨（有 RNA 就做）** — StringTie → TransDecoder：有转录证据时不要只信 ab initio。对照轨找冲突、补 isoform/UTR 线索，**不是**无脑覆盖 BRAKER。
 6. **A4 合并** — 两套以上草稿 → EVM/TSEBRA 等；记权重路径进 METHODS。AGAT 计数应落在较好父本附近。
 7. **A3 → 01 → 02 → 04 → 06** — 从**本轮** GFF 重抽蛋白；蛋白 BUSCO 写清谱系；PSAURON → 优先表；GSAman；打 `RELEASE_TAG`。
