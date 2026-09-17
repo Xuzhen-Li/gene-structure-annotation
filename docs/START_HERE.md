@@ -16,7 +16,7 @@ You want **gene models** (GFF), not GO tables.
 
 **Classroom minimum ≠ finish BRAKER tonight.** Honest stop: understand `my_plan.md` + list real paths in `local.env` + know what L1 ticks mean. Write `grade=` and `status=` separately — never `status=L1`.
 
-**When ready for `RUN=1`:** tick [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise no cluster run. Need HPC/containers before BRAKER/Liftoff.
+**When ready for `RUN=1`:** tick [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise **no** `RUN=1` / no cluster run. Need HPC/containers before BRAKER/Liftoff.
 
 **Provisional ≠ L1:** Liftoff-only / Helixer-only drafts stay **L0** until gap-fill + gates — [`EVALUATION.md`](EVALUATION.md). Optional classroom compare: [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md).
 
