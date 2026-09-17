@@ -28,6 +28,8 @@
 
 **课堂最低（今晚可交）：** 读懂 plan 主草稿支 + 填好/列清 local.env 键 + 能解释勾选表在考什么。
 
+**抗病 / 葡萄最短补丁：** 勾 [Soft-mask Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE#soft-mask--done-when-before-a0--run1) → 答案直接抄 [`examples/plant_sim/01_vitis_s1_s7/`](../../examples/plant_sim/01_vitis_s1_s7/)（`plant_tandem_focus: true` → S1+S7）。
+
 **放行交接（A6）：** 功能仓 `PROTEINS_FA` 指 `release/<TAG>/proteins.faa`（稳定别名），不要默认用 `WORK_DIR/proteins.faa` 可能过期的根副本。
 
 <details>

@@ -99,7 +99,7 @@ EDTA.pl \
   --threads "$THREADS"
 ```
 
-μ `5.4e-9` (**grape teaching default only**): Zhou et al. 2019. Non-grape: do not copy; pick μ from literature or omit and say so in METHODS.  
+μ `5.4e-9` (**grape teaching default only**): Zhou et al. 2019. Non-grape: do not copy; pick μ from literature or omit and say so in METHODS. ⚠ **GRAPE ONLY** — copying `--u 5.4e-9` onto rice/other clades is a METHODS fail.  
 CDS for gating / panEDTA: **PN40024.v4.1** (lab freeze — not an arbitrary newer T2T CDS unless you reopen the gate).
 
 ---

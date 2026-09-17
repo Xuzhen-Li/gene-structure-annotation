@@ -81,7 +81,7 @@ A：都行；仓库约定示例用根目录 **`my_answers.yaml`**（已在 `.git
 A：
 1. **`my_plan.md`**：选哪条支 + 每步讲解（主学习文件）。  
 2. **`flow.py --emit-commands`**：在 plan 里附带**阶段助手**命令草稿（仍常含占位）。  
-3. **`print_qc_commands.py`**：按**验收勾选表**打印 QC 命令（AGAT/BUSCO/PSAURON…）。可先：`python3 pipeline/print_qc_commands.py --env config/example.env` 看样例。
+3. **`print_qc_commands.py`**：按**验收勾选表**打印 QC 命令（AGAT/BUSCO/PSAURON…）。可先：`python3 pipeline/print_qc_commands.py --env config/example.env` 看样例——**此时出现 `[STOP]` 属预期**（占位/`YOUR_*`/裸 eukaryota）；填好 `local.env` 后再求绿。
 
 **Q：没集群 / 没 Singularity，plan 里的命令？**  
 A：plan 是**模板**；装法见各 `docs/tools/*.md`（常推荐容器）。笔记本可先跑通 flow + 读 plan，BRAKER 等到有环境再贴。
