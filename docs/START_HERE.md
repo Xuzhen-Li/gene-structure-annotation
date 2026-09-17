@@ -4,7 +4,7 @@
 
 **Tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (not in clone) · offline [`CLASSROOM_TONIGHT.md`](CLASSROOM_TONIGHT.md).
 
-**Structural annotation is the hard, primary layer** (coordinates / GFF / proteins).  
+**Structural annotation is the primary, non-optional layer** (coordinates / GFF / proteins).  
 You want **gene models** (GFF), not GO tables. TE soft-mask = floor inside structure; TE *library build* → vitis-te. Function labels → sibling after proteins.  
 Boundary: [`BOUNDARY.md`](BOUNDARY.md).
 
