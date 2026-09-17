@@ -114,7 +114,7 @@ These modify QC depth, compare packs, or loop back. They sit **on top of** a dra
 | **S4** | Multi-haplotype transfer + SynGAP | After S1 or S3 |
 | **S5** | Paper / T2T bar (OMArk + deeper GSAman) | On S1 or S14 — see [`cases/vitis-t2t-s1-s5.md`](cases/vitis-t2t-s1-s5.md) |
 | **S7** | Family / QTL / NLR window focus | Any draft + HRP windows |
-| **S8** | Parallel NCBI EGAPx / Gnomon compare | Beside S1 (not instead) |
+| **S8** | Parallel NCBI EGAPx / Gnomon compare ([`EGAPX_COMPARE.md`](EGAPX_COMPARE.md)) | Beside S1 (not instead) |
 | **S9** | High BUSCO-D / don’t purge haplotypes blind | Asm1 / filter policy |
 | **S10** | TE gene inflation → remask → re-enter draft | Loop to A0 then same draft ID |
 | **S12** | Stop / freeze rules | End of curation |
@@ -155,5 +155,6 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`../examples/golden_pack/`](../examples/golden_pack/) | EXAMPLE L0/L1 pack file list + METHODS stub |
 | [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md) | Classroom Helixer↔BRAKER compare (S13; not default prod) |
 | [`MERGE_AND_ENTRIES.md`](MERGE_AND_ENTRIES.md) | Entry modes + merge QC narrative (no Snakemake here) |
+| [`EGAPX_COMPARE.md`](EGAPX_COMPARE.md) | S8 EGAPx 对照 / GenBank door (not default; no runners here) |
 | [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) | One-page Asm1 → TE → draft → golden → FA |
 | [`../pipeline/A2_protein_db.md`](../pipeline/A2_protein_db.md) | PROTEIN_DB for BRAKER / GALBA |

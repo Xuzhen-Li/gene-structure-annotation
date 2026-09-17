@@ -80,6 +80,7 @@
 | [PROVISIONAL_NOT_L1.md](PROVISIONAL_NOT_L1.md) | 临时稿 ≠ L1（Liftoff/Helixer） |
 | [COMPARE_HELIXER_BRAKER.md](COMPARE_HELIXER_BRAKER.md) | Helixer↔BRAKER 对照课 |
 | [MERGE_AND_ENTRIES.md](MERGE_AND_ENTRIES.md) | 三种入口 + 合并 QC（无 Snakemake） |
+| [EGAPX_COMPARE.md](EGAPX_COMPARE.md) | EGAPx / S8 对照与提交门（非默认） |
 
 英文一页路径：[`../POST_ASSEMBLY.md`](../POST_ASSEMBLY.md)。
 
