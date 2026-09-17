@@ -558,6 +558,8 @@ def render_markdown(a: dict, choice: dict, stages: list[dict], emit_commands: bo
         "",
         "This tool does **not** claim one-click BRAKER on your HPC yet — helpers often print commands.",
         "",
+        "> 中文：读英文 plan 时看什么 → `docs/zh/读plan.md` · 术语 `docs/zh/99_术语表.md` · 起步 `docs/zh/03_怎么开始跑.md`。",
+        "",
     ]
     return "\n".join(lines)
 

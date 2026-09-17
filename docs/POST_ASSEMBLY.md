@@ -16,7 +16,7 @@ Asm1 OK → trusted TE → evidence → draft → QC → golden pack → handoff
 | **4. Draft (one primary)** | S1 / S11 / … plan from `flow.py`; S11 needs gap-fill for L1 | [`ROADMAP.md`](ROADMAP.md) · [`../pipeline/A2c_liftoff.md`](../pipeline/A2c_liftoff.md) · [`../pipeline/A2e_s11_gapfill.md`](../pipeline/A2e_s11_gapfill.md) · [`../pipeline/A2_run_draft.sh`](../pipeline/A2_run_draft.sh) |
 | **5. QC + curation** | AGAT → proteins → BUSCO/PSAURON → priority → GSAman as needed | [`STAGE_IO.md`](STAGE_IO.md) · [`EVALUATION.md`](EVALUATION.md) · [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md) |
 | **6. Golden pack** | `release/<TAG>/` has GFF + proteins + METHODS + qc (EXAMPLE layout only in git) | [`../examples/golden_pack/`](../examples/golden_pack/) · [`../pipeline/check_release_pack.py`](../pipeline/check_release_pack.py) |
-| **7. Handoff FA** | Point FA `PROTEINS_FA` at **this** release proteins + `RELEASE_TAG` | [`../pipeline/A6_functional_optional.md`](../pipeline/A6_functional_optional.md) · [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) |
+| **7. Handoff FA** | Point FA `PROTEINS_FA` at **this** release proteins + `RELEASE_TAG` | [`HANDOFF_STRUCTURE_TO_FUNCTION.md`](HANDOFF_STRUCTURE_TO_FUNCTION.md) · [`../pipeline/A6_functional_optional.md`](../pipeline/A6_functional_optional.md) · [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) |
 
 **Classroom / print-first:** `flow.py` → `my_plan.md` is enough tonight. Soft-mask Done when + real sha256 before any A0 `RUN=1`.
 

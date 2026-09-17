@@ -27,7 +27,7 @@ That is **structural** annotation.
 
 **中文最短路径：** [`docs/zh/README.md`](docs/zh/README.md) · English door: [`docs/START_HERE.md`](docs/START_HERE.md)
 
-**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone tree).
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone) · offline [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
 
 ---
 
@@ -71,6 +71,8 @@ Then walk stages in `my_plan.md` → tick [`docs/EVALUATION_CHECKLIST.md`](docs/
 **Provisional ≠ L1:** Liftoff-only (**S11-lite**), Helixer-only, or MoGAAAP-style provisional merge ≠ evidence-based L1 — see [`docs/EVALUATION.md`](docs/EVALUATION.md) L0 vs L1.
 
 **Default (RNA + proteins, no close ref):** branch **S1** (BRAKER + StringTie compare).
+
+**Handoff to function:** [`docs/HANDOFF_STRUCTURE_TO_FUNCTION.md`](docs/HANDOFF_STRUCTURE_TO_FUNCTION.md) (`RELEASE_TAG` + `PROTEINS_FA=…/release/<TAG>/proteins.faa`).
 
 ---
 

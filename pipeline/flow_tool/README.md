@@ -33,3 +33,5 @@ Do not confuse: **plan markdown** (chooser + narration) vs **`--emit-commands`**
 Chinese FAQ: [`docs/zh/FAQ_入门.md`](../../docs/zh/FAQ_入门.md).
 
 Also: [`../../docs/START_HERE.md`](../../docs/START_HERE.md). Prefer `my_answers.yaml` in the repo root (same as root README).
+
+Chinese: when reading the English plan body, see [`docs/zh/读plan.md`](../../docs/zh/读plan.md) · glossary [`docs/zh/99_术语表.md`](../../docs/zh/99_术语表.md).

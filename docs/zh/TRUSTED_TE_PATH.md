@@ -1,5 +1,13 @@
 # 中文指针 — Trusted TE 路径
 
+## A0 前 30 秒
+
+- [ ] **近缘借库** *或* **自建 curated** trusted — 不要 working / 生 EDTA / `cat`+CD-HIT
+- [ ] 对该文件做真 **`sha256sum`** → METHODS（**禁止** `YOUR_SHA256` / FILL / 空）
+- [ ] Soft-mask **Done when** 勾完（[Wiki](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE#soft-mask--done-when-before-a0--run1) · [05](05_softmask与A0.md)）再 `RUN=1`
+
+---
+
 英文全文（借库 / 自建 + sha256 硬门）：[`../TRUSTED_TE_PATH.md`](../TRUSTED_TE_PATH.md)。  
 课内先过 [05_softmask与A0.md](05_softmask与A0.md) 的 **Soft-mask Done when**；Wiki：[Soft-mask — Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE#soft-mask--done-when-before-a0--run1)。
 

@@ -2,6 +2,8 @@
 
 **中文请从这里进：** [`zh/README.md`](zh/README.md)
 
+**Tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight) (not in clone) · offline [`CLASSROOM_TONIGHT.md`](CLASSROOM_TONIGHT.md).
+
 You want **gene models** (GFF), not GO tables.
 
 1. Run the flow tool → [`../pipeline/flow_tool/README.md`](../pipeline/flow_tool/README.md)  

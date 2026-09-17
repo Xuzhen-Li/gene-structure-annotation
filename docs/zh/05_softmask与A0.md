@@ -1,5 +1,12 @@
 # Soft-mask 与 A0（地板怎么铺）
 
+## A0 前 30 秒
+
+- [ ] 近缘借库 *或* 自建 trusted curatedlib（非 working / 生 EDTA）
+- [ ] 真 `sha256sum` → METHODS（禁止 `YOUR_SHA256`）
+- [ ] Soft-mask Done when 勾完再 A0 `RUN=1`（见文末 · [TRUSTED_TE_PATH](TRUSTED_TE_PATH.md)）
+
+
 英文细则：[`../TE_LIBRARY.md`](../TE_LIBRARY.md) · checklist [`../TRUSTED_TE_PATH.md`](../TRUSTED_TE_PATH.md) · [`../../pipeline/A0_softmask.md`](../../pipeline/A0_softmask.md)
 
 

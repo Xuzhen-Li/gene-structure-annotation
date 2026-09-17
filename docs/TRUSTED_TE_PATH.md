@@ -1,5 +1,13 @@
 # Trusted TE path — copy-paste checklist (A0)
 
+## Before A0 (30 s)
+
+- [ ] **Near-species borrow** *or* **own curated** trusted lib — not working / raw EDTA / `cat`+CD-HIT
+- [ ] Real **`sha256sum`** hex on *that* file → METHODS (**forbid** `YOUR_SHA256` / FILL / empty)
+- [ ] Soft-mask **Done when** ticked ([Wiki](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Soft-mask-TE#soft-mask--done-when-before-a0--run1) · [zh/05](zh/05_softmask与A0.md)) before any A0 `RUN=1`
+
+---
+
 **Goal:** soft-mask with a **trusted curatedlib** only → `GENOME_SOFT` for BRAKER / GALBA / …  
 **Never** soft-mask with working lib, raw EDTA TElib, `cat`+CD-HIT mega-FASTA, or TEsorter `all.cls.lib`.
 

@@ -17,6 +17,8 @@
 
 ---
 
+**今晚离线勾选（Wiki 不在 clone）：** [`../CLASSROOM_TONIGHT.md`](../CLASSROOM_TONIGHT.md) · 交接功能：[`../HANDOFF_STRUCTURE_TO_FUNCTION.md`](../HANDOFF_STRUCTURE_TO_FUNCTION.md) / [`交接_结构到功能.md`](交接_结构到功能.md)
+
 ## 今天最短路径（先做这个）
 
 **前提：** 组装已完成 → `ASSEMBLY_OK=yes`（Asm0 是清单，勿重装）。[FAQ](FAQ_入门.md)
