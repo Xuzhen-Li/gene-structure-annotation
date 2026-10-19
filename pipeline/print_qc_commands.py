@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Print recommended structure QC commands (print-first; does not run tools).
 
+This is a printer only. The check before RUN=1 is pipeline/preflight.py.
+
 Maps to docs/EVALUATION_CHECKLIST.md / docs/QUALITY_SOURCES.md.
 
 Usage:
@@ -112,10 +114,11 @@ def main() -> int:
     print(f"# Target grade: {args.grade}  ·  checklist: docs/EVALUATION_CHECKLIST.md")
     print("# Does NOT install tools or run BRAKER. Review then paste on your cluster.")
     print("# Bare `bash pipeline/01_…` without RUN=1 only prints [DRY] — it does NOT run BUSCO.")
+    print("# Before each RUN=1 block: python3 pipeline/preflight.py --env config/local.env --step <step>")
     print()
 
     if bad:
-        print("# [STOP] Placeholders / unset keys — do NOT paste RUN=1 blocks yet:")
+        print("# [STOP] Placeholders / unset keys — commands below are not printed:")
         for b in bad:
             print(f"#   - {b}")
         print("# Edit config/local.env (real paths + clade lineages), then re-run this printer.")
@@ -126,7 +129,8 @@ def main() -> int:
         print("## Reminders only (no executable G4–G6 until env is real)")
         print("# G1 ASSEMBLY_OK=yes after Asm1; G2 trusted TE soft-mask; G3 named draft + versions")
         print(f"# Would-be release smoke: python3 pipeline/check_release_pack.py {release}")
-        print("# exit 1: fix local.env and re-run print_qc (not a RUN=1 plan)")
+        print("# exit 1: placeholders found. Before any RUN=1, check the step with:")
+        print("#   python3 pipeline/preflight.py --env config/local.env --step <step>   (--list for steps)")
         return 1
 
     print("## Reminders G1–G3 (tick before trusting later QC)")
