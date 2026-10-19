@@ -1,7 +1,5 @@
 # Structure QA step / 结构注释质量评估
 
-<!-- All prose on this page is a placeholder. Replace each [[TODO-TEXT]] with reviewed text. -->
-
 ## English
 
 This step assesses the quality of your genome structure annotation. It sits after the consensus merge step and before release or handoff. A WARN means look, not delete. The example BUSCO, OMArk and gffcompare results are simulated.
@@ -18,13 +16,13 @@ This step assesses the quality of your genome structure annotation. It sits afte
 | TE annotation (GFF3 / BED / RepeatMasker `.out`) | `--te` | no |
 | Settings and thresholds | `--config` (default `config/structure_qa.ini`) | no |
 
-The `--gff` input is the required consensus GFF3 from the merge step.
-The `--genome` input is the required genome FASTA.
-The `--proteins` input is an optional protein FASTA with IDs equal to mRNA IDs.
-The `--evidence NAME=PATH` input provides optional evidence models in GTF or GFF3 format.
-The `--bam` or `--junctions` inputs provide an optional RNA-seq BAM or a junction table.
-The `--te` input provides the optional TE (transposable element) annotation as GFF3, BED or RepeatMasker .out format.
-The `--config` input comes from copying config/structure_qa.ini and editing the copy.
+- The `--gff` input is the required consensus GFF3 from the merge step.
+- The `--genome` input is the required genome FASTA.
+- The `--proteins` input is an optional protein FASTA with IDs equal to mRNA IDs.
+- The `--evidence NAME=PATH` input provides optional evidence models in GTF or GFF3 format.
+- The `--bam` or `--junctions` inputs provide an optional RNA-seq BAM or a junction table.
+- The `--te` input provides the optional TE (transposable element) annotation as GFF3, BED or RepeatMasker .out format.
+- The `--config` input comes from copying config/structure_qa.ini and editing the copy.
 
 ### Steps (one file each)
 
@@ -42,16 +40,16 @@ The `--config` input comes from copying config/structure_qa.ini and editing the 
 | `qa10_summary.py` | joins all metrics with thresholds | `qc_summary.tsv` |
 | `run_structure_qa.py` | runs qa01 to qa10 in order | all of the above |
 
-qa01: This check keeps one protein per gene. It groups them by Parent. It prefers isoforms without an internal stop. It then prefers the longest protein. The smallest transcript ID wins on a full tie. It writes longest_isoform.proteins.faa.
-qa02: This check runs BUSCO in protein mode on the longest isoforms per lineage. The gap is genome C minus annotation C in points. BUSCO only measures completeness of conserved single copy genes. The letters C, S, D, F and M mean complete, single copy, duplicated, fragmented and missing. A high D means isoforms were not deduplicated. It can also mean genes are split or chimeric.
-qa03: This check reports OMArk shares as a percent of the proteome. The shares are consistent, inconsistent, contaminant, unknown and missing.
-qa04: This check runs gffcompare against each evidence set. The annotation edit distance is called AED. AED equals 1 minus the mean of sensitivity and precision on exon bases. Transcripts with AED = 1 are listed in aed1_flagged.tsv. AED = 1 is a flag. It is not a deletion. Without evidence files and without an AED attribute, AED is NA, not 1.
-qa05: This check measures RNA seq junction support for the longest isoform of multi exon genes. A junction counts with at least junction_min_reads.
-qa06: This check writes intron_length_hist.tsv. It reports gene count, exons per gene, intron lengths and single exon share.
-qa07: This check writes internal_stops.tsv. It looks for internal stops written as * or ., terminal stops, frame issues, and missing starts or stops.
-qa08: This check writes te_overlap_genes.tsv for genes whose CDS lies at least 0.5 inside TE features. Simple_repeat and Low_complexity are not treated as TE.
-qa09: This check writes noncanonical_introns.tsv. It classifies intron splice sites as GT AG, GC AG, AT AC or other.
-qa10: This check joins all metrics with the thresholds into qc_summary.tsv. Every threshold is a rule of thumb. You should compare your results with close relative genomes annotated the same way. A WARN means look, not delete. The thresholds for aed_eq_1_share, gene_count and exons_per_gene_mean are not from the guidance. A consensus model is not a validated gene.
+- qa01: This check keeps one protein per gene. It groups them by Parent. It prefers isoforms without an internal stop. It then prefers the longest protein. The smallest transcript ID wins on a full tie. It writes longest_isoform.proteins.faa.
+- qa02: This check runs BUSCO in protein mode on the longest isoforms per lineage. The gap is genome C minus annotation C in points. BUSCO only measures completeness of conserved single copy genes. The letters C, S, D, F and M mean complete, single copy, duplicated, fragmented and missing. A high D means isoforms were not deduplicated. It can also mean genes are split or chimeric.
+- qa03: This check reports OMArk shares as a percent of the proteome. The shares are consistent, inconsistent, contaminant, unknown and missing.
+- qa04: This check runs gffcompare against each evidence set. The annotation edit distance is called AED. AED equals 1 minus the mean of sensitivity and precision on exon bases. Transcripts with AED = 1 are listed in aed1_flagged.tsv. AED = 1 is a flag. It is not a deletion. Without evidence files and without an AED attribute, AED is NA, not 1.
+- qa05: This check measures RNA seq junction support for the longest isoform of multi exon genes. A junction counts with at least junction_min_reads.
+- qa06: This check writes intron_length_hist.tsv. It reports gene count, exons per gene, intron lengths and single exon share.
+- qa07: This check writes internal_stops.tsv. It looks for internal stops written as * or ., terminal stops, frame issues, and missing starts or stops.
+- qa08: This check writes te_overlap_genes.tsv for genes whose CDS lies at least 0.5 inside TE features. Simple_repeat and Low_complexity are not treated as TE.
+- qa09: This check writes noncanonical_introns.tsv. It classifies intron splice sites as GT AG, GC AG, AT AC or other.
+- qa10: This check joins all metrics with the thresholds into qc_summary.tsv. Every threshold is a rule of thumb. You should compare your results with close relative genomes annotated the same way. A WARN means look, not delete. The thresholds for aed_eq_1_share, gene_count and exons_per_gene_mean are not from the guidance. A consensus model is not a validated gene.
 
 ### Run
 

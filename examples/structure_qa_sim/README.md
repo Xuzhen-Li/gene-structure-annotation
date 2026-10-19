@@ -1,7 +1,5 @@
 # Simulated example for the structure QA step / 结构质量评估模拟示例
 
-<!-- All prose on this page is a placeholder. Replace each [[TODO-TEXT]] with reviewed text. -->
-
 This example uses 2 simulated chromosomes of 30 kb each. It contains 10 simulated genes and is not real data. The example BUSCO, OMArk and gffcompare results are simulated. You run the test with bash examples/structure_qa_sim/run_example.sh. The script writes the output to examples/structure_qa_sim/qa_out/. The expected summary is expected_qc_summary.tsv.
 
 ```bash
