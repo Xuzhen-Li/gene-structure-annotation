@@ -10,75 +10,33 @@ if [[ "${RUN:-0}" != "1" ]]; then
   exit 0
 fi
 
-# After A4skip: export DRAFT_GFF="$MERGED_GFF" (or set both to the primary GFF).
-
+# Gene models: an existing MERGED_GFF (after A4) wins over DRAFT_GFF; pass a path as $1 to override.
 : "${GENOME_FA:?unmasked or soft-masked genome OK for gffread CDS}"
-: "${DRAFT_GFF:?}"
 : "${PROTEINS_FA:?}"
 # shellcheck source=pipeline/_env_guards.sh
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+IN_GFF="${1:-$(_gsa_pick_gff)}" || exit 1
 _gsa_reject_placeholder_path GENOME_FA "$GENOME_FA" || exit 1
 _gsa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
-_gsa_reject_placeholder_path DRAFT_GFF "$DRAFT_GFF" || exit 1
+_gsa_reject_placeholder_path GFF "$IN_GFF" || exit 1
 WORK_DIR="${WORK_DIR:-$(dirname "$PROTEINS_FA")}"
 _gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
+if [[ ! -f "$IN_GFF" ]]; then
+  echo "[ERR] GFF not found: $IN_GFF" >&2
+  exit 1
+fi
 mkdir -p "$(dirname "$PROTEINS_FA")"
+echo "[INFO] A3 gene models: $IN_GFF"
 
 if ! command -v gffread >/dev/null; then
   echo "need gffread (cufflinks / bioconda gffread)"; exit 1
 fi
 
-# CDS → protein; -J drops incomplete CDS if you want stricter set
-gffread "$DRAFT_GFF" -g "$GENOME_FA" -y "$PROTEINS_FA.raw.faa"
+# CDS → protein for every transcript ('*' = stop); -J drops incomplete CDS if you want a stricter set
+gffread "$IN_GFF" -g "$GENOME_FA" -y "$PROTEINS_FA.raw.faa" -S
 
-# Optional: keep one protein per gene_id (longest CDS)
-python3 - "$PROTEINS_FA.raw.faa" "$PROTEINS_FA" <<'PY'
-import sys
-from pathlib import Path
-
-inp, outp = Path(sys.argv[1]), Path(sys.argv[2])
-best: dict[str, tuple[int, str, str]] = {}
-name = seq = None
-
-def flush():
-    global name, seq
-    if not name or not seq:
-        return
-    # gene id heuristics: strip transcript suffixes common in BRAKER/GeMoMa
-    gid = name.split()[0]
-    for sep in [".t", ".T", "-mRNA", "_t", ".1", ".2"]:
-        # only strip trailing isoform markers carefully
-        pass
-    if ".t" in gid:
-        gid = gid.rsplit(".t", 1)[0]
-    elif gid.count(".") >= 2 and gid[-1].isdigit():
-        # e.g. gene.1 → keep as-is if BRAKER style g123.t1 already handled
-        pass
-    if gid.endswith(".1") or gid.endswith(".2"):
-        base = gid.rsplit(".", 1)[0]
-        if base:
-            gid = base
-    L = len(seq.replace("\n", ""))
-    prev = best.get(gid)
-    if prev is None or L > prev[0]:
-        best[gid] = (L, name.split()[0], seq)
-
-with inp.open() as fh:
-    for line in fh:
-        if line.startswith(">"):
-            flush()
-            name, seq = line[1:].strip(), ""
-        else:
-            seq += line
-    flush()
-
-with outp.open("w") as out:
-    for gid, (L, hdr, s) in sorted(best.items()):
-        out.write(f">{gid} length={L}\n")
-        s = s.replace("\n", "")
-        for i in range(0, len(s), 80):
-            out.write(s[i : i + 80] + "\n")
-print(f"wrote {len(best)} representative proteins -> {outp}")
-PY
+# One protein per gene: longest isoform, grouped by the GFF Parent / GTF gene_id
+python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/longest_isoform.py" \
+  --gff "$IN_GFF" --proteins "$PROTEINS_FA.raw.faa" --out "$PROTEINS_FA"
 
 echo "[OK] $PROTEINS_FA"

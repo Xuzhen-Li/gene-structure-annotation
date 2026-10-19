@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Protein-set completeness (BUSCO) + coding-likelihood scores (PSAURON).
 # Pattern from GSAman Methods (Chen et al. 2026 The Innovation).
-# Produces: BUSCO_OUT summary + PSAURON_TSV.
+# Produces: BUSCO_OUT summary + PSAURON_TSV (PSAURON writes CSV: description,psauron_is_protein,in-frame_score,…).
 # See: docs/STAGE_IO.md · docs/QUICKSTART.md
 set -euo pipefail
 
@@ -20,7 +20,7 @@ _gsa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
 BUSCO_LINEAGE="${BUSCO_LINEAGE:?set BUSCO_LINEAGE in local.env (no silent plant default)}"
 _gsa_reject_busco_lineage "$BUSCO_LINEAGE" || exit 1
 BUSCO_OUT="${BUSCO_OUT:-$WORK_DIR/busco_prot}"
-PSAURON_TSV="${PSAURON_TSV:-$WORK_DIR/psauron.tsv}"
+PSAURON_TSV="${PSAURON_TSV:-$WORK_DIR/psauron.csv}"
 THREADS="${THREADS:-16}"
 mkdir -p "$WORK_DIR" "$BUSCO_OUT"
 
@@ -39,15 +39,25 @@ else
 fi
 
 if command -v psauron >/dev/null; then
-  # CLI flags vary by PSAURON version — confirm with psauron --help
-  if ! psauron -i "$PROTEINS_FA" -o "$PSAURON_TSV"; then
-    echo "[WARN] psauron invocation failed — adjust flags for your install" >&2
+  # PSAURON is trained on CDS. Use spliced CDS from the gene models when GFF + genome are available
+  # (gffread -x); otherwise score the proteins with -p (protein mode, lower accuracy).
+  PS_GFF="$(_gsa_pick_gff 2>/dev/null || true)"
+  if [[ -n "${GENOME_FA:-}" && -f "${GENOME_FA}" && -n "$PS_GFF" && -f "$PS_GFF" ]] && command -v gffread >/dev/null; then
+    PS_CDS="${PSAURON_CDS_FA:-$WORK_DIR/psauron_input.cds.fa}"
+    echo "[INFO] PSAURON on CDS: gffread -x from $PS_GFF"
+    gffread "$PS_GFF" -g "$GENOME_FA" -x "$PS_CDS"
+    PS_ARGS=(-i "$PS_CDS" -o "$PSAURON_TSV")
+  else
+    echo "[INFO] PSAURON on proteins (-p): set GENOME_FA + DRAFT_GFF/MERGED_GFF and install gffread to score CDS instead"
+    PS_ARGS=(-i "$PROTEINS_FA" -o "$PSAURON_TSV" -p)
+  fi
+  if ! psauron "${PS_ARGS[@]}"; then
+    echo "[WARN] psauron invocation failed — check psauron --help for your version" >&2
     psauron_rc=1
   fi
 else
   echo "[WARN] psauron not on PATH — install from upstream (see GSAman paper Methods)" >&2
-  echo "gene_id	psauron_score" > "$PSAURON_TSV"
-  echo "# placeholder — fill after install" >> "$PSAURON_TSV"
+  echo "description,psauron_is_protein,in-frame_score" > "$PSAURON_TSV"
   psauron_rc=1
 fi
 

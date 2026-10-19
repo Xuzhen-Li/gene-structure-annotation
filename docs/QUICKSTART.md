@@ -182,7 +182,7 @@ RUN=1 bash pipeline/01_qc_busco_psauron.sh  # without RUN=1 you only get [DRY], 
 ### Step I — Priority list → curation → release
 
 ```bash
-python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 0.5
 # S7 / G9 (plant tandems): add --families curate/families.tsv  (see docs/SCENARIOS.md S7)
 # GSAman / browser: pipeline/04_gsaman_curation.md
 # When stable: pipeline/06_release_gff.md → release/<TAG>/ + PLAYBOOK checklist

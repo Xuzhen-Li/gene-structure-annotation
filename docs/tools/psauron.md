@@ -4,20 +4,20 @@
 
 ## Get it
 - Follow the PSAURON repository / paper cited in GSAman Methods (install path varies).  
-- Output expected by this repo: TSV with gene/protein id + score (see `pipeline/02_priority_loci.py`).
+- [[TODO-TEXT]]
 
 ## Typical use
 ```bash
 # After PROTEINS_FA exists:
 # psauron <args> → $PSAURON_TSV
 bash pipeline/01_qc_busco_psauron.sh   # prints/runs if PSAURON on PATH
-python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 90
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 0.5
 ```
 
 ## How to use scores
 - Low score → inspect first in GSAman.  
 - Boost known families via `--families` (**S7**).  
-- Threshold is a dial, not magic — start 90, adjust.
+- Threshold is a dial, not magic — start 0.5, adjust.
 
 ## Pitfalls
 - Matching IDs: PSAURON rows must match GFF gene/transcript ids (normalize before priority).  

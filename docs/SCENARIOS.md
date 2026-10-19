@@ -63,9 +63,9 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 10. **Priority** — low PSAURON first → `priority.tsv`. For NLR/stilbene/QTL **boost**, build `curate/families.tsv` and pass `--families` (S7 / G9); without it, “NLR boost” does nothing.  
     ```bash
-    python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 90
+    python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 0.5
     # S7 / plant_tandem_focus:
-    # python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 90 --families curate/families.tsv
+    # python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --threshold 0.5 --families curate/families.tsv
     ```
 
 11. **GSAman** — load genome, GFF, BAM, homologs; fix priority loci; tag [`ERROR_CLASSES.md`](ERROR_CLASSES.md); export `CURATED_GFF`.  
@@ -183,7 +183,7 @@ Every scenario below is a full recipe. Shared early steps always mean:
 
 3. **Mandatory** OMArk + Compleasm (`A5b`); save tables under `qc/`.
 
-4. **Expand priority** — all fragmented BUSCO genes + genome-wide tandem arrays (not only PSAURON < 90).
+4. **Expand priority** — all fragmented BUSCO genes + genome-wide tandem arrays (not only PSAURON < 0.5).
 
 5. **Second GSAman round** on expanded list.
 
@@ -232,7 +232,7 @@ Every scenario below is a full recipe. Shared early steps always mean:
 3. Re-rank:  
    ```bash
    python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv \
-     --threshold 90 --families curate/families.tsv
+     --threshold 0.5 --families curate/families.tsv
    ```
 
 4. **GSAman** only those windows (±100 kb for tandems). Leave rest as draft.

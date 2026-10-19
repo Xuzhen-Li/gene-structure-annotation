@@ -72,7 +72,7 @@ def main() -> int:
     gff = g(env, "CURATED_GFF", "") or g(env, "MERGED_GFF", "") or g(env, "DRAFT_GFF", "$MERGED_GFF")
     lineage = g(env, "BUSCO_LINEAGE", "")
     busco_out = g(env, "BUSCO_OUT", f"{work}/busco_prot" if work else "$BUSCO_OUT")
-    psauron = g(env, "PSAURON_TSV", f"{work}/psauron.tsv" if work else "$PSAURON_TSV")
+    psauron = g(env, "PSAURON_TSV", f"{work}/psauron.csv" if work else "$PSAURON_TSV")
     agat = g(env, "AGAT_OUT", f"{work}/agat" if work else "$AGAT_OUT")
     omark = g(env, "OMARK_OUT", f"{work}/qc/omark" if work else "$OMARK_OUT")
     omamer = g(env, "OMAMER_DB", "$OMAMER_DB")

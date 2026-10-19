@@ -43,3 +43,17 @@ _gsa_reject_compleasm_lineage() {
   fi
   return 0
 }
+# Pick the gene-model GFF for downstream steps: an existing MERGED_GFF wins over DRAFT_GFF.
+# Prints the chosen path; returns 1 if neither is usable.
+_gsa_pick_gff() {
+  if [[ -n "${MERGED_GFF:-}" && -f "${MERGED_GFF}" ]]; then
+    printf '%s\n' "$MERGED_GFF"
+    return 0
+  fi
+  if [[ -n "${DRAFT_GFF:-}" ]]; then
+    printf '%s\n' "$DRAFT_GFF"
+    return 0
+  fi
+  echo "[ERR] neither MERGED_GFF (existing file) nor DRAFT_GFF is set — edit config/local.env" >&2
+  return 1
+}
