@@ -60,6 +60,12 @@ class PriorityTest(unittest.TestCase):
         self.assertEqual(r.returncode, 3)
         self.assertIn("[ERR]", r.stderr)
 
+    def test_empty_file_warns(self):
+        r, rows = self.run_priority("")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("[WARN]", r.stderr)
+        self.assertEqual(rows, [])
+
     def test_legacy_two_column_tsv(self):
         _, rows = self.run_priority("g1\t0.9\ng2\t0.1\n")
         self.assertEqual([x.split("\t")[0] for x in rows], ["g2"])

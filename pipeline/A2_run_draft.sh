@@ -16,21 +16,31 @@ if [[ "$DRAFT_ENGINE" != "liftoff" ]]; then
   : "${GENOME_SOFT:?soft-masked FASTA}"
   _gsa_reject_placeholder_path GENOME_SOFT "$GENOME_SOFT" || exit 1
 fi
-# AUGUSTUS species name: one per genome, not a shared "generic" (other projects' runs would overwrite
-# that model). Stable across days so a rerun finds and reuses the model it already trained.
-AUGUSTUS_SPECIES="${AUGUSTUS_SPECIES:-${GENOME_PREFIX:-species}_braker}"
 mkdir -p "$WORK_DIR/draft" "$(dirname "$DRAFT_GFF")"
 
 case "$DRAFT_ENGINE" in
   braker3)
     : "${PROTEIN_DB:?clade-matched protein DB FASTA (OrthoDB or equivalent for YOUR species)}"
     RNA_BAM="${RNA_BAM:-none}"
+    # AUGUSTUS species name: fixed per genome (${GENOME_PREFIX}_braker), never a shared "generic".
+    # braker.pl stops if that species directory already exists. To rerun on the same genome, add
+    # --useexisting (BRAKER then trains again and overwrites the parameters in that directory); to start
+    # training from scratch, delete the species directory first. Only --skipAllTraining reuses it unchanged.
+    # The printed "# --useexisting" line sits above braker.pl: a comment inside the \ continuation would cut the command.
+    case "${GENOME_PREFIX:-}" in
+      ""|Species_v1.0|YOUR_*)
+        echo "[STOP] set GENOME_PREFIX in config/local.env (now: '${GENOME_PREFIX:-}') — it names the AUGUSTUS species ${GENOME_PREFIX:-<GENOME_PREFIX>}_braker" >&2
+        exit 1
+        ;;
+    esac
+    AUGUSTUS_SPECIES="${AUGUSTUS_SPECIES:-${GENOME_PREFIX}_braker}"
     WD="$WORK_DIR/draft/braker3"
     mkdir -p "$WD"
     echo "[INFO] BRAKER3 — softmasking on; species model AUGUSTUS_SPECIES=$AUGUSTUS_SPECIES"
     if [[ "$RNA_BAM" == "none" || -z "$RNA_BAM" ]]; then
       cat <<CMD
 # Protein + ab initio (no RNA):
+# --useexisting
 braker.pl \\
   --genome=$GENOME_SOFT \\
   --prot_seq=$PROTEIN_DB \\
@@ -43,6 +53,7 @@ CMD
     else
       cat <<CMD
 # RNA + proteins (recommended S1):
+# --useexisting
 braker.pl \\
   --genome=$GENOME_SOFT \\
   --prot_seq=$PROTEIN_DB \\

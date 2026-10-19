@@ -12,6 +12,12 @@ PROT="${STEM}.protein.faa"
 DROP="${STEM}.ids_to_remove.txt"
 OUT="${STEM}.checked.gff3"
 
+# GFF3 only: the removal step reads ID=/Parent= attributes, so a GTF would pass through unfiltered.
+if [[ "$IN_GFF" == *.gtf || "$IN_GFF" == *.gtf.gz ]] || \
+   awk -F'\t' '!/^#/ && NF>=9 {gtf = ($9 !~ /=/ && $9 ~ /"/); found = 1; exit} END {exit !(found && gtf)}' "$IN_GFF"; then
+  echo "[ERR] $IN_GFF looks like GTF; A5e needs GFF3 (e.g. gffread \"$IN_GFF\" --keep-genes -o genes.gff3)" >&2
+  exit 2
+fi
 CDS="${STEM}.cds.fa"
 # Spliced CDS, translated by the checker: gffread -y drops the final stop codon from its output,
 # so "has a terminal stop" can only be judged on the CDS. Internal stops are reported separately.

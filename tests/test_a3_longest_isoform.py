@@ -38,6 +38,15 @@ class LongestIsoformTest(unittest.TestCase):
         best, _ = li.pick_longest({"x.2": "x", "x.1": "x"}, [("x.2", "MAAA"), ("x.1", "MAAA")])
         self.assertEqual(best["x"][1], "x.1")
 
+    def test_tie_is_plain_lexicographic_min(self):
+        # "x.1" < "x.10" < "x.2" as strings; order of input must not matter
+        prots = [("x.2", "MAAA"), ("x.10", "MAAA"), ("x.1", "MAAA")]
+        for order in (prots, prots[::-1]):
+            best, _ = li.pick_longest({t: "x" for t, _ in prots}, order)
+            self.assertEqual(best["x"][1], "x.1")
+        best, _ = li.pick_longest({"y.10": "y", "y.2": "y"}, [("y.2", "MA"), ("y.10", "MA")])
+        self.assertEqual(best["y"][1], "y.10")
+
     def test_gtf_input(self):
         with tempfile.TemporaryDirectory() as d:
             gtf = Path(d) / "a.gtf"

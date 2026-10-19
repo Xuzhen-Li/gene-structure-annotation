@@ -50,6 +50,41 @@ class BrakerTest(unittest.TestCase):
         self.assertIn("--keep-genes", r.stdout)
 
 
+    def _braker(self, prefix):
+        with tempfile.TemporaryDirectory() as d:
+            env = {"WORK_DIR": d, "GENOME_SOFT": f"{d}/g.fa", "DRAFT_GFF": f"{d}/draft/primary.gff3",
+                   "PROTEIN_DB": f"{d}/p.faa", "RNA_BAM": f"{d}/r.bam"}
+            if prefix is not None:
+                env["GENOME_PREFIX"] = prefix
+            return toydata.run(["bash", A2], env=env)
+
+    def test_genome_prefix_required(self):
+        for prefix in (None, "", "Species_v1.0"):
+            r = self._braker(prefix)
+            self.assertEqual(r.returncode, 1, prefix)
+            self.assertIn("[STOP]", r.stderr)
+            self.assertIn("GENOME_PREFIX", r.stderr)
+
+    def test_useexisting_hint_outside_continuation(self):
+        # braker.pl stops if the species dir exists; reruns need --useexisting. The hint must not sit
+        # inside the backslash continuation (a comment there would cut the pasted command).
+        for bam in ("none", "/x/r.bam"):
+            with tempfile.TemporaryDirectory() as d:
+                r = toydata.run(["bash", A2], env={"WORK_DIR": d, "GENOME_SOFT": f"{d}/g.fa",
+                                                   "DRAFT_GFF": f"{d}/p.gff3", "PROTEIN_DB": f"{d}/p.faa",
+                                                   "RNA_BAM": bam, "GENOME_PREFIX": "Toy"})
+            lines = r.stdout.splitlines()
+            i = lines.index("braker.pl \\")
+            self.assertEqual(lines[i - 1], "# --useexisting")
+            block = []
+            for line in lines[i:]:
+                block.append(line)
+                if not line.endswith("\\"):
+                    break
+            self.assertFalse(any(l.lstrip().startswith("#") for l in block))
+            self.assertTrue(block[-1].strip().startswith("--workingdir="))
+
+
 class LiftoffTest(unittest.TestCase):
     def test_liftoff_engine(self):
         # Old bug: DRAFT_ENGINE=liftoff (03_solanum_s11 env.snippet) → "unknown DRAFT_ENGINE", exit 1.

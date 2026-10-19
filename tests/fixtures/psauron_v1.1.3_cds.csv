@@ -1,4 +1,4 @@
-/opt/conda/bin/psauron -i work/psauron_input.cds.fa -o work/psauron.csv
+psauron -i work/psauron_input.cds.fa -o work/psauron.csv
 psauron score: 66.7
 NOTE: alternate reading frames may not contain valid ORFs
 description,psauron_is_protein,in_frame_score,forward_frame2_score,forward_frame3_score,reverse_frame1_score,reverse_frame2_score,reverse_frame3_score,mean_out_of_frame_score

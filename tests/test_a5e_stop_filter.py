@@ -41,6 +41,21 @@ class ClassifyTest(unittest.TestCase):
         self.assertIn("--cds", text)
 
 
+class A5eInputTest(unittest.TestCase):
+    def test_gtf_input_is_rejected(self):
+        # Old behaviour: GTF has no ID=/Parent=, so nothing was removed and the "checked" file was unfiltered.
+        with tempfile.TemporaryDirectory() as d:
+            t = Path(d)
+            (t / "g.fa").write_text(">chr1\nATG\n")
+            for name in ("a.gtf", "a.gff3"):   # by extension, and by content under a .gff3 name
+                f = t / name
+                f.write_text('chr1\tx\ttranscript\t1\t90\t.\t+\t.\tgene_id "G1"; transcript_id "T1";\n')
+                r = toydata.run(["bash", str(toydata.PIPE / "A5e_filter_proteins.sh"), str(f)],
+                                env={"GENOME_FA": str(t / "g.fa")})
+                self.assertEqual(r.returncode, 2, name)
+                self.assertIn("GTF", r.stderr)
+
+
 @unittest.skipUnless(toydata.have("gffread"), "gffread not on PATH")
 class A5eEndToEndTest(unittest.TestCase):
     def test_filter_on_toy_models(self):

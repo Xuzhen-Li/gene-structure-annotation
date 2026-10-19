@@ -1,5 +1,5 @@
-/opt/conda/bin/psauron -i work/proteins.faa -o work/psauron.csv -p
+psauron -i work/proteins.faa -o work/psauron.csv -p
 psauron score: 50.0
 description,psauron_is_protein,in-frame_score
-g1 transcript=g1.t1 length=61,True,0.9
-g2 transcript=g2.t1 length=40,False,0.3
+g1,True,0.9
+g2,False,0.3

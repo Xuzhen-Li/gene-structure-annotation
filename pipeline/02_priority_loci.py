@@ -82,6 +82,8 @@ def main(argv: list[str] | None = None) -> int:
             gid, fam = line.split("\t", 1)
             fam_of[gid.strip()] = fam.strip()
 
+    if not args.psauron.read_text().strip():
+        print(f"[WARN] {args.psauron} is empty — no PSAURON scores; writing header-only {args.out}", file=sys.stderr)
     scores = read_scores(args.psauron)
     if not scores and args.psauron.read_text().strip():
         print(f"[ERR] {args.psauron} is not empty but no (id, score) rows were parsed — expected a PSAURON CSV "

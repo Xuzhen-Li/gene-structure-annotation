@@ -81,9 +81,9 @@ def pick_longest(tx_gene: dict[str, str], proteins) -> tuple[dict[str, tuple[int
             unmapped.append(tid)
             gid = tid
         length = len(seq.rstrip("*."))
-        # higher is better: clean ORF first, then length; ties → smaller transcript ID (stable output)
-        key = (not has_internal_stop(seq), length, [-ord(c) for c in tid])
-        if gid not in rank or key > rank[gid]:
+        # higher (clean ORF, length) wins; on a tie the lexicographically smaller transcript ID wins
+        key = (not has_internal_stop(seq), length)
+        if gid not in rank or key > rank[gid] or (key == rank[gid] and tid < best[gid][1]):
             rank[gid] = key
             best[gid] = (length, tid, seq)
     return best, unmapped
