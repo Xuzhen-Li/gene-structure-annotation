@@ -21,9 +21,9 @@ Sibling QC helpers: [`tools/busco.md`](tools/busco.md) · [`tools/omark_compleas
 3. Compleasm: use a lineage name your Compleasm build actually ships (historically odb10-oriented; newer Compleasm supports odb12 — check `compleasm list` / your site docs). Put the **same clade intent** in `COMPLEASM_LINEAGE` (often short names like `eudicots`, `poales`).  
 4. Never leave `YOUR_BUSCO_LINEAGE_*` or silent `eukaryota` in a release METHODS.
 
-[[TODO-TEXT]] [BUSCO Plants](https://busco.ezlab.org/frames/plants).
+A lineage is the BUSCO dataset of conserved genes for your clade. View plant lineages at [BUSCO Plants](https://busco.ezlab.org/frames/plants).
 
-[[TODO-TEXT]]
+You can list the datasets your BUSCO can download. Run this command:
 
 ```bash
 busco --list-datasets
@@ -48,7 +48,7 @@ Prefer the **most specific available** lineage that still matches your species. 
 | General **eudicots** | `eudicotyledons_odb12` | `eudicots` | Most dicot crops when order-level set unavailable |
 | General **Poales** / grasses | `poales_odb12` | `poales` | Monocot grasses (rice, maize, wheat, …) |
 
-[[TODO-TEXT]]
+Pick one generation like odb10 or odb12 and do not mix them. Pick the most specific lineage that exists for your species. If it is missing, step up to eudicotyledons_odb12, poales_odb12 or viridiplantae_odb12.
 
 ---
 

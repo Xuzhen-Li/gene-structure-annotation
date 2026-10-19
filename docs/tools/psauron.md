@@ -4,7 +4,7 @@
 
 ## Get it
 - Follow the PSAURON repository / paper cited in GSAman Methods (install path varies).  
-- [[TODO-TEXT]]
+- PSAURON scores run from 0 to 1 and it writes $WORK_DIR/psauron.csv by default. The setting is still called PSAURON_TSV so old configuration files keep working.
 
 ## Typical use
 ```bash
