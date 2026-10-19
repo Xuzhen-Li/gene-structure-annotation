@@ -9,7 +9,7 @@
 | If you need… | Open |
 |--------------|------|
 | Branch map (trunk / draft / overlay) | [`ROADMAP.md`](ROADMAP.md) |
-| Evidence → which S-branch | [README “Plain map”](../README.md#plain-map-one-glance) |
+| Evidence → which S-branch | [README “Plain map”](../README.md#branches) |
 | Every stage’s inputs/outputs | [`STAGE_IO.md`](STAGE_IO.md) |
 | Full qualification checklist | [`PLAYBOOK.md`](PLAYBOOK.md) |
 | Copy-paste depth | [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) |
@@ -72,8 +72,10 @@ Load env in every shell:
 set -a
 source config/local.env
 set +a
-case "$WORK_DIR" in /path/to*|*/path/to*) echo "edit WORK_DIR in local.env before mkdir"; exit 1;; esac
-mkdir -p "$WORK_DIR"/{genome,rna,draft,agat,qc,curated,release}
+case "$WORK_DIR" in
+  /path/to*|*/path/to*) echo "[STOP] edit WORK_DIR in local.env before mkdir" ;;
+  *) mkdir -p "$WORK_DIR"/{genome,rna,draft,agat,qc,curated,release} ;;
+esac
 ```
 
 Install tools on your cluster as needed (BRAKER/GALBA, HISAT2/STAR, AGAT, BUSCO, gffread, …).  
@@ -83,7 +85,7 @@ This repo is a **METHODS playbook + helpers**, not a single `conda install` blac
 
 ## 3. Choose your branch (do not skip)
 
-Open the [Plain map (one glance)](../README.md#plain-map-one-glance) section.
+Open the [Plain map (one glance)](../README.md#branches) section.
 
 | You have | Branch | Why |
 |----------|--------|-----|
@@ -182,7 +184,7 @@ RUN=1 bash pipeline/01_qc_busco_psauron.sh  # without RUN=1 you only get [DRY], 
 ### Step I — Priority list → curation → release
 
 ```bash
-python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90
+python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 0.5
 # S7 / G9 (plant tandems): add --families curate/families.tsv  (see docs/SCENARIOS.md S7)
 # GSAman / browser: pipeline/04_gsaman_curation.md
 # When stable: pipeline/06_release_gff.md → release/<TAG>/ + PLAYBOOK checklist

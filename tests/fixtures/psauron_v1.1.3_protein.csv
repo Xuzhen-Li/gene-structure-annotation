@@ -1,0 +1,5 @@
+psauron -i work/proteins.faa -o work/psauron.csv -p
+psauron score: 50.0
+description,psauron_is_protein,in-frame_score
+g1,True,0.9
+g2,False,0.3

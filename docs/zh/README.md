@@ -54,7 +54,7 @@
 - [FAQ](FAQ_入门.md) · [04 分支](04_分支怎么选.md) · [13 翻车](13_常见翻车.md) · [术语](99_术语表.md)
 - 可选：[植物三种模拟](植物三种模拟.md)（葡萄抗病开 `plant_tandem_focus`）
 - TE：**trusted** 库 soft-mask（小写，不是 N）；深课 [18](18_TE流程课_借鉴实验室03_TE.md)；EDTA 工具页事后再开
-- 打印 QC：`python3 pipeline/print_qc_commands.py`（先 `source config/local.env`）
+- 打印 QC：`python3 pipeline/print_qc_commands.py --env config/local.env`
 - 英文：[`flow_tool/`](../../pipeline/flow_tool/) · [`EVALUATION.md`](../EVALUATION.md)
 
 </details>

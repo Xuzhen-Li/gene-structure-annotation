@@ -306,7 +306,7 @@ bash pipeline/A3_proteins_from_gff.sh
 
 ```bash
 export BUSCO_OUT="$WORK_DIR/qc/busco_prot"
-export PSAURON_TSV="$WORK_DIR/qc/psauron.tsv"
+export PSAURON_TSV="$WORK_DIR/qc/psauron.csv"
 bash pipeline/01_qc_busco_psauron.sh
 bash pipeline/A5b_omark_compleasm.sh   # if installed
 ```
@@ -327,7 +327,7 @@ bash pipeline/A5b_omark_compleasm.sh   # if installed
 python3 pipeline/02_priority_loci.py \
   -i "$PSAURON_TSV" \
   -o "$WORK_DIR/curate/priority.tsv" \
-  --threshold 90 \
+  --threshold 0.5 \
   --families "$WORK_DIR/curate/families.tsv"
 ```
 

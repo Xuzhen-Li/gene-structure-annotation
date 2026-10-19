@@ -3,7 +3,7 @@
 **Role:** Second (or primary) draft from a high-quality grape reference GFF+FA.
 
 ## Get it
-- https://github.com/Jstacs/GeMoMa (Java; version CLI differs — read *your* jar’s help)
+- https://www.jstacs.de/index.php/GeMoMa (Java; version CLI differs — read *your* jar’s help)
 
 ## Idea
 Take gene models from `REF_FA` + `REF_GFF` (e.g. PN40024) and project them onto `GENOME_SOFT`.

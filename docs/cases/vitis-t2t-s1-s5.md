@@ -81,7 +81,7 @@ EVM_WEIGHTS="$REPO_ROOT/config/evm_weights_s1_braker.txt"
 PROTEINS_FA="$WORK_DIR/proteins.faa"
 BUSCO_LINEAGE="viridiplantae_odb12"      # report this name in METHODS — do not leave eukaryota by accident
 BUSCO_OUT="$WORK_DIR/qc/busco_prot"
-PSAURON_TSV="$WORK_DIR/qc/psauron.tsv"
+PSAURON_TSV="$WORK_DIR/qc/psauron.csv"
 PRIORITY_TSV="$WORK_DIR/qc/priority_r1.tsv"
 AGAT_OUT="$WORK_DIR/agat"
 OMARK_OUT="$WORK_DIR/qc/omark"
@@ -217,7 +217,7 @@ RUN=1 bash pipeline/A5b_omark_compleasm.sh
 python3 pipeline/02_priority_loci.py \
   -i "$PSAURON_TSV" \
   -o "$WORK_DIR/priority_rounds/priority_r1.tsv" \
-  --threshold 90
+  --threshold 0.5
 # Optional: boost NLR / stilbene / QTL windows via extra TSV if you maintain one
 cp "$WORK_DIR/priority_rounds/priority_r1.tsv" "$PRIORITY_TSV"
 ```
@@ -247,7 +247,7 @@ Tag every edit with [`../ERROR_CLASSES.md`](../ERROR_CLASSES.md). Export → upd
 
 ## 6. Phase E — S5 expansion + GSAman round 2
 
-### 6.1 Expand priority (not only PSAURON &lt; 90)
+### 6.1 Expand priority (not only PSAURON &lt; 0.5)
 
 Build `priority_rounds/priority_r2.tsv` as the **union** of:
 
@@ -263,7 +263,7 @@ Practical pattern:
 python3 pipeline/02_priority_loci.py \
   -i "$PSAURON_TSV" \
   -o "$WORK_DIR/priority_rounds/priority_r2_psauron.tsv" \
-  --threshold 90 \
+  --threshold 0.5 \
   --families "$WORK_DIR/priority_rounds/families.tsv"
 
 # Prepare side lists (gene_id\treason), e.g.:

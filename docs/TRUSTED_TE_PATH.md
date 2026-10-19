@@ -46,6 +46,7 @@ Use a **named trusted curatedlib** from a near species / same panel. Not raw EDT
 ```bash
 # After download — paths are yours; never commit private cluster paths
 TRUSTED_TE_LIB="/path/to/donor_TElib_trusted_vX.fa"
+mkdir -p "$WORK_DIR/mask"
 sha256sum "$TRUSTED_TE_LIB" | tee "$WORK_DIR/mask/TRUSTED_TE_LIB.sha256"
 # STOP if you only have YOUR_SHA256 / FILL / empty — forbid A0
 export CLEAN_TE_LIB="$TRUSTED_TE_LIB"
@@ -55,9 +56,9 @@ export CLEAN_TE_LIB="$TRUSTED_TE_LIB"
 
 ```bash
 # Optional: EDTA annotation pass with trusted curatedlib (new output dir; never --overwrite frozen discovery)
+# ... other flags per docs/tools/edta.md — do NOT copy grape --u blindly
 EDTA.pl --genome "$GENOME_FA" --species others --anno 1 \
-  --curatedlib "$CLEAN_TE_LIB" --threads "$THREADS" \
-  # ... other flags per docs/tools/edta.md — do NOT copy grape --u blindly
+  --curatedlib "$CLEAN_TE_LIB" --threads "$THREADS"
 ```
 
 Gene-structure **A0** soft-mask (usual):
@@ -98,6 +99,7 @@ Tick in order (details: [`TE_LIBRARY.md`](TE_LIBRARY.md)):
 
 ```bash
 ls -lh "$TRUSTED_TE_LIB"
+mkdir -p "$WORK_DIR/mask"
 sha256sum "$TRUSTED_TE_LIB" | tee "$WORK_DIR/mask/TRUSTED_TE_LIB.sha256"
 export CLEAN_TE_LIB="$TRUSTED_TE_LIB"
 # Then same RepeatMasker / optional EDTA --curatedlib one-liners as in ①
