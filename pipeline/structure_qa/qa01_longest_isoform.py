@@ -13,6 +13,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import qa_common as qc  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from longest_isoform import has_internal_stop  # noqa: E402,F401  (shared with pipeline/longest_isoform.py)
+
 STEP = "qa01_longest_isoform"
 
 
@@ -34,11 +37,6 @@ def _strip_stop(prot: str) -> str:
     return prot[:-1] if prot.endswith(("*", ".")) else prot
 
 
-def has_internal_stop(seq: str) -> bool:
-    core = seq.rstrip("*.")
-    return "*" in core or "." in core
-
-
 def pick_longest(models, proteins, genome):
     """Longest isoform per gene, grouped by the GFF3 Parent link.
 
@@ -46,8 +44,6 @@ def pick_longest(models, proteins, genome):
     internal stop first, then the longest protein (terminal stop not counted);
     on a full tie the lexicographically smallest transcript ID wins (min).
     Transcripts without a protein count as clean, with length CDS length / 3.
-    TODO: once pipeline/longest_isoform.py is on main, import its
-    has_internal_stop / ranking instead of keeping this copy.
     """
     best: dict[str, str] = {}
     rank: dict[str, tuple] = {}
