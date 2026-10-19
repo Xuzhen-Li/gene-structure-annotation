@@ -1,0 +1,12 @@
+#MOCK OUTPUT for the simulated example (not a real OMArk run).
+#The selected clade was Vitis
+#Number of conserved HOGs is: 7522
+#Results on conserved HOGs is:
+#S:Single:S, D:Duplicated[U:Unexpected,E:Expected],M:Missing
+6898	361	168	193	263
+S:91.71%,D:4.80%[U:2.23%,E:2.57%],M:3.50%
+#On the whole proteome, there is 30120 proteins
+#Of which:
+#A:Consistent (taxonomic)[P:Partial hits,F:Fragmented], I: Inconsistent (taxonomic)[P:Partial hits,F:Fragmented], C: Likely Contamination[P:Partial hits,F:Fragmented], U: Unknown
+24879	1747	1205	1416	211	783	0	0	0	3825
+A:82.60%[P:5.80%,F:4.00%],I:4.70%[P:0.70%,F:2.60%],C:0.00%[P:0.00%,F:0.00%],U:12.70%

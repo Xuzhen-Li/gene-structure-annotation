@@ -1,0 +1,9 @@
+# MOCK OUTPUT for the simulated example (not a real BUSCO run).
+# BUSCO version is: 5.8.2
+# The lineage dataset is: embryophyta_odb12 (Creation date: 2024-01-08, number of genomes: 0, number of BUSCOs: 2026)
+# Summarized benchmarking in BUSCO notation for file input.faa
+# BUSCO was run in mode: euk_genome_met
+
+	***** Results: *****
+
+	C:96.0%[S:88.0%,D:8.0%],F:1.5%,M:2.5%,n:2026	   

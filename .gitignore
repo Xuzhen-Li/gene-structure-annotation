@@ -5,3 +5,4 @@ my_answers.yaml
 answers.yaml
 __pycache__/
 *.pyc
+examples/structure_qa_sim/qa_out/

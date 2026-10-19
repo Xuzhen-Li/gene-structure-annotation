@@ -1,0 +1,80 @@
+# All thresholds are rules of thumb; compare with a close relative genome.
+metric	value	threshold	status	basis	step	note
+coding_gene_count	10	-	INFO		qa01_longest_isoform	genes with at least one CDS
+transcripts_per_gene_mean	1.1	-	INFO		qa01_longest_isoform	coding transcripts / coding genes
+longest_isoform_proteins	10	-	INFO		qa01_longest_isoform	/tmp/qa_exp/longest_isoform.proteins.faa
+longest_isoform_missing_protein	0	== 0	PASS	rule of thumb	qa01_longest_isoform	no protein in FASTA and no genome to translate
+longest_isoform_translated_from_genome	0	-	INFO		qa01_longest_isoform	
+busco_prot_embryophyta_odb12_C	94.1	>= 90	PASS	rule of thumb	qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_embryophyta_odb12_S	85.3	-	INFO		qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_embryophyta_odb12_D	8.8	<= 10	PASS	rule of thumb	qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_embryophyta_odb12_F	2.1	-	INFO		qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_embryophyta_odb12_M	3.8	<= 10	PASS	rule of thumb	qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_embryophyta_odb12_n	2026	-	INFO		qa02_busco	busco/prot_embryophyta_odb12/short_summary.specific.embryophyta_odb12.prot_embryophyta_odb12.txt
+busco_prot_eudicotyledons_odb12_C	88	>= 90	WARN	rule of thumb	qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_prot_eudicotyledons_odb12_S	79.6	-	INFO		qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_prot_eudicotyledons_odb12_D	8.4	<= 10	PASS	rule of thumb	qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_prot_eudicotyledons_odb12_F	3.6	-	INFO		qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_prot_eudicotyledons_odb12_M	8.4	<= 10	PASS	rule of thumb	qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_prot_eudicotyledons_odb12_n	2805	-	INFO		qa02_busco	busco/prot_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.prot_eudicotyledons_odb12.txt
+busco_genome_embryophyta_odb12_C	96	-	INFO		qa02_busco	busco/genome_embryophyta_odb12/short_summary.specific.embryophyta_odb12.genome_embryophyta_odb12.txt
+busco_gap_embryophyta_odb12	1.9	<= 5	PASS	rule of thumb	qa02_busco	genome C minus annotation C (points)
+busco_genome_eudicotyledons_odb12_C	94.5	-	INFO		qa02_busco	busco/genome_eudicotyledons_odb12/short_summary.specific.eudicotyledons_odb12.genome_eudicotyledons_odb12.txt
+busco_gap_eudicotyledons_odb12	6.5	<= 5	WARN	rule of thumb	qa02_busco	genome C minus annotation C (points)
+omark_consistent_pct	82.6	>= 80	PASS	rule of thumb	qa03_omark	omark/omark_output/proteins.sum
+omark_inconsistent_pct	4.7	<= 10	PASS	rule of thumb	qa03_omark	omark/omark_output/proteins.sum
+omark_contaminant_pct	0	<= 1	PASS	rule of thumb	qa03_omark	omark/omark_output/proteins.sum
+omark_unknown_pct	12.7	<= 20	PASS	rule of thumb	qa03_omark	omark/omark_output/proteins.sum
+omark_single_pct	91.71	-	INFO		qa03_omark	omark/omark_output/proteins.sum
+omark_duplicated_pct	4.8	-	INFO		qa03_omark	omark/omark_output/proteins.sum
+omark_missing_pct	3.5	<= 10	PASS	rule of thumb	qa03_omark	omark/omark_output/proteins.sum
+gffcompare_transcripts_base_sensitivity	99.1	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_base_precision	86.4	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_exon_sensitivity	93.5	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_exon_precision	80	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_intron_sensitivity	100	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_intron_precision	94.1	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_transcript_sensitivity	90	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_transcripts_transcript_precision	81.8	-	INFO		qa04_evidence_aed	gffcompare/transcripts.stats
+gffcompare_proteins_base_sensitivity	100	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_base_precision	80.2	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_exon_sensitivity	90.3	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_exon_precision	77.6	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_intron_sensitivity	100	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_intron_precision	94.1	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_transcript_sensitivity	80	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+gffcompare_proteins_transcript_precision	72.7	-	INFO		qa04_evidence_aed	gffcompare/proteins.stats
+aed_transcripts	11	-	INFO		qa04_evidence_aed	
+aed_le_0.5_share	0.9091	>= 0.9	PASS	rule of thumb	qa04_evidence_aed	
+aed_median	0	-	INFO		qa04_evidence_aed	
+aed_eq_1_count	1	-	INFO		qa04_evidence_aed	listed in aed1_flagged.tsv; not deleted
+aed_eq_1_share	0.0909	<= 0.05	WARN	rule of thumb	qa04_evidence_aed	
+rnaseq_gene_junction_support_share	0.875	>= 0.7	PASS	rule of thumb	qa05_rnaseq_junctions	multi-exon genes=8; min reads per junction=1
+rnaseq_intron_support_share	0.875	-	INFO		qa05_rnaseq_junctions	unique introns=16
+rnaseq_full_chain_support_share	0.75	-	INFO		qa05_rnaseq_junctions	multi-exon genes=8; min reads per junction=1
+gene_count	10	20000-50000	WARN	rule of thumb	qa06_gene_stats	genes with a CDS
+transcript_count	11	-	INFO		qa06_gene_stats	coding transcripts
+exons_per_gene_mean	2.6	4-7	WARN	rule of thumb	qa06_gene_stats	longest isoform
+exon_length_mean_bp	262.0385	-	INFO		qa06_gene_stats	exon lines, else CDS
+cds_length_mean_bp	561.3	-	INFO		qa06_gene_stats	
+intron_count	16	-	INFO		qa06_gene_stats	longest isoform
+intron_length_median_bp	310	-	INFO		qa06_gene_stats	
+intron_length_p05_bp	195	-	INFO		qa06_gene_stats	
+intron_length_p95_bp	625	-	INFO		qa06_gene_stats	
+intron_length_max_bp	700	-	INFO		qa06_gene_stats	
+intron_short_share	0	<= 0.001	PASS	rule of thumb	qa06_gene_stats	introns < 20 bp
+intron_long_share	0	<= 0.01	PASS	rule of thumb	qa06_gene_stats	introns > 25000 bp
+single_exon_share	0.2	0.15-0.25	PASS	rule of thumb	qa06_gene_stats	longest isoform
+internal_stop_share	0.0909	<= 0	WARN	rule of thumb	qa07_internal_stops	transcripts checked=11; seqid missing from genome=0
+internal_stop_count	1	-	INFO		qa07_internal_stops	listed in internal_stops.tsv
+protein_fasta_internal_stop_count	1	== 0	WARN	rule of thumb	qa07_internal_stops	
+protein_fasta_terminal_stop_share	1	-	INFO		qa07_internal_stops	proteins ending in '*' or '.'; not an error
+cds_not_multiple_of_3_share	0	<= 0.01	PASS	rule of thumb	qa07_internal_stops	after first-CDS phase
+missing_start_codon_share	0	<= 0.05	PASS	rule of thumb	qa07_internal_stops	partial models allowed
+missing_stop_codon_share	0	<= 0.05	PASS	rule of thumb	qa07_internal_stops	partial models allowed
+te_overlap_gene_share	0.1	<= 0.01	WARN	rule of thumb	qa08_te_overlap	CDS >= 0.5 inside TE; listed in te_overlap_genes.tsv
+te_overlap_cds_base_share	0.1069	<= 0.01	WARN	rule of thumb	qa08_te_overlap	all CDS bases
+splice_gt_ag_share	0.9412	>= 0.98	WARN	rule of thumb	qa09_splice_sites	unique introns=17
+splice_gc_ag_share	0.0588	-	INFO		qa09_splice_sites	unique introns=17
+splice_at_ac_share	0	-	INFO		qa09_splice_sites	unique introns=17
+splice_noncanonical_share	0	<= 0.005	PASS	rule of thumb	qa09_splice_sites	listed in noncanonical_introns.tsv
