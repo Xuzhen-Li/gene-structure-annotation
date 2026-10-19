@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Keep one protein per gene: the longest isoform, grouped by the GFF Parent (or GTF gene_id).
 
+Isoforms with an internal stop codon are chosen only when a gene has no other isoform.
 Usage: longest_isoform.py --gff genes.gff3 --proteins all_transcripts.faa --out proteins.faa
 Output headers: >GENE_ID transcript=TRANSCRIPT_ID length=N (stop codons are not counted).
 Transcripts that are missing from the GFF are reported and kept under their own ID.
@@ -63,8 +64,16 @@ def read_fasta(path: Path):
         yield name, "".join(chunks)
 
 
+def has_internal_stop(seq: str) -> bool:
+    core = seq.rstrip("*.")
+    return "*" in core or "." in core
+
+
 def pick_longest(tx_gene: dict[str, str], proteins) -> tuple[dict[str, tuple[int, str, str]], list[str]]:
+    """Per gene, keep the longest isoform among those without an internal stop codon
+    (isoforms with internal stops are used only when a gene has nothing else)."""
     best: dict[str, tuple[int, str, str]] = {}
+    rank: dict[str, tuple] = {}
     unmapped: list[str] = []
     for tid, seq in proteins:
         gid = tx_gene.get(tid)
@@ -72,9 +81,10 @@ def pick_longest(tx_gene: dict[str, str], proteins) -> tuple[dict[str, tuple[int
             unmapped.append(tid)
             gid = tid
         length = len(seq.rstrip("*."))
-        prev = best.get(gid)
-        # ties: keep the first transcript ID in sort order so output is stable
-        if prev is None or length > prev[0] or (length == prev[0] and tid < prev[1]):
+        # higher is better: clean ORF first, then length; ties → smaller transcript ID (stable output)
+        key = (not has_internal_stop(seq), length, [-ord(c) for c in tid])
+        if gid not in rank or key > rank[gid]:
+            rank[gid] = key
             best[gid] = (length, tid, seq)
     return best, unmapped
 

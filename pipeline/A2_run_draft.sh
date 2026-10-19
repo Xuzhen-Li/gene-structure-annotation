@@ -16,8 +16,9 @@ if [[ "$DRAFT_ENGINE" != "liftoff" ]]; then
   : "${GENOME_SOFT:?soft-masked FASTA}"
   _gsa_reject_placeholder_path GENOME_SOFT "$GENOME_SOFT" || exit 1
 fi
-# A unique AUGUSTUS species name per run: a shared name ("generic") lets parallel runs overwrite each other's model.
-AUGUSTUS_SPECIES="${AUGUSTUS_SPECIES:-${GENOME_PREFIX:-species}_braker_$(date +%Y%m%d)}"
+# AUGUSTUS species name: one per genome, not a shared "generic" (other projects' runs would overwrite
+# that model). Stable across days so a rerun finds and reuses the model it already trained.
+AUGUSTUS_SPECIES="${AUGUSTUS_SPECIES:-${GENOME_PREFIX:-species}_braker}"
 mkdir -p "$WORK_DIR/draft" "$(dirname "$DRAFT_GFF")"
 
 case "$DRAFT_ENGINE" in

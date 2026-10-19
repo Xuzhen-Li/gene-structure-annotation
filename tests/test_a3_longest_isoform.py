@@ -25,6 +25,19 @@ class LongestIsoformTest(unittest.TestCase):
         self.assertEqual(best["gene-L2"][0], 71)        # stop not counted
         self.assertEqual(unmapped, [])
 
+    def test_prefers_isoform_without_internal_stop(self):
+        tx_gene = {"a.t1": "a", "a.t2": "a", "b.t1": "b"}
+        prots = [("a.t1", "M" + "A" * 80 + "*" + "A" * 20),   # longer but internal stop (gffread -y -S)
+                 ("a.t2", "M" + "A" * 60),
+                 ("b.t1", "M" + "A" * 30 + "*" + "A" * 30)]   # only isoform: kept anyway
+        best, _ = li.pick_longest(tx_gene, prots)
+        self.assertEqual(best["a"][1], "a.t2")
+        self.assertEqual(best["b"][1], "b.t1")
+
+    def test_tie_is_stable(self):
+        best, _ = li.pick_longest({"x.2": "x", "x.1": "x"}, [("x.2", "MAAA"), ("x.1", "MAAA")])
+        self.assertEqual(best["x"][1], "x.1")
+
     def test_gtf_input(self):
         with tempfile.TemporaryDirectory() as d:
             gtf = Path(d) / "a.gtf"

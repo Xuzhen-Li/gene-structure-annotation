@@ -42,6 +42,24 @@ class PriorityTest(unittest.TestCase):
         r, _ = self.run_priority("gene_id\tpsauron_score\ng1\t95\n")
         self.assertEqual(r.returncode, 2)
 
+    def test_real_preamble_cds_mode(self):
+        # PSAURON v1.1.3 writes the command line, "psauron score: X" and a NOTE line before the header.
+        text = (Path(__file__).parent / "fixtures" / "psauron_v1.1.3_cds.csv").read_text()
+        r, rows = self.run_priority(text)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual([x.split("\t")[0] for x in rows], ["g2.t1"])
+
+    def test_real_preamble_protein_mode(self):
+        text = (Path(__file__).parent / "fixtures" / "psauron_v1.1.3_protein.csv").read_text()
+        r, rows = self.run_priority(text)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual([x.split("\t")[0] for x in rows], ["g2"])
+
+    def test_nonempty_but_unparsed_is_error(self):
+        r, rows = self.run_priority("psauron score: 70\nsomething,else\nfoo,bar\n")
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("[ERR]", r.stderr)
+
     def test_legacy_two_column_tsv(self):
         _, rows = self.run_priority("g1\t0.9\ng2\t0.1\n")
         self.assertEqual([x.split("\t")[0] for x in rows], ["g2"])

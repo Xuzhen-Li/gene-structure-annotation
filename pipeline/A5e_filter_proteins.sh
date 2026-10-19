@@ -70,9 +70,22 @@ with open(out, "w") as o:
             o.write(line)
             continue
         a = attrs(p[8])
-        ids = [a.get("ID", "")] + a.get("Parent", "").split(",")
-        if any(i in kill for i in ids if i):
+        if a.get("ID") in kill:
             continue
+        parents = [x for x in a.get("Parent", "").split(",") if x]
+        if parents:
+            remaining = [x for x in parents if x not in kill]
+            if not remaining:
+                continue          # every parent removed → remove the feature
+            if len(remaining) < len(parents):
+                # shared feature (e.g. exon of several isoforms): drop only the removed parents
+                parts = []
+                for part in p[8].strip().rstrip(";").split(";"):
+                    if part.strip().startswith("Parent="):
+                        part = "Parent=" + ",".join(remaining)
+                    parts.append(part)
+                p[8] = ";".join(parts)
+                line = "\t".join(p) + "\n"
         o.write(line if line.endswith("\n") else line + "\n")
 print(f"[OK] removed transcripts={len(kill_tx & set(tx_gene))} genes={len(kill_gene)} -> {out}")
 PY

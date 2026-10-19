@@ -44,7 +44,8 @@ class BrakerTest(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
         # Old bug: --species=generic for every run (parallel runs share one AUGUSTUS model dir).
         self.assertNotIn("--species=generic", r.stdout)
-        self.assertRegex(r.stdout, r"--species=Toy_braker_\d{8}")
+        self.assertIn("--species=Toy_braker ", r.stdout.replace("\\\n", " "))
+        self.assertNotRegex(r.stdout, r"--species=\S*\d{8}")   # stable name → reruns reuse the trained model
         self.assertIn("--gff3", r.stdout)
         self.assertIn("--keep-genes", r.stdout)
 

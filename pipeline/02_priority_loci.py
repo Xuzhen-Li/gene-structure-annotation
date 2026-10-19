@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """List low-PSAURON and boosted-family loci for manual curation (S5 round 1).
 
-Input (-i): PSAURON output CSV (columns: description, psauron_is_protein, in-frame_score, …).
+Input (-i): PSAURON output CSV (preamble lines, then columns description, psauron_is_protein, in-frame_score /
+in_frame_score, …).
 A two-column TSV (gene_id<TAB>score) is also accepted. Per-sequence scores are probabilities in [0, 1];
 --threshold uses the same scale (default 0.5, PSAURON's own in-frame cutoff).
 Output (-o): TSV gene_id, psauron, family, reason — lowest scores first.
@@ -17,33 +18,42 @@ SCORE_COLUMNS = ("in-frame_score", "in_frame_score", "psauron_score", "score")
 ID_COLUMNS = ("description", "gene_id", "id", "transcript_id")
 
 
+def _split(line: str) -> list[str]:
+    delim = "," if line.count(",") >= line.count("\t") else "\t"
+    return [c.strip() for c in next(csv.reader([line], delimiter=delim))]
+
+
 def read_scores(path: Path) -> list[tuple[str, float]]:
-    """Return (id, score) pairs from a PSAURON CSV or a legacy two-column TSV."""
+    """Return (id, score) pairs from a PSAURON CSV or a legacy two-column TSV.
+
+    PSAURON (v1.1.x) writes a preamble before the CSV header: the command line, "psauron score: X",
+    and in CDS mode a "NOTE: …" line. Lines are skipped until a header row naming an ID column and a
+    score column; files without such a header are read as two columns (id, score).
+    """
     lines = [l for l in path.read_text().splitlines() if l.strip() and not l.startswith("#")]
-    if not lines:
-        return []
-    delim = "," if lines[0].count(",") >= lines[0].count("\t") else "\t"
-    rows = list(csv.reader(lines, delimiter=delim))
-    header = [h.strip() for h in rows[0]]
-    low = [h.lower() for h in header]
-    has_header = any(h in low for h in SCORE_COLUMNS + ID_COLUMNS)
-    if has_header:
-        id_i = next((low.index(c) for c in ID_COLUMNS if c in low), 0)
-        sc_i = next((low.index(c) for c in SCORE_COLUMNS if c in low), None)
-        if sc_i is None:
-            raise SystemExit(f"[ERR] no score column in {path} (expected one of {', '.join(SCORE_COLUMNS)})")
-        body = rows[1:]
+    header_at = None
+    for n, line in enumerate(lines):
+        low = [c.lower() for c in _split(line)]
+        if any(c in low for c in ID_COLUMNS) and any(c in low for c in SCORE_COLUMNS):
+            header_at = n
+            break
+    if header_at is not None:
+        low = [c.lower() for c in _split(lines[header_at])]
+        id_i = next(low.index(c) for c in ID_COLUMNS if c in low)
+        sc_i = next(low.index(c) for c in SCORE_COLUMNS if c in low)
+        body = lines[header_at + 1:]
     else:
-        id_i, sc_i, body = 0, 1, rows
+        id_i, sc_i, body = 0, 1, lines
     out = []
-    for r in body:
+    for line in body:
+        r = _split(line)
         if len(r) <= max(id_i, sc_i):
             continue
         try:
             score = float(r[sc_i])
         except ValueError:
             continue
-        gid = r[id_i].strip().split()[0] if r[id_i].strip() else ""
+        gid = r[id_i].split()[0] if r[id_i] else ""
         if gid:
             out.append((gid, score))
     return out
@@ -73,6 +83,11 @@ def main(argv: list[str] | None = None) -> int:
             fam_of[gid.strip()] = fam.strip()
 
     scores = read_scores(args.psauron)
+    if not scores and args.psauron.read_text().strip():
+        print(f"[ERR] {args.psauron} is not empty but no (id, score) rows were parsed — expected a PSAURON CSV "
+              f"with a header naming one of {', '.join(ID_COLUMNS)} and one of {', '.join(SCORE_COLUMNS)}",
+              file=sys.stderr)
+        return 3
     if scores and max(s for _, s in scores) > 1.0:
         print(f"[ERR] scores above 1 in {args.psauron}: expected per-sequence probabilities (0-1)", file=sys.stderr)
         return 2
