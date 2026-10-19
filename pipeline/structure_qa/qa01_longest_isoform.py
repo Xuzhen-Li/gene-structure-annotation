@@ -44,7 +44,7 @@ def pick_longest(models, proteins, genome):
 
     Same rule as pipeline/longest_isoform.py (PR #6): isoforms without an
     internal stop first, then the longest protein (terminal stop not counted);
-    ties go to the smaller transcript ID (same sort key as #6).
+    on a full tie the lexicographically smallest transcript ID wins (min).
     Transcripts without a protein count as clean, with length CDS length / 3.
     TODO: once pipeline/longest_isoform.py is on main, import its
     has_internal_stop / ranking instead of keeping this copy.
@@ -57,12 +57,13 @@ def pick_longest(models, proteins, genome):
         seqs[t.id] = (prot, src)
         if prot:
             prot = prot.strip()
-            key = (not has_internal_stop(prot), len(prot.rstrip("*.")), [-ord(c) for c in t.id])
+            key = (not has_internal_stop(prot), len(prot.rstrip("*.")))
         else:
-            key = (True, t.cds_length() // 3, [-ord(c) for c in t.id])
-        if t.gene not in rank or key > rank[t.gene]:
-            rank[t.gene] = key
-            best[t.gene] = t.id
+            key = (True, t.cds_length() // 3)
+        g = t.gene
+        if g not in rank or key > rank[g] or (key == rank[g] and t.id < best[g]):
+            rank[g] = key
+            best[g] = t.id
     return {g: models[tid] for g, tid in best.items()}, seqs
 
 
