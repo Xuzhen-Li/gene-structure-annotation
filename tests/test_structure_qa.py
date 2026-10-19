@@ -483,6 +483,27 @@ class ReviewFixTests(TempDir):
         self.assertTrue(q1.has_internal_stop("MK.V."))
         self.assertFalse(q1.has_internal_stop("MKV*"))
 
+    def _tie_pick(self, ids, with_proteins):
+        import qa01_longest_isoform as q1
+        lines, prots = [], []
+        for tid in ids:
+            lines.append(f"c1\tt\tmRNA\t1\t9\t.\t+\t.\tID={tid};Parent=G")
+            lines.append(f"c1\tt\tCDS\t1\t9\t.\t+\t0\tParent={tid}")
+            prots.append(f">{tid}\nMKV.")
+        tag = "p" if with_proteins else "c"
+        gff = write(self.tmp / f"tie_{tag}_{'_'.join(ids)}.gff3", "\n".join(lines) + "\n")
+        prot = qc.read_fasta(write(self.tmp / f"tie_{tag}_{'_'.join(ids)}.faa",
+                                   "\n".join(prots) + "\n")) if with_proteins else None
+        reps, _ = q1.pick_longest(qc.read_models(gff), prot, None)
+        return reps["G"].id
+
+    def test_longest_isoform_tie_smallest_id(self):
+        for with_proteins in (True, False):  # protein branch and CDS-length fallback
+            self.assertEqual(self._tie_pick(["x.1", "x.10"], with_proteins), "x.1")
+            self.assertEqual(self._tie_pick(["x.10", "x.1"], with_proteins), "x.1")
+            self.assertEqual(self._tie_pick(["y.2", "y.10"], with_proteins), "y.10")
+            self.assertEqual(self._tie_pick(["y.10", "y.2"], with_proteins), "y.10")
+
     def test_default_lineages_are_odb12(self):
         cfg = qc.load_config()
         self.assertEqual(qc.setting_list(cfg, "busco_protein_lineages"),
