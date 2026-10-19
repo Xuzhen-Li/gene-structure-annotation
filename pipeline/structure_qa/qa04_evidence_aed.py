@@ -43,10 +43,12 @@ def gffcompare_one(name, ev_path, gff, out: Path):
     found = next((p for p in stats if p.is_file()), None)
     if found is None:
         if not qc.have("gffcompare"):
+            qc.warn(f"gffcompare not on PATH and no stats for '{name}'; gffcompare rows = NA")
             return None, "gffcompare not on PATH and no stats found"
         gdir.mkdir(parents=True, exist_ok=True)
-        if not qc.run_cmd(["gffcompare", "-r", str(ev_path), "-o", str(gdir / name), str(gff)]):
-            return None, "gffcompare not run (RUN!=1 or failed)"
+        why = qc.run_cmd(["gffcompare", "-r", str(ev_path), "-o", str(gdir / name), str(gff)])
+        if why:
+            return None, why
         found = next((p for p in stats if p.is_file()), None)
         if found is None:
             return None, "gffcompare ran but no stats found"
@@ -54,11 +56,22 @@ def gffcompare_one(name, ev_path, gff, out: Path):
     return (vals or None), qc.rel(found, out) if vals else f"could not parse {found}"
 
 
+STRANDED = ("+", "-")
+
+
+def _strand_keys(strand: str) -> tuple[str, ...]:
+    # unstranded evidence or models ('.', '?') can match either strand
+    return (strand,) if strand in STRANDED else STRANDED
+
+
 def compute_aed(models, evidence_models, attr_name=""):
+    """{transcript_id: (aed, source)}. Without evidence, only transcripts that carry
+    the AED attribute get a value; the rest are left out (reported as NA), never 1."""
     idx = qc.BinIndex()
     for ev in evidence_models:
         s, e = ev.span()
-        idx.add((ev.seqid, ev.strand), s, e, ev)
+        for st in _strand_keys(ev.strand):
+            idx.add((ev.seqid, st), s, e, ev)
     result = {}
     for t in sorted(qc.coding(models).values(), key=lambda x: x.id):
         if attr_name and attr_name in t.attrs:
@@ -67,9 +80,13 @@ def compute_aed(models, evidence_models, attr_name=""):
                 continue
             except ValueError:
                 pass
+        if not evidence_models:
+            continue
         pred = t.exon_intervals()
         s, e = pred[0][0], pred[-1][1]
-        hits = idx.query((t.seqid, t.strand), s, e)
+        hits = []
+        for st in _strand_keys(t.strand):
+            hits.extend(h for h in idx.query((t.seqid, st), s, e) if h not in hits)
         ev_ivs = qc.merge_intervals([iv for h in hits for iv in h.exon_intervals()])
         shared = qc.overlap_len(pred, ev_ivs)
         if not ev_ivs or shared == 0:
@@ -95,7 +112,8 @@ def run(gff, out, evidence: dict[str, str], config=None):
             rows.append((f"gffcompare_{name}_{level}_precision", sp, note))
     ev_models = [t for p in evidence.values() for t in qc.read_models(p).values()]
     attr = qc.setting(cfg, "aed_attribute", "")
-    aed = compute_aed(models, ev_models, attr) if (ev_models or attr) else {}
+    has_attr = bool(attr) and any(attr in t.attrs for t in models.values())
+    aed = compute_aed(models, ev_models, attr if has_attr else "") if (ev_models or has_attr) else {}
     with open(out / "aed_per_transcript.tsv", "w", encoding="utf-8") as fh, \
             open(out / "aed1_flagged.tsv", "w", encoding="utf-8") as flag:
         fh.write("transcript_id\tgene_id\taed\tsource\n")
@@ -107,7 +125,10 @@ def run(gff, out, evidence: dict[str, str], config=None):
                 flag.write(f"{tid}\t{gene}\tno evidence support; review, do not delete\n")
     vals = [v for v, _ in aed.values()]
     n = len(vals)
-    note = "no evidence given" if not n else ""
+    if n:
+        note = "" if ev_models else f"from the {attr} attribute only"
+    else:
+        note = f"no evidence given and no {attr or 'AED'} attribute in the GFF3"
     rows += [
         ("aed_transcripts", n if n else None, note),
         ("aed_le_0.5_share", qc.share(sum(v <= 0.5 for v in vals), n), note),

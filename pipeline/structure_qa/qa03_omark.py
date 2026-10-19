@@ -47,8 +47,10 @@ def run(out, proteins_fa, config=None):
         db = qc.setting(cfg, "omamer_db", "")
         if not (qc.have("omamer") and qc.have("omark")):
             note = "omamer/omark not on PATH and no .sum found"
+            qc.warn("omamer/omark not on PATH and no OMArk .sum found; OMArk rows = NA")
         elif not db or not Path(db).is_file():
             note = "set omamer_db in config to an OMAmer .h5 file"
+            qc.warn(note + "; OMArk rows = NA")
         else:
             odir.mkdir(parents=True, exist_ok=True)
             hits = odir / "proteins.omamer"
@@ -56,10 +58,14 @@ def run(out, proteins_fa, config=None):
             taxid = qc.setting(cfg, "omark_taxid", "")
             if taxid:
                 cmd2 += ["-t", taxid]
-            if qc.run_cmd(["omamer", "search", "--db", db, "--query", str(proteins_fa),
-                           "--out", str(hits)]) and qc.run_cmd(cmd2):
+            why = qc.run_cmd(["omamer", "search", "--db", db, "--query", str(proteins_fa),
+                              "--out", str(hits)])
+            if why is None:
+                why = qc.run_cmd(cmd2)
+            if why is None:
                 summ = find_sum(odir)
-            note = "" if summ else "omark not run (RUN!=1 or failed)"
+                why = None if summ else "omark ran but no .sum found"
+            note = why or ""
     vals = parse_sum(summ) if summ else None
     if summ and vals is None:
         note = f"could not parse {summ}"

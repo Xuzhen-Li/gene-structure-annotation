@@ -123,7 +123,16 @@ def run(gff, out, bam=None, junctions=None, config=None):
                                       "rnaseq_intron_support_share",
                                       "rnaseq_full_chain_support_share")])
         return
-    counts = junctions_from_table(junctions) if junctions else junctions_from_bam(bam)
+    try:
+        counts = junctions_from_table(junctions) if junctions else junctions_from_bam(bam)
+    except (OSError, EOFError, ValueError, RuntimeError, struct.error, IndexError) as exc:
+        src = junctions or bam
+        qc.warn(f"cannot read {src}: {exc}; RNA-seq rows = NA")
+        qc.write_metrics(out, STEP, [(m, None, f"cannot read {Path(src).name}: {type(exc).__name__}")
+                                     for m in ("rnaseq_gene_junction_support_share",
+                                               "rnaseq_intron_support_share",
+                                               "rnaseq_full_chain_support_share")])
+        return
     with open(out / "rnaseq_junctions.tsv", "w", encoding="utf-8") as fh:
         fh.write("chrom\tstart\tend\treads\n")
         for (c, s, e), n in sorted(counts.items()):

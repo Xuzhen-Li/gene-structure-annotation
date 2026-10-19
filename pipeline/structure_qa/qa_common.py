@@ -340,16 +340,25 @@ def have(tool: str) -> bool:
     return shutil.which(tool) is not None
 
 
-def run_cmd(cmd: list[str], cwd=None) -> bool:
+def run_cmd(cmd: list[str], cwd=None) -> str | None:
+    """Run an external tool. Returns None on success, else a short reason for the notes."""
     print("[CMD] " + " ".join(cmd))
     if not want_run():
-        print("[DRY] export RUN=1 to execute")
-        return False
-    res = subprocess.run(cmd, cwd=cwd)
+        print("[DRY] not run: RUN=1 not set")
+        return f"{cmd[0]} not run: RUN=1 not set"
+    try:
+        res = subprocess.run(cmd, cwd=cwd)
+    except OSError as exc:
+        warn(f"{cmd[0]} could not start: {exc}")
+        return f"{cmd[0]} could not start"
     if res.returncode != 0:
-        print(f"[WARN] command failed (exit {res.returncode}): {cmd[0]}", file=sys.stderr)
-        return False
-    return True
+        warn(f"command failed (exit {res.returncode}): {cmd[0]}")
+        return f"{cmd[0]} failed (exit {res.returncode})"
+    return None
+
+
+def warn(msg: str) -> None:
+    print(f"[WARN] {msg}", file=sys.stderr)
 
 
 def base_parser(description: str):

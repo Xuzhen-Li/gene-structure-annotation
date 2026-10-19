@@ -10,7 +10,7 @@
 
 | Input | Flag | Required |
 |---|---|---|
-| Consensus GFF3 from the merge step | `--gff` | yes |
+| Consensus GFF3 from the merge step (`MERGED_GFF`: `$AGG_DIR/evm/evm.EVM.gff3`, or `pasa_updated.gff3` after the PASA update) | `--gff` | yes |
 | Genome FASTA | `--genome` | yes |
 | Protein FASTA (IDs = mRNA IDs) | `--proteins` | no |
 | Evidence models, `NAME=PATH` (GTF/GFF3) | `--evidence` | no |
@@ -36,7 +36,7 @@
 | `qa10_summary.py` | joins all metrics with thresholds | `qc_summary.tsv` |
 | `run_structure_qa.py` | runs qa01 to qa10 in order | all of the above |
 
-[[TODO-TEXT: short explanation of each check and how to read it.]]
+[[TODO-TEXT: short explanation of each check and how to read it. Include BUSCO C/S/D/F/M and that a high D means isoforms not deduplicated, split or chimeric genes; for grape, compare with PN40024 T2T / VCost and cite the DOI (no numbers from memory); mark aed_eq_1_share, gene_count and exons_per_gene_mean thresholds as not from the guidance.]]
 
 ### Run
 

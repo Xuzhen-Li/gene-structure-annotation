@@ -15,6 +15,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import qa_common as qc  # noqa: E402
 
 STEP = "qa02_busco"
+# Lineage names come from config (busco_*_lineages). The defaults are the
+# odb12 datasets embryophyta_odb12 + eudicotyledons_odb12: odb12 is the
+# current BUSCO dataset release, and eudicotyledons_odb12 is the odb12 name of
+# the old eudicots_odb10 (there is no eudicots_odb12). odb10 names still work
+# if you set them in the config; confirm with: busco --list-datasets
 SUMMARY_RE = re.compile(
     r"C:\s*([\d.]+)%\s*\[S:\s*([\d.]+)%\s*,\s*D:\s*([\d.]+)%\s*\]\s*,\s*"
     r"F:\s*([\d.]+)%\s*,\s*M:\s*([\d.]+)%\s*,\s*n:\s*(\d+)")
@@ -41,6 +46,8 @@ def busco_one(inp, mode, lineage, busco_root: Path, cfg, out=None):
     summ = find_summary(run_dir)
     if summ is None:
         if not qc.have("busco"):
+            qc.warn(f"busco not on PATH and no short_summary in {qc.rel(run_dir, out or busco_root)}; "
+                    f"BUSCO {mode} {lineage} rows = NA")
             return None, "busco not on PATH and no short_summary found"
         cmd = ["busco", "-i", str(inp), "-l", lineage, "-m", mode, "-o", run_dir.name,
                "--out_path", str(busco_root), "-c", qc.setting(cfg, "threads", "8"), "-f"]
@@ -48,8 +55,9 @@ def busco_one(inp, mode, lineage, busco_root: Path, cfg, out=None):
         if dl:
             cmd += ["--offline", "--download_path", dl]
         busco_root.mkdir(parents=True, exist_ok=True)
-        if not qc.run_cmd(cmd):
-            return None, "busco not run (RUN!=1 or failed)"
+        why = qc.run_cmd(cmd)
+        if why:
+            return None, why
         summ = find_summary(run_dir)
         if summ is None:
             return None, "busco ran but no short_summary found"
@@ -68,7 +76,10 @@ def run(out, proteins_fa, genome_fa=None, config=None):
     for lin in qc.setting_list(cfg, "busco_protein_lineages"):
         vals, note = busco_one(proteins_fa, "proteins", lin, root, cfg, out)
         for k in ("C", "S", "D", "F", "M", "n"):
-            rows.append((f"busco_prot_{lin}_{k}", vals[k] if vals else None, note))
+            k_note = note
+            if vals and k == "D":
+                k_note = f"{note}; high D: isoforms not deduplicated, split or chimeric genes"
+            rows.append((f"busco_prot_{lin}_{k}", vals[k] if vals else None, k_note))
         if vals:
             prot_c[lin] = vals["C"]
     for lin in qc.setting_list(cfg, "busco_genome_lineages"):
@@ -79,7 +90,13 @@ def run(out, proteins_fa, genome_fa=None, config=None):
         vals, note = busco_one(genome_fa, "genome", lin, root, cfg, out)
         rows.append((f"busco_genome_{lin}_C", vals["C"] if vals else None, note))
         gap = (vals["C"] - prot_c[lin]) if (vals and lin in prot_c) else None
-        rows.append((f"busco_gap_{lin}", gap, "genome C minus annotation C (points)"))
+        if gap is not None:
+            gap_note = "genome C minus annotation C (points); guidance: within 3-5"
+        elif lin not in prot_c:
+            gap_note = f"protein-mode result missing for {lin}"
+        else:
+            gap_note = f"genome-mode result missing: {note}"
+        rows.append((f"busco_gap_{lin}", gap, gap_note))
     qc.write_metrics(out, STEP, rows)
 
 

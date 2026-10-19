@@ -46,7 +46,7 @@ def run(gff, out, genome_fa, config=None):
                 fh.write(f"{c}\t{s}\t{e}\t{strand}\t{m}\t{tid}\n")
     n = sum(v for k, v in motifs.items() if k != "seqid_missing")
     other = n - motifs["GT-AG"] - motifs["GC-AG"] - motifs["AT-AC"]
-    note = f"unique introns={n}"
+    note = f"unique introns of all coding transcripts={n}"
     rows = [
         ("splice_gt_ag_share", qc.share(motifs["GT-AG"], n), note),
         ("splice_gc_ag_share", qc.share(motifs["GC-AG"], n), note),

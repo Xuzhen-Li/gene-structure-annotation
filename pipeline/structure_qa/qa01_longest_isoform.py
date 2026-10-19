@@ -29,34 +29,60 @@ def protein_for(t, proteins, genome):
     return None, None
 
 
+def _strip_stop(prot: str) -> str:
+    prot = prot.strip()
+    return prot[:-1] if prot.endswith(("*", ".")) else prot
+
+
+def pick_longest(models, proteins, genome):
+    """Longest isoform per gene, grouped by the GFF3 Parent link.
+
+    Same rule as pipeline/longest_isoform.py (PR #6): longest protein with the
+    terminal stop not counted; ties go to the first transcript ID in sort order.
+    Transcripts without a protein fall back to CDS length / 3.
+    TODO: once pipeline/longest_isoform.py is on main, import its pick_longest
+    instead of keeping this copy.
+    """
+    best: dict[str, tuple[int, str]] = {}
+    seqs: dict[str, tuple[str | None, str | None]] = {}
+    for t in qc.coding(models).values():
+        prot, src = protein_for(t, proteins, genome)
+        seqs[t.id] = (prot, src)
+        length = len(_strip_stop(prot).rstrip("*.")) if prot else t.cds_length() // 3
+        prev = best.get(t.gene)
+        if prev is None or length > prev[0] or (length == prev[0] and t.id < prev[1]):
+            best[t.gene] = (length, t.id)
+    return {g: models[tid] for g, (_, tid) in best.items()}, seqs
+
+
 def run(gff, out, proteins_fa=None, genome_fa=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     models = qc.read_models(gff)
-    reps = qc.longest_isoforms(models)
     proteins = qc.read_fasta(proteins_fa) if proteins_fa else None
     genome = qc.read_fasta(genome_fa) if genome_fa else None
+    reps, seqs = pick_longest(models, proteins, genome)
     records, missing, from_genome = [], 0, 0
     with open(out / "longest_isoform.ids.tsv", "w", encoding="utf-8") as fh:
         fh.write("gene_id\ttranscript_id\tcds_length\tprotein_source\n")
         for gene in sorted(reps):
             t = reps[gene]
-            prot, src = protein_for(t, proteins, genome)
+            prot, src = seqs[t.id]
             fh.write(f"{gene}\t{t.id}\t{t.cds_length()}\t{src or 'missing'}\n")
             if not prot:
                 missing += 1
                 continue
             from_genome += src == "genome"
-            prot = prot.strip()
-            records.append((t.id, prot[:-1] if prot.endswith(("*", ".")) else prot))
+            records.append((t.id, _strip_stop(prot)))
     faa = out / "longest_isoform.proteins.faa"
     qc.write_fasta(faa, records)
     n_tx = len(qc.coding(models))
     rows = [
         ("coding_gene_count", len(reps), "genes with at least one CDS"),
         ("transcripts_per_gene_mean", qc.share(n_tx, len(reps)), "coding transcripts / coding genes"),
-        ("longest_isoform_proteins", len(records), str(faa)),
-        ("longest_isoform_missing_protein", missing, "no protein in FASTA and no genome to translate"),
+        ("longest_isoform_proteins", len(records), qc.rel(faa, out)),
+        ("longest_isoform_missing_protein", missing,
+         "listed as 'missing' in longest_isoform.ids.tsv" if missing else ""),
         ("longest_isoform_translated_from_genome", from_genome, ""),
     ]
     qc.write_metrics(out, STEP, rows)

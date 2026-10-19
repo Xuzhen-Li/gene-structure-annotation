@@ -364,6 +364,115 @@ class PipelineTests(TempDir):
         self.assertIn("placeholder", res.stderr)
 
 
+class ReviewFixTests(TempDir):
+    """Fixes from the PR #2 QA review."""
+
+    def test_no_evidence_no_attribute_gives_na(self):
+        gff = write(self.tmp / "evm.gff3", """
+            c1\tEVM\tgene\t1\t30\t.\t+\t.\tID=g1
+            c1\tEVM\tmRNA\t1\t30\t.\t+\t.\tID=m1;Parent=g1
+            c1\tEVM\tCDS\t1\t30\t.\t+\t0\tParent=m1
+        """)
+        out = self.tmp / "o"
+        qa04_evidence_aed.run(gff, out, {})
+        m = metrics(out, "qa04_evidence_aed")
+        self.assertEqual(m["aed_le_0.5_share"]["value"], "NA")
+        self.assertEqual(m["aed_eq_1_share"]["value"], "NA")
+        self.assertIn("no evidence given", m["aed_eq_1_share"]["note"])
+        self.assertEqual(read_tsv(out / "aed1_flagged.tsv"), [])
+
+    def test_unstranded_evidence_matches_either_strand(self):
+        pred = qc.Transcript("p", "g", "c1", "-")
+        pred.exons = [(1, 100)]
+        pred.cds = [(1, 100, 0)]
+        ev = qc.Transcript("e", "e", "c1", ".")
+        ev.exons = [(1, 100)]
+        self.assertEqual(qa04_evidence_aed.compute_aed({"p": pred}, [ev])["p"][0], 0.0)
+
+    def test_sim_unstranded_gtf_same_result(self):
+        gtf = self.tmp / "ev_dot.gtf"
+        rows = []
+        for line in (SIM / "evidence_transcripts.gtf").read_text().splitlines():
+            c = line.split("\t")
+            c[6] = "."
+            rows.append("\t".join(c))
+        gtf.write_text("\n".join(rows) + "\n")
+        out = self.tmp / "o"
+        qa04_evidence_aed.run(SIM / "consensus.gff3", out, {"transcripts": str(gtf)})
+        m = metrics(out, "qa04_evidence_aed")
+        self.assertEqual(m["aed_le_0.5_share"]["value"], "0.9091")
+        self.assertEqual(m["aed_eq_1_count"]["value"], "1")
+
+    def test_corrupt_bam_warns_not_traceback(self):
+        bad = self.tmp / "bad.bam"
+        bad.write_bytes(b"this is not a bam file")
+        out = self.tmp / "o"
+        old = os.environ.get("PATH", "")
+        os.environ["PATH"] = str(self.tmp)  # built-in reader
+        try:
+            qa05_rnaseq_junctions.run(SIM / "consensus.gff3", out, bam=bad)
+        finally:
+            os.environ["PATH"] = old
+        m = metrics(out, "qa05_rnaseq_junctions")
+        self.assertEqual(m["rnaseq_gene_junction_support_share"]["value"], "NA")
+        self.assertIn("cannot read", m["rnaseq_gene_junction_support_share"]["note"])
+
+    def test_missing_tool_prints_warning(self):
+        bindir = self.tmp / "empty_bin"
+        bindir.mkdir()
+        os.symlink(sys.executable, bindir / "python3")
+        res = PipelineTests.run_pipeline(self, self.tmp / "o", {"PATH": str(bindir)})
+        self.assertEqual(res.returncode, 0, res.stderr)
+        self.assertIn("[WARN] busco not on PATH", res.stderr)
+        self.assertIn("[WARN] omamer/omark not on PATH", res.stderr)
+        self.assertIn("[WARN] gffcompare not on PATH", res.stderr)
+
+    def _fake_busco(self, code):
+        bindir = self.tmp / f"bin{code}"
+        bindir.mkdir()
+        p = bindir / "busco"
+        p.write_text(f"#!/bin/sh\nexit {code}\n")
+        p.chmod(0o755)
+        return bindir
+
+    def test_run0_and_failed_notes_differ(self):
+        notes = {}
+        for run, code in (("0", 0), ("1", 3)):
+            bindir = self._fake_busco(code)
+            out = self.tmp / f"o{run}"
+            env = {"PATH": f"{bindir}{os.pathsep}{os.environ.get('PATH', '')}", "RUN": run}
+            res = PipelineTests.run_pipeline(self, out, env)
+            self.assertEqual(res.returncode, 0, res.stderr)
+            rows = {r["metric"]: r for r in read_tsv(out / "qc_summary.tsv")}
+            notes[run] = rows["busco_prot_embryophyta_odb12_C"]["note"]
+        self.assertIn("RUN=1 not set", notes["0"])
+        self.assertIn("failed (exit 3)", notes["1"])
+
+    def test_expected_summary_has_no_absolute_paths(self):
+        text = (SIM / "expected_qc_summary.tsv").read_text()
+        self.assertNotIn("/tmp/", text)
+        self.assertNotIn(str(REPO), text)
+
+    def test_longest_isoform_tie_and_protein_rule(self):
+        gff = write(self.tmp / "t.gff3", """
+            c1\tt\tmRNA\t1\t9\t.\t+\t.\tID=b;Parent=G
+            c1\tt\tCDS\t1\t9\t.\t+\t0\tParent=b
+            c1\tt\tmRNA\t1\t9\t.\t+\t.\tID=a;Parent=G
+            c1\tt\tCDS\t1\t9\t.\t+\t0\tParent=a
+        """)
+        prot = write(self.tmp / "p.faa", ">b\nMKV.\n>a\nMKV*\n")
+        import qa01_longest_isoform as q1
+        reps, _ = q1.pick_longest(qc.read_models(gff), qc.read_fasta(prot), None)
+        self.assertEqual(reps["G"].id, "a")  # same length after stop removal -> first ID
+
+    def test_default_lineages_are_odb12(self):
+        cfg = qc.load_config()
+        self.assertEqual(qc.setting_list(cfg, "busco_protein_lineages"),
+                         ["embryophyta_odb12", "eudicotyledons_odb12"])
+        for d in (MOCK / "busco").iterdir():
+            self.assertTrue(d.name.endswith("_odb12"), d.name)
+
+
 class RepoHygieneTests(unittest.TestCase):
     def test_banned_word_absent(self):
         banned = "G" + "BTS"

@@ -52,7 +52,7 @@ def run(gff, out, config=None):
         ("exons_per_gene_mean", mean(exon_counts) if n else None, "longest isoform"),
         ("exon_length_mean_bp", mean(exon_lens) if exon_lens else None, "exon lines, else CDS"),
         ("cds_length_mean_bp", mean(cds_lens) if n else None, ""),
-        ("intron_count", len(introns), "longest isoform"),
+        ("intron_count", len(introns), "longest isoform of each gene (qa09 counts unique introns of all transcripts)"),
         ("intron_length_median_bp", statistics.median(introns) if introns else None, ""),
         ("intron_length_p05_bp", percentile(introns, 0.05), ""),
         ("intron_length_p95_bp", percentile(introns, 0.95), ""),
