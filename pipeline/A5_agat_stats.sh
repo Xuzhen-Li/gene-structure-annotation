@@ -16,7 +16,12 @@ fi
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
 _gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
 
-GFF="${1:-${MERGED_GFF:-${DRAFT_GFF:?}}}"
+# An existing MERGED_GFF wins over DRAFT_GFF; pass a path as $1 to override.
+GFF="${1:-$(_gsa_pick_gff)}" || exit 1
+if [[ ! -f "$GFF" ]]; then
+  echo "[ERR] GFF not found: $GFF" >&2
+  exit 1
+fi
 OUT="${AGAT_OUT:-$WORK_DIR/agat}"
 mkdir -p "$OUT"
 base=$(basename "$GFF")

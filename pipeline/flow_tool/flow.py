@@ -394,7 +394,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             "PRIORITY_TSV with family:… reasons",
             "pipeline/02_priority_loci.py",
             "docs/SCENARIOS.md S7",
-            'python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 90 --families curate/families.tsv',
+            'python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o "$PRIORITY_TSV" --threshold 0.5 --families curate/families.tsv',
         )
         add(
             "S7c",

@@ -2,13 +2,17 @@
 # Merge prediction sets. S1 weights vs S14 EVM weights.
 # See docs/steps/dclab/07_evm_polish.md and docs/DETAILED_GUIDE.md Step 7.
 set -euo pipefail
-: "${WORK_DIR:?}"
+: "${WORK_DIR:?set WORK_DIR in config/local.env}"
 : "${DRAFT_GFF:?primary GFF/GTF}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+_gsa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
+_gsa_reject_placeholder_path DRAFT_GFF "$DRAFT_GFF" || exit 1
 MERGE_MODE="${MERGE_MODE:-evm}"
 MERGED_GFF="${MERGED_GFF:-$WORK_DIR/draft/merged.gff3}"
+_gsa_reject_placeholder_path MERGED_GFF "$MERGED_GFF" || exit 1
 EVM_WEIGHTS="${EVM_WEIGHTS:-}"
 REPO_ROOT="${REPO_ROOT:-}"
-mkdir -p "$(dirname "$MERGED_GFF")" "$WORK_DIR/draft"
 
 # Dual-track only. StringTie compare ≠ second gene set for EVM — skip A4 if no real B.
 if [[ -z "${DRAFT_GFF_B:-}" || "$DRAFT_GFF_B" == "$DRAFT_GFF" ]]; then
@@ -21,10 +25,12 @@ if [[ -z "${DRAFT_GFF_B:-}" || "$DRAFT_GFF_B" == "$DRAFT_GFF" ]]; then
 SKIP
   exit 0
 fi
+_gsa_reject_placeholder_path DRAFT_GFF_B "$DRAFT_GFF_B" || exit 1
 if [[ ! -f "$DRAFT_GFF_B" ]]; then
   echo "[A4 error] DRAFT_GFF_B=$DRAFT_GFF_B not found — skip A4 or fix path." >&2
   exit 1
 fi
+mkdir -p "$(dirname "$MERGED_GFF")" "$WORK_DIR/draft"
 
 case "$MERGE_MODE" in
   evm)
