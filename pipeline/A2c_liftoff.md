@@ -34,7 +34,7 @@ export DRAFT_GFF="$OUT"
 ## After Liftoff
 
 ```bash
-bash pipeline/A5_agat_stats.sh "$OUT"
+RUN=1 bash pipeline/A5_agat_stats.sh "$OUT"
 # Inspect low-quality lifts (attribute names vary by Liftoff version):
 grep -E 'valid_ORF=False|partial_mapping|low_identity' "$OUT" | head -n 50 || true
 ```

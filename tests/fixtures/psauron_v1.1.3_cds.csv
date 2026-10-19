@@ -1,0 +1,7 @@
+psauron -i work/psauron_input.cds.fa -o work/psauron.csv
+psauron score: 66.7
+NOTE: alternate reading frames may not contain valid ORFs
+description,psauron_is_protein,in_frame_score,forward_frame2_score,forward_frame3_score,reverse_frame1_score,reverse_frame2_score,reverse_frame3_score,mean_out_of_frame_score
+g1.t1,True,0.95123,0.01,0.02,0.01,0.03,0.01,0.016
+g2.t1,False,0.20456,0.4,0.1,0.2,0.1,0.3,0.22
+g3.t1,True,0.55,0.02,0.01,0.03,0.02,0.01,0.018

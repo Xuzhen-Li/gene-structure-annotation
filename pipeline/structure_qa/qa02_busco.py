@@ -18,7 +18,7 @@ STEP = "qa02_busco"
 # Lineage names come from config (busco_*_lineages). The defaults are the
 # odb12 datasets embryophyta_odb12 + eudicotyledons_odb12: odb12 is the
 # current BUSCO dataset release, and eudicotyledons_odb12 is the odb12 name of
-# the old eudicots_odb10 (there is no eudicots_odb12). odb10 names still work
+# the old eudicots_odb10 (odb12 has no eudicots set). odb10 names still work
 # if you set them in the config; confirm with: busco --list-datasets
 SUMMARY_RE = re.compile(
     r"C:\s*([\d.]+)%\s*\[S:\s*([\d.]+)%\s*,\s*D:\s*([\d.]+)%\s*\]\s*,\s*"
