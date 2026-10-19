@@ -465,6 +465,24 @@ class ReviewFixTests(TempDir):
         reps, _ = q1.pick_longest(qc.read_models(gff), qc.read_fasta(prot), None)
         self.assertEqual(reps["G"].id, "a")  # same length after stop removal -> first ID
 
+    def test_longest_isoform_prefers_clean_orf(self):
+        gff = write(self.tmp / "t2.gff3", """
+            c1\tt\tmRNA\t1\t30\t.\t+\t.\tID=long_bad;Parent=G
+            c1\tt\tCDS\t1\t30\t.\t+\t0\tParent=long_bad
+            c1\tt\tmRNA\t1\t12\t.\t+\t.\tID=short_ok;Parent=G
+            c1\tt\tCDS\t1\t12\t.\t+\t0\tParent=short_ok
+            c1\tt\tmRNA\t1\t30\t.\t+\t.\tID=h1;Parent=H
+            c1\tt\tCDS\t1\t30\t.\t+\t0\tParent=h1
+        """)
+        prot = write(self.tmp / "p2.faa",
+                     ">long_bad\nMKVL.AGT.\n>short_ok\nMKV.\n>h1\nMK*VLAGT*\n")
+        import qa01_longest_isoform as q1
+        reps, _ = q1.pick_longest(qc.read_models(gff), qc.read_fasta(prot), None)
+        self.assertEqual(reps["G"].id, "short_ok")  # clean ORF beats a longer one with a stop
+        self.assertEqual(reps["H"].id, "h1")        # only isoform: kept even with a stop
+        self.assertTrue(q1.has_internal_stop("MK.V."))
+        self.assertFalse(q1.has_internal_stop("MKV*"))
+
     def test_default_lineages_are_odb12(self):
         cfg = qc.load_config()
         self.assertEqual(qc.setting_list(cfg, "busco_protein_lineages"),

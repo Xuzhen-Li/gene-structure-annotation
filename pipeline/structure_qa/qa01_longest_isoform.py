@@ -34,25 +34,36 @@ def _strip_stop(prot: str) -> str:
     return prot[:-1] if prot.endswith(("*", ".")) else prot
 
 
+def has_internal_stop(seq: str) -> bool:
+    core = seq.rstrip("*.")
+    return "*" in core or "." in core
+
+
 def pick_longest(models, proteins, genome):
     """Longest isoform per gene, grouped by the GFF3 Parent link.
 
-    Same rule as pipeline/longest_isoform.py (PR #6): longest protein with the
-    terminal stop not counted; ties go to the first transcript ID in sort order.
-    Transcripts without a protein fall back to CDS length / 3.
-    TODO: once pipeline/longest_isoform.py is on main, import its pick_longest
-    instead of keeping this copy.
+    Same rule as pipeline/longest_isoform.py (PR #6): isoforms without an
+    internal stop first, then the longest protein (terminal stop not counted);
+    ties go to the smaller transcript ID (same sort key as #6).
+    Transcripts without a protein count as clean, with length CDS length / 3.
+    TODO: once pipeline/longest_isoform.py is on main, import its
+    has_internal_stop / ranking instead of keeping this copy.
     """
-    best: dict[str, tuple[int, str]] = {}
+    best: dict[str, str] = {}
+    rank: dict[str, tuple] = {}
     seqs: dict[str, tuple[str | None, str | None]] = {}
-    for t in qc.coding(models).values():
+    for t in sorted(qc.coding(models).values(), key=lambda x: x.id):
         prot, src = protein_for(t, proteins, genome)
         seqs[t.id] = (prot, src)
-        length = len(_strip_stop(prot).rstrip("*.")) if prot else t.cds_length() // 3
-        prev = best.get(t.gene)
-        if prev is None or length > prev[0] or (length == prev[0] and t.id < prev[1]):
-            best[t.gene] = (length, t.id)
-    return {g: models[tid] for g, (_, tid) in best.items()}, seqs
+        if prot:
+            prot = prot.strip()
+            key = (not has_internal_stop(prot), len(prot.rstrip("*.")), [-ord(c) for c in t.id])
+        else:
+            key = (True, t.cds_length() // 3, [-ord(c) for c in t.id])
+        if t.gene not in rank or key > rank[t.gene]:
+            rank[t.gene] = key
+            best[t.gene] = t.id
+    return {g: models[tid] for g, tid in best.items()}, seqs
 
 
 def run(gff, out, proteins_fa=None, genome_fa=None):
