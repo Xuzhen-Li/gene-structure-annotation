@@ -1,0 +1,2 @@
+chr1	ProtHint	intron	1301	1500	1	+	.	src=P;mult=3;pri=4;al_score=0.6;
+chr1	ProtHint	intron	4401	4600	1	-	.	src=P;mult=2;pri=4;al_score=0.5;

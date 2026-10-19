@@ -1,0 +1,10 @@
+##gff-version 3
+chr1	GAF	gene	1101	2151	.	+	.	ID=gene_g1;transcripts=1
+chr1	GeMoMa	mRNA	1101	2151	.	+	.	ID=G1_R1;ref-gene=REF_g1;Parent=gene_g1;score=250
+chr1	GeMoMa	CDS	1101	1300	.	+	0	Parent=G1_R1
+chr1	GeMoMa	CDS	1501	1700	.	+	1	Parent=G1_R1
+chr1	GeMoMa	CDS	1901	2151	.	+	2	Parent=G1_R1
+chr1	GAF	gene	4200	4900	.	-	.	ID=gene_g2;transcripts=1
+chr1	GeMoMa	mRNA	4200	4900	.	-	.	ID=G2_R1;ref-gene=REF_g2;Parent=gene_g2;score=250
+chr1	GeMoMa	CDS	4200	4400	.	-	0	Parent=G2_R1
+chr1	GeMoMa	CDS	4601	4900	.	-	0	Parent=G2_R1

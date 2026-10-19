@@ -1,0 +1,44 @@
+# EVidenceModeler 2.x weights for the outputs of pipeline/A4c_evm_inputs.py (S1 aggregation).
+#
+# Columns (whitespace/tab separated):  CLASS  SOURCE  WEIGHT
+#   CLASS  : ABINITIO_PREDICTION | OTHER_PREDICTION | PROTEIN | TRANSCRIPT
+#            (the only four classes EVM accepts)
+#   SOURCE : must equal GFF3 column 2 of the EVM inputs; A4c writes exactly these names
+#   WEIGHT : relative integer; only the ratios between sources matter
+#
+# Basis for the defaults:
+#   - EVM wiki, "The Evidence Weights File" (EVidenceModeler v2.1.0):
+#     ab initio = 1; good protein spliced alignments 2-5; PASA alignment assemblies = 10;
+#     rule of thumb weight(PASA) >> weight(protein) >= weight(prediction).
+#   - Haas et al. 2008, Genome Biology 9:R7, doi:10.1186/gb-2008-9-1-r7.
+#   - Project starting points: ab initio 1, protein 2-5, transcript 8-10, PASA 10.
+#
+# These are EMPIRICAL STARTING VALUES. Tune them per species on a few manually curated
+# genes (compare EVM output against the curated set, adjust, re-run); do not copy a
+# tuned file across species. Log the file used next to MERGED_GFF.
+#
+# A4c copies only the rows whose SOURCE is present into OUT_DIR/weights.txt and fails
+# if an input source has no row here.
+
+# --- ab initio (class ABINITIO_PREDICTION also scores intergenic regions) ---
+# BRAKER3 braker.gtf/gff3 (TSEBRA already applied inside BRAKER3)
+ABINITIO_PREDICTION	BRAKER	1
+# TSEBRA selection of BRAKER1 + BRAKER2 (A4a); use instead of BRAKER, never both
+ABINITIO_PREDICTION	TSEBRA	1
+# a separate AUGUSTUS run (not the one inside BRAKER)
+ABINITIO_PREDICTION	AUGUSTUS	1
+
+# --- protein side ---
+# GeMoMa homology-projected gene models (gene structure from protein homology), low end of 2-5
+OTHER_PREDICTION	GeMoMa	2
+# miniprot spliced protein alignments, mid of 2-5
+PROTEIN	miniprot	3
+
+# --- transcript side (class TRANSCRIPT: exon/intron evidence only, no coding score) ---
+# StringTie assemblies from RNA-seq alignments
+TRANSCRIPT	StringTie	8
+# Mikado-picked loci from several transcript assemblies (A4b); if built from the same
+# StringTie GTF, give A4c either --mikado or --stringtie, not both
+TRANSCRIPT	Mikado	8
+# PASA alignment assemblies
+TRANSCRIPT	PASA	10

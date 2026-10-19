@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""MOCK mikado for tests: configure / prepare / serialise / pick with the real CLI
+shape. pick keeps the longest transcript per overlapping same-strand locus and writes
+mikado.loci.gff3 (gene/mRNA/exon) in the current directory; unstranded transcripts are
+written with strand '.' like a non-strand-specific assembly."""
+import json
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _mocklib import attrs, clusters, die, log, opt, rows  # noqa: E402
+
+argv = sys.argv[1:]
+log("mikado", argv)
+if not argv:
+    die("subcommand required")
+sub, rest = argv[0], argv[1:]
+
+if sub == "configure":
+    lst, ref = opt(rest, "--list"), opt(rest, "--reference")
+    if not (lst and ref and os.path.isfile(lst) and os.path.isfile(ref)):
+        die("configure needs existing --list and --reference")
+    conf = rest[-1]
+    with open(conf, "w") as fh:
+        json.dump({"mock": True, "list": os.path.abspath(lst), "reference": os.path.abspath(ref)}, fh)
+elif sub in ("prepare", "serialise"):
+    conf = opt(rest, "--json-conf") or die("--json-conf required")
+    cfg = json.load(open(conf))
+    if sub == "serialise":
+        if not os.path.isfile("mikado_prepared.gtf"):
+            die("run prepare first")
+        open("mikado.db", "w").close()
+    else:
+        out = []
+        for line in open(cfg["list"]):
+            if line.strip() and not line.startswith("#"):
+                alias = line.split("\t")[1]
+                for f in rows(line.split("\t")[0]):
+                    if f[2] == "exon":
+                        tid = attrs(f[8]).get("transcript_id") or attrs(f[8]).get("Parent")
+                        out.append("\t".join(f[:1] + [alias] + f[2:8] +
+                                             [f'gene_id "{alias}_{tid}.gene"; transcript_id "{alias}_{tid}";']))
+        with open("mikado_prepared.gtf", "w") as fh:
+            fh.write("\n".join(out) + "\n")
+elif sub == "pick":
+    conf = opt(rest, "--configuration", "--json-conf") or die("--configuration required")
+    if not os.path.isfile("mikado.db"):
+        die("run serialise first")
+    tx = {}
+    for f in rows("mikado_prepared.gtf"):
+        tid = attrs(f[8])["transcript_id"]
+        tx.setdefault(tid, []).append(f)
+    models = [(fs[0][0], fs[0][6], min(int(f[3]) for f in fs), max(int(f[4]) for f in fs), t)
+              for t, fs in tx.items()]
+    out = ["##gff-version 3", "# MOCK Mikado pick output (tests only)"]
+    for n, cl in enumerate(clusters(models), start=1):
+        seqid, strand, lo, hi, tid = max(cl, key=lambda m: sum(int(f[4]) - int(f[3]) for f in tx[m[4]]))
+        g, m = f"mikado.{seqid}G{n}", f"mikado.{seqid}G{n}.1"
+        out.append("\t".join([seqid, "Mikado_loci", "gene", str(lo), str(hi), ".", strand, ".", f"ID={g}"]))
+        out.append("\t".join([seqid, "Mikado_loci", "mRNA", str(lo), str(hi), ".", strand, ".",
+                              f"ID={m};Parent={g};alias={tid}"]))
+        for f in sorted(tx[tid], key=lambda f: int(f[3])):
+            out.append("\t".join([seqid, "Mikado_loci", "exon", f[3], f[4], ".", strand, ".", f"Parent={m}"]))
+    with open("mikado.loci.gff3", "w") as fh:
+        fh.write("\n".join(out) + "\n")
+    open("mikado.subloci.gff3", "w").close()
+else:
+    die(f"unknown subcommand {sub}")

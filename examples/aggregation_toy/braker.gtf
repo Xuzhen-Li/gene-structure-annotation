@@ -1,0 +1,18 @@
+chr1	AUGUSTUS	gene	1101	2151	1	+	.	gene_id "g1";
+chr1	AUGUSTUS	transcript	1101	2151	1	+	.	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	start_codon	1101	1103	.	+	0	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	CDS	1101	1300	1	+	0	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	CDS	1501	1700	1	+	1	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	CDS	1901	2148	1	+	2	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	stop_codon	2149	2151	.	+	0	transcript_id "g1.t1"; gene_id "g1";
+chr1	AUGUSTUS	gene	4200	4900	1	-	.	gene_id "g2";
+chr1	AUGUSTUS	transcript	4200	4900	1	-	.	transcript_id "g2.t1"; gene_id "g2";
+chr1	AUGUSTUS	start_codon	4898	4900	.	-	0	transcript_id "g2.t1"; gene_id "g2";
+chr1	AUGUSTUS	CDS	4203	4400	1	-	0	transcript_id "g2.t1"; gene_id "g2";
+chr1	AUGUSTUS	CDS	4601	4900	1	-	0	transcript_id "g2.t1"; gene_id "g2";
+chr1	AUGUSTUS	stop_codon	4200	4202	.	-	0	transcript_id "g2.t1"; gene_id "g2";
+chr1	AUGUSTUS	gene	7001	7600	1	+	.	gene_id "g3";
+chr1	AUGUSTUS	transcript	7001	7600	1	+	.	transcript_id "g3.t1"; gene_id "g3";
+chr1	AUGUSTUS	start_codon	7001	7003	.	+	0	transcript_id "g3.t1"; gene_id "g3";
+chr1	AUGUSTUS	CDS	7001	7597	1	+	0	transcript_id "g3.t1"; gene_id "g3";
+chr1	AUGUSTUS	stop_codon	7598	7600	.	+	0	transcript_id "g3.t1"; gene_id "g3";
