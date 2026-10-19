@@ -95,6 +95,13 @@ These decide *how gene models are invented*. Start from evidence (Ji *NRG* 2026)
 
 ```text
 Close curated ref?     → S11 first
+RNA + proteins?        → S1
+Proteins only?         → S2
+Heavy Iso-seq?         → S3
+Want GPU compare?      → S13 (alongside, not instead of S1 if RNA exists)
+Want full EVM/PASA?    → S14
+Almost no evidence?    → S6 provisional
+```
 
 ### When is a reference “close” enough for S11?
 
@@ -104,15 +111,6 @@ Close curated ref?     → S11 first
 4. Full **S11** = liftover **+ gap-fill + trunk QC** (can reach L1). Lift with no gap-fill = **S11-lite / provisional L0** only.
 
 5. **Provisional ≠ L1:** Liftoff-only / Helixer-only / MoGAAAP-style provisional merge ≠ evidence-based L1. Grades live in [`EVALUATION.md`](EVALUATION.md) (L0 vs L1). Classroom compare of Helixer vs BRAKER: [`COMPARE_HELIXER_BRAKER.md`](COMPARE_HELIXER_BRAKER.md).
-
-
-RNA + proteins?        → S1
-Proteins only?         → S2
-Heavy Iso-seq?         → S3
-Want GPU compare?      → S13 (alongside, not instead of S1 if RNA exists)
-Want full EVM/PASA?    → S14
-Almost no evidence?    → S6 provisional
-```
 
 ---
 
