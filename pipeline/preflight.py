@@ -162,6 +162,8 @@ def _producer_hint(key: str) -> str:
     step = PRODUCED_BY.get(key)
     if not step:
         return ""
+    if step not in STEPS:
+        return f" ({step})"
     return f" (made by step '{step}': preflight --step {step}, then RUN=1 bash pipeline/{STEPS[step].script})"
 
 

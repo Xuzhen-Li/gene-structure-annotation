@@ -80,7 +80,7 @@ class EnvParsingTests(Base):
     def test_env_file_read_without_export(self):
         # values only in the file (not exported in the shell) are still seen
         p = self.env_file("WORK_DIR=@T/work\n")
-        res = self.run_pf("--env", str(p), "--step", "agat")
+        res = self.run_pf("--env", str(p), "--step", next(iter(preflight.STEPS)))
         self.assertIn(f"WORK_DIR can be written: {self.tmp}/work", res.stdout)
 
 
