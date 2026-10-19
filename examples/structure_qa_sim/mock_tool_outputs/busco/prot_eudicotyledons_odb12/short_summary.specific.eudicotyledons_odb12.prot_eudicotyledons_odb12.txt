@@ -1,0 +1,9 @@
+# MOCK OUTPUT for the simulated example (not a real BUSCO run).
+# BUSCO version is: 5.8.2
+# The lineage dataset is: eudicotyledons_odb12 (Creation date: 2024-01-08, number of genomes: 0, number of BUSCOs: 2805)
+# Summarized benchmarking in BUSCO notation for file input.faa
+# BUSCO was run in mode: proteins
+
+	***** Results: *****
+
+	C:88.0%[S:79.6%,D:8.4%],F:3.6%,M:8.4%,n:2805	   

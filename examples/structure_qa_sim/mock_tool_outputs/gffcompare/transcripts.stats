@@ -1,0 +1,14 @@
+# MOCK OUTPUT for the simulated example (not a real gffcompare run).
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r evidence_transcripts -o transcripts consensus.gff3
+#
+#= Summary for dataset: consensus.gff3
+#     Query mRNAs :      11 in      10 loci  (9 multi-exon transcripts)
+#     Reference mRNAs :  10 in       9 loci  (8 multi-exon)
+#--------------------|   Sn  |  Pr  |
+        Base level:    99.1     |    86.4    |
+        Exon level:    93.5     |    80.0    |
+      Intron level:    100.0     |    94.1    |
+Intron chain level:    100.0     |    87.5    |
+  Transcript level:    90.0     |    81.8    |
+       Locus level:    100.0     |    90.0    |
