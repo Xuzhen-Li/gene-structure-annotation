@@ -6,3 +6,4 @@ answers.yaml
 __pycache__/
 *.pyc
 examples/structure_qa_sim/qa_out/
+first_run_out/
