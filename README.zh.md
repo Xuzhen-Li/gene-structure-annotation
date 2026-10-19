@@ -10,13 +10,7 @@
 
 结构注释是核心层。它用于在基因组上寻找基因位置并提供坐标、GFF3 和蛋白质序列。
 
-```text
-genome FASTA  (+ RNA and/or proteins)
-        ↓
- soft-mask (trusted TE lib) → predict gene models → QC → curate
-        ↓
-  qualified GFF3  +  proteins.faa  +  METHODS
-```
+![Structure overview](docs/figures/structure_overview.png)
 
 TE soft-mask 是必需的前置步骤。构建 TE 库是一项独立任务，请参考 [vitis-te](https://github.com/Xuzhen-Li/vitis-te) 和 [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md)。
 GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) 中。本仓库不生成功能注释表格。
@@ -27,7 +21,6 @@ GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https:/
 3. TE 库构建：[vitis-te](https://github.com/Xuzhen-Li/vitis-te) 和 [`TE_LIBRARY.md`](docs/TE_LIBRARY.md)。
 
 边界定义详见 [`docs/BOUNDARY.md`](docs/BOUNDARY.md)。
-![Structure overview](docs/figures/structure_overview.png)
 
 中文最短路径位于 [`docs/zh/README.md`](docs/zh/README.md)。英文入口位于 [`docs/START_HERE.md`](docs/START_HERE.md)。
 快速开始指南位于 [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight)。离线版本位于 [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md)。

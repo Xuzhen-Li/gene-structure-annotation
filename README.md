@@ -10,13 +10,7 @@ Plant simulations are in [`examples/plant_sim/`](examples/plant_sim/).
 
 Structural annotation is the primary layer. It finds genes on a genome and provides coordinates, GFF3, and proteins.
 
-```text
-genome FASTA  (+ RNA and/or proteins)
-        ↓
- soft-mask (trusted TE lib) → predict gene models → QC → curate
-        ↓
-  qualified GFF3  +  proteins.faa  +  METHODS
-```
+![Structure overview](docs/figures/structure_overview.png)
 
 TE soft-mask is a prerequisite. TE library construction is a separate job in [vitis-te](https://github.com/Xuzhen-Li/vitis-te) and [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md).
 GO, KEGG, and readable names are in the sibling repository [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation). This repository does not generate functional annotation tables.
@@ -27,7 +21,6 @@ Three layers:
 3. TE library build: [vitis-te](https://github.com/Xuzhen-Li/vitis-te) and [`TE_LIBRARY.md`](docs/TE_LIBRARY.md).
 
 Boundary definitions are in [`docs/BOUNDARY.md`](docs/BOUNDARY.md).
-![Structure overview](docs/figures/structure_overview.png)
 
 Chinese shortest path is [`docs/zh/README.md`](docs/zh/README.md). English entry point is [`docs/START_HERE.md`](docs/START_HERE.md).
 Quickstart is at [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight). Offline version is [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
