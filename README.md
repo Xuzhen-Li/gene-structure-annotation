@@ -64,7 +64,7 @@ S1: RNA and proteins (BRAKER, StringTie).
 S2: Proteins only (GALBA, GeMoMa).
 S3: Heavy Iso-seq (IsoQuant, SQANTI).
 S13: GPU ab initio comparison (Helixer, Tiberius, ANNEVO).
-S14: Full classic PASA plus EVM route (`docs/steps/dclab/`). The Integrate step (EVM) in the figure follows any branch you choose.
+S14: Full classic PASA plus EVM route (`docs/steps/dclab/`). The Integrate step (EVM) runs only for S14 or when a second gene set exists (dual-track).
 
 Overlays:
 L2: Acceptance level L1 plus S5 overlay for Paper/T2T bar.

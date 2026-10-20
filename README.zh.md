@@ -64,7 +64,7 @@ S1: RNA 和蛋白质 (BRAKER, StringTie)。
 S2: 仅蛋白质 (GALBA, GeMoMa)。
 S3: 大量 Iso-seq 数据 (IsoQuant, SQANTI)。
 S13: GPU 从头预测比冲 (Helixer, Tiberius, ANNEVO)。
-S14: 完整经典 PASA 加 EVM 路线 (`docs/steps/dclab/`)。图中的 Integrate 步骤 (EVM) 接在所选的任意分支之后。
+S14: 完整经典 PASA 加 EVM 路线 (`docs/steps/dclab/`)。Integrate 步骤 (EVM) 仅在 S14 路线或存在第二套基因集（双轨，即两套基因预测结果）时运行。
 
 叠加层：
 L2: L1 接受标准叠加 S5 层，达到论文或 T2T 标准。
