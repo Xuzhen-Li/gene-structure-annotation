@@ -1,0 +1,10 @@
+# Separate environment for soft-masking (large; keep apart from envs/structure.yml).
+# Create:   mamba env create -f envs/structure-repeats.yml
+# Versions pinned 2026-10-19.
+name: gsa-repeats
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - repeatmasker=4.2.4
+  - repeatmodeler=2.0.9

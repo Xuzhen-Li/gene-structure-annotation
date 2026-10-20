@@ -1,0 +1,27 @@
+# Conda / mamba environment for gene-structure-annotation.
+# Create:   mamba env create -f envs/structure.yml
+# Activate: conda activate gsa-structure
+# Check:    bash scripts/check_tools.sh
+# Versions pinned 2026-10-19 (latest on bioconda that day).
+# BRAKER is NOT installed here: use the container image
+#   docker://teambraker/braker3:v3.1.1
+# (see docs/INSTALL_STRUCTURE.md; set BRAKER_SIF in config/local.env).
+# OMArk/OMAmer/Compleasm: envs/structure-proteome-qc.yml (they do not solve
+# together with BUSCO 6 / Python 3.12). Soft-masking: envs/structure-repeats.yml.
+name: gsa-structure
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  - pyyaml=6.0.2
+  - samtools=1.24
+  - gffread=0.12.9
+  - gffcompare=0.12.10
+  - agat=1.7.0
+  - hisat2=2.2.3
+  - stringtie=3.0.3
+  - miniprot=0.18
+  - liftoff=1.6.3
+  - busco=6.1.0
+  - psauron=1.1.3

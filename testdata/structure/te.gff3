@@ -1,0 +1,4 @@
+##gff-version 3
+chr2	EDTA	LTR_retrotransposon	861	1810	.	+	.	ID=TE_001
+chr1	EDTA	Gypsy_LTR_retrotransposon	26001	27500	.	+	.	ID=TE_002
+chr2	EDTA	hAT_TIR_transposon	21001	21800	.	+	.	ID=TE_003

@@ -1,0 +1,11 @@
+# Proteome QC tools that conflict with envs/structure.yml (older Python / dendropy).
+# Create:   mamba env create -f envs/structure-proteome-qc.yml
+# Versions pinned 2026-10-19.
+name: gsa-proteome-qc
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - omamer=2.1.2
+  - omark=0.5.0
+  - compleasm=0.2.10
