@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""MOCK EVidenceModeler 2.x for tests (no consensus algorithm).
+
+Accepts the real CLI, checks the inputs exist and every gene-prediction source has a
+weight, then per overlapping same-strand locus keeps the gene-prediction model whose
+source has the highest weight and writes <sample_id>.EVM.gff3 (+ empty .pep/.cds/.bed)
+in the current directory, with EVM-style IDs.
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _mocklib import attrs, clusters, die, log, opt, rows  # noqa: E402
+
+argv = sys.argv[1:]
+log("EVidenceModeler", argv)
+sample = opt(argv, "--sample_id") or die("--sample_id required")
+need = {k: opt(argv, k) for k in ("--genome", "--weights", "--gene_predictions",
+                                  "--segmentSize", "--overlapSize")}
+for k, v in need.items():
+    if not v:
+        die(f"{k} required")
+for k in ("--genome", "--weights", "--gene_predictions", "--protein_alignments",
+          "--transcript_alignments"):
+    v = opt(argv, k)
+    if v and not os.path.isfile(v):
+        die(f"{k} {v}: not found")
+
+weights = {}
+for line in open(need["--weights"]):
+    f = line.split()
+    if len(f) == 3 and not line.startswith("#"):
+        weights[f[1]] = float(f[2])
+
+mrna, kids = {}, {}
+for f in rows(need["--gene_predictions"]):
+    a = attrs(f[8])
+    if f[1] not in weights:
+        die(f"no weight for source {f[1]}")
+    if f[2] == "mRNA":
+        mrna[a["ID"]] = f
+        kids[a["ID"]] = []
+    elif f[2] in ("exon", "CDS"):
+        kids.setdefault(a["Parent"], []).append(f)
+
+models = [(f[0], f[6], int(f[3]), int(f[4]), mid) for mid, f in mrna.items()]
+out = ["##gff-version 3", "# MOCK EVidenceModeler output (tests only)"]
+n = 0
+for cl in clusters(models):
+    best = max(cl, key=lambda m: (weights[mrna[m[4]][1]], m[3] - m[2]))
+    seqid, strand, lo, hi, mid = best
+    n += 1
+    tu, model = f"evm.TU.{seqid}.{n}", f"evm.model.{seqid}.{n}"
+    out.append("\t".join([seqid, "EVM", "gene", str(lo), str(hi), ".", strand, ".",
+                          f"ID={tu};Name=EVM prediction {seqid}.{n}"]))
+    out.append("\t".join([seqid, "EVM", "mRNA", str(lo), str(hi), ".", strand, ".",
+                          f"ID={model};Parent={tu};Name=EVM prediction {seqid}.{n}"]))
+    e = 0
+    for k in kids[mid]:
+        if k[2] == "exon":
+            e += 1
+            out.append("\t".join(k[:1] + ["EVM", "exon"] + k[3:8] + [f"ID={model}.exon{e};Parent={model}"]))
+        else:
+            out.append("\t".join(k[:1] + ["EVM", "CDS"] + k[3:8] + [f"ID=cds.{model};Parent={model}"]))
+with open(f"{sample}.EVM.gff3", "w") as fh:
+    fh.write("\n".join(out) + "\n")
+for ext in ("pep", "cds", "bed"):
+    open(f"{sample}.EVM.{ext}", "w").close()

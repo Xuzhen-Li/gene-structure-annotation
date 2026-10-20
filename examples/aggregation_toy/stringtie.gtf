@@ -1,0 +1,10 @@
+# StringTie-style GTF (simulated)
+chr1	StringTie	transcript	1001	2300	1000	+	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; cov "25.0"; FPKM "10.0"; TPM "20.0";
+chr1	StringTie	exon	1001	1300	1000	+	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; exon_number "1"; cov "25.0";
+chr1	StringTie	exon	1501	1700	1000	+	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; exon_number "2"; cov "25.0";
+chr1	StringTie	exon	1901	2300	1000	+	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; exon_number "3"; cov "25.0";
+chr1	StringTie	transcript	4001	5000	1000	-	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; cov "25.0"; FPKM "10.0"; TPM "20.0";
+chr1	StringTie	exon	4001	4400	1000	-	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "1"; cov "25.0";
+chr1	StringTie	exon	4601	5000	1000	-	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "2"; cov "25.0";
+chr1	StringTie	transcript	8001	8300	1000	.	.	gene_id "STRG.9"; transcript_id "STRG.9.1"; cov "3.0";
+chr1	StringTie	exon	8001	8300	1000	.	.	gene_id "STRG.9"; transcript_id "STRG.9.1"; exon_number "1";

@@ -1,0 +1,12 @@
+##gff-version 3
+##PAF	PROT_g1	216	0	216	+	chr1	9000
+chr1	miniprot	mRNA	1101	2151	500	+	.	ID=MP000001;Rank=1;Identity=0.9500;Positive=0.9700;Target=PROT_g1 1 216
+chr1	miniprot	CDS	1101	1300	500	+	0	Parent=MP000001;Rank=1;Identity=0.9500;Target=PROT_g1 1 67
+chr1	miniprot	CDS	1501	1700	500	+	1	Parent=MP000001;Rank=1;Identity=0.9500;Target=PROT_g1 67 134
+chr1	miniprot	CDS	1901	2148	500	+	2	Parent=MP000001;Rank=1;Identity=0.9500;Target=PROT_g1 134 216
+chr1	miniprot	stop_codon	2149	2151	0	+	0	Parent=MP000001;Rank=1
+##PAF	PROT_g2	166	0	166	-	chr1	9000
+chr1	miniprot	mRNA	4200	4900	500	-	.	ID=MP000002;Rank=1;Identity=0.9500;Positive=0.9700;Target=PROT_g2 1 166
+chr1	miniprot	CDS	4203	4400	500	-	0	Parent=MP000002;Rank=1;Identity=0.9500;Target=PROT_g2 101 166
+chr1	miniprot	CDS	4601	4900	500	-	0	Parent=MP000002;Rank=1;Identity=0.9500;Target=PROT_g2 1 100
+chr1	miniprot	stop_codon	4200	4202	0	-	0	Parent=MP000002;Rank=1

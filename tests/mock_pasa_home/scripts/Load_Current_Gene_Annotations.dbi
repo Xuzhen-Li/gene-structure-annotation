@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""MOCK Load_Current_Gene_Annotations.dbi (tests only): remembers the -P GFF3 in ./.mock_pasa_loaded."""
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from _mockpasa import STATE, die, log, opt  # noqa: E402
+
+argv = sys.argv[1:]
+log("Load_Current_Gene_Annotations.dbi", argv)
+for k in ("-c", "-g", "-P"):
+    v = opt(argv, k)
+    if not v or not os.path.isfile(v):
+        die(f"{k} missing or not a file")
+with open(STATE, "w") as fh:
+    fh.write(os.path.abspath(opt(argv, "-P")))
