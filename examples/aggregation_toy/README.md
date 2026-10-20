@@ -1,6 +1,6 @@
 # Aggregation toy data (simulated)
 
-[[TODO-TEXT]]
+This folder holds simulated toy data made the same way every time with a fixed seed (a starting number that makes random generation repeatable) on one 9 kb (9,000 base pairs of DNA) contig (a continuous stretch of assembled DNA sequence) named `chr1` with three genes. Gene `g1` has all evidence types, `g2` has BRAKER, GeMoMa (a tool that predicts genes using reference proteins from related species), miniprot (a tool that aligns proteins to a genome), and StringTie (a tool that assembles transcripts from RNA reads), and `g3` has BRAKER only and no evidence. It also includes one unstranded single-exon (having only one coding segment) StringTie transcript named `STRG.9.1` that step A4c drops, and running `python3 examples/aggregation_toy/make_toy.py` regenerates every file.
 
 | File | Used by |
 |------|---------|
@@ -23,4 +23,4 @@ python3 ../../pipeline/A4c_evm_inputs.py -o /tmp/evm_inputs -w ../../config/evm_
   --stringtie stringtie.gtf --pasa pasa_assemblies.gff3
 ```
 
-[[TODO-TEXT]]
+When you open a terminal (Mac: Terminal app; Linux: a terminal window; cluster: your login shell) inside the gene-structure-annotation folder and run `python3 examples/aggregation_toy/make_toy.py` and then step A4c, the run reports 3 genes from BRAKER, 2 genes from GeMoMa, 2 alignments and 1 unstranded dropped from StringTie, 1 alignment from PASA, and 2 alignments from miniprot. These counts are also saved in `summary.tsv`, and the output ends by pointing to the next step, `A4d_evm_run.sh`.

@@ -1,6 +1,6 @@
 # A4 multi-source aggregation (EVM main path, TSEBRA / Mikado / PASA optional)
 
-[[TODO-TEXT]]
+Step A4 combines several gene sets and evidence into one gene set using EVidenceModeler (EVM), a tool that merges different gene predictions and alignments into one consensus set. It runs optional A4a TSEBRA (a combiner for BRAKER runs) and optional A4b Mikado (a tool that picks the best transcript per locus, or gene position, from several transcript assemblies to use as transcript evidence), then A4c makes EVM input files, A4d runs EVM, and optional A4e runs PASA update (a tool that adds untranslated regions and alternative isoforms). The final output goes to step A5 AGAT (a toolkit that checks and formats gene annotation files) as `MERGED_GFF`.
 
 ## Steps
 
@@ -14,7 +14,7 @@
 
 Weights: [`../config/evm_weights_aggregate.txt`](../config/evm_weights_aggregate.txt)
 
-[[TODO-TEXT]]
+The weights file sets score multipliers for each evidence class: ab initio prediction (genes predicted from genome sequence alone), other prediction, protein, and transcript. Its starting values come from the EVM wiki and Haas et al. 2008 (ab initio 1, protein 2 to 5, transcript 8 to 10, PASA 10). Only the ratios between numbers matter, so you should tune them per species on a few manually curated genes and never copy a tuned file across species. Step A4d saves the exact weights used as `weights.used.txt`.
 
 ## Evidence classes
 
@@ -29,7 +29,7 @@ Weights: [`../config/evm_weights_aggregate.txt`](../config/evm_weights_aggregate
 | `--mikado` | TRANSCRIPT | Mikado | 8 |
 | `--pasa` | TRANSCRIPT | PASA | 10 |
 
-[[TODO-TEXT]]
+In GFF3 (a standard nine-column text format for gene features), column 2 is the `SOURCE` name, and it must match the weights file exactly; step A4c writes these names and fails if an input source has no row in the weights file. Run step A4a only when combining separate BRAKER1 (a predictor using RNA-seq, which is sequenced RNA reads) and BRAKER2 (a predictor using protein data) runs; BRAKER3 already runs TSEBRA inside, so setting `BRAKER_VERSION=3` skips step A4a. Pass `--tsebra` instead of `--braker` to step A4c when you have TSEBRA output, and never use both options together.
 
 ## Commands
 
@@ -60,7 +60,7 @@ PASA_HOME=/path/to/PASApipeline PASA_ALIGN_CONFIG=alignAssembly.config \
   RUN=1 bash pipeline/A4e_pasa_update.sh
 ```
 
-[[TODO-TEXT]]
+To run these commands, open a terminal (Mac: Terminal app; Linux: a terminal window; cluster: your login shell) inside the gene-structure-annotation folder. Every shell step only prints its commands by default, so add `RUN=1` to execute them. Step A4c uses only Python with no extra tools, needs at least one gene prediction input, and writes `gene_predictions.gff3`, `transcript_alignments.gff3`, `protein_alignments.gff3`, `weights.txt`, and `summary.tsv` (which lists feature counts per source and dropped records). Step A4c drops unstranded transcripts (transcripts without a known DNA strand direction) and UTRs (untranslated regions at the ends of a transcript); step A4d checks the inputs again before running EVM, and step A4e adds UTRs and alternative isoforms (different transcript versions from the same gene) back from PASA in 2 rounds by default.
 
 ## Environment keys
 
@@ -76,7 +76,7 @@ PASA_HOME=/path/to/PASApipeline PASA_ALIGN_CONFIG=alignAssembly.config \
 - Toy data: [`../examples/aggregation_toy/`](../examples/aggregation_toy/)
 - Tests: `python3 -m unittest discover -s tests -v`
 
-[[TODO-TEXT]]
+Open a terminal (Mac: Terminal app; Linux: a terminal window; cluster: your login shell) inside the gene-structure-annotation folder to run `python3 -m unittest discover -s tests -v`. These tests use only the Python standard library (built-in code that comes with Python) and check that the committed toy files equal the output of `make_toy.py` and that output files have the right structure. They run without the real tools installed by using mocks (small stand-in scripts that imitate the real programs), and a full run of 24 tests takes about 1 second.
 
 ## References
 
