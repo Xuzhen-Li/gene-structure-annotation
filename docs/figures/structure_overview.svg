@@ -60,7 +60,7 @@
   <text x="48" y="300" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Pick ONE primary branch (Plain map)</text>
   <text x="48" y="328" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Close curated ref GFF → S11 (liftover first)</text>
   <text x="48" y="352" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• RNA + proteins, no close ref → S1 (BRAKER + StringTie compare)</text>
-  <text x="48" y="376" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Proteins only → S2 · Heavy Iso-seq → S3 · EVM/PASA → S14</text>
+  <text x="48" y="376" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Proteins only → S2 · Heavy Iso-seq → S3 · Full classic PASA + EVM → S14</text>
   <text x="48" y="400" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#64748b">Grape / NLR windows: set plant_tandem_focus=true (or plant_sim/01_vitis)</text>
 
   <!-- Start here card -->
