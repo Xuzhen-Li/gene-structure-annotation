@@ -111,7 +111,9 @@ class ConfigTest(unittest.TestCase):
         # BUSCO odb12 names the eudicot set eudicotyledons_odb12; eudicots_odb12 does not exist.
         hits = [str(p.relative_to(toydata.REPO)) for p in toydata.REPO.rglob("*")
                 if p.is_file() and ".git" not in p.parts and "tests" not in p.parts and p.suffix in {".md", ".env", ".py", ".sh", ".yaml", ".snippet"}
-                and "eudicots_odb12" in p.read_text(errors="ignore")]
+                and any("eudicots_odb12" in line and not line.lstrip().startswith('"eudicots_odb12":')
+                        for line in p.read_text(errors="ignore").splitlines())]
+        # The KNOWN_BAD_LINEAGES deny-list key in pipeline/preflight.py is allowed: it exists to catch this name.
         self.assertEqual(hits, [])
 
     def test_lineages_page_lists_datasets_command(self):
