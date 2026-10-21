@@ -1,6 +1,6 @@
 # AI-assisted annotation — prompts, data, order, checks
 
-Use an AI assistant (Cursor / chat agent / lab bot) as a **runbook co-pilot**, not as a replacement for BUSCO, IGV/GSAman, or METHODS. This page is the contract: what to prepare, what to say, in what order, and how **you** verify the answer.
+Use an AI assistant (chat agent / lab bot) as a **runbook co-pilot**, not as a replacement for BUSCO, IGV/GSAman, or METHODS. This page is the contract: what to prepare, what to say, in what order, and how **you** verify the answer.
 
 Related: [`DETAILED_GUIDE.md`](DETAILED_GUIDE.md) · [`SCENARIOS.md`](SCENARIOS.md) · [`TOOLS.md`](TOOLS.md) · [`PLAYBOOK.md`](PLAYBOOK.md)
 
