@@ -472,7 +472,7 @@ The main input is a genome FASTA (`GENOME_FA`). The notes below say what else ea
 - A close reference is same species / cultivar (or a near-identical haplotype) with a curated GFF you trust — not merely "a GFF exists in the same family".
 - BUSCO lineage must match the clade; record odb10 vs odb12 (`docs/LINEAGES.md`). Compleasm is a useful compare, not an automatic replacement for BUSCO.
 - High BUSCO Duplicated can be real haplotypes (S9). Do not purge haplotypes only to lower D.
-- If gene counts collapse after TSEBRA, run the A5d mono:multi check (Copetti) before accepting the merge.
+- If gene counts collapse after TSEBRA, run the A5d mono-exonic:multi-exonic gene ratio check (Copetti) before accepting the merge.
 
 Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay marked until someone opens a primary source.
 
@@ -508,6 +508,6 @@ Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay
 - 「近缘参考」指同种 / 同一品种或近乎相同的单倍型，且 GFF 可信，而不是「同科有一个 GFF」。
 - BUSCO lineage 必须匹配类群，并写明 odb10 还是 odb12（`docs/LINEAGES.md`）。Compleasm 可对照，不自动代替 BUSCO。
 - BUSCO Duplicated 偏高可能是真实单倍型（S9），不要只为降低 D 就丢掉单倍型。
-- TSEBRA 后基因数塌缩时，先做 A5d 单拷贝/多拷贝检查（Copetti），再接受合并结果。
+- TSEBRA 后基因数塌缩时，先做 A5d 单外显子/多外显子基因比值检查（Copetti），再接受合并结果。
 
 目录里仍标 `[待确认]` 的条目（例如 CRAQ）保持原标记，直到有人打开原始出处。
