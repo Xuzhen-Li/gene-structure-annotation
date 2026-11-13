@@ -167,3 +167,28 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | [`EGAPX_COMPARE.md`](EGAPX_COMPARE.md) | S8 EGAPx 对照 / GenBank door (not default; no runners here) |
 | [`POST_ASSEMBLY.md`](POST_ASSEMBLY.md) | One-page Asm1 → TE → draft → golden → FA |
 | [`../pipeline/A2_protein_db.md`](../pipeline/A2_protein_db.md) | PROTEIN_DB for BRAKER / GALBA |
+| [`CATALOG_BY_TYPE_2026-11.md`](CATALOG_BY_TYPE_2026-11.md) | 2026-11 type catalog (combined inventory 135) |
+| [`CATALOG_NEW_TOOLS_2026-11.md`](CATALOG_NEW_TOOLS_2026-11.md) | 2026-11 first-pass list (57 cards in `catalog/`) |
+| [`../catalog/README.md`](../catalog/README.md) | Stage-folder cards, in execution order |
+| [`../README.md`](../README.md) | Homepage catalog by type, Needs lines, data-needs summary |
+| [`SCENARIOS.md#data-needs-details`](SCENARIOS.md#data-needs-details) | Data needed alongside the genome (appended 2026-11-13) |
+
+## Status 2026-11-13 / 已完成 · 仍待做
+
+Documentation status as of 2026-11-13 (Asia/Shanghai). The scientific trunk and the S11 / S1 / S2 / S3 / S13 / S14 rules above are unchanged.
+
+### 已完成 / Done (in open PR #10, not merged yet)
+
+- A 2026-11 methods catalog, in two passes: 57 entries filed by stage in `catalog/` and `docs/CATALOG_NEW_TOOLS_2026-11.md`, then 78 further entries in `docs/CATALOG_BY_TYPE_2026-11.md`. Combined inventory: 135. This is a reading list; it does not change the default path in `docs/TOOLS.md`.
+- The repository homepage (`README.md` / `README.zh.md`) is now the catalog by type (15 sections, jump links, counts, a one-line intro per entry, a **Needs:** line, a data-needs summary, and credited figures). Long data-needs text is appended to the existing `SCENARIOS.md`. Stage order stays in this roadmap and in `catalog/`.
+- Two errata files were added in that PR (NLR/plantiSMASH boundary; GSAman DOI). They do not change the trunk.
+- The GSAman tool paper is Chen, Wu et al. 2026 (doi:10.1016/j.xinn.2026.101471); the last-mile opinion article is Chen, Chen and Xia 2026 (doi:10.1016/j.xinn.2026.101537).
+
+### 仍待做 / Still to do
+
+- Review the homepage and data-needs text; merge PR #10 only when the owner asks.
+- Some first-pass stage folders are still thin or empty (`catalog/A4_aggregation`, `A3_proteins`, `LM01`–`LM03`, `A6`). The type catalog already lists tools for several of these stages. Filling the thin folders means editing those existing README cards, not adding new markdown files.
+- Proposed tools stay off the default path until they are tested on this repo's data and evaluation checklist.
+- Figures in the homepage must stay CC BY or OSI-licensed software output (no NC/ND). Self-drawn overview figures already in `docs/figures/` are kept.
+
+Chooser, trunk order (Asm0 → Asm1 → A0 → one draft branch → A4/A5 → proteins → last-mile QC → release), and the branch rules in the sections above remain the same.
