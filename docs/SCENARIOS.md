@@ -439,3 +439,75 @@ If BRAKER << other sets: TSEBRA rescue ([`tools/tsebra.md`](tools/tsebra.md)) be
 | Liftover-first (+ gap-fill) | **S11** |
 | Lift-only L0 (no gap-fill) | **S11-lite** (METHODS label) |
 | Done polishing | **S12** |
+
+---
+
+<a id="data-needs-details"></a>
+
+## Data needed alongside the genome
+
+The main input is a genome FASTA (`GENOME_FA`). The notes below say what else each situation usually needs. They do not change the default S1 path until a change is tested.
+
+### Summary
+
+| Situation | Minimum | Recommended | Typical tools in this repo | Common pitfall |
+|---|---|---|---|---|
+| Assembly already done (Asm0/Asm1 as checklist) | `GENOME_FA`, `ASSEMBLY_OK=yes` | Assembly reads for k-mer / QV checks; a matching BUSCO lineage | BUSCO (genome), compleasm (optional) | Using a lineage from the wrong clade, or mixing odb10 with odb12 names without saying so (`docs/LINEAGES.md`) |
+| Soft-mask (A0) | Trusted TE library | Library version and source in METHODS | RepeatMasker / EDTA `make_masked.pl` (mask only) | Building a new TE library inside this repo — that job belongs to vitis-te |
+| Default S1 (RNA + proteins, no close GFF) | RNA-seq (or `RNA_BAM`) and `PROTEIN_DB` | Same-genotype, multi-tissue RNA | HISAT2/STAR, StringTie, BRAKER3/4, GeMoMa or miniprot | RNA from another cultivar used as if it were the target genotype |
+| Proteins only (S2) | `PROTEIN_DB` | Closer proteomes rather than a generic set | GALBA / GALBA2, GeMoMa, miniprot | Claiming complete UTRs from protein evidence alone |
+| Deep Iso-Seq (S3) | Long-read RNA + a mapper (minimap2) | Short-read RNA as well; SQANTI-style filters | IsoQuant, SQANTI, EviAnn, BRAKER for orphans | Skipping SQANTI (or equivalent) filters |
+| Close curated GFF (S11) | Trusted close GFF | Gap-fill evidence (RNA / proteins) | Liftoff, LiftOn, CAT; then trunk QC | Calling lift-only S11-lite an L1 release |
+| GPU ab initio compare (S13) | Soft-masked genome + GPU | Keep an evidence draft beside it | Helixer, Tiberius, ANNEVO | Silently replacing S1 when RNA exists |
+| Classic EVM stack (S14) | RNA and/or proteins to train and weight | Documented EVM weights | PASA, AUGUSTUS/GeneMark, EVM | Running EVM on every genome as if it were required |
+| Paper / T2T bar (S5 overlay) | The S1 or S14 draft plus deeper QC | OMArk, deeper GSAman, evidence pack | OMArk, PSAURON, BUSCO protein, GSAman | Treating a provisional merge as L1 |
+| Multi-haplotype (S4 / LM05) | The second haplotype assembly | SynGAP after transfer | Liftoff, SynGAP | Purging haplotypes because BUSCO Duplicated is high (see S9) |
+| Handoff to function (A6) | Release tag and `proteins.faa` (one representative per gene) | Curated GFF if the function repo will use coordinates | AGAT / gffread | Sending an unfrozen draft without `RELEASE_TAG` |
+
+### Cross-cutting pitfalls
+
+- TE *library construction* is a separate job (vitis-te). This repo only soft-masks with a trusted library.
+- Functional labels (GO, KEGG, domains, readable names, NLR/TF classifiers including HRP) belong in gene-function-annotation. A protein tool that says "structure" usually means 3D structure, not gene models.
+- `grade=` and `status=` are separate fields. Do not write `status=L1`. Provisional ≠ L1 (`docs/EVALUATION.md`).
+- A close reference is same species / cultivar (or a near-identical haplotype) with a curated GFF you trust — not merely "a GFF exists in the same family".
+- BUSCO lineage must match the clade; record odb10 vs odb12 (`docs/LINEAGES.md`). Compleasm is a useful compare, not an automatic replacement for BUSCO.
+- High BUSCO Duplicated can be real haplotypes (S9). Do not purge haplotypes only to lower D.
+- If gene counts collapse after TSEBRA, run the A5d mono:multi check (Copetti) before accepting the merge.
+
+Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay marked until someone opens a primary source.
+
+---
+
+<a id="data-needs-zh"></a>
+
+## 基因组之外还需要的数据
+
+主输入是基因组 FASTA（`GENOME_FA`）。下表说明各场景通常还要什么。未实测前不改变默认 S1 路径。
+
+### 摘要
+
+| 场景 | 最低要求 | 建议再加 | 本库常用工具 | 常见陷阱 |
+|---|---|---|---|---|
+| 组装已完成（Asm0/Asm1 作检查清单） | `GENOME_FA`，`ASSEMBLY_OK=yes` | 组装所用测序数据，用于 k-mer / QV 检查；匹配的 BUSCO lineage | BUSCO（基因组模式）、compleasm（可选） | 用了错误类群的 lineage，或混用 odb10 与 odb12 名称却未写明（`docs/LINEAGES.md`） |
+| Soft-mask（A0） | 可信 TE 库 | 在 METHODS 中写明库版本与来源 | RepeatMasker / EDTA `make_masked.pl`（只做屏蔽） | 在本库里新建 TE 库 — 那是 vitis-te 的任务 |
+| 默认 S1（有 RNA 和蛋白，无近缘 GFF） | RNA-seq（或 `RNA_BAM`）和 `PROTEIN_DB` | 同一基因型、多组织 RNA | HISAT2/STAR、StringTie、BRAKER3/4、GeMoMa 或 miniprot | 把另一品种的 RNA 当作目标基因型来用 |
+| 仅有蛋白（S2） | `PROTEIN_DB` | 更近缘的蛋白组，而不是一套泛用集 | GALBA / GALBA2、GeMoMa、miniprot | 仅凭蛋白证据声称完整 UTR |
+| 深度 Iso-Seq（S3） | 长读长 RNA + 比对工具（minimap2） | 同时有短读长 RNA；SQANTI 一类过滤 | IsoQuant、SQANTI、EviAnn，孤儿基因再用 BRAKER | 跳过 SQANTI（或等效）过滤 |
+| 近缘已整理 GFF（S11） | 可信的近缘 GFF | 补洞用的证据（RNA / 蛋白） | Liftoff、LiftOn、CAT；然后走主干质控 | 把只做 lift 的 S11-lite 当成 L1 发布 |
+| GPU 从头预测对照（S13） | 已 soft-mask 的基因组 + GPU | 旁边保留一套证据草案 | Helixer、Tiberius、ANNEVO | 在已有 RNA 时悄悄代替 S1 |
+| 经典 EVM 流程（S14） | 用于训练和加权的 RNA 和/或蛋白 | 写明的 EVM 权重 | PASA、AUGUSTUS/GeneMark、EVM | 把 EVM 当成每个基因组的必做步骤 |
+| 论文 / T2T 标准（S5 叠加） | S1 或 S14 草案，外加更深入的质控 | OMArk、更深入的 GSAman、证据包 | OMArk、PSAURON、BUSCO 蛋白模式、GSAman | 把临时合并结果当成 L1 |
+| 多单倍型（S4 / LM05） | 第二条单倍型组装 | 转移之后跑 SynGAP | Liftoff、SynGAP | 因为 BUSCO Duplicated 偏高就丢掉单倍型（见 S9） |
+| 移交功能注释（A6） | 发布标签和 `proteins.faa`（每个基因一条代表序列） | 若功能库要用坐标，再加已审定 GFF | AGAT / gffread | 在没有 `RELEASE_TAG` 的情况下送出未冻结的草案 |
+
+### 跨切陷阱
+
+- 建 TE 库是 vitis-te 的任务。本库只用可信库做 soft-mask。
+- GO / KEGG / 结构域 / 可读名称 / NLR 与 TF 分类器（含 HRP）在 gene-function-annotation。蛋白工具里的 “structure” 多指三维结构，不是基因模型。
+- `grade=` 与 `status=` 分开写，不要写 `status=L1`。临时结果不等于 L1（`docs/EVALUATION.md`）。
+- 「近缘参考」指同种 / 同一品种或近乎相同的单倍型，且 GFF 可信，而不是「同科有一个 GFF」。
+- BUSCO lineage 必须匹配类群，并写明 odb10 还是 odb12（`docs/LINEAGES.md`）。Compleasm 可对照，不自动代替 BUSCO。
+- BUSCO Duplicated 偏高可能是真实单倍型（S9），不要只为降低 D 就丢掉单倍型。
+- TSEBRA 后基因数塌缩时，先做 A5d 单拷贝/多拷贝检查（Copetti），再接受合并结果。
+
+目录里仍标 `[待确认]` 的条目（例如 CRAQ）保持原标记，直到有人打开原始出处。
