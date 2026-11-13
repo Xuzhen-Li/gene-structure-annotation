@@ -475,7 +475,7 @@ The main input is a genome FASTA (`GENOME_FA`). The notes below say what else ea
 - A close reference is same species / cultivar (or a near-identical haplotype) with a curated GFF you trust — not merely "a GFF exists in the same family".
 - BUSCO lineage must match the clade; record odb10 vs odb12 (`docs/LINEAGES.md`). Compleasm is a useful compare, not an automatic replacement for BUSCO.
 - High BUSCO Duplicated can be real haplotypes (S9). Do not purge haplotypes only to lower D.
-- If gene counts collapse after TSEBRA, run the A5d mono:multi check (Copetti) before accepting the merge.
+- If gene counts collapse after TSEBRA, run the A5d mono-exonic:multi-exonic gene ratio check (Copetti) before accepting the merge.
 
 Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay marked until someone opens a primary source.
 
