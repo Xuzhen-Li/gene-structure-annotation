@@ -27,7 +27,7 @@ GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https:/
 任务看板位于 [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2)。
 
 
-本页同时也是 2026-11 方法目录，分 15 个类型小节，共收录 135 条工具、数据库与思路。默认路径不变（见「使用方法」和 `docs/ROADMAP.md`）。阶段顺序仍以路线图和 `catalog/` 为准。
+本页也是 2026-11 方法目录，按类型分为 15 节，共收录 174 条工具、数据库与思路（2026-11-14 更新）。默认路径不变（见「使用方法」和 `docs/ROADMAP.md`）。阶段顺序仍以路线图和 `catalog/` 为准。
 
 ## 使用方法
 
@@ -74,6 +74,7 @@ L2: L1 接受标准叠加 S5 层，达到论文或 T2T 标准。
 S7: 设置 `plant_tandem_focus: true` 时叠加植物 NLR 或串联重复区域分析。
 
 完整路线图位于 [`docs/ROADMAP.md`](docs/ROADMAP.md)。
+含工具选择与判断节点的流程图（2026-11-14）：[`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14)。
 
 ## 文档目录
 
@@ -107,25 +108,27 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 ## 方法目录
 
-本页按类型列出 2026-11 调研整理的 135 条方法、工具、数据库与思路（类型目录 78 条，`catalog/` 首轮卡片 57 条）。默认路径仍以「使用方法」和 `docs/ROADMAP.md` 为准，本目录不作改动。阶段顺序仍见路线图和 `catalog/`。完整表格与勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 和 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
+本页按类型列出 2026-11 调研及 2026-11-14 更新后的 174 条方法、工具、数据库与思路（类型目录 78 条，`catalog/` 首轮卡片 57 条；2026-11-14 合并旧版本条目 2 条，新增 41 条）。默认路径仍以「使用方法」和 `docs/ROADMAP.md` 为准，本目录不作改动。阶段顺序仍见路线图和 `catalog/`。完整表格与勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 和 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
+
+**2026-11-14 更新。** 每节开头新增 **分组：** 列表，把本节条目分为可替代（选一个）、互补（一起用）或按顺序（依次运行），并说明什么情况下选哪个。列表中的「A 或 B」表示二选一，「A → B」表示一条固定路线。同一软件的不同版本现在合并为一条，以最新版本命名；旧版本只在该条的说明里提及。带工具选择和判断节点的流程图见 [`docs/ROADMAP.md`](docs/ROADMAP.md#workflow-2026-11-14)。
 
 ## 目录
 
-1. [组装与组装质控](#section-1) (17)
-2. [用可信库做 soft-mask](#section-2) (5)
-3. [RNA 与 Iso-Seq 证据](#section-3) (22)
-4. [蛋白证据](#section-4) (4)
+1. [组装与组装质控](#section-1) (19)
+2. [用可信库做 soft-mask](#section-2) (8)
+3. [RNA 与 Iso-Seq 证据](#section-3) (30)
+4. [蛋白证据](#section-4) (8)
 5. [从头基因预测](#section-5) (9)
-6. [DNA 语言模型预测](#section-6) (6)
-7. [注释转移（lift-over）](#section-7) (8)
-8. [合并器与注释流程](#section-8) (11)
-9. [非编码 RNA 与假基因位点](#section-9) (15)
-10. [基因模型质控](#section-10) (5)
-11. [人工校对与浏览器](#section-11) (6)
-12. [GFF3 清理与发布](#section-12) (8)
-13. [参考数据库](#section-13) (5)
-14. [标准与综述](#section-14) (8)
-15. [尚未落到单一工具的想法](#section-15) (6)
+6. [DNA 语言模型预测](#section-6) (8)
+7. [注释转移（lift-over）](#section-7) (9)
+8. [合并器与注释流程](#section-8) (12)
+9. [非编码 RNA 与假基因位点](#section-9) (17)
+10. [基因模型质控](#section-10) (7)
+11. [人工校对与浏览器](#section-11) (7)
+12. [GFF3 清理与发布](#section-12) (10)
+13. [参考数据库](#section-13) (10)
+14. [标准与综述](#section-14) (12)
+15. [尚未落到单一工具的想法](#section-15) (8)
 
 - [基因组之外还需要的数据](#data-needs)
 - [图注与许可](#figure-credits)
@@ -138,6 +141,12 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 用于判断组装能否进入注释，或直接生成单倍型 FASTA 的工具（Asm0、Asm1）。
 
 **需要：** 组装 FASTA；若需检查 k-mer 或碱基准确度，还需附上组装所用的测序读长。BUSCO 需选用与类群匹配的 lineage（见 `docs/LINEAGES.md`）。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *组装与挂载*（可替代）：hifiasm、Verkko、YaHS、RagTag。HiFi（+Hi-C）默认用 hifiasm；有超长 ONT 且要做 T2T 时选 Verkko。有 Hi-C 时用 YaHS 挂载；仅有近缘参考时才用 RagTag。
+- *准确度与完整性*（互补）：Merqury、CRAQ、Inspector、GCI、compleasm、LTR Assembly Index (LAI)、QUAST、gfastats。配合使用：Merqury 算 QV，compleasm 评基因空间，LAI 评重复序列区；CRAQ 和 Inspector 定位组装错误；gfastats 和 QUAST 生成汇总表。
+- *污染与染色体末端*（互补）：NCBI FCS-GX、BlobToolKit、Tiara、tidk、quarTeT。提交 NCBI 前必须运行 FCS-GX；BlobToolKit 和 Tiara 用于判定被标记 contig 的来源。tidk 和 quarTeT 用于确认 T2T 染色体两端的端粒。
+- *读长 k-mer 概况*（互补）：GenomeScope 2.0 / Smudgeplot、KAT (K-mer Analysis Toolkit)。在组装前或组装刚完成时运行，根据读长估计基因组大小、杂合度和倍性。
 
 各条目的单句简介译自英文目录，英文原句见英文版 README。
 
@@ -162,6 +171,8 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 - **gfastats** (tool) — 对 FASTA/GFA 格式组装文件做快速统计与处理的工具。 [doi:10.1093/bioinformatics/btac460](https://doi.org/10.1093/bioinformatics/btac460) · [link](https://github.com/vgl-hub/gfastats)
 - **CRAQ** (tool) — 根据软剪切（clipped）读长比对结果做无参考组装评估，检测局部与结构组装错误。 [link](https://github.com/JiaoLaboratory/CRAQ) [待确认]
 - **NCBI FCS-GX** (tool) — 在提交或注释前检测并剔除组装中的外源物种污染。 [doi:10.1186/s13059-024-03198-7](https://doi.org/10.1186/s13059-024-03198-7) · [link](https://github.com/ncbi/fcs)
+- **compleasm** (tool) — 基于 miniprot 重新实现 BUSCO，沿用同一套谱系数据集；在大型植物组装上评估基因空间完整性速度更快，结果往往也更准。 [doi:10.1093/bioinformatics/btad595](https://doi.org/10.1093/bioinformatics/btad595) · [link](https://github.com/huangnengCSU/compleasm)
+- **LTR Assembly Index (LAI)** (tool) — 根据组装中保留的完整 LTR 反转录转座子比例打分；用于在注释前检查重复序列区连续性，与 BUSCO 互补。 [doi:10.1093/nar/gky730](https://doi.org/10.1093/nar/gky730) · [link](https://github.com/oushujun/LTR_retriever)
 
 <a id="section-2"></a>
 ## 2. 用可信库做 soft-mask
@@ -170,12 +181,20 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 **需要：** 一份可信的 TE 库（来自 vitis-te 或其他审定库）。本节仅做 soft-mask，不构建 TE 库。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *库与屏蔽程序*（互补）：Dfam、RepeatMasker。默认 A0：用 RepeatMasker 跑 vitis-te 的库（已知家族由 Dfam 补充）。
+- *串联与卫星重复*（互补）：Tandem Repeats Finder (TRF)、ULTRA、TRASH。存在着丝粒或长卫星重复时并入屏蔽结果；TRASH 还能对着丝粒阵列进行分类。
+- *无库屏蔽与建库（仅作对照）*（可替代）：WindowMasker、Red、Earl Grey。WindowMasker 和 Red 不用库直接屏蔽；Earl Grey 会自建库再屏蔽。三者都只用于和 A0 的屏蔽结果比较，在默认路径上不能替代 vitis-te 的库。
+
 
 - **RepeatMasker** (tool) — 利用给定的重复序列库（Dfam 或经审定的物种专有库）屏蔽重复序列；`-xsmall` 参数输出 soft-masking 结果。 [link](https://github.com/Dfam-consortium/RepeatMasker)
 - **Dfam** (resource) — RepeatMasker 所用的转座子（TE）家族与隐马尔可夫模型（profile HMM）公开数据库。 [doi:10.1186/s13100-020-00230-y](https://doi.org/10.1186/s13100-020-00230-y) · [link](https://www.dfam.org/)
 - **Tandem Repeats Finder (TRF)** (tool) — 检测串联重复序列。 [doi:10.1093/nar/27.2.573](https://doi.org/10.1093/nar/27.2.573) · [link](https://github.com/Benson-Genomics-Lab/TRF)
 - **WindowMasker** (tool) — 无需重复序列库，直接基于高频 k-mer 做序列屏蔽的工具（NCBI）。 [doi:10.1093/bioinformatics/bti774](https://doi.org/10.1093/bioinformatics/bti774) · [link](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/winmasker/)
 - **ULTRA** (tool) — 对串联重复与低复杂度重复做概率标注；输出结果可配合可信 TE 库用于 soft-masking。 [doi:10.1093/bioadv/vbae149](https://doi.org/10.1093/bioadv/vbae149) · [link](https://github.com/TravisWheelerLab/ULTRA)
+- **Red** (tool) — 不依赖重复库的从头重复序列检测工具，尚无可信 TE 库时可快速生成 soft-mask。仅作为对照轨道与 vitis-te 库比较。 [doi:10.1186/s12859-015-0654-5](https://doi.org/10.1186/s12859-015-0654-5)
+- **TRASH** (tool) — 识别并分类串联重复与卫星重复阵列（如着丝粒重复）；可在基因预测前用来屏蔽或标记 T2T 组装的着丝粒。 [doi:10.1093/bioinformatics/btad308](https://doi.org/10.1093/bioinformatics/btad308) · [link](https://github.com/vlothec/TRASH)
+- **Earl Grey** (tool) — 封装 RepeatModeler2 和 RepeatMasker 的自动化 TE 注释流程。建库工作归属 vitis-te，此处收录仅用于对比屏蔽结果。 [doi:10.1093/molbev/msae068](https://doi.org/10.1093/molbev/msae068) · [link](https://github.com/TobyBaril/EarlGrey)
 
 <a id="section-3"></a>
 ## 3. RNA 与 Iso-Seq 证据
@@ -183,6 +202,13 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 提供基因模型证据的短读长与长读长 RNA 比对、转录本组装及 ORF 预测（A1b）。
 
 **需要：** 尽可能使用同一基因型的短读长 RNA-seq（FASTQ 或现成的 `RNA_BAM`）；若走 S3 分支，需补充高深度 Iso-Seq / 长读长转录组。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *短读长路线*（按顺序）：fastp、HISAT2 或 STAR、Portcullis、StringTie (v3 line) 或 Scallop2 或 Aletsch。先修剪、再比对，组装前用 Portcullis 过滤剪接位点，然后组装：默认用 StringTie；样本多但每个都浅时用 Scallop2 或 Aletsch。之后可用 TransDecoder 在组装出的转录本上识别 ORF。
+- *Trinity 路线*（按顺序）：Trinity、PASA、TransDecoder。只在需要不依赖基因组的转录本组装时使用：PASA 比对并更新 Trinity 的组装结果，再用 TransDecoder 识别 ORF。
+- *长读长转录本*（按顺序）：IsoSeq (PacBio)、IsoQuant 或 Bambu 或 FLAIR 或 Mandalorion 或 ESPRESSO 或 TAMA 或 FLIC (Full-length isoform constructor) 或 Isocall 或 TAGET、SQANTI3。IsoSeq 预处理只用于 PacBio 读长。转录本构建工具选一个：默认用 IsoQuant；ONT 数据适合 FLAIR，高准确度读长适合 Mandalorion。转录本作为证据之前一定要先过 SQANTI3 质控。
+- *长读长比对*（可替代）：minimap2、uLTRA、deSALT。默认用 minimap2 剪接模式；已有注释时，uLTRA 对小外显子的比对效果更好。
+- *翻译证据*（互补）：RiboCode、Ribo-TISH、RiboBA、PhyloCSF++、KuPID。仅用于分析小 ORF、uORF 或存疑起始位点；需要 Ribo-seq 或保守性轨道。
 
 ![StringTie2 plant RNA-seq](docs/figures/catalog/03_stringtie2_plant_rnaseq.jpg)
 
@@ -214,6 +240,14 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 - **PhyloCSF++** (tool) — PhyloCSF 加速版：基于多物种序列比对的密码子替换模式评估蛋白编码潜能。 [doi:10.1093/bioinformatics/btab756](https://doi.org/10.1093/bioinformatics/btab756) · [link](https://github.com/cpockrandt/PhyloCSFpp)
 - **KuPID** (tool) — 基于 k-mer 的长读长上游预处理工具，用于辅助下游转录本异构体发现（预印本）。 [doi:10.64898/2025.12.05.692400](https://doi.org/10.64898/2025.12.05.692400) [待确认]
 - **RiboBA** (tool) — 兼容多种 Ribo-seq 实验方案、可校正偏好性的概率型 ORF 识别工具（预印本）。 [doi:10.64898/2026.03.17.712439](https://doi.org/10.64898/2026.03.17.712439) [待确认]
+- **FLAIR** (tool) — 结合参考基因组对 nanopore 或 PacBio 全长读长做校正、归并和定量，构建全长转录本。该工具首次发表于所引用的 CLL 研究。 [doi:10.1038/s41467-020-15171-6](https://doi.org/10.1038/s41467-020-15171-6) · [link](https://github.com/BrooksLabUCSC/flair)
+- **Mandalorion** (tool) — 从高准确度全长读长（PacBio Iso-Seq 或 R2C2）中识别并定量高可信度转录本。 [doi:10.1186/s13059-023-02999-6](https://doi.org/10.1186/s13059-023-02999-6) · [link](https://github.com/christopher-vollmers/Mandalorion)
+- **uLTRA** (tool) — 利用已有注释引导长 RNA 读长比对到基因组，在小外显子上的表现优于普通 minimap2 剪接模式。注意与第 2 节的重复序列标注工具 ULTRA 区分。 [doi:10.1093/bioinformatics/btab540](https://doi.org/10.1093/bioinformatics/btab540) · [link](https://github.com/ksahlin/ultra)
+- **deSALT** (tool) — 基于 de Bruijn 图索引的快速剪接比对工具，适用于高错误率的长 RNA 读长。 [doi:10.1186/s13059-019-1895-9](https://doi.org/10.1186/s13059-019-1895-9) · [link](https://github.com/ydLiu-HIT/deSALT)
+- **Scallop2** (tool) — 基于参考基因组的转录本组装工具，支持双端和多端短读长；可在 S1 证据步骤中替代 StringTie。 [doi:10.1038/s43588-022-00216-1](https://doi.org/10.1038/s43588-022-00216-1) · [link](https://github.com/Shao-Group/scallop2)
+- **Aletsch** (tool) — 跨多个 RNA-seq 样本联合组装转录本，适合单个组织文库测序较浅的场景。 [doi:10.1093/bioinformatics/btae215](https://doi.org/10.1093/bioinformatics/btae215) · [link](https://github.com/Shao-Group/aletsch)
+- **Portcullis** (tool) — 在输入基因预测器前过滤 RNA-seq 比对中的假剪接位点；用于 REAT 和 Mikado 流程。 [preprint] [doi:10.1101/217620](https://doi.org/10.1101/217620) · [link](https://github.com/EI-CoreBioinformatics/portcullis)
+- **Sorghum Iso-Seq transcriptome survey** (analysis) — 早期植物全长转录组研究，展示了单分子全长读长如何修正基因模型并检出遗漏的异构体。 [doi:10.1038/ncomms11706](https://doi.org/10.1038/ncomms11706)
 
 <a id="section-4"></a>
 ## 4. 蛋白证据
@@ -221,6 +255,10 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 将蛋白比对到基因组，为基因模型提供提示（hint）或同源草案（A2 输入）。
 
 **需要：** 来自近缘物种或审定数据库的蛋白集（`PROTEIN_DB`），用于比对到基因组（miniprot、GeneMark-EP、GALBA / GeMoMa）。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *全基因组蛋白提示*（可替代）：miniprot、ProtHint、MetaEuk、Spaln、GenomeThreader。默认用 miniprot，GALBA2 用的也是它；ProtHint 是 BRAKER（GeneMark-EP+/ETP 模式）中处理蛋白证据的步骤。MetaEuk 输出的是基因模型，不是提示：只作只用蛋白的快速旁证。
+- *单位点精确比对*（可替代）：Exonerate、Scipio、GeneWise。速度较慢；仅在人工校对时用于少数位点，不用于全基因组。
 
 ![GALBA plant F1](docs/figures/catalog/04_galba_f1_plants.jpg)
 
@@ -230,6 +268,10 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 - **GenomeThreader** (tool) — 将蛋白或 cDNA 序列剪接比对到基因组的工具。 [doi:10.1016/j.infsof.2005.09.005](https://doi.org/10.1016/j.infsof.2005.09.005) · [link](https://genomethreader.org/)
 - **Exonerate** (tool) — 通用序列比对工具，支持 protein2genome 剪接比对模式。 [doi:10.1186/1471-2105-6-31](https://doi.org/10.1186/1471-2105-6-31)
 - **Spaln** (tool) — 带物种特异参数的 cDNA/蛋白到基因组剪接比对工具。 [doi:10.1093/bioinformatics/btn460](https://doi.org/10.1093/bioinformatics/btn460) · [link](https://github.com/ogotoh/spaln)
+- **ProtHint** (tool) — 把跨物种蛋白的剪接比对转成内含子和起始/终止位点提示；是 BRAKER2/BRAKER3（GeneMark-EP+/ETP 模式）中处理蛋白证据的步骤。GALBA 用的是 miniprot。 [doi:10.1093/nargab/lqaa108](https://doi.org/10.1093/nargab/lqaa108) · [link](https://github.com/gatech-genemark/ProtHint)
+- **MetaEuk** (tool) — 基于 MMseqs2，利用蛋白引导快速识别真核基因模型；可作为仅依赖蛋白证据的快速旁证。 [doi:10.1186/s40168-020-00808-x](https://doi.org/10.1186/s40168-020-00808-x) · [link](https://github.com/soedinglab/metaeuk)
+- **Scipio** (tool) — 将已知蛋白映射回基因组以还原精确的外显子-内含子结构；适合人工校对少量基因家族成员。 [doi:10.1186/1756-0500-4-265](https://doi.org/10.1186/1756-0500-4-265) · [link](https://www.webscipio.org/)
+- **GeneWise** (tool) — 经典的容忍移码蛋白-基因组比对工具；在疑难位点上仍可作为核对 miniprot 和 Spaln 结果的参照。 [doi:10.1101/gr.1865504](https://doi.org/10.1101/gr.1865504)
 
 <a id="section-5"></a>
 ## 5. 从头基因预测
@@ -238,26 +280,15 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 **需要：** 已做 soft-mask 的基因组；若预测工具支持引入证据提示（BRAKER），再附上 RNA 和/或蛋白。Helixer / Tiberius 可仅凭基因组运行，但在有 RNA 数据时，不应悄悄替代基于证据的 S1 草案。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *证据训练的流程*（可替代）：BRAKER4、GALBA2。S1（RNA-seq + 蛋白，即 BRAKER3 方法）用 BRAKER4；只有蛋白时 BRAKER4 运行 BRAKER2 模式；有近缘物种蛋白的 S2 用 GALBA2。
+- *流程内部的引擎*（互补）：GeneMark-ETP、AUGUSTUS。GeneMark-ETP 用证据训练，AUGUSTUS 再用它的预测结果训练；单独运行只用于调试或对照。
+- *深度学习预测器（无需训练）*（可替代）：Helixer、Tiberius、ANNEVO。S13 对照轨道；Helixer 有植物模型，Tiberius 在训练类群相符时最强。
+- *传统 HMM 预测器*（互补）：SNAP、GlimmerHMM。仅在 MAKER2 或 EVM 对比中作为补充输入。
+
 ![Helixer cassava locus](docs/figures/catalog/05_helixer_cassava_locus.jpg)
 
 *Helixer 在木薯某一位点预测的基因模型（图 3）。 Stiehler 等 2021，《Bioinformatics》图 3，doi:10.1093/bioinformatics/btaa1044，PMC8016489，CC BY。*
-
-- **AUGUSTUS** (tool) — 结合 RNA 与蛋白证据提示（hints）的 HMM 基因预测工具。 [doi:10.1093/bioinformatics/btn013](https://doi.org/10.1093/bioinformatics/btn013) · [link](https://github.com/Gaius-Augustus/Augustus)
-- **BRAKER3** (tool) — 结合 RNA-seq 与蛋白证据、自动串联 GeneMark-ETP 与 AUGUSTUS 的全自动基因预测流程。 [doi:10.1101/gr.278090.123](https://doi.org/10.1101/gr.278090.123) · [link](https://github.com/Gaius-Augustus/BRAKER)
-- **BRAKER2** (tool) — BRAKER 的蛋白证据模式（串联 GeneMark-EP+ 与 AUGUSTUS）。 [doi:10.1093/nargab/lqaa108](https://doi.org/10.1093/nargab/lqaa108) · [link](https://github.com/Gaius-Augustus/BRAKER)
-- **GALBA** (tool) — 利用近缘物种的 miniprot 蛋白比对结果训练 AUGUSTUS。 [doi:10.1186/s12859-023-05449-z](https://doi.org/10.1186/s12859-023-05449-z) · [link](https://github.com/Gaius-Augustus/GALBA)
-- **SNAP** (tool) — 可在新基因组上重新训练的半隐马尔可夫（semi-HMM）从头基因预测工具。 [doi:10.1186/1471-2105-5-59](https://doi.org/10.1186/1471-2105-5-59) · [link](https://github.com/KorfLab/SNAP)
-- **GlimmerHMM** (tool) — 基于广义隐马尔可夫模型（GHMM）的真核从头基因预测工具。 [doi:10.1093/bioinformatics/bth315](https://doi.org/10.1093/bioinformatics/bth315) · [link](https://ccb.jhu.edu/software/glimmerhmm/)
-- **Tiberius** (tool) — 结合端到端深度学习与 HMM 的从头基因预测工具。 [doi:10.1093/bioinformatics/btae685](https://doi.org/10.1093/bioinformatics/btae685) · [link](https://github.com/Gaius-Augustus/Tiberius)
-- **GeneMark-ETP** (tool) — 整合转录本与蛋白证据并支持自训练的基因预测工具（BRAKER3 的核心组件）。 [doi:10.1101/gr.278373.123](https://doi.org/10.1101/gr.278373.123) · [link](https://github.com/gatech-genemark/GeneMark-ETP)
-- **ANNEVO (paper)** (tool) — 对演化上下文建模的深度学习从头基因注释工具（本库此前已收录该工具的预印本版本）。 [doi:10.21203/rs.3.rs-6402260/v1](https://doi.org/10.21203/rs.3.rs-6402260/v1) · [link](https://github.com/xjtu-omics/ANNEVO)
-
-<a id="section-6"></a>
-## 6. DNA 语言模型预测
-
-基于 DNA 语言模型的基因预测工具；除非另有书面说明，在本库中仅作 S13 对照轨道。
-
-**需要：** 已做 soft-mask 的基因组，以及运行常规 S13 对照所需的 GPU。除非另有书面说明，输出结果仅作对照轨道。[按场景列出的数据需求](#data-needs)
 
 ![Tiberius precision-recall](docs/figures/catalog/12_tiberius_pr_vs_peers.jpg)
 
@@ -267,12 +298,36 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 *Helixer 2026 方法论文中的外显子级别精确率-召回率（图 1）。 Holst 等 2026，《Nature Methods》图 1，doi:10.1038/s41592-025-02939-1，PMC13076211，CC BY。*
 
+- **AUGUSTUS** (tool) — 结合 RNA 与蛋白证据提示（hints）的 HMM 基因预测工具。 [doi:10.1093/bioinformatics/btn013](https://doi.org/10.1093/bioinformatics/btn013) · [link](https://github.com/Gaius-Augustus/Augustus)
+- **BRAKER4** (tool) — BRAKER4 是 BRAKER3 的 Snakemake 重构版：结合 RNA-seq 和蛋白证据运行 GeneMark-ETP 与 AUGUSTUS，并由 TSEBRA 合并结果。方法论文仍引 BRAKER3（见下）；无法使用容器时回退至基于 braker.pl 的 BRAKER3。仅输入蛋白时，运行的是最早作为 BRAKER2 发表的模式（GeneMark-EP+，doi:10.1093/nargab/lqaa108）。 [doi:10.1101/gr.278090.123](https://doi.org/10.1101/gr.278090.123) · [link](https://github.com/Gaius-Augustus/BRAKER4)
+- **GALBA2** (tool) — GALBA2 是 GALBA 的 Snakemake 移植版，利用近缘物种蛋白的 miniprot 比对结果训练 AUGUSTUS（S2）。方法论文仍引 GALBA（见下）；原版 GALBA 作为回退方案。 [doi:10.1186/s12859-023-05449-z](https://doi.org/10.1186/s12859-023-05449-z) · [link](https://github.com/Gaius-Augustus/GALBA2)
+- **SNAP** (tool) — 可在新基因组上重新训练的半隐马尔可夫（semi-HMM）从头基因预测工具。 [doi:10.1186/1471-2105-5-59](https://doi.org/10.1186/1471-2105-5-59) · [link](https://github.com/KorfLab/SNAP)
+- **GlimmerHMM** (tool) — 基于广义隐马尔可夫模型（GHMM）的真核从头基因预测工具。 [doi:10.1093/bioinformatics/bth315](https://doi.org/10.1093/bioinformatics/bth315) · [link](https://ccb.jhu.edu/software/glimmerhmm/)
+- **Tiberius** (tool) — 结合端到端深度学习与 HMM 的从头基因预测工具。 [doi:10.1093/bioinformatics/btae685](https://doi.org/10.1093/bioinformatics/btae685) · [link](https://github.com/Gaius-Augustus/Tiberius)
+- **GeneMark-ETP** (tool) — 整合转录本与蛋白证据并支持自训练的基因预测工具（BRAKER3 的核心组件）。 [doi:10.1101/gr.278373.123](https://doi.org/10.1101/gr.278373.123) · [link](https://github.com/gatech-genemark/GeneMark-ETP)
+- **ANNEVO** (tool) — 对演化上下文建模的深度学习从头基因注释工具。 [preprint] [doi:10.21203/rs.3.rs-6402260/v1](https://doi.org/10.21203/rs.3.rs-6402260/v1) · [link](https://github.com/xjtu-omics/ANNEVO)
+- **Helixer** (tool) — 结合深度学习与 HMM 的从头基因预测工具，仅凭基因组序列即可运行，自带预训练植物模型；作为 S13 对照轨道。2020 年论文（doi:10.1093/bioinformatics/btaa1044）描述的是早期逐碱基预测版本。 [doi:10.1038/s41592-025-02939-1](https://doi.org/10.1038/s41592-025-02939-1) · [link](https://github.com/weberlab-hhu/Helixer)
+
+<a id="section-6"></a>
+## 6. DNA 语言模型预测
+
+基于 DNA 语言模型的基因预测工具；除非另有书面说明，在本库中仅作 S13 对照轨道。
+
+**需要：** 已做 soft-mask 的基因组，以及运行常规 S13 对照所需的 GPU。除非另有书面说明，输出结果仅作对照轨道。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *基于语言模型的基因预测*（可替代）：Carbon-A + Carbon Annotation Database (CADB)、GENATATORs。仅作对照轨道；采信前先用 BUSCO 和 PSAURON 核对。
+- *碱基级切分模型*（可替代）：SegmentNT、Nucleotide Transformer v3 (NTv3)、GENA-LM。逐碱基输出外显子/内含子/剪接位点概率；适合作为提示，不能直接用作最终模型。
+- *基础模型（只提供特征）*（互补）：AgroNT、PlantCaduceus、Evo 2。基于植物训练的 AgroNT、PlantCaduceus 以及跨物种的 Evo 2：提供序列嵌入与变异效应，不直接输出基因模型。
+
 - **Carbon-A + Carbon Annotation Database (CADB)** (tool / resource) — 含 1.2B 参数的编码器模型，直接从真核生物 DNA 预测蛋白编码基因并给出单基因置信度；配套 CADB 库已将其用于注释 GenBank 组装（共 566M 个位点）。 [doi:10.64898/2026.10.20.760448](https://doi.org/10.64898/2026.10.20.760448) · [link](https://huggingface.co/HuggingFaceBio/Carbon-A-1.2B)
 - **Nucleotide Transformer v3 (NTv3)** (tool) — 长上下文跨界 DNA 基础模型；文中报告其在哺乳动物、植物与昆虫上的基因注释表现优于传统从头预测工具。 [doi:10.64898/2025.12.22.695963](https://doi.org/10.64898/2025.12.22.695963) · [link](https://github.com/instadeepai/nucleotide-transformer) [待确认]
 - **GENATATORs** (tool) — 基于 DNA 语言模型的从头基因注释工具（2026 预印本）。 [doi:10.64898/2026.06.17.732686](https://doi.org/10.64898/2026.06.17.732686) [待确认]
 - **AgroNT** (tool) — 在 48 个食用植物基因组上训练的 DNA 语言模型，下游可用于调控元件与剪接位点等预测任务。 [doi:10.1038/s42003-024-06465-2](https://doi.org/10.1038/s42003-024-06465-2) · [link](https://huggingface.co/InstaDeepAI/agro-nucleotide-transformer-1b)
 - **PlantCaduceus** (tool) — 单碱基分辨率的跨物种植物 DNA 语言模型，支持剪接位点、TIS 与 TTS 等注释任务。 [doi:10.1073/pnas.2421738122](https://doi.org/10.1073/pnas.2421738122) · [link](https://github.com/kuleshov-group/PlantCaduceus)
 - **Evo 2** (tool) — 跨生命域的基因组语言模型，提供外显子/内含子边界识别与变异效应预测的零样本（zero-shot）特征。 [doi:10.1101/2025.02.18.638918](https://doi.org/10.1101/2025.02.18.638918) · [link](https://github.com/ArcInstitute/evo2)
+- **SegmentNT** (tool) — 以 Nucleotide Transformer 为主干，在单碱基分辨率上将 DNA 切分为外显子、内含子、剪接位点和调控元件。 [doi:10.1038/s41592-025-02881-2](https://doi.org/10.1038/s41592-025-02881-2) · [link](https://github.com/instadeepai/nucleotide-transformer)
+- **GENA-LM** (tool) — 面向长序列输入的开源 DNA 语言模型，含剪接位点和注释微调任务；仅作研究对照轨道，并非基因预测器。 [doi:10.1093/nar/gkae1310](https://doi.org/10.1093/nar/gkae1310) · [link](https://github.com/AIRI-Institute/GENA_LM)
 
 <a id="section-7"></a>
 ## 7. 注释转移（lift-over）
@@ -281,15 +336,21 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 **需要：** 近缘且已审定的参考 GFF（同种或可信单倍型）及目标基因组；若要申报完整 S11 而非 S11-lite，还需准备补缺（gap-fill）证据。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *坐标转移*（可替代）：Liftoff、LiftOn、Comparative Annotation Toolkit (CAT)、GrAnnoT。有近缘且经人工审校的参考（S11）时，优先选用兼顾蛋白的 LiftOn 而非 Liftoff；多基因组经 HAL 比对时用 CAT；跨泛基因组图谱时用 GrAnnoT。
+- *基于同源的预测*（可替代）：GeMoMa、TOGA2。GeMoMa 根据参考蛋白和内含子位置预测新模型；TOGA2 经全基因组比对链投射基因并推断直系同源。两者都比坐标转移更适合较远的参考。
+- *转移后的检查与打磨*（互补）：LiftoffTools、GENESPACE、SynGAP。LiftoffTools 报告有变化的基因，GENESPACE 显示共线性缺口（用于检查）；然后用 SynGAP 修正缺失或拆分的模型。
+
 
 - **GeMoMa** (tool) — 利用内含子位置保守性及可选 RNA-seq 数据的同源基因预测工具。 [doi:10.1007/978-1-4939-9173-0_9](https://doi.org/10.1007/978-1-4939-9173-0_9) · [link](https://www.jstacs.de/index.php/GeMoMa)
 - **Liftoff** (tool) — 将参考基因组注释投射到同种或近缘物种目标组装上的工具。 [doi:10.1093/bioinformatics/btaa1016](https://doi.org/10.1093/bioinformatics/btaa1016) · [link](https://github.com/agshumate/Liftoff)
 - **LiftOn** (tool) — 结合 DNA（Liftoff）与蛋白（miniprot）比对结果以改进注释转移质量。 [doi:10.1101/gr.279620.124](https://doi.org/10.1101/gr.279620.124) · [link](https://github.com/Kuanhao-Chao/LiftOn)
 - **Comparative Annotation Toolkit (CAT)** (tool) — 通过 Cactus 全基因组比对投射基因注释，并与从头预测结果合并。 [doi:10.1101/gr.233460.117](https://doi.org/10.1101/gr.233460.117) · [link](https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit)
 - **GrAnnoT** (tool) — 通过泛基因组图（GFA）将 GFF3 注释转移至图内嵌合的各个基因组，输出图注释（GAF）与单基因组 GFF3。 [doi:10.24072/pcjournal.651](https://doi.org/10.24072/pcjournal.651) · [link](https://forge.ird.fr/diade/dynadiv/grannot)
-- **TOGA (paper)** (tool) — 基于全基因组比对、将注释投射与直系同源推断相结合的工具。 [doi:10.1126/science.abn3107](https://doi.org/10.1126/science.abn3107) · [link](https://github.com/hillerlab/TOGA)
+- **TOGA2** (tool) — TOGA2 是 TOGA 的快速升级版，基于全基因组比对将注释投射与直系同源推断整合在一起。方法论文仍引 TOGA（见下）。 [doi:10.1126/science.abn3107](https://doi.org/10.1126/science.abn3107) · [link](https://github.com/hillerlab/TOGA2)
 - **LiftoffTools** (tool) — 比较不同组装间的转移注释结果，分析基因序列变异、共线性与拷贝数变化。 [doi:10.12688/f1000research.124059.2](https://doi.org/10.12688/f1000research.124059.2) · [link](https://github.com/agshumate/LiftoffTools)
 - **GENESPACE** (tool) — 基于共线性约束做跨基因组直系同源分析，并在共线性背景下定位缺失或新增基因。 [doi:10.7554/eLife.78526](https://doi.org/10.7554/eLife.78526) · [link](https://github.com/jtlovell/GENESPACE)
+- **SynGAP** (tool) — 利用与近缘已注释基因组的共线性关系，检出并修正缺失、拆分或错误合并的基因模型；对应跨单倍型的 LM05 打磨步骤。 [doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8) · [link](https://github.com/yanyew/SynGAP)
 
 <a id="section-8"></a>
 ## 8. 合并器与注释流程
@@ -297,6 +358,10 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 合并多套草案基因集，或封装整套注释流程的工具（A4）。
 
 **需要：** 两套及以上的草案基因集和/或转录本组装结果，以及用于打分的证据（RNA、蛋白、剪接位点）。EVM 仅用于 S14 或真正的双轨合并，并非每个基因组都要跑。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *合并器（按输入选）*（可替代）：TSEBRA、Mikado、EVidenceModeler (EVM)。BRAKER 输出用 TSEBRA，多套转录本用 Mikado，多来源加权合并用 EVM（S14）。
+- *端到端流程*（可替代）：MAKER2、funannotate、EGAPx、GETA、REAT、EASEL、Sylvan、Ensembl automatic annotation pipeline (ensembl-anno)、EviAnn。EGAPx 用于 S8 平行运行；EviAnn 可快速完成纯证据核对。其余工具均为 BRAKER3 主干的替代方案，而非附加步骤。
 
 ![TSEBRA Arabidopsis](docs/figures/catalog/09_tsebra_sn_sp_arabidopsis.jpg)
 
@@ -321,6 +386,7 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 - **EASEL** (tool) — Nextflow 注释流程：串联 StringTie2/PsiCLASS 转录本组装、TransDecoder、基于转录本与 OrthoDB 蛋白提示训练的 AUGUSTUS，并利用 RNA 二级结构等特征做随机森林过滤。 [link](https://gitlab.com/PlantGenomicsLab/easel)
 - **Sylvan** (tool) — Snakemake 注释流程：整合 EVM/PASA、GETA、Helixer、Liftoff 与 miniprot 证据，再经半监督随机森林过滤与边界校正。 [link](https://github.com/plantgenomicslab/Sylvan) [待确认]
 - **Ensembl automatic annotation pipeline (ensembl-anno)** (tool) — Ensembl 自动基因注释流程的公开代码库。 [link](https://github.com/Ensembl/ensembl-anno) [待确认]
+- **EviAnn** (tool) — 不经从头训练，直接用 RNA 和蛋白证据构建基因模型；速度快，可用来和 BRAKER4 结果互相核对。 [doi:10.1038/s41592-026-03156-0](https://doi.org/10.1038/s41592-026-03156-0) · [link](https://github.com/alekseyzimin/EviAnn_release)
 
 <a id="section-9"></a>
 ## 9. 非编码 RNA 与假基因位点
@@ -328,6 +394,12 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 蛋白编码草案之外的位点：tRNA、rRNA、miRNA、lncRNA 与假基因。
 
 **需要：** 基因组序列；许多 ncRNA 工具还需协方差模型或参考 RNA 集。除非另有书面的合并规则，蛋白编码草案与 ncRNA 位点应作为独立产物分别保存。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *结构型 ncRNA*（互补）：Infernal 1.1、tRNAscan-SE 2.0、ARAGORN、barrnap、RNAmmer。Infernal 配合 Rfam 可覆盖大多数家族；tRNA 用 tRNAscan-SE，rRNA 用 barrnap。
+- *小 RNA 位点*（可替代）：ShortStack 4、miRDeep-P2。需要小 RNA 测序数据；按第 14 节的植物标准判定 miRNA。
+- *编码潜力（投票）*（互补）：CPC2、CPAT、LncFinder、FEELnc、PlantLncBoost、RNAsamba、PLEKv2。选两到三个，取一致的结果；PlantLncBoost 是用植物数据训练的。
+- *假基因*（可替代）：PseudoPipe、P-GRe、Shiu lab PseudogenePipeline。在蛋白编码基因集定稿后运行。
 
 
 - **ARAGORN** (tool) — 检测 tRNA 与 tmRNA 基因。 [doi:10.1093/nar/gkh152](https://doi.org/10.1093/nar/gkh152)
@@ -345,6 +417,8 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 - **P-GRe** (tool) — 假基因预测工具：根据母本蛋白定位基因组位点、重建假 CDS、报告移码与提前终止密码子并输出 GFF。 [doi:10.1016/j.ygeno.2026.111216](https://doi.org/10.1016/j.ygeno.2026.111216)
 - **Shiu lab PseudogenePipeline** (tool) — 经典的植物假基因识别流程，包含重复序列过滤与 GFF 输出。 [link](https://github.com/ShiuLab/PseudogenePipeline)
 - **miRDeep-P2** (tool) — 采用更新版植物注释标准、从 sRNA-seq 数据中快速发现植物 miRNA 位点。 [doi:10.1093/bioinformatics/bty972](https://doi.org/10.1093/bioinformatics/bty972)
+- **RNAsamba** (tool) — 利用神经网络根据完整转录本及其 ORF 评估蛋白编码潜力；可作为 lncRNA 与 mRNA 判定的补充投票项。 [doi:10.1093/nargab/lqz024](https://doi.org/10.1093/nargab/lqz024) · [link](https://github.com/apcamargo/RNAsamba)
+- **PLEKv2** (tool) — 基于序列特征和 coding-net 模型的无比对 lncRNA/mRNA 分类器；v2 取代了 2014 年基于 k-mer 的 PLEK（doi:10.1186/1471-2105-15-311）。缺乏近缘蛋白库时很实用。 [doi:10.1186/s12864-024-10662-y](https://doi.org/10.1186/s12864-024-10662-y) · [link](https://sourceforge.net/projects/plek/)
 
 <a id="section-10"></a>
 ## 10. 基因模型质控
@@ -352,6 +426,11 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 检查基因模型及其翻译所得蛋白序列（A3、A5、last-mile 01–02）。
 
 **需要：** 由 GFF 翻译出的蛋白序列（`PROTEINS_FA`）与 BUSCO lineage；PSAURON 和 OMArk 使用同一套蛋白。RNA BAM 非必需，但有助于检查证据支持率。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *完整性*（互补）：BUSCO、OMArk。BUSCO 给出标准完整度指标；OMArk 补充污染与片段化检查。
+- *逐模型评分*（互补）：PSAURON、GeneValidator、ABAQS。按得分排序，优先复查得分最低的模型。
+- *格式与比较*（互补）：gffread / gffcompare、AGAT。用 gffcompare 与旧版对比；用 AGAT 做统计与修正。
 
 ![BUSCO v5 eukaryote workflows](docs/figures/catalog/01_busco_v5_eukaryote_workflows.jpg)
 
@@ -367,9 +446,11 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 - **gffread / gffcompare** (tool) — 从 GFF 提取 CDS 或蛋白序列（gffread），并在碱基、外显子与位点水平比对两套注释（gffcompare）。 [doi:10.12688/f1000research.23297.2](https://doi.org/10.12688/f1000research.23297.2) · [link](https://github.com/gpertea/gffread)
 - **AGAT** (tool) — GFF/GTF 处理工具包：提供统计、结构修复、最长转录本提取、ID 管理与格式转换功能。 [doi:10.5281/zenodo.3552717](https://doi.org/10.5281/zenodo.3552717) · [link](https://github.com/NBISweden/AGAT)
-- **BUSCO** (tool) — 基于类群特异单拷贝直系同源基因库评估基因集完整性（蛋白模式）。 [doi:10.1093/molbev/msab199](https://doi.org/10.1093/molbev/msab199)
+- **BUSCO** (tool) — 基于谱系单拷贝直系同源基因集评估基因集完整性（蛋白模式）。谱系数据集现由 OrthoDB v12 提供（2024 年更新，doi:10.1093/nar/gkae987）；compleasm（第 1 节）使用同一套谱系但运行更快。 [doi:10.1093/molbev/msab199](https://doi.org/10.1093/molbev/msab199)
 - **ABAQS** (tool) — 综合完整性、基因模型合法性与蛋白结构域特征检查的注释质量评分工具（ABAQS）。 [link](https://github.com/mycocosm-lbl/abaqs) [待确认]
 - **GeneValidator** (tool) — 将每个预测蛋白与数据库同源序列做比对（检查长度、覆盖度、重复与融合基因），标记存疑基因模型。 [doi:10.1093/bioinformatics/btw015](https://doi.org/10.1093/bioinformatics/btw015) · [link](https://github.com/wurmlab/genevalidator)
+- **OMArk** (tool) — 对照 OMA 基因家族，检查预测蛋白组的完整性、谱系一致性和污染；能标出 BUSCO 发现不了的片段化基因和可疑（虚假）基因模型。 [doi:10.1038/s41587-024-02147-w](https://doi.org/10.1038/s41587-024-02147-w) · [link](https://github.com/DessimozLab/OMArk)
+- **PSAURON** (tool) — 利用机器学习模型为每个预测的蛋白编码基因打分；低分项提示可能为假阳性基因，需重点复查。 [doi:10.1093/nargab/lqae189](https://doi.org/10.1093/nargab/lqae189) · [link](https://github.com/salzberg-lab/PSAURON)
 
 <a id="section-11"></a>
 ## 11. 人工校对与浏览器
@@ -378,13 +459,18 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 
 **需要：** 在打开 GSAman 或浏览器前，备好草案 GFF、基因组及证据包（BAM、蛋白比对、RNA 覆盖度）。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *协作式网页校对*（互补）：Apollo 3、JBrowse 2。Apollo 3 是 JBrowse 2 上的插件，团队校对时两者一起用。
+- *桌面与人工校对工具*（可替代）：IGV、Artemis / ACT、GSAman、TBtools-II。用于本地检查少量位点；LM04 的模型编辑使用 GSAman。
+
 
 - **IGV** (tool) — 用于查看序列比对与基因注释的桌面端基因组浏览器。 [doi:10.1038/nbt.1754](https://doi.org/10.1038/nbt.1754) · [link](https://github.com/igvteam/igv)
 - **igv.js / igv-reports** (tool) — 可嵌入网页的 IGV 组件；igv-reports 可将指定位点及其证据轨道打包为独立的 HTML 页面。 [doi:10.1093/bioinformatics/btac830](https://doi.org/10.1093/bioinformatics/btac830) · [link](https://github.com/igvteam/igv-reports)
-- **Apollo (2019 paper)** (tool) — 支持多人协作的网页端基因模型校对编辑器（Apollo 2）。 [doi:10.1371/journal.pcbi.1006790](https://doi.org/10.1371/journal.pcbi.1006790) · [link](https://github.com/GMOD/Apollo)
 - **Artemis / ACT** (tool) — 基因组浏览器、注释编辑器与序列比较工具。 [doi:10.1093/bioinformatics/btr703](https://doi.org/10.1093/bioinformatics/btr703) · [link](https://github.com/sanger-pathogens/Artemis)
-- **Apollo 3** (tool) — 基于 JBrowse 2 的多人协作基因模型校对编辑器（支持本地或服务端部署）。 [doi:10.64898/2026.06.08.730970](https://doi.org/10.64898/2026.06.08.730970) · [link](https://github.com/GMOD/Apollo3)
+- **Apollo 3** (tool) — 基于 JBrowse 2 的多人协作基因模型编辑器（支持本地或服务端部署）。Apollo 2（2019 年论文，doi:10.1371/journal.pcbi.1006790）为旧版服务端程序，仅在社区门户仍运行该版本时沿用。 [doi:10.64898/2026.06.08.730970](https://doi.org/10.64898/2026.06.08.730970) · [link](https://github.com/GMOD/Apollo3)
 - **JBrowse 2** (tool) — 支持共线性与结构变异视图的基因组浏览器，可挂载各类证据轨道供人工校对使用。 [doi:10.1186/s13059-023-02914-z](https://doi.org/10.1186/s13059-023-02914-z) · [link](https://github.com/GMOD/jbrowse-components)
+- **GSAman** (tool) — 结合比对证据人工编辑基因结构模型的桌面工具；对应 LM04 人工校对步骤。 [doi:10.1016/j.xinn.2026.101471](https://doi.org/10.1016/j.xinn.2026.101471)
+- **TBtools-II** (tool) — 面向植物研究的桌面工具集，支持查看 GFF、提取序列与绘制基因结构图；便于快速抽查少量位点。 [doi:10.1016/j.molp.2023.09.010](https://doi.org/10.1016/j.molp.2023.09.010) · [link](https://github.com/CJ-Chen/TBtools-II)
 
 <a id="section-12"></a>
 ## 12. GFF3 清理与发布
@@ -392,6 +478,11 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 **需要：** 审定后的 GFF 与基因组，外加 `docs/PLAYBOOK.md` 中列出的 METHODS 与核对表字段。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *校验*（互补）：GenomeTools (gt gff3validator)、GFF3toolkit、gxfkit、noodles。每次发布前均需运行校验。
+- *提交格式转换*（可替代）：table2asn、EMBLmyGFF3、Genome Annotation Generator (GAG)。提交 NCBI 用 table2asn，提交 ENA 用 EMBLmyGFF3。
+- *辅助工具*（互补）：SeqKit 2、GTFtools、CrossMap。用于序列提取、汇总统计以及不同组装版本间的坐标转换。
 
 
 - **SeqKit 2** (tool) — FASTA/Q 序列处理工具包（统计、检索、翻译、去冗余等）。 [doi:10.1002/imt2.191](https://doi.org/10.1002/imt2.191) · [link](https://github.com/shenwei356/seqkit)
@@ -402,6 +493,8 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 - **GFF3toolkit** (tool) — i5k Workspace@NAL 开发的 GFF3 质控、修复与合并工具集。 [link](https://github.com/NAL-i5K/GFF3toolkit)
 - **noodles** (tool) — Rust 编写的生物信息学格式 I/O 库，包含 GFF3/GTF 读写模块。 [link](https://github.com/zaeleus/noodles)
 - **gxfkit** (tool) — Rust 编写的 GFF3/GTF 转换工具，力求输出格式兼容 AGAT 且运行速度大幅提升。 [link](https://github.com/benngaihk/gxfkit)
+- **GTFtools** (tool) — 基于 GTF 计算基因模型特征（长度、内含子与 UTR 集合、异构体统计），用于生成发布汇总表。 [doi:10.1093/bioinformatics/btac561](https://doi.org/10.1093/bioinformatics/btac561)
+- **CrossMap** (tool) — 通过 chain 文件在不同组装版本间转换 GFF、BED、VCF 和 BAM 坐标，例如将坐标从 PN40024 v4 转换至 T2T。 [doi:10.1093/bioinformatics/btt730](https://doi.org/10.1093/bioinformatics/btt730) · [link](https://github.com/liguowang/CrossMap)
 
 <a id="section-13"></a>
 ## 13. 参考数据库
@@ -410,12 +503,22 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 **需要：** 无需额外测序——这里收录的是用作证据或近缘 GFF 的参考基因组与注释。请核对所用版本是否与 METHODS 中记录的一致。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *蛋白证据集*（互补）：OrthoDB v12、UniProt 2025。BRAKER3/BRAKER4 的标准蛋白集是 OrthoDB 的绿色植物分区；GALBA2 则要用一到数个近缘物种的蛋白组；需要小而干净的集合时加 Swiss-Prot。
+- *比较用基因集*（互补）：Phytozome、Ensembl Plants (Ensembl Genomes 2022)、PLAZA 5.0、NCBI RefSeq、Araport11、PN40024 reference annotation (PN_T2T / v5)。用于同近缘物种及葡萄参考基因组对比基因数量与结构。
+- *ncRNA 参考*（互补）：Rfam 15、RNAcentral。Infernal 搜索使用 Rfam 模型；命中结果的命名使用 RNAcentral。
+
 
 - **RNAcentral** (resource) — 综合性的非编码 RNA 序列数据库。 [doi:10.1093/nar/gkaa921](https://doi.org/10.1093/nar/gkaa921) · [link](https://rnacentral.org/)
 - **Phytozome** (resource) — JGI 维护的植物基因组与注释门户数据库。 [doi:10.1093/nar/gkr944](https://doi.org/10.1093/nar/gkr944) · [link](https://phytozome-next.jgi.doe.gov/)
 - **Ensembl Plants (Ensembl Genomes 2022)** (resource) — 收录植物基因组、基因模型与比较基因组学数据的综合数据库。 [doi:10.1093/nar/gkab1007](https://doi.org/10.1093/nar/gkab1007) · [link](https://plants.ensembl.org/)
 - **Araport11** (resource) — 拟南芥 Col-0 基因组的重注释参考版本。 [doi:10.1111/tpj.13415](https://doi.org/10.1111/tpj.13415) · [link](https://www.arabidopsis.org/)
 - **Rfam 15** (resource) — RNA 家族协方差模型数据库；可配合 Infernal cmscan 扫描 rRNA、snoRNA 与核糖体开关（riboswitch）等位点。 [doi:10.1093/nar/gkae1023](https://doi.org/10.1093/nar/gkae1023) · [link](https://rfam.org)
+- **OrthoDB v12** (resource) — 直系同源目录，其绿色植物蛋白分区是 BRAKER3/BRAKER4 的标准蛋白证据（GALBA/GALBA2 则应使用一到数个近缘物种的蛋白组）；同一次更新也刷新了 BUSCO 谱系。 [doi:10.1093/nar/gkae987](https://doi.org/10.1093/nar/gkae987) · [link](https://www.orthodb.org/)
+- **UniProt 2025** (resource) — 经人工审校的 Swiss-Prot 植物蛋白集，可为蛋白提示和 GeneValidator 质控提供精简干净的证据。 [doi:10.1093/nar/gkae1010](https://doi.org/10.1093/nar/gkae1010) · [link](https://www.uniprot.org/)
+- **PLAZA 5.0** (resource) — 植物比较基因组学平台，提供基因家族与共线性信息；适合跨物种核对基因数量及错误拆分或合并的模型。 [doi:10.1093/nar/gkab1024](https://doi.org/10.1093/nar/gkab1024) · [link](https://bioinformatics.psb.ugent.be/plaza/)
+- **NCBI RefSeq** (resource) — 经审校的转录本与蛋白集及 Gnomon 预测结果；运行 S8 EGAPx 路线时作为对照数据集。 [doi:10.1093/nar/gkv1189](https://doi.org/10.1093/nar/gkv1189) · [link](https://www.ncbi.nlm.nih.gov/refseq/)
+- **PN40024 reference annotation (PN_T2T / v5)** (resource) — 葡萄 PN_T2T（v5）现行参考基因集，并含早期 v4（doi:10.1093/g3journal/jkad067）及 12X.v2 上的 VCost.v3（doi:10.1016/j.gdata.2017.09.002）；是所有新葡萄属注释的对照集。 [doi:10.1093/hr/uhad061](https://doi.org/10.1093/hr/uhad061) · [link](https://grapedia.org/)
 
 <a id="section-14"></a>
 ## 14. 标准与综述
@@ -423,6 +526,10 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 相关标准、文件格式与综述文献，并非数据配方。
 
 **需要：** 并非数据配方。本节收录的是标准、格式与综述。[按场景列出的数据需求](#data-needs)
+
+**分组：**
+- *格式与命名*（互补）：Sequence Ontology、GFF3 specification、The grapevine gene nomenclature system。每次发布均须遵循的规范。
+- *指南与基准*（互补）：A beginner's guide to eukaryotic genome annotation、Ten steps to get started in genome assembly and annotation、Twelve quick steps for genome assembly and annotation、Tips for improving genome annotation quality、Welcome to the big leaves (plant annotation best practice)、Ab initio gene predictor benchmark、LRGASP benchmark、EBP annotation standards report、Plant microRNA annotation criteria。建议先读植物最佳实践论文；各基准测试则指出了不同工具的常见失效场景。
 
 
 - **Sequence Ontology** (idea) — 定义 GFF3 第三列特征类型（feature type）的标准本体。 [doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44) · [link](https://github.com/The-Sequence-Ontology/SO-Ontologies)
@@ -433,6 +540,10 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 - **LRGASP benchmark** (idea) — 长读长 RNA-seq 转录本识别与定量方法的社区基准评测，展示了测序深度、读长与准确度之间的权衡关系。 [doi:10.1038/s41592-024-02298-3](https://doi.org/10.1038/s41592-024-02298-3) · [link](https://github.com/LRGASP/lrgasp-submissions)
 - **Tips for improving genome annotation quality** (idea) — 提升基因组注释质量的实操核对清单，涵盖证据选择、重复序列屏蔽强度、人工校对与评估指标。 [doi:10.48130/gcomm-0025-0006](https://doi.org/10.48130/gcomm-0025-0006)
 - **EBP annotation standards report** (idea) — 地球生物基因组计划（EBP）关于注释最低标准与元数据的规范报告。 [link](https://www.earthbiogenome.org/report-on-annotation-standards)
+- **Welcome to the big leaves (plant annotation best practice)** (idea) — 评测植物注释流程，并针对非模式植物的证据准备、重复序列屏蔽和 BUSCO 评估给出实操建议。 [doi:10.1002/aps3.11533](https://doi.org/10.1002/aps3.11533)
+- **Ab initio gene predictor benchmark** (idea) — 在多种真核生物上对从头基因预测工具做基准测试；解释了为什么在长且内含子多的基因上外显子水平准确率会下降。 [doi:10.1186/s12864-020-6707-9](https://doi.org/10.1186/s12864-020-6707-9)
+- **Twelve quick steps for genome assembly and annotation** (idea) — 面向教学体量的组装、屏蔽、注释与质控简明演练；可作为前述入门指南的简短补充。 [doi:10.1371/journal.pcbi.1008325](https://doi.org/10.1371/journal.pcbi.1008325)
+- **Plant microRNA annotation criteria** (idea) — 基于小 RNA 数据认定植物 miRNA 位点的社区标准；是发布集中所有 miRNA 注释的准入门槛。 [doi:10.1105/tpc.17.00851](https://doi.org/10.1105/tpc.17.00851)
 
 <a id="section-15"></a>
 ## 15. 尚未落到单一工具的想法
@@ -441,6 +552,11 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 **需要：** 视具体思路而定；在完成实测前，不改变默认路径。[按场景列出的数据需求](#data-needs)
 
+**分组：**
+- *流程规则*（互补）：Soft-mask hand-off rule (idea)、Family-window review using function results (idea)、Track annotation edit distance (AED) per model、Harmonise models across haplotypes before pangenome PAV。经测试验证后将纳入本仓库流程的规则。
+- *已知错误类型*（互补）：Chimeric mis-annotation survey、Annotation affects orthology (idea)。阐述基因模型错误如何传导至直系同源推断与功能分析。
+- *AI 辅助校对*（可替代）：GeneWhisperer、Human-AI collaborative annotation framework。目前仅停留在方案阶段；采用时必须保留人工签字确认。
+
 
 - **Soft-mask hand-off rule (idea)** (idea) — 结构注释直接消费外部产出的审定版 TE 库；需在 METHODS 中记录库名称、版本与 sha256 校验值，并确保库中已剔除 NLR 等基因家族序列（见现有的 ProtExcluder 说明）。 [link](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/BOUNDARY.md)
 - **Chimeric mis-annotation survey** (idea) — 指出融合（嵌合）基因模型在非模式真核生物注释中依然普遍存在，并给出相应的检测启发式规则。 [doi:10.1186/s12864-025-11765-w](https://doi.org/10.1186/s12864-025-11765-w)
@@ -448,6 +564,8 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 - **GeneWhisperer** (idea) — 配备专用任务工具、辅助人工基因注释的大语言模型助手（预印本）。 [doi:10.1101/2025.03.30.646211](https://doi.org/10.1101/2025.03.30.646211)
 - **Human-AI collaborative annotation framework** (idea) — 在 AI 工具与人工校对员之间划分基因组注释任务的概念框架。 [doi:10.1093/bib/bbaf377](https://doi.org/10.1093/bib/bbaf377)
 - **Family-window review using function results (idea)** (idea) — 场景 S7 可读取 gene-function-annotation 产出的 NLR/TF 基因家族窗口列表，并回头复核这些窗口内的基因模型；家族分类器本身仍保留在功能注释目录中。 [link](https://github.com/Xuzhen-Li/gene-function-annotation)
+- **Track annotation edit distance (AED) per model** (idea) — 把每个模型与证据的一致程度（AED，由 Eilbeck 等 2009 年提出，MAKER2 会输出）作为发布中的一列保存，方便校对人员先看证据弱的模型。 [doi:10.1186/1471-2105-10-67](https://doi.org/10.1186/1471-2105-10-67)
+- **Harmonise models across haplotypes before pangenome PAV** (idea) — 将蛋白序列交由 vitis-pangenome 分析前，先利用共线性（SynGAP 方式）让两套单倍型互相对照打磨，确保基因 PAV 反映真实生物学差异而非注释噪声。 [doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8) · [link](https://github.com/Xuzhen-Li/vitis-pangenome)
 
 <a id="data-needs"></a>
 ## 基因组之外还需要的数据

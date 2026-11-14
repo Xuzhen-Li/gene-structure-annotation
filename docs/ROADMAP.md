@@ -192,3 +192,78 @@ Documentation status as of 2026-11-13 (Asia/Shanghai). The scientific trunk and 
 - Figures in the homepage must stay CC BY or OSI-licensed software output (no NC/ND). Self-drawn overview figures already in `docs/figures/` are kept.
 
 Chooser, trunk order (Asm0 → Asm1 → A0 → one draft branch → A4/A5 → proteins → last-mile QC → release), and the branch rules in the sections above remain the same.
+
+<a id="workflow-2026-11-14"></a>
+## Workflow chart (2026-11-14) / 流程图
+
+The same trunk and S-IDs as above, shown in a single chart with tool choices at each decision point. Solid arrows mark the default path; dotted arrows mark optional comparison or overlay steps. Every tool named in the chart appears in the homepage catalog ([`../README.md`](../README.md)); the chart introduces no new defaults.
+
+将上文相同的主干和 S 分支绘成一张图，并在各判断点标出工具选择。实线为默认路径，虚线为可选的对照或叠加步骤。图中列出的工具均收录于主页目录（[`../README.md`](../README.md)），本图不新增默认工具。
+
+```mermaid
+flowchart TD
+  A0asm["Asm0: assemble and scaffold<br/>hifiasm or Verkko, then YaHS or RagTag"] --> A1{"Asm1 QC gate passed?<br/>Merqury QV, compleasm or BUSCO, LAI, FCS-GX"}
+  A1 -->|no| A0asm
+  A1 -->|yes| MASK["A0: soft-mask with a trusted TE library<br/>RepeatMasker, plus TRF or TRASH for satellites"]
+  MASK --> REF{"Close curated reference GFF?"}
+  REF -->|"yes, same species"| S11["S11: LiftOn or Liftoff, CAT, TOGA2 if WGA<br/>then gap-fill"]
+  REF -->|no| EV{"Which evidence?"}
+  EV -->|"RNA-seq + proteins"| S1["S1: BRAKER4, BRAKER3 method<br/>HISAT2 or STAR, StringTie"]
+  EV -->|"deep Iso-Seq"| S3["S3: IsoQuant or FLAIR, then SQANTI3<br/>plus BRAKER orphans"]
+  EV -->|"proteins only"| S2["S2: GALBA2 or GeMoMa<br/>close-species proteomes"]
+  EV -->|"almost none"| S6["S6: homology-first provisional draft"]
+  S1 -.->|"compare only"| S13["S13: Helixer, Tiberius, ANNEVO"]
+  S1 -.->|"parallel compare"| S8["S8: EGAPx"]
+  S11 --> TWO{"Second gene set to merge?"}
+  S1 --> TWO
+  S2 --> TWO
+  S3 --> TWO
+  S6 --> TWO
+  TWO -->|"BRAKER outputs"| TSEBRA["TSEBRA"]
+  TWO -->|"transcript assemblies"| MIKADO["Mikado"]
+  TWO -->|"many weighted sources, S14"| EVM["PASA, then EVM"]
+  TWO -->|"single set"| QC
+  TSEBRA --> QC
+  MIKADO --> QC
+  EVM --> QC
+  QC["A5 and 01: AGAT, BUSCO or compleasm, OMArk, PSAURON"] --> INF{"TE gene inflation or high BUSCO-D?"}
+  INF -->|"TE inflation, S10"| MASK
+  INF -->|"high BUSCO-D, S9: check the assembly first"| A1
+  INF -->|ok| CUR["02 to 04: priority loci, GSAman or Apollo 3"]
+  CUR --> HAP{"Several haplotypes?"}
+  HAP -->|"yes, S4"| SYN["05: SynGAP harmonise"]
+  HAP -->|no| REL
+  SYN -.->|"loci changed by 05"| RCK["re-check those loci by hand, as in 04"]
+  RCK -.-> REL
+  SYN --> REL["06: re-QC, gt gff3validator, GFF3toolkit, table2asn"]
+  REL --> FUN["A6: proteins to gene-function-annotation F1"]
+  REL -.->|"optional overlay"| NC["ncRNA and pseudogenes: Infernal with Rfam, tRNAscan-SE, ShortStack 4, PseudoPipe"]
+```
+
+**Decision notes / 判断说明**
+
+- Close reference: same species or cultivar with a curated GFF → S11. Same genus only → LiftOn or CAT with planned gap-filling; switch to S1 if lift quality drops sharply. / 近缘参考：同种或同品种且有人工审校的 GFF → S11。仅同属 → 用 LiftOn 或 CAT 并预先安排补缺；若转移质量明显下降则改走 S1。
+- RNA-seq + proteins → BRAKER4 (which runs the BRAKER3 method); use the braker.pl BRAKER3 release when containers are unavailable. Helixer, Tiberius and ANNEVO remain comparison tracks (S13). / 有 RNA-seq 和蛋白 → BRAKER4（底层运行 BRAKER3 方法）；容器不可用时改用 braker.pl 的 BRAKER3 版本。Helixer、Tiberius 和 ANNEVO 仍仅作对照（S13）。
+- Second gene set → choose the combiner by input type: TSEBRA for BRAKER outputs, Mikado for transcript assemblies, PASA followed by EVM for multiple weighted sources (S14). / 第二套基因集 → 按输入类型选择合并工具：BRAKER 输出用 TSEBRA，转录本组装用 Mikado，多种加权来源先用 PASA 再接 EVM（S14）。
+- QC loop: TE-derived gene inflation returns the workflow to A0 (S10); if BUSCO-D is high, check the assembly (S9) before purging anything. / 质控回路：若因 TE 导致基因数虚高，需退回 A0 重新屏蔽（S10）；BUSCO-D 偏高时先核对组装结果（S9），再决定是否去冗余。
+- Several haplotypes: loci that SynGAP (05) changes go back to manual review (04), so automatic fixes do not overwrite curated edits. / 多个单倍型：被 SynGAP（05）改动的位点要回到人工校对（04）复核，避免自动修正覆盖人工编辑。
+- Release: run the GFF3 validators before table2asn, then pass the proteins to gene-function-annotation F1. / 发布：运行 table2asn 前先做 GFF3 校验，随后将蛋白序列交由 gene-function-annotation 的 F1 处理。
+
+## Status 2026-11-14 / 已完成 · 仍待做
+
+Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk, chooser and S11 / S1 / S2 / S3 / S13 / S14 rules above are unchanged.
+
+### 已完成 / Done (prepared 2026-11-14, not committed yet)
+
+- Homepage catalog: 41 new entries, each with a verified DOI or project link and a one-line English and Chinese summary. Total entries: 135 → 174.
+- Version merges and renames (one entry per program, named for the latest version; older versions only in the entry note): BRAKER2, BRAKER3 → BRAKER4, GALBA → GALBA2, TOGA (paper) → TOGA2, Apollo (2019 paper) → Apollo 3, ANNEVO (paper) → ANNEVO. BUSCO entry now points to the OrthoDB v12 lineages.
+- Each of the 15 sections opens with a **Clusters:** list (alternatives / complementary / in order) and notes on when to use each. Section anchors are unchanged.
+- Moved the Tiberius and Helixer 2026 figures from section 6 to section 5 next to their entries; captions and credits are unchanged.
+- Added the workflow chart above.
+
+### 仍待做 / Still to do
+
+- Verify that the mermaid chart renders on GitHub (only a static syntax check has been run).
+- BRAKER4, GALBA2 and TOGA2 do not yet have standalone papers; cite the original method papers and record the release or commit used.
+- New entries still marked [待确认]:
+- none

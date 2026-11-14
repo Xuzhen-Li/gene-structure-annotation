@@ -23,7 +23,7 @@ Entry cards for software, databases and ideas found in the 2026-11 survey, filed
 | A6 / A6b — hand-off to function | 0 | [`A6_handoff_to_function/`](A6_handoff_to_function/README.md) |
 | Cross-stage — whole pipelines, reviews, standards | 5 | [`X_cross_stage/`](X_cross_stage/README.md) |
 
-Stage-folder cards in this directory: 57 (first pass; table above). Combined inventory with the type catalog ([`docs/CATALOG_BY_TYPE_2026-11.md`](../docs/CATALOG_BY_TYPE_2026-11.md)): **135**. The repository homepage ([`README.md`](../README.md)) lists all 135 by type. Stage order stays in this folder and in [`docs/ROADMAP.md`](../docs/ROADMAP.md).
+Stage-folder cards in this directory: 57 (first pass; see table above). Combined inventory with the type catalog ([`docs/CATALOG_BY_TYPE_2026-11.md`](../docs/CATALOG_BY_TYPE_2026-11.md)): **135**. The repository homepage ([`README.md`](../README.md)) lists them by type and holds 174 entries after the 2026-11-14 update (older-version entries merged, new entries added). Stage order remains in this folder and in [`docs/ROADMAP.md`](../docs/ROADMAP.md).
 
 **Card fields:** entry_id (`GSA-<stage>-NNN`), type, stage, branches, what it does, url, doi, venue / year, venue_label (Allowlisted / Below allowlist / Preprint, as in the function repo's `RECENT_HIGH_QUALITY.md`), latest release, license, plant_evidence, existing_doc, io (STAGE_IO variable names), layer_check, verdict (include / needs evidence / exclude), checked_version, checked_at_CST, checked_by.
 
