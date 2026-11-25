@@ -27,7 +27,7 @@ Quickstart is at [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-structur
 Track work at [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2).
 
 
-This page also serves as the 2026-11 methods catalog: 174 tools, databases and ideas across 15 type sections (updated 2026-11-14). The default path is unchanged (see Usage and `docs/ROADMAP.md`). Stage order remains in the roadmap and in `catalog/`.
+This page also serves as the 2026-11 methods catalog: 207 tools, databases and ideas across 15 type sections (updated 2026-11-14). The default path is unchanged (see Usage and `docs/ROADMAP.md`). Stage order remains in the roadmap and in `catalog/`.
 
 ## Usage
 

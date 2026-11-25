@@ -27,7 +27,7 @@ GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https:/
 任务看板位于 [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2)。
 
 
-本页也是 2026-11 方法目录，按类型分为 15 节，共收录 174 条工具、数据库与思路（2026-11-14 更新）。默认路径不变（见「使用方法」和 `docs/ROADMAP.md`）。阶段顺序仍以路线图和 `catalog/` 为准。
+本页也是 2026-11 方法目录，按类型分为 15 节，共收录 207 条工具、数据库与思路（2026-11-14 更新）。默认路径不变（见「使用方法」和 `docs/ROADMAP.md`）。阶段顺序仍以路线图和 `catalog/` 为准。
 
 ## 使用方法
 
