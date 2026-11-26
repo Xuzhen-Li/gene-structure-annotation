@@ -12,15 +12,15 @@
 | 经典多证据组合 | S14 | PASA、AUGUSTUS 或 GeneMark、EVidenceModeler | EVM 加权共识在水稻和人类上接近人工校对（[doi:10.1186/gb-2008-9-1-r7](https://doi.org/10.1186/gb-2008-9-1-r7)） | 写明 EVM 权重；并非每个基因组都要跑 EVM（主页“所需数据”） |
 | 第二套单倍型 | S4 | Liftoff、SynGAP | SynGAP 用共线性修正基因结构（[doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8)） | 不要只为降低 BUSCO 重复率去掉单倍型（主页“通用注意事项”） |
 
-![Which branch to run](../../docs/figures/guide/structure_branch_decision.png)
+![Which branch to run](../../docs/figures/guide/structure_branch_decision_v2.png)
 
-*图：按手头数据选主分支，并列出每条分支的首选工具和主要检查项（与第 18 章表格及 README 分支路线一致）。S13、S14、S4 和叠加项只在主草案旁边并行运行。示意图，为本仓库绘制；可编辑 SVG：[`structure_branch_decision.svg`](../../docs/figures/guide/structure_branch_decision.svg)。*
+*图：按手头数据选主分支，并列出每条分支的首选工具和主要检查项（与第 18 章表格及 README 分支路线一致）。S13、S14、S4 和叠加项只在主草案旁边并行运行。示意图，为本仓库绘制；可编辑 SVG：[`structure_branch_decision_v2.svg`](../../docs/figures/guide/structure_branch_decision_v2.svg)。*
 
 ## 权威度怎么看
 
 各表的权威度（标准：被引 500 及以上；成熟：100 至 499；新近：不足 100 且 2023 年及以后发表；小众：不足 100 且更早）衡量论文被引的广度，不代表在你的基因组上更准。比对器、浏览器这类通用工具会从所有领域获得引用。换默认工具之前，先读各步骤章末尾的评测说明，再在自己的数据上比较，这也是主页的要求（主页“所需数据”：未经测试的改动不改变默认路线）。
 
-![Publication year against citations](../../docs/figures/guide/structure_catalog_year_citations.png)
+![Publication year against citations](../../docs/figures/guide/structure_catalog_year_citations_v2.png)
 
 *图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。被引数只说明论文被引用得多不多，不说明工具在你的基因组上准不准。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 

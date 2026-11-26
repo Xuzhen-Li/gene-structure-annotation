@@ -2,9 +2,9 @@
 
 This book is a study guide for structural annotation of plant genomes. It sits beside the gene-structure-annotation repository and explains what each step does, why it is there, which tools exist for it, and how to judge the result. The runnable workflow, stage IDs and acceptance levels stay in the repository ([`README.md`](../../README.md), [`docs/ROADMAP.md`](../../docs/ROADMAP.md), [`docs/EVALUATION.md`](../../docs/EVALUATION.md)); the book does not change the default route.
 
-![Structural annotation route](../../docs/figures/guide/structure_route_map.png)
+![Structural annotation route](../../docs/figures/guide/structure_route_map_v2.png)
 
-*Figure. The structural annotation route of this repository: six stages from assembly QC to the release handed to gene-function-annotation, with the default tool at each stage and the six primary branches (S1, S11, S2, S3, S13, S14). Pick one primary branch from the data you have. Schematic drawn for this repository from README (Usage, Branches, Default route); editable SVG: [`structure_route_map.svg`](../../docs/figures/guide/structure_route_map.svg).*
+*Figure. The structural annotation route of this repository: six stages from assembly QC to the release handed to gene-function-annotation, with the default tool at each stage and the six primary branches (S1, S11, S2, S3, S13, S14). Pick one primary branch from the data you have. Schematic drawn for this repository from README (Usage, Branches, Default route); editable SVG: [`structure_route_map_v2.svg`](../../docs/figures/guide/structure_route_map_v2.svg).*
 
 ## How to read it
 

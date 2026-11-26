@@ -6,7 +6,7 @@
 
 **需要：** 两套及以上的草案基因集和/或转录本组装结果，以及用于打分的证据（RNA、蛋白、剪接位点）。EVM 仅用于 S14 或真正的双轨合并，并非每个基因组都要跑。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
-![Evidence combination at one locus](../../docs/figures/guide/structure_evidence_combination.png)
+![Evidence combination at one locus](../../docs/figures/guide/structure_evidence_combination_v2.png)
 
 *图：合并器在一个位点上做什么。转录本、蛋白、从头预测、深度学习和注释转移的证据常常不一致（例如只有一个来源多出一个外显子，或把相邻基因并了进来）。EVidenceModeler、TSEBRA、Mikado 或 PASA 更新保留多数证据支持的结构。演示位点；示意图，为本仓库绘制，不是对已发表图的重画。*
 

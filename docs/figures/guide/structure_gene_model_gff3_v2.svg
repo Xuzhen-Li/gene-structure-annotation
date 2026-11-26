@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="610" viewBox="0 0 1320 610">
+<title>A gene model and its GFF3 rows</title>
+<defs><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-color="#000000" flood-opacity="0.16"/></filter></defs>
+<rect x="0" y="0" width="1320" height="610" fill="#FFFFFF"/>
+<line x1="50" y1="50" x2="1270" y2="50" stroke="#333333" stroke-width="2"/>
+<text x="50.0" y="38.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#6B6B6B" text-anchor="start">chr01 (soft-masked genome, plus strand)</text>
+<line x1="70.0" y1="50" x2="70.0" y2="56" stroke="#333333" stroke-width="1"/>
+<text x="70.0" y="70.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="middle">1000</text>
+<line x1="338.2" y1="50" x2="338.2" y2="56" stroke="#333333" stroke-width="1"/>
+<text x="338.2" y="70.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="middle">2000</text>
+<line x1="606.4" y1="50" x2="606.4" y2="56" stroke="#333333" stroke-width="1"/>
+<text x="606.4" y="70.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="middle">3000</text>
+<line x1="874.5" y1="50" x2="874.5" y2="56" stroke="#333333" stroke-width="1"/>
+<text x="874.5" y="70.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="middle">4000</text>
+<line x1="1142.7" y1="50" x2="1142.7" y2="56" stroke="#333333" stroke-width="1"/>
+<text x="1142.7" y="70.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="middle">5000</text>
+<rect x="123.6" y="104" width="1045.9" height="14" fill="#333333" rx="2"/>
+<text x="115.6" y="115.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="end">gene  ID=g1</text>
+<line x1="123.6" y1="152" x2="1169.5" y2="152" stroke="#6B6B6B" stroke-width="1.4"/>
+<rect x="123.6" y="145.0" width="80.5" height="14" fill="#9ABFDA" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="204.1" y="139.0" width="107.3" height="26" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="499.1" y="139.0" width="134.1" height="26" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="847.7" y="139.0" width="160.9" height="26" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="1008.6" y="145.0" width="160.9" height="14" fill="#9ABFDA" stroke="#1D5A8A" stroke-width="0.8"/>
+<polyline points="311.4,139 405.2,128 499.1,139" fill="none" stroke="#6B6B6B" stroke-width="1.4"/>
+<polyline points="633.2,139 740.5,128 847.7,139" fill="none" stroke="#6B6B6B" stroke-width="1.4"/>
+<text x="115.6" y="157.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="end">mRNA  g1.t1</text>
+<line x1="123.6" y1="214" x2="1169.5" y2="214" stroke="#6B6B6B" stroke-width="1.4"/>
+<rect x="123.6" y="207.0" width="80.5" height="14" fill="#9ABFDA" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="204.1" y="201.0" width="107.3" height="26" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="847.7" y="201.0" width="201.1" height="26" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<rect x="1048.9" y="207.0" width="120.7" height="14" fill="#9ABFDA" stroke="#1D5A8A" stroke-width="0.8"/>
+<polyline points="311.4,201 579.5,190 847.7,201" fill="none" stroke="#6B6B6B" stroke-width="1.4"/>
+<text x="115.6" y="219.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="end">mRNA  g1.t2</text>
+<rect x="70" y="286" width="30" height="16" fill="#1F72AE" stroke="#1D5A8A" stroke-width="0.8"/>
+<text x="108.0" y="299.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="start">CDS (coding exon part)</text>
+<rect x="300" y="290" width="30" height="9" fill="#9ABFDA" stroke="#1D5A8A" stroke-width="0.8"/>
+<text x="338.0" y="299.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="start">UTR (exon, not translated)</text>
+<polyline points="540,300 555,288 570,300" fill="none" stroke="#6B6B6B" stroke-width="1.4"/>
+<text x="580.0" y="299.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="start">intron</text>
+<text x="660.0" y="299.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#6B6B6B" text-anchor="start">Exon = UTR + CDS pieces of one transcript; g1.t2 skips the middle exon (alternative isoform).</text>
+<rect x="147.0" y="326.0" width="1026.0" height="216.0" rx="6" fill="#FAFAFA" stroke="#6B6B6B" stroke-width="1.4"/>
+<text x="159.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">seqid</text>
+<text x="229.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">source</text>
+<text x="319.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">type</text>
+<text x="459.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">start</text>
+<text x="529.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">end</text>
+<text x="599.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">score</text>
+<text x="654.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">strand</text>
+<text x="714.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">phase</text>
+<text x="769.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="start">attributes (column 9)</text>
+<line x1="155.0" y1="354" x2="1165.0" y2="354" stroke="#BFBFBF" stroke-width="1"/>
+<text x="159.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">gene</text>
+<text x="459.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1200</text>
+<text x="529.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">5100</text>
+<text x="599.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="769.0" y="372.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">ID=g1</text>
+<text x="159.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">mRNA</text>
+<text x="459.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1200</text>
+<text x="529.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">5100</text>
+<text x="599.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="769.0" y="394.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">ID=g1.t1;Parent=g1</text>
+<text x="159.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">five_prime_UTR</text>
+<text x="459.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1200</text>
+<text x="529.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1499</text>
+<text x="599.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="769.0" y="416.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">Parent=g1.t1</text>
+<text x="159.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">exon</text>
+<text x="459.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1200</text>
+<text x="529.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1900</text>
+<text x="599.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="769.0" y="438.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">Parent=g1.t1</text>
+<text x="159.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">CDS</text>
+<text x="459.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1500</text>
+<text x="529.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1900</text>
+<text x="599.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">0</text>
+<text x="769.0" y="460.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">ID=g1.t1.cds;Parent=g1.t1</text>
+<text x="159.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">exon</text>
+<text x="459.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">2600</text>
+<text x="529.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">3100</text>
+<text x="599.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="769.0" y="482.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">Parent=g1.t1</text>
+<text x="159.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">chr01</text>
+<text x="229.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">BRAKER</text>
+<text x="319.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">CDS</text>
+<text x="459.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">2600</text>
+<text x="529.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">3100</text>
+<text x="599.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">.</text>
+<text x="654.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">+</text>
+<text x="714.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">1</text>
+<text x="769.0" y="504.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">ID=g1.t1.cds;Parent=g1.t1</text>
+<text x="159.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">...</text>
+<text x="229.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="319.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="459.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="529.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="599.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="654.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="714.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000"></text>
+<text x="769.0" y="526.0" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="12" fill="#000000">more exon, CDS and UTR rows; g1.t2 has its own rows</text>
+<text x="660.0" y="568.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#6B6B6B" text-anchor="middle">Each child row points to its parent with Parent=; CDS phase (0, 1, 2) says where the next codon starts. Toy coordinates, not a real locus.</text>
+</svg>

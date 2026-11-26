@@ -4,7 +4,7 @@
 
 结构注释在组装好的基因组上找出基因，把坐标写成 GFF3，并给出预测蛋白（主页“概述”）。基因模型是分层的：一个基因有一个或多个转录本（mRNA），每个转录本由外显子、编码区（CDS）和非翻译区（UTR）组成。这些部件的名称来自 Sequence Ontology，它是描述基因组注释各部分的受控词表，使数据交换和自动推理成为可能（[doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44)）。功能层（GO、KEGG、名称）在姊妹仓库 gene-function-annotation 中处理（主页“概述”）。
 
-![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3.png)
+![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3_v2.png)
 
 *图：基因模型是一个层级结构：一个基因，含一个或多个转录本（mRNA），外显子由 UTR 和 CDS 片段组成。下方表格把同一个模型写成 GFF3 行，用 `ID` 与 `Parent` 相连，并标出 CDS 的 phase。坐标为演示用，不是真实位点；示意图，为本仓库绘制。*
 

@@ -4,7 +4,7 @@
 
 Structural annotation finds genes on an assembled genome and writes their coordinates as GFF3, together with the predicted proteins (README, Overview). A gene model is a hierarchy: a gene contains one or more transcripts (mRNA), and each transcript is made of exons, coding sequence (CDS) and untranslated regions (UTR). The names of these parts come from the Sequence Ontology, a controlled vocabulary for the parts of a genomic annotation that makes data exchange and automated reasoning possible ([doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44)). Function (GO, KEGG, names) is a separate layer handled in the sibling repository gene-function-annotation (README, Overview).
 
-![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3.png)
+![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3_v2.png)
 
 *Figure. A gene model is a hierarchy: one gene, one or more transcripts (mRNA), and exons made of UTR and CDS parts. The table shows the same model as GFF3 rows linked by `ID` and `Parent`, with the CDS phase. Toy coordinates, not a real locus; schematic drawn for this repository.*
 

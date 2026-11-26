@@ -6,7 +6,7 @@ Tools that merge several draft gene sets or wrap a whole annotation stack (A4).
 
 **Needs:** two or more draft gene sets and/or transcript assemblies, plus the evidence used to score them (RNA, proteins, junctions). EVM is for S14 or a true dual-track merge, not every genome. [Data needs by scenario](../../README.md#data-needs)
 
-![Evidence combination at one locus](../../docs/figures/guide/structure_evidence_combination.png)
+![Evidence combination at one locus](../../docs/figures/guide/structure_evidence_combination_v2.png)
 
 *Figure. What a combiner does at one locus: transcript, protein, ab initio, deep-learning and lift-over evidence often disagree (an extra exon from one source, a neighbouring gene fused in). EVidenceModeler, TSEBRA, Mikado or a PASA update keep the structure that most evidence supports. Toy locus; schematic drawn for this repository, not redrawn from a published figure.*
 
