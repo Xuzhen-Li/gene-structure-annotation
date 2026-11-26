@@ -348,3 +348,7 @@ Candidates from this pass that turned out to be already in the first-pass file a
 - No tool, paper, year or DOI was added from memory without a resolved record or official page. Items that could not be resolved keep `[待确认]`.
 
 Total: 78 new entries in this file (68 software, 5 database, 5 idea, 0 combined software/database). With the first pass: 135.
+
+---
+
+**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 207 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 135 was the total of the 2026-11 survey and 174 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](../catalog/COUNTS.md).

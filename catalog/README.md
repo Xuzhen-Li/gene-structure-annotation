@@ -28,3 +28,7 @@ Stage-folder cards in this directory: 57 (first pass; see table above). Combined
 **Card fields:** entry_id (`GSA-<stage>-NNN`), type, stage, branches, what it does, url, doi, venue / year, venue_label (Allowlisted / Below allowlist / Preprint, as in the function repo's `RECENT_HIGH_QUALITY.md`), latest release, license, plant_evidence, existing_doc, io (STAGE_IO variable names), layer_check, verdict (include / needs evidence / exclude), checked_version, checked_at_CST, checked_by.
 
 **How checked:** each DOI was resolved in Crossref (DataCite for Zenodo) and the title matched to the entry; GitHub repos, latest release and licence were read from the GitHub API on 2026-11-12 (CST). `[待确认]` = not verified. No entry was added from memory without a resolved record or official page. Rows marked "update" refer to tools already mentioned in this repo (newer paper, release or angle). Proposals only; nothing changes the default path until tested.
+
+---
+
+**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 207 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 135 was the total of the 2026-11 survey and 174 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](COUNTS.md).
