@@ -6,6 +6,10 @@
 
 **需要：** 两套及以上的草案基因集和/或转录本组装结果，以及用于打分的证据（RNA、蛋白、剪接位点）。EVM 仅用于 S14 或真正的双轨合并，并非每个基因组都要跑。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
+![Evidence combination at one locus](../../docs/figures/guide/structure_evidence_combination.png)
+
+*图：合并器在一个位点上做什么。转录本、蛋白、从头预测、深度学习和注释转移的证据常常不一致（例如只有一个来源多出一个外显子，或把相邻基因并了进来）。EVidenceModeler、TSEBRA、Mikado 或 PASA 更新保留多数证据支持的结构。演示位点；示意图，为本仓库绘制，不是对已发表图的重画。*
+
 **分组：**
 - *合并器（按输入选）*（可替代）：TSEBRA、Mikado、EVidenceModeler (EVM)。BRAKER 输出用 TSEBRA，多套转录本用 Mikado，多来源加权合并用 EVM（S14）。
 - *端到端流程*（可替代）：MAKER2、funannotate、EGAPx、GETA、REAT、EASEL、Sylvan、Ensembl automatic annotation pipeline (ensembl-anno)、EviAnn。EGAPx 用于 S8 平行运行；EviAnn 可快速完成纯证据核对。其余工具均为 BRAKER3 主干的替代方案，而非附加步骤。

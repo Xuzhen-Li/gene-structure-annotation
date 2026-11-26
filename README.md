@@ -12,6 +12,10 @@ Structural annotation is the primary layer. It finds genes on a genome and provi
 
 ![Structure overview](docs/figures/structure_overview.png)
 
+![Structural annotation route](docs/figures/guide/structure_route_map.png)
+
+*Figure. The structural annotation route of this repository: six stages from assembly QC to the release handed to gene-function-annotation, with the default tool at each stage and the six primary branches (S1, S11, S2, S3, S13, S14). Pick one primary branch from the data you have. Schematic drawn for this repository from README (Usage, Branches, Default route); editable SVG: [`structure_route_map.svg`](docs/figures/guide/structure_route_map.svg).*
+
 TE soft-mask is a prerequisite. TE library construction is a separate job in [vitis-te](https://github.com/Xuzhen-Li/vitis-te) and [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md).
 GO, KEGG, and readable names are in the sibling repository [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation). This repository does not generate functional annotation tables.
 
@@ -75,6 +79,10 @@ S7: Plant NLR or tandem windows overlay when `plant_tandem_focus: true`.
 
 Full map is at [`docs/ROADMAP.md`](docs/ROADMAP.md).
 Workflow chart with tool choices and decision points (2026-11-14): [`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14).
+
+![Which branch to run](docs/figures/guide/structure_branch_decision.png)
+
+*Figure. Choosing the primary branch from the data at hand, with the first tools and the main check for each branch (the same choice as the table in book chapter 18 and README, Branches). S13, S14, S4 and the overlays run beside the primary draft. Schematic drawn for this repository; editable SVG: [`structure_branch_decision.svg`](docs/figures/guide/structure_branch_decision.svg).*
 
 ## Documentation
 
@@ -154,6 +162,14 @@ The default branch is S1 (RNA and proteins, no close reference). Soft-mask with 
 ### Tier rule
 
 > **Tier rule (stated once):** the indicator is the OpenAlex citation count of the paper (retrieved 2026-11-25). standard: 500 or more; established: 100–499; newer: fewer than 100 and the paper is from 2023 or later; niche: fewer than 100 and from before 2023; no paper: no title-matched paper. General-purpose tools have counts from every field. Lab is the corresponding author in the paper metadata with the first institution (+N for further corresponding authors; the last author when none is flagged). Evaluation quotes the paper abstract (“Authors:” marks a claim made by the tool authors), a benchmark paper with its DOI, or the GitHub repository (description and last push date). This catalog has 207 entries: standard 81, established 57, newer 30, niche 16, no paper 23.
+
+![Catalog entries per section by tier](docs/figures/guide/structure_catalog_by_step.png)
+
+*Figure. Catalog entries per type section, coloured by citation tier (tier rule above). Counts computed from `catalog/SOFTWARE_AUTHORITY.tsv` (207 entries; OpenAlex counts retrieved 2026-11-25) by `docs/figures/guide/src/make_catalog_charts.py`.*
+
+![Publication year against citations](docs/figures/guide/structure_catalog_year_citations.png)
+
+*Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. A citation count says how widely a paper is cited, not how accurate the tool is on your genome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 
 <a id="pipelines"></a>
 ### Pipelines and the steps they cover

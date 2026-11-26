@@ -16,11 +16,19 @@ This book is a study guide for structural annotation of plant genomes. It sits b
 Every statement cites a paper by DOI or a file in this repository. A quote marked “Authors:” is a claim the tool authors make in their own abstract, not an independent result; independent results come from benchmark papers such as G3PO ([doi:10.1186/s12864-020-6707-9](https://doi.org/10.1186/s12864-020-6707-9)), RGASP ([doi:10.1038/nmeth.2714](https://doi.org/10.1038/nmeth.2714)) and LRGASP ([doi:10.1038/s41592-024-02298-3](https://doi.org/10.1038/s41592-024-02298-3)). Tiers and citation counts come from OpenAlex and were retrieved on 2026-11-25; a high count means a tool is widely used, not that it is the most accurate. Chinese teaching notes that go deeper into the repository workflow are in [`docs/zh/`](../docs/zh/README.md).
 
 
+![Structural annotation route](../docs/figures/guide/structure_route_map.png)
+
+*Figure. The structural annotation route of this repository: six stages from assembly QC to the release handed to gene-function-annotation, with the default tool at each stage and the six primary branches (S1, S11, S2, S3, S13, S14). Pick one primary branch from the data you have. Schematic drawn for this repository from README (Usage, Branches, Default route); editable SVG: [`structure_route_map.svg`](../docs/figures/guide/structure_route_map.svg).*
+
 # Chapter 1. Concepts and principles
 
 ## 1.1 What structural annotation produces
 
 Structural annotation finds genes on an assembled genome and writes their coordinates as GFF3, together with the predicted proteins (README, Overview). A gene model is a hierarchy: a gene contains one or more transcripts (mRNA), and each transcript is made of exons, coding sequence (CDS) and untranslated regions (UTR). The names of these parts come from the Sequence Ontology, a controlled vocabulary for the parts of a genomic annotation that makes data exchange and automated reasoning possible ([doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44)). Function (GO, KEGG, names) is a separate layer handled in the sibling repository gene-function-annotation (README, Overview).
+
+![Gene model and GFF3 rows](../docs/figures/guide/structure_gene_model_gff3.png)
+
+*Figure. A gene model is a hierarchy: one gene, one or more transcripts (mRNA), and exons made of UTR and CDS parts. The table shows the same model as GFF3 rows linked by `ID` and `Parent`, with the CDS phase. Toy coordinates, not a real locus; schematic drawn for this repository.*
 
 ## 1.2 Why plant genomes are hard
 
@@ -320,6 +328,10 @@ Tools that merge several draft gene sets or wrap a whole annotation stack (A4).
 
 **Needs:** two or more draft gene sets and/or transcript assemblies, plus the evidence used to score them (RNA, proteins, junctions). EVM is for S14 or a true dual-track merge, not every genome. [Data needs by scenario](../README.md#data-needs)
 
+![Evidence combination at one locus](../docs/figures/guide/structure_evidence_combination.png)
+
+*Figure. What a combiner does at one locus: transcript, protein, ab initio, deep-learning and lift-over evidence often disagree (an extra exon from one source, a neighbouring gene fused in). EVidenceModeler, TSEBRA, Mikado or a PASA update keep the structure that most evidence supports. Toy locus; schematic drawn for this repository, not redrawn from a published figure.*
+
 **Clusters:**
 - *Combiners (pick by inputs)* (alternatives): TSEBRA, Mikado, EVidenceModeler (EVM). Use TSEBRA for BRAKER outputs, Mikado for multiple transcript sets, and EVM for multiple weighted sources (S14).
 - *End-to-end pipelines* (alternatives): MAKER2, funannotate, EGAPx, GETA, REAT, EASEL, Sylvan, Ensembl automatic annotation pipeline (ensembl-anno), EviAnn. EGAPx is the S8 parallel run; EviAnn provides a fast evidence-only check. The remaining pipelines are alternatives to the BRAKER3 trunk, not add-ons.
@@ -401,6 +413,10 @@ Checks on gene models and the proteins translated from them (A3, A5, last-mile 0
 
 **Needs:** proteins translated from the GFF (`PROTEINS_FA`) and a BUSCO lineage; PSAURON and OMArk use the same proteins. RNA BAM is optional but useful for support checks. [Data needs by scenario](../README.md#data-needs)
 
+![GffCompare transcript class codes](../docs/figures/guide/published/gffcompare_2020_fig1.jpg)
+
+*Figure. Transcript class codes that GffCompare reports when a predicted or assembled transcript set is compared with a reference annotation (for example `=` complete intron-chain match, `j` at least one junction match, `u` intergenic). Reproduced without changes from Pertea G and Pertea M (2020), GFF Utilities: GffRead and GffCompare, F1000Research 9:304, Fig. 1, doi:10.12688/f1000research.23297.2, PMC7222033, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
+
 **Clusters:**
 - *Completeness* (complementary): BUSCO, OMArk. Use BUSCO for the standard score; OMArk adds contamination and fragment checks.
 - *Per-model scores* (complementary): PSAURON, GeneValidator, ABAQS. Rank models by score and check the weakest ones first.
@@ -463,6 +479,10 @@ Evidence packs, browsers and editors used in last-mile curation (LM03–LM04).
 GFF3 cleanup, validation and submission (last-mile 06, A6).
 
 **Needs:** the curated GFF and genome only, plus the METHODS / checklist fields already listed in `docs/PLAYBOOK.md`. [Data needs by scenario](../README.md#data-needs)
+
+![Gene model and GFF3 rows](../docs/figures/guide/structure_gene_model_gff3.png)
+
+*Figure. A gene model is a hierarchy: one gene, one or more transcripts (mRNA), and exons made of UTR and CDS parts. The table shows the same model as GFF3 rows linked by `ID` and `Parent`, with the CDS phase. Toy coordinates, not a real locus; schematic drawn for this repository.*
 
 **Clusters:**
 - *Validate* (complementary): GenomeTools (gt gff3validator), GFF3toolkit, gxfkit, noodles. Validate before every release.
@@ -634,9 +654,17 @@ The repository chooses one primary route per genome from the data at hand (READM
 | Classic multi-evidence stack | S14 | PASA, AUGUSTUS or GeneMark, EVidenceModeler | EVM weighted consensus approached manual curation on rice and human ([doi:10.1186/gb-2008-9-1-r7](https://doi.org/10.1186/gb-2008-9-1-r7)) | Document EVM weights; EVM is not required on every genome (README, Data needed) |
 | Second haplotype | S4 | Liftoff, SynGAP | SynGAP polishes gene structures with synteny ([doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8)) | Do not purge haplotypes only to lower BUSCO duplication (README, Cross-cutting pitfalls) |
 
+![Which branch to run](../docs/figures/guide/structure_branch_decision.png)
+
+*Figure. Choosing the primary branch from the data at hand, with the first tools and the main check for each branch (the same choice as the table in book chapter 18 and README, Branches). S13, S14, S4 and the overlays run beside the primary draft. Schematic drawn for this repository; editable SVG: [`structure_branch_decision.svg`](../docs/figures/guide/structure_branch_decision.svg).*
+
 ## How to read the tiers
 
 The tier in every table (standard 500 or more citations, established 100 to 499, newer under 100 and published 2023 or later, niche under 100 and older) measures how widely a paper is cited. It says nothing about accuracy on your genome. General-purpose tools such as aligners and browsers collect citations from every field. Before switching a default, read the benchmark notes at the end of each step chapter and run the comparison on your own data, as the README asks (README, Data needed: notes do not change the default until a change is tested).
+
+![Publication year against citations](../docs/figures/guide/structure_catalog_year_citations.png)
+
+*Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. A citation count says how widely a paper is cited, not how accurate the tool is on your genome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 
 ## Questions to ask before adding a tool
 

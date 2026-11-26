@@ -12,6 +12,10 @@
 
 ![Structure overview](docs/figures/structure_overview.png)
 
+![Structural annotation route](docs/figures/guide/structure_route_map.png)
+
+*图：本仓库的结构注释路线。从组装质控到交给 gene-function-annotation 的发布共六个阶段，标出每个阶段的默认工具和六条主分支（S1、S11、S2、S3、S13、S14）。按手头数据只选一条主分支。示意图，据 README（使用方法、分支路线、默认路线）为本仓库绘制；可编辑 SVG：[`structure_route_map.svg`](docs/figures/guide/structure_route_map.svg)。*
+
 TE soft-mask 是必需的前置步骤。构建 TE 库是一项独立任务，请参考 [vitis-te](https://github.com/Xuzhen-Li/vitis-te) 和 [`docs/TE_LIBRARY.md`](docs/TE_LIBRARY.md)。
 GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation) 中。本仓库不生成功能注释表格。
 
@@ -75,6 +79,10 @@ S7: 设置 `plant_tandem_focus: true` 时叠加植物 NLR 或串联重复区域�
 
 完整路线图位于 [`docs/ROADMAP.md`](docs/ROADMAP.md)。
 含工具选择与判断节点的流程图（2026-11-14）：[`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14)。
+
+![Which branch to run](docs/figures/guide/structure_branch_decision.png)
+
+*图：按手头数据选主分支，并列出每条分支的首选工具和主要检查项（与第 18 章表格及 README 分支路线一致）。S13、S14、S4 和叠加项只在主草案旁边并行运行。示意图，为本仓库绘制；可编辑 SVG：[`structure_branch_decision.svg`](docs/figures/guide/structure_branch_decision.svg)。*
 
 ## 文档目录
 
@@ -153,6 +161,14 @@ EGAPx 对比：[`docs/EGAPX_COMPARE.md`](docs/EGAPX_COMPARE.md)
 ### 权威度规则
 
 > **权威度规则（只在此处说明一次）：** 权威度取 OpenAlex 的论文被引次数（2026-11-25 取数）。标准：500 次及以上；成熟：100–499 次；较新：少于 100 次且论文发表于 2023 年或之后；小众：少于 100 次且发表于 2023 年之前；无论文：没有题名匹配的论文。通用工具的引用数来自所有学科。实验室取论文元数据中的通讯作者及其第一机构（多个通讯作者时写第一位并以 +N 表示其余人数；没有标注时写末位作者）。评价引自论文摘要（“作者摘要原句”表示工具作者自己的说法）、带 DOI 的评测论文，或 GitHub 仓库（简介与最后提交日期）。本目录共 207 条：标准 81、成熟 57、较新 30、小众 16、无论文 23。
+
+![Catalog entries per section by tier](docs/figures/guide/structure_catalog_by_step.png)
+
+*图：各类型小节的目录条目数，按权威度着色（规则见上）。数字由 `docs/figures/guide/src/make_catalog_charts.py` 从 `catalog/SOFTWARE_AUTHORITY.tsv` 计算（207 条；OpenAlex 被引数于 2026-11-25 取得）。*
+
+![Publication year against citations](docs/figures/guide/structure_catalog_year_citations.png)
+
+*图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。被引数只说明论文被引用得多不多，不说明工具在你的基因组上准不准。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 
 <a id="pipelines"></a>
 ### 整套流程覆盖哪些步骤

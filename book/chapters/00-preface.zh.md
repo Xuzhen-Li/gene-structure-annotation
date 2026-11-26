@@ -2,6 +2,10 @@
 
 本书是植物基因组结构注释的学习笔记，与 gene-structure-annotation 仓库配套，讲每一步做什么、为什么要做、有哪些工具、结果怎么判断。可运行的流程、阶段编号和验收等级仍以仓库为准（[`README.zh.md`](../../README.zh.md)、[`docs/ROADMAP.md`](../../docs/ROADMAP.md)、[`docs/EVALUATION.md`](../../docs/EVALUATION.md)）；本书不改变默认路线。
 
+![Structural annotation route](../../docs/figures/guide/structure_route_map.png)
+
+*图：本仓库的结构注释路线。从组装质控到交给 gene-function-annotation 的发布共六个阶段，标出每个阶段的默认工具和六条主分支（S1、S11、S2、S3、S13、S14）。按手头数据只选一条主分支。示意图，据 README（使用方法、分支路线、默认路线）为本仓库绘制；可编辑 SVG：[`structure_route_map.svg`](../../docs/figures/guide/structure_route_map.svg)。*
+
 ## 怎么读
 
 - 第 1 章讲概念：什么是基因模型、证据有哪几类、为什么要 soft-mask、质量怎么衡量。

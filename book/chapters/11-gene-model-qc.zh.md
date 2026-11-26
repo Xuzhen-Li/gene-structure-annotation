@@ -6,6 +6,10 @@
 
 **需要：** 由 GFF 翻译出的蛋白序列（`PROTEINS_FA`）与 BUSCO lineage；PSAURON 和 OMArk 使用同一套蛋白。RNA BAM 非必需，但有助于检查证据支持率。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
+![GffCompare transcript class codes](../../docs/figures/guide/published/gffcompare_2020_fig1.jpg)
+
+*图：用 GffCompare 将预测或组装的转录本与参考注释比较时给出的分类代码（例如 `=` 内含子链完全一致，`j` 至少一个剪接点一致，`u` 位于基因间）。原图未修改，引自 Pertea G、Pertea M（2020），GFF Utilities: GffRead and GffCompare，F1000Research 9:304，Fig. 1，doi:10.12688/f1000research.23297.2，PMC7222033，许可 CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)。*
+
 **分组：**
 - *完整性*（互补）：BUSCO、OMArk。BUSCO 给出标准完整度指标；OMArk 补充污染与片段化检查。
 - *逐模型评分*（互补）：PSAURON、GeneValidator、ABAQS。按得分排序，优先复查得分最低的模型。

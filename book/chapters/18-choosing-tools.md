@@ -12,9 +12,17 @@ The repository chooses one primary route per genome from the data at hand (READM
 | Classic multi-evidence stack | S14 | PASA, AUGUSTUS or GeneMark, EVidenceModeler | EVM weighted consensus approached manual curation on rice and human ([doi:10.1186/gb-2008-9-1-r7](https://doi.org/10.1186/gb-2008-9-1-r7)) | Document EVM weights; EVM is not required on every genome (README, Data needed) |
 | Second haplotype | S4 | Liftoff, SynGAP | SynGAP polishes gene structures with synteny ([doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8)) | Do not purge haplotypes only to lower BUSCO duplication (README, Cross-cutting pitfalls) |
 
+![Which branch to run](../../docs/figures/guide/structure_branch_decision.png)
+
+*Figure. Choosing the primary branch from the data at hand, with the first tools and the main check for each branch (the same choice as the table in book chapter 18 and README, Branches). S13, S14, S4 and the overlays run beside the primary draft. Schematic drawn for this repository; editable SVG: [`structure_branch_decision.svg`](../../docs/figures/guide/structure_branch_decision.svg).*
+
 ## How to read the tiers
 
 The tier in every table (standard 500 or more citations, established 100 to 499, newer under 100 and published 2023 or later, niche under 100 and older) measures how widely a paper is cited. It says nothing about accuracy on your genome. General-purpose tools such as aligners and browsers collect citations from every field. Before switching a default, read the benchmark notes at the end of each step chapter and run the comparison on your own data, as the README asks (README, Data needed: notes do not change the default until a change is tested).
+
+![Publication year against citations](../../docs/figures/guide/structure_catalog_year_citations.png)
+
+*Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. A citation count says how widely a paper is cited, not how accurate the tool is on your genome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 
 ## Questions to ask before adding a tool
 

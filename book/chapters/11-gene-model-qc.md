@@ -6,6 +6,10 @@ Checks on gene models and the proteins translated from them (A3, A5, last-mile 0
 
 **Needs:** proteins translated from the GFF (`PROTEINS_FA`) and a BUSCO lineage; PSAURON and OMArk use the same proteins. RNA BAM is optional but useful for support checks. [Data needs by scenario](../../README.md#data-needs)
 
+![GffCompare transcript class codes](../../docs/figures/guide/published/gffcompare_2020_fig1.jpg)
+
+*Figure. Transcript class codes that GffCompare reports when a predicted or assembled transcript set is compared with a reference annotation (for example `=` complete intron-chain match, `j` at least one junction match, `u` intergenic). Reproduced without changes from Pertea G and Pertea M (2020), GFF Utilities: GffRead and GffCompare, F1000Research 9:304, Fig. 1, doi:10.12688/f1000research.23297.2, PMC7222033, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
+
 **Clusters:**
 - *Completeness* (complementary): BUSCO, OMArk. Use BUSCO for the standard score; OMArk adds contamination and fragment checks.
 - *Per-model scores* (complementary): PSAURON, GeneValidator, ABAQS. Rank models by score and check the weakest ones first.

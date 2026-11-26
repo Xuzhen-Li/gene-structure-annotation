@@ -16,11 +16,19 @@
 每个说法都引用带 DOI 的论文或本仓库中的文件。标为“作者摘要原句”的引文是工具作者在自己摘要中的说法，不是独立结果；独立结果来自 G3PO（[doi:10.1186/s12864-020-6707-9](https://doi.org/10.1186/s12864-020-6707-9)）、RGASP（[doi:10.1038/nmeth.2714](https://doi.org/10.1038/nmeth.2714)）和 LRGASP（[doi:10.1038/s41592-024-02298-3](https://doi.org/10.1038/s41592-024-02298-3)）这类评测论文。权威度和被引次数取自 OpenAlex（2026-11-25 取数）；被引多说明用的人多，不等于最准确。更细的仓库流程中文讲解见 [`docs/zh/`](../docs/zh/README.md)。
 
 
+![Structural annotation route](../docs/figures/guide/structure_route_map.png)
+
+*图：本仓库的结构注释路线。从组装质控到交给 gene-function-annotation 的发布共六个阶段，标出每个阶段的默认工具和六条主分支（S1、S11、S2、S3、S13、S14）。按手头数据只选一条主分支。示意图，据 README（使用方法、分支路线、默认路线）为本仓库绘制；可编辑 SVG：[`structure_route_map.svg`](../docs/figures/guide/structure_route_map.svg)。*
+
 # 第 1 章 概念与原理
 
 ## 1.1 结构注释产出什么
 
 结构注释在组装好的基因组上找出基因，把坐标写成 GFF3，并给出预测蛋白（主页“概述”）。基因模型是分层的：一个基因有一个或多个转录本（mRNA），每个转录本由外显子、编码区（CDS）和非翻译区（UTR）组成。这些部件的名称来自 Sequence Ontology，它是描述基因组注释各部分的受控词表，使数据交换和自动推理成为可能（[doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44)）。功能层（GO、KEGG、名称）在姊妹仓库 gene-function-annotation 中处理（主页“概述”）。
+
+![Gene model and GFF3 rows](../docs/figures/guide/structure_gene_model_gff3.png)
+
+*图：基因模型是一个层级结构：一个基因，含一个或多个转录本（mRNA），外显子由 UTR 和 CDS 片段组成。下方表格把同一个模型写成 GFF3 行，用 `ID` 与 `Parent` 相连，并标出 CDS 的 phase。坐标为演示用，不是真实位点；示意图，为本仓库绘制。*
 
 ## 1.2 植物基因组为什么难
 
@@ -322,6 +330,10 @@
 
 **需要：** 两套及以上的草案基因集和/或转录本组装结果，以及用于打分的证据（RNA、蛋白、剪接位点）。EVM 仅用于 S14 或真正的双轨合并，并非每个基因组都要跑。[按场景列出的数据需求](../README.zh.md#data-needs)
 
+![Evidence combination at one locus](../docs/figures/guide/structure_evidence_combination.png)
+
+*图：合并器在一个位点上做什么。转录本、蛋白、从头预测、深度学习和注释转移的证据常常不一致（例如只有一个来源多出一个外显子，或把相邻基因并了进来）。EVidenceModeler、TSEBRA、Mikado 或 PASA 更新保留多数证据支持的结构。演示位点；示意图，为本仓库绘制，不是对已发表图的重画。*
+
 **分组：**
 - *合并器（按输入选）*（可替代）：TSEBRA、Mikado、EVidenceModeler (EVM)。BRAKER 输出用 TSEBRA，多套转录本用 Mikado，多来源加权合并用 EVM（S14）。
 - *端到端流程*（可替代）：MAKER2、funannotate、EGAPx、GETA、REAT、EASEL、Sylvan、Ensembl automatic annotation pipeline (ensembl-anno)、EviAnn。EGAPx 用于 S8 平行运行；EviAnn 可快速完成纯证据核对。其余工具均为 BRAKER3 主干的替代方案，而非附加步骤。
@@ -403,6 +415,10 @@
 
 **需要：** 由 GFF 翻译出的蛋白序列（`PROTEINS_FA`）与 BUSCO lineage；PSAURON 和 OMArk 使用同一套蛋白。RNA BAM 非必需，但有助于检查证据支持率。[按场景列出的数据需求](../README.zh.md#data-needs)
 
+![GffCompare transcript class codes](../docs/figures/guide/published/gffcompare_2020_fig1.jpg)
+
+*图：用 GffCompare 将预测或组装的转录本与参考注释比较时给出的分类代码（例如 `=` 内含子链完全一致，`j` 至少一个剪接点一致，`u` 位于基因间）。原图未修改，引自 Pertea G、Pertea M（2020），GFF Utilities: GffRead and GffCompare，F1000Research 9:304，Fig. 1，doi:10.12688/f1000research.23297.2，PMC7222033，许可 CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)。*
+
 **分组：**
 - *完整性*（互补）：BUSCO、OMArk。BUSCO 给出标准完整度指标；OMArk 补充污染与片段化检查。
 - *逐模型评分*（互补）：PSAURON、GeneValidator、ABAQS。按得分排序，优先复查得分最低的模型。
@@ -465,6 +481,10 @@
 GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 **需要：** 审定后的 GFF 与基因组，外加 `docs/PLAYBOOK.md` 中列出的 METHODS 与核对表字段。[按场景列出的数据需求](../README.zh.md#data-needs)
+
+![Gene model and GFF3 rows](../docs/figures/guide/structure_gene_model_gff3.png)
+
+*图：基因模型是一个层级结构：一个基因，含一个或多个转录本（mRNA），外显子由 UTR 和 CDS 片段组成。下方表格把同一个模型写成 GFF3 行，用 `ID` 与 `Parent` 相连，并标出 CDS 的 phase。坐标为演示用，不是真实位点；示意图，为本仓库绘制。*
 
 **分组：**
 - *校验*（互补）：GenomeTools (gt gff3validator)、GFF3toolkit、gxfkit、noodles。每次发布前均需运行校验。
@@ -636,9 +656,17 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 | 经典多证据组合 | S14 | PASA、AUGUSTUS 或 GeneMark、EVidenceModeler | EVM 加权共识在水稻和人类上接近人工校对（[doi:10.1186/gb-2008-9-1-r7](https://doi.org/10.1186/gb-2008-9-1-r7)） | 写明 EVM 权重；并非每个基因组都要跑 EVM（主页“所需数据”） |
 | 第二套单倍型 | S4 | Liftoff、SynGAP | SynGAP 用共线性修正基因结构（[doi:10.1186/s13059-024-03359-8](https://doi.org/10.1186/s13059-024-03359-8)） | 不要只为降低 BUSCO 重复率去掉单倍型（主页“通用注意事项”） |
 
+![Which branch to run](../docs/figures/guide/structure_branch_decision.png)
+
+*图：按手头数据选主分支，并列出每条分支的首选工具和主要检查项（与第 18 章表格及 README 分支路线一致）。S13、S14、S4 和叠加项只在主草案旁边并行运行。示意图，为本仓库绘制；可编辑 SVG：[`structure_branch_decision.svg`](../docs/figures/guide/structure_branch_decision.svg)。*
+
 ## 权威度怎么看
 
 各表的权威度（标准：被引 500 及以上；成熟：100 至 499；新近：不足 100 且 2023 年及以后发表；小众：不足 100 且更早）衡量论文被引的广度，不代表在你的基因组上更准。比对器、浏览器这类通用工具会从所有领域获得引用。换默认工具之前，先读各步骤章末尾的评测说明，再在自己的数据上比较，这也是主页的要求（主页“所需数据”：未经测试的改动不改变默认路线）。
+
+![Publication year against citations](../docs/figures/guide/structure_catalog_year_citations.png)
+
+*图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。被引数只说明论文被引用得多不多，不说明工具在你的基因组上准不准。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 
 ## 加新工具前要问的问题
 
