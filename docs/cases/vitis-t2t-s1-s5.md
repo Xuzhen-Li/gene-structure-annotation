@@ -44,7 +44,7 @@ A run is **deliverable** only when all of the following exist under `$WORK_DIR/r
 | RNA | Illumina RNA-seq from **same or very close** genotype → will become `RNA_BAM` |
 | Proteins | OrthoDB eudicots / Viridiplantae **or** high-quality grape proteins → `PROTEIN_DB` |
 | Reference transfer | PN40024 (or best grape) `REF_FA` + `REF_GFF` for Liftoff / GeMoMa second track |
-| TE lib | Lab scheme [`TE_LIBRARY.md`](../TE_LIBRARY.md) / [vitis-te](https://github.com/Xuzhen-Li/vitis-te): EDTA→TEtrimmer→TEsorter→curate→ProtExcluder→soft-mask |
+| TE lib | Lab scheme [`TE_LIBRARY.md`](../TE_LIBRARY.md) / [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib): EDTA→TEtrimmer→TEsorter→curate→ProtExcluder→soft-mask |
 | Compute | BRAKER/GALBA stack, HISAT2 or STAR, AGAT, BUSCO, gffread, EVM or TSEBRA; OMArk + Compleasm for S5 |
 
 ### 1.2 `config/local.env` skeleton (fill paths)

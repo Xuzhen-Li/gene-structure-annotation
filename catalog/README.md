@@ -2,7 +2,7 @@
 
 Entry cards for software, databases and ideas found in the 2026-11 survey, filed under this repo's own stage IDs (Asm0/Asm1, A0, A1, A2, A4, A5, A3, last mile 01–06, A6). Folder order follows the execution order in [`docs/STAGE_IO.md`](../docs/STAGE_IO.md). Last-mile folders carry an `LM` prefix only so they do not clash with vitis-pangenome script numbers; inside the cards the original number ("last mile 04") and file names are kept. Branch IDs S1–S14 are a view only: [`_branches.md`](_branches.md). Databases across stages: [`_databases.md`](_databases.md). Flat one-page list of the same survey: [`../docs/CATALOG_NEW_TOOLS_2026-11.md`](../docs/CATALOG_NEW_TOOLS_2026-11.md).
 
-**Repo-wide boundary** ([`docs/BOUNDARY.md`](../docs/BOUNDARY.md)): no GO, KEGG, InterPro tables, readable names or eggNOG; no TE library construction (layer 3, vitis-te); no HRP or other NLR classifiers (gene-function-annotation F8). Protein tools whose description says "structure" (e.g. DeepFRI) mean **protein 3D structure** and are not gene-structure annotation; they are not filed here.
+**Repo-wide boundary** ([`docs/BOUNDARY.md`](../docs/BOUNDARY.md)): no GO, KEGG, InterPro tables, readable names or eggNOG; no TE library construction (layer 3, TE-Lib); no HRP or other NLR classifiers (gene-function-annotation F8). Protein tools whose description says "structure" (e.g. DeepFRI) mean **protein 3D structure** and are not gene-structure annotation; they are not filed here.
 
 | Stage | Entries | Folder |
 |---|---|---|

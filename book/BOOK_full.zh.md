@@ -44,7 +44,7 @@
 
 ## 1.4 重复序列的 soft-mask
 
-不标记重复和转座子会产生假基因。soft-mask 把重复碱基写成小写，预测软件可以降低其权重而不删除序列。本仓库用 vitis-te 构建的可信 TE 库做屏蔽；这一步只做 soft-mask，BRAKER 和 GALBA 前绝不 hard-mask；soft-mask 比例衡量的是与该库的相似程度，不是基因组的 TE 百分比（`examples/plant_sim/01_vitis_s1_s7/plan.md` 与 `env.snippet`）。
+不标记重复和转座子会产生假基因。soft-mask 把重复碱基写成小写，预测软件可以降低其权重而不删除序列。本仓库用 TE-Lib 构建的可信 TE 库做屏蔽；这一步只做 soft-mask，BRAKER 和 GALBA 前绝不 hard-mask；soft-mask 比例衡量的是与该库的相似程度，不是基因组的 TE 百分比（`examples/plant_sim/01_vitis_s1_s7/plan.md` 与 `env.snippet`）。
 
 ## 1.5 合并证据
 
@@ -111,12 +111,12 @@
 
 利用可信 TE 库屏蔽重复序列，或屏蔽低复杂度序列。本库不负责构建 TE 库。
 
-**需要：** 一份可信的 TE 库（来自 vitis-te 或其他审定库）。本节仅做 soft-mask，不构建 TE 库。[按场景列出的数据需求](../README.zh.md#data-needs)
+**需要：** 一份可信的 TE 库（来自 TE-Lib 或其他审定库）。本节仅做 soft-mask，不构建 TE 库。[按场景列出的数据需求](../README.zh.md#data-needs)
 
 **分组：**
-- *库与屏蔽程序*（互补）：Dfam、RepeatMasker。默认 A0：用 RepeatMasker 跑 vitis-te 的库（已知家族由 Dfam 补充）。
+- *库与屏蔽程序*（互补）：Dfam、RepeatMasker。默认 A0：用 RepeatMasker 跑 TE-Lib 的库（已知家族由 Dfam 补充）。
 - *串联与卫星重复*（互补）：Tandem Repeats Finder (TRF)、ULTRA、TRASH。存在着丝粒或长卫星重复时并入屏蔽结果；TRASH 还能对着丝粒阵列进行分类。
-- *无库屏蔽与建库（仅作对照）*（可替代）：WindowMasker、Red、Earl Grey。WindowMasker 和 Red 不用库直接屏蔽；Earl Grey 会自建库再屏蔽。三者都只用于和 A0 的屏蔽结果比较，在默认路径上不能替代 vitis-te 的库。
+- *无库屏蔽与建库（仅作对照）*（可替代）：WindowMasker、Red、Earl Grey。WindowMasker 和 Red 不用库直接屏蔽；Earl Grey 会自建库再屏蔽。三者都只用于和 A0 的屏蔽结果比较，在默认路径上不能替代 TE-Lib 的库。
 
 
 | 工具 | 角色 | 用途 / 何时用 | 原始论文 | 实验室（通讯作者，机构） | 权威度（档位 · 被引） | 评价（出处） |
@@ -126,9 +126,9 @@
 | [Tandem Repeats Finder (TRF)](https://github.com/Benson-Genomics-Lab/TRF) | 备选 | 检测串联重复序列。 | [Nucleic Acids Research 1999](https://doi.org/10.1093/nar/27.2.573) | Gary Benson (Icahn School of Medicine at Mount Sinai) | 标准 · 10371 次 | 论文摘要：“In this paper, we present a new algorithm for finding tandem repeats which works without the need to specify either the pattern or pattern size.”；GitHub 最后提交 2023-01 |
 | [WindowMasker](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/winmasker/) | 备选 | 无需重复序列库，直接基于高频 k-mer 做序列屏蔽的工具（NCBI）。 | [Bioinformatics 2005](https://doi.org/10.1093/bioinformatics/bti774) | Richa Agarwala (National Institutes of Health) | 成熟 · 354 次 | 无摘要或仓库说明可引；见原文 |
 | [ULTRA](https://github.com/TravisWheelerLab/ULTRA) | 备选 | 对串联重复与低复杂度重复做概率标注；输出结果可配合可信 TE 库用于 soft-masking。 | [Bioinformatics Advances 2024](https://doi.org/10.1093/bioadv/vbae149) | Daniel R. Olson (University of Montana) | 较新 · 20 次 | 作者摘要原句：“Tools that annotate repetitive sequence are now more important than ever, so that we can better understand newly uncovered repetitive sequences, and also so that we can mitigate errors in bioinformatic software caused by those repetitive sequences.”；GitHub 最后提交 2026-11 |
-| Red | 备选 | 不依赖重复库的从头重复序列检测工具，尚无可信 TE 库时可快速生成 soft-mask。仅作为对照轨道与 vitis-te 库比较。 | [BMC Bioinformatics 2015](https://doi.org/10.1186/s12859-015-0654-5) | Hani Z. Girgis (National Institutes of Health) | 成熟 · 275 次 | 作者摘要原句：“It is sensitive to both transposons and simple repeats; in contrast, available tools such as RepeatScout and ReCon are sensitive to transposons, and WindowMasker to simple repeats.” |
+| Red | 备选 | 不依赖重复库的从头重复序列检测工具，尚无可信 TE 库时可快速生成 soft-mask。仅作为对照轨道与 TE-Lib 库比较。 | [BMC Bioinformatics 2015](https://doi.org/10.1186/s12859-015-0654-5) | Hani Z. Girgis (National Institutes of Health) | 成熟 · 275 次 | 作者摘要原句：“It is sensitive to both transposons and simple repeats; in contrast, available tools such as RepeatScout and ReCon are sensitive to transposons, and WindowMasker to simple repeats.” |
 | [TRASH](https://github.com/vlothec/TRASH) | 备选 | 识别并分类串联重复与卫星重复阵列（如着丝粒重复）；可在基因预测前用来屏蔽或标记 T2T 组装的着丝粒。 | [Bioinformatics 2023](https://doi.org/10.1093/bioinformatics/btad308) | Ian R. Henderson (University of Cambridge) | 成熟 · 115 次 | 作者摘要原句：“TRASH analyses a fasta assembly file, identifies regions occupied by repeats and then precisely maps them and their higher order structures.”；GitHub 最后提交 2025-03 |
-| [Earl Grey](https://github.com/TobyBaril/EarlGrey) | 备选 | 封装 RepeatModeler2 和 RepeatMasker 的自动化 TE 注释流程。建库工作归属 vitis-te，此处收录仅用于对比屏蔽结果。 | [Molecular Biology and Evolution 2024](https://doi.org/10.1093/molbev/msae068) | Tobias Baril (University of Exeter) +1 | 成熟 · 292 次 | 作者摘要原句：“Using nine simulated genomes and an annotation of Drosophila melanogaster, we show that Earl Grey outperforms current widely used TE annotation methodologies in ameliorating the issues mentioned above while scoring highly in benchmarking for TE annotation and …”；GitHub 最后提交 2026-11 |
+| [Earl Grey](https://github.com/TobyBaril/EarlGrey) | 备选 | 封装 RepeatModeler2 和 RepeatMasker 的自动化 TE 注释流程。建库工作归属 TE-Lib，此处收录仅用于对比屏蔽结果。 | [Molecular Biology and Evolution 2024](https://doi.org/10.1093/molbev/msae068) | Tobias Baril (University of Exeter) +1 | 成熟 · 292 次 | 作者摘要原句：“Using nine simulated genomes and an annotation of Drosophila melanogaster, we show that Earl Grey outperforms current widely used TE annotation methodologies in ameliorating the issues mentioned above while scoring highly in benchmarking for TE annotation and …”；GitHub 最后提交 2026-11 |
 | [RepeatModeler2](https://github.com/Dfam-consortium/RepeatModeler) | 备选 | 为新基因组从头构建重复序列库；RepeatMasker 所用的库通常来自它。 | [Proceedings of the National Academy of Sciences 2020](https://doi.org/10.1073/pnas.1921046117) | Arian F. A. Smit (Institute for Systems Biology) | 标准 · 4333 次 | 作者摘要原句：“This program brings substantial improvements over the original version of RepeatModeler, one of the most widely used tools for TE discovery.”；GitHub 最后提交 2026-11 |
 | [EDTA](https://github.com/oushujun/EDTA) | 备选 | 整合 LTR、TIR、Helitron 等检测器并过滤去冗余，得到 TE 库；植物基因组 soft-mask 常用的库来源。 | [Genome biology 2019](https://doi.org/10.1186/s13059-019-1905-y) | Ning Jiang (Michigan State University) +2 | 标准 · 1683 次 | GitHub 最后提交 2026-11 |
 | [BEDTools (maskfasta)](https://github.com/arq5x/bedtools2) | 备选，通用工具 | 通用区间工具集；maskfasta -soft 可把重复 BED/GFF 转成 soft-mask 的 FASTA。 | [Bioinformatics 2010](https://doi.org/10.1093/bioinformatics/btq033) | Aaron R. Quinlan (University of Virginia) +1 | 标准 · 30267 次 | GitHub 最后提交 2026-06 |
@@ -682,7 +682,7 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 来自主页“基因组之外还需要的数据”一节和 `docs/EVALUATION.md`。
 
-- TE 库构建是 vitis-te 的工作；本仓库只用可信库做 soft-mask。
+- TE 库构建是 TE-Lib 的工作；本仓库只用可信库做 soft-mask。
 - 功能标签（GO、KEGG、结构域、名称、NLR 和转录因子分类）属于 gene-function-annotation。蛋白工具说的 structure 通常指三维结构，不是基因模型。
 - `grade=` 和 `status=` 是两个字段；临时版本不是 L1。
 - 近缘参考指同种或同品种（或几乎相同的单倍型）且有你信任的人工 GFF，不是同科里随便一个 GFF。

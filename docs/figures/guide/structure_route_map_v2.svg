@@ -6,7 +6,7 @@
 <rect x="90.0" y="18.0" width="179.4" height="26.0" rx="13" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
 <text x="179.7" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Genome FASTA (haplotype)</text>
 <rect x="281.4" y="18.0" width="199.1" height="26.0" rx="13" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
-<text x="381.0" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Trusted TE library (from vitis-te)</text>
+<text x="381.0" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Trusted TE library (from TE-Lib)</text>
 <rect x="492.5" y="18.0" width="194.9" height="26.0" rx="13" fill="url(#gF77E12)" stroke="#F77E12" stroke-width="1.4" filter="url(#shadow)"/>
 <text x="590.0" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">RNA-seq and/or Iso-Seq reads</text>
 <rect x="699.4" y="18.0" width="171.3" height="26.0" rx="13" fill="url(#g595594)" stroke="#595594" stroke-width="1.4" filter="url(#shadow)"/>
@@ -26,7 +26,7 @@
 <rect x="240.3" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
 <text x="250.3" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Soft-mask</text>
 <text x="250.3" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">RepeatMasker with the trusted</text>
-<text x="250.3" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">vitis-te library</text>
+<text x="250.3" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">TE-Lib library</text>
 <text x="250.3" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Soft-mask only; never</text>
 <text x="250.3" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">hard-mask for BRAKER or</text>
 <text x="250.3" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">GALBA</text>

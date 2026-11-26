@@ -4,7 +4,7 @@ Survey of annotation software, databases and ideas published or released mostly 
 
 **Boundary (see [`BOUNDARY.md`](BOUNDARY.md)).** This page lists only things that make or check coordinates, GFF3 and proteins.
 
-- TE *library construction* (de novo TE finders, library curation tools) belongs to [`vitis-te`](https://github.com/Xuzhen-Li/vitis-te) and is **not** listed here. Structure only soft-masks with a trusted library.
+- TE *library construction* (de novo TE finders, library curation tools) belongs to [`TE-Lib`](https://github.com/Xuzhen-Li/TE-Lib) and is **not** listed here. Structure only soft-masks with a trusted library.
 - Functional labels (GO/KEGG/names/domains) and family classifiers such as HRP or NLR classifiers live in [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation). Scenario S7 may *use* a window list from there to review gene models (see the curation section).
 - Product handed to the function repo: `proteins.faa` → `merged_function_table.tsv` on that side (the older name `functional_master.tsv` in some pages here refers to the same table).
 
@@ -42,7 +42,7 @@ Checks on the assembly that change what gets annotated.
 
 ## A0 — soft-mask with a trusted library
 
-Masking inputs only. Library building is out of scope (vitis-te).
+Masking inputs only. Library building is out of scope (TE-Lib).
 
 | Name | Type | Year / latest release | What it does | Plant / eukaryote relevance | Source |
 |---|---|---|---|---|---|
@@ -200,6 +200,6 @@ Papers to cite or follow when writing METHODS.
 - Searched 2026-11-12/13 (CST): Crossref title search, web search (papers 2023–2026, tool pages), GitHub API, and the existing docs of this repo.
 - Each DOI was resolved in Crossref (or DataCite for Zenodo) and its title matched to the tool; venue/year come from that record. GitHub repos were opened with the API; release tag and last push date are from the API on the day of the survey.
 - Items that could not be resolved keep `[待确认]`. No tool or paper was added from memory without a resolved record or official page.
-- TE-library tools found in the same search are handed to the vitis-te maintainers separately, not listed here.
+- TE-library tools found in the same search are handed to the TE-Lib maintainers separately, not listed here.
 
 Entries: 57. Marked `·in repo` = name already appears somewhere in this repo's docs (entry adds a newer paper/release or a new angle).

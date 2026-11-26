@@ -22,7 +22,7 @@ Plant genomes are large, rich in transposable elements and often polyploid, and 
 
 ## 1.4 Soft-masking repeats
 
-Repeats and transposable elements produce false gene calls if they are left unmarked. Soft-masking writes repeat bases in lower case so that predictors can down-weight them without removing sequence. In this repository the mask uses a trusted TE library built in vitis-te; the step soft-masks only and never hard-masks for BRAKER or GALBA, and the soft-masked fraction measures similarity to that library, not the TE percentage of the genome (`examples/plant_sim/01_vitis_s1_s7/plan.md` and `env.snippet`).
+Repeats and transposable elements produce false gene calls if they are left unmarked. Soft-masking writes repeat bases in lower case so that predictors can down-weight them without removing sequence. In this repository the mask uses a trusted TE library built in TE-Lib; the step soft-masks only and never hard-masks for BRAKER or GALBA, and the soft-masked fraction measures similarity to that library, not the TE percentage of the genome (`examples/plant_sim/01_vitis_s1_s7/plan.md` and `env.snippet`).
 
 ## 1.5 Combining evidence
 

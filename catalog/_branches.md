@@ -12,7 +12,7 @@ Branch IDs follow [`docs/ROADMAP.md`](../docs/ROADMAP.md). They are views over t
 | S4 | after S1/S3 → [A2c transfer](A2_drafts/README.md) → [LM05 harmonise](LM05_syngap_polish/README.md) |
 | S5 | [A5 QC](A5_structure_qc/README.md) → [LM04 curation](LM04_gsaman_curation/README.md) |
 | S7 | any draft → **use the NLR result of gene-function-annotation F8 to mark windows** → [LM04](LM04_gsaman_curation/README.md) re-curates gene models in those windows. HRP itself appears only in the function catalog. Genome-level NLR locus finders (e.g. NLR-Annotator): placement F8 vs S7 [待确认] |
-| S10 | back to [A0](A0_softmask/README.md): change the trusted library or masking settings only; rebuilding the TE library goes to vitis-te → rerun the same draft route |
+| S10 | back to [A0](A0_softmask/README.md): change the trusted library or masking settings only; rebuilding the TE library goes to TE-Lib → rerun the same draft route |
 | S11 | [A2c](A2_drafts/README.md) (Liftoff/LiftOn/CAT) → A2e gap-fill → A4 → A5 → last mile |
 | S13 | [A2b compare tracks](A2_drafts/README.md) — do not silently replace an evidence draft when RNA exists |
 | S12 | [LM06 release](LM06_release/README.md) freeze rules |

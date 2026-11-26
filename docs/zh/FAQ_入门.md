@@ -38,9 +38,9 @@ A：看**门控是否做过、文件名/标签是否写 trusted/curatedlib**。�
 **Q：只有生 EDTA，最短路径第 3 步是不是卡死？**  
 A：对基因 A0：**没有 trusted 就不要宣称 L1 soft-mask 诚实（G2）**。  
 中间态可以：先做发现；METHODS 写明「仅 EDTA discovery，尚未 emit trusted」。基因预测暂缓，或仅用外部 trusted。  
-日常注释不必先读完课 18。建库深链见 [18](18_TE流程课_借鉴实验室03_TE.md) / [vitis-te](https://github.com/Xuzhen-Li/vitis-te)。
+日常注释不必先读完课 18。建库深链见 [18](18_TE流程课_借鉴实验室03_TE.md) / [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib)。
 
-**Q：没实验室 trusted、又不想现在啃 vitis-te——能用近缘物种的 trusted 做 soft-mask 吗？**  
+**Q：没实验室 trusted、又不想现在啃 TE-Lib——能用近缘物种的 trusted 做 soft-mask 吗？**  
 A：**可以作权宜**，但 METHODS 必须写清：来源物种、文件名、版本、sha256，以及「非本物种自建门控」。  
 风险：近缘库可能漏本物种特有 TE，或过 mask。  
 更稳两档：(1) 暂缓基因预测，等本面板 emit trusted；(2) 用近缘 trusted 先出 **L0/provisional**，本库就绪后再 remask（S10）升档。  

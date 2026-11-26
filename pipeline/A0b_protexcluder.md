@@ -22,4 +22,4 @@ Do **not** treat A0b as a substitute for building trusted (working → curatedli
 
 - Never put NLR / clear CDS peptides into the TE lib.  
 - Do not claim “S5 requires A0b” — S5 requires **trusted** soft-mask + structure QC; A0b is optional hygiene.  
-- Public stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+- Public stub: [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib).

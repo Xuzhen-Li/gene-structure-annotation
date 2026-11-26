@@ -2,7 +2,7 @@
 
 Second pass of the 2026-11 survey, sorted **by type** (按类型分类). It adds classic tools the pipelines already use and well-known tools the first pass skipped, so that the two files together form one inventory. It is a reading list: nothing here changes the default path in [`TOOLS.md`](TOOLS.md).
 
-**Boundary (unchanged, see [`BOUNDARY.md`](BOUNDARY.md)).** Only things that make or check coordinates, GFF3 and proteins. TE *library construction* belongs to [`vitis-te`](https://github.com/Xuzhen-Li/vitis-te) and is not listed; soft-masking uses a trusted library only. NLR/TF/HRP classifiers, GO/KEGG and names live in [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
+**Boundary (unchanged, see [`BOUNDARY.md`](BOUNDARY.md)).** Only things that make or check coordinates, GFF3 and proteins. TE *library construction* belongs to [`TE-Lib`](https://github.com/Xuzhen-Li/TE-Lib) and is not listed; soft-masking uses a trusted library only. NLR/TF/HRP classifiers, GO/KEGG and names live in [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation).
 
 First-pass file: [`CATALOG_NEW_TOOLS_2026-11.md`](CATALOG_NEW_TOOLS_2026-11.md). Rows already there are **not repeated**; the last section lists them by the same type classes so every entry has one class.
 
@@ -86,8 +86,8 @@ Masking with a trusted library or library-free low-complexity masking (A0). No T
 
 | Name | Type | Type-class | Stage | Year / latest release | What it does | Plant / eukaryote relevance | Source |
 |---|---|---|---|---|---|---|---|
-| RepeatMasker ·in repo | software | soft-mask | A0 | release v4.2.6 (2026-10-13); last push 2026-10-13 | Masks repeats with a supplied library (Dfam or a curated species library); -xsmall gives soft-masking. | Main A0 engine; use only with the trusted library from vitis-te. (no peer-reviewed paper found in this pass) | [GitHub](https://github.com/Dfam-consortium/RepeatMasker) · [site](https://www.repeatmasker.org/) |
-| Dfam | database | soft-mask | A0 | Mobile DNA 2021 | Open database of TE families and profile HMMs used by RepeatMasker. | Plant coverage is thinner than for animals; species library from vitis-te stays primary. | doi:[10.1186/s13100-020-00230-y](https://doi.org/10.1186/s13100-020-00230-y) · [site](https://www.dfam.org/) |
+| RepeatMasker ·in repo | software | soft-mask | A0 | release v4.2.6 (2026-10-13); last push 2026-10-13 | Masks repeats with a supplied library (Dfam or a curated species library); -xsmall gives soft-masking. | Main A0 engine; use only with the trusted library from TE-Lib. (no peer-reviewed paper found in this pass) | [GitHub](https://github.com/Dfam-consortium/RepeatMasker) · [site](https://www.repeatmasker.org/) |
+| Dfam | database | soft-mask | A0 | Mobile DNA 2021 | Open database of TE families and profile HMMs used by RepeatMasker. | Plant coverage is thinner than for animals; species library from TE-Lib stays primary. | doi:[10.1186/s13100-020-00230-y](https://doi.org/10.1186/s13100-020-00230-y) · [site](https://www.dfam.org/) |
 | Tandem Repeats Finder (TRF) ·in repo | software | soft-mask | A0 | Nucleic Acids Research 1999; release v4.09.1 (2020-06-29); last push 2023-01-16 | Detects tandem repeats. | Mask satellites/tandem arrays that are not in the TE library. | doi:[10.1093/nar/27.2.573](https://doi.org/10.1093/nar/27.2.573) · [GitHub](https://github.com/Benson-Genomics-Lab/TRF) |
 | WindowMasker | software | soft-mask | A0 | Bioinformatics 2006 | Library-free masking of over-represented k-mers (NCBI). | Low-complexity/over-represented sequence only; not a TE library. | doi:[10.1093/bioinformatics/bti774](https://doi.org/10.1093/bioinformatics/bti774) · [site](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/winmasker/) |
 

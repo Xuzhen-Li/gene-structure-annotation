@@ -4,7 +4,7 @@
 
 来自主页“基因组之外还需要的数据”一节和 `docs/EVALUATION.md`。
 
-- TE 库构建是 vitis-te 的工作；本仓库只用可信库做 soft-mask。
+- TE 库构建是 TE-Lib 的工作；本仓库只用可信库做 soft-mask。
 - 功能标签（GO、KEGG、结构域、名称、NLR 和转录因子分类）属于 gene-function-annotation。蛋白工具说的 structure 通常指三维结构，不是基因模型。
 - `grade=` 和 `status=` 是两个字段；临时版本不是 L1。
 - 近缘参考指同种或同品种（或几乎相同的单倍型）且有你信任的人工 GFF，不是同科里随便一个 GFF。

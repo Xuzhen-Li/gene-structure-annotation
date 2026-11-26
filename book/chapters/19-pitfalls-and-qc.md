@@ -4,7 +4,7 @@
 
 These come from the README section Data needed alongside the genome and from `docs/EVALUATION.md`.
 
-- TE library construction is a separate job in vitis-te; this repository only soft-masks with a trusted library.
+- TE library construction is a separate job in TE-Lib; this repository only soft-masks with a trusted library.
 - Functional labels (GO, KEGG, domains, names, NLR and TF classes) belong in gene-function-annotation. A protein tool that says structure usually means 3D structure, not gene models.
 - `grade=` and `status=` are separate fields; a provisional set is not L1.
 - A close reference means the same species or cultivar (or a near-identical haplotype) with a curated GFF you trust, not any GFF from the same family.

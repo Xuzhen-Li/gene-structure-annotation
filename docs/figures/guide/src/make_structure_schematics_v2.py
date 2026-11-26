@@ -15,7 +15,7 @@ def route_map():
     s = SVG(W, H, "Structural annotation route in gene-structure-annotation")
     # inputs band
     s.text(24, 34, "Inputs", 14, True, MUTED)
-    chips = [("Genome FASTA (haplotype)", B), ("Trusted TE library (from vitis-te)", G), ("RNA-seq and/or Iso-Seq reads", O), ("Proteins of related species", P), ("Curated reference GFF3 (if one exists)", R)]
+    chips = [("Genome FASTA (haplotype)", B), ("Trusted TE library (from TE-Lib)", G), ("RNA-seq and/or Iso-Seq reads", O), ("Proteins of related species", P), ("Curated reference GFF3 (if one exists)", R)]
     x = 90
     for t, c in chips:
         w = tw(t, 12.5) + 24
@@ -24,7 +24,7 @@ def route_map():
         x += w + 12
     stages = [
         ("Assembly and QC", "Asm0 / Asm1", ["Default: hifiasm (HiFi)", "Check: BUSCO or compleasm, Merqury, LAI", "Already assembled: treat as a checklist"], B),
-        ("Soft-mask", "A0", ["RepeatMasker with the trusted vitis-te library", "Soft-mask only; never hard-mask for BRAKER or GALBA"], G),
+        ("Soft-mask", "A0", ["RepeatMasker with the trusted TE-Lib library", "Soft-mask only; never hard-mask for BRAKER or GALBA"], G),
         ("Evidence and one primary draft", "S-branch", ["RNA: HISAT2 or STAR, then StringTie", "Long reads: minimap2, IsoQuant", "Proteins: miniprot hints", "Default draft S1: BRAKER4"], O),
         ("Combine gene sets", "A4", ["EVidenceModeler (EVM)", "Optional: TSEBRA, Mikado, PASA update", "Only for S14 or when a second gene set exists"], P),
         ("Gene-model QC", "L0 / L1 / L2", ["BUSCO (protein mode), OMArk, PSAURON", "gffcompare, AGAT statistics", "Acceptance levels in docs/EVALUATION.md"], R),

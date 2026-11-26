@@ -1,9 +1,9 @@
 # TE library scheme → soft-mask (A0)
 
 > **Teaching (Chinese, illustrated):** [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md)  
-> **Lab notebook:** kept private (not in git). Public stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+> **Lab notebook:** kept private (not in git). Public stub: [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib).
 
-**Canonical public stub:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te).  
+**Canonical public stub:** [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib).  
 **Lab source of truth:** private pangenome TE notebook (not vendored).  
 This file is the **public hand-off** into gene soft-mask.  
 
@@ -201,7 +201,7 @@ Do not cite private notebook or cluster absolute paths in METHODS.
 
 | Need | Where |
 |------|--------|
-| Public stub / summary | [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| Public stub / summary | [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib) |
 | A0 trusted path checklist | [`TRUSTED_TE_PATH.md`](TRUSTED_TE_PATH.md) |
 | Chinese teaching funnel | [`zh/18_TE流程课_借鉴实验室03_TE.md`](zh/18_TE流程课_借鉴实验室03_TE.md) |
 | Lab detailed notebook | Private (not in git); do not paste cluster paths into METHODS |

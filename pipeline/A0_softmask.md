@@ -1,7 +1,7 @@
 # A0 — Soft-mask (detailed)
 
 **Full TE scheme:** [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md)  
-**Lab TE notebook:** not vendored in git — see [vitis-te](https://github.com/Xuzhen-Li/vitis-te) + [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md).
+**Lab TE notebook:** not vendored in git — see [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib) + [`../docs/TE_LIBRARY.md`](../docs/TE_LIBRARY.md).
 
 ## Goal
 

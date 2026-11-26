@@ -4,7 +4,7 @@
 
 ## Get it
 - http://www.repeatmasker.org / bioconda `repeatmasker`  
-- Needs a **TE library** (prefer curated [vitis-te](https://github.com/Xuzhen-Li/vitis-te); else EDTA/RepeatModeler then clean).
+- Needs a **TE library** (prefer curated [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib); else EDTA/RepeatModeler then clean).
 
 ## Minimal run
 ```bash

@@ -17,7 +17,7 @@
 **Ideas adopted**
 
 - Prefer BRAKER4 Singularity+Snakemake over monolithic `braker.pl` when available ([`../tools/braker4.md`](../tools/braker4.md)).  
-- Built-in RepeatModeler2/Red masking option; still prefer EDTA/vitis-te + ProtExcluder for grape.  
+- Built-in RepeatModeler2/Red masking option; still prefer EDTA/TE-Lib + ProtExcluder for grape.  
 - Post-QC: AGAT + BUSCO/compleasm + OMArk (aligns with our spine).  
 - Optional ncRNA / UTR decoration — record in METHODS if used.  
 - `samples.csv` multi-genome — useful for **S4** panels.
