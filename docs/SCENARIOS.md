@@ -453,7 +453,7 @@ The main input is a genome FASTA (`GENOME_FA`). The notes below say what else ea
 | Situation | Minimum | Recommended | Typical tools in this repo | Common pitfall |
 |---|---|---|---|---|
 | Assembly already done (Asm0/Asm1 as checklist) | `GENOME_FA`, `ASSEMBLY_OK=yes` | Assembly reads for k-mer / QV checks; a matching BUSCO lineage | BUSCO (genome), compleasm (optional) | Using a lineage from the wrong clade, or mixing odb10 with odb12 names without saying so (`docs/LINEAGES.md`) |
-| Soft-mask (A0) | Trusted TE library | Library version and source in METHODS | RepeatMasker / EDTA `make_masked.pl` (mask only) | Building a new TE library inside this repo — that job belongs to vitis-te |
+| Soft-mask (A0) | Trusted TE library | Library version and source in METHODS | RepeatMasker / EDTA `make_masked.pl` (mask only) | Building a new TE library inside this repo — that job belongs to TE-Lib |
 | Default S1 (RNA + proteins, no close GFF) | RNA-seq (or `RNA_BAM`) and `PROTEIN_DB` | Same-genotype, multi-tissue RNA | HISAT2/STAR, StringTie, BRAKER3/4, GeMoMa or miniprot | RNA from another cultivar used as if it were the target genotype |
 | Proteins only (S2) | `PROTEIN_DB` | Closer proteomes rather than a generic set | GALBA / GALBA2, GeMoMa, miniprot | Claiming complete UTRs from protein evidence alone |
 | Deep Iso-Seq (S3) | Long-read RNA + a mapper (minimap2) | Short-read RNA as well; SQANTI-style filters | IsoQuant, SQANTI, EviAnn, BRAKER for orphans | Skipping SQANTI (or equivalent) filters |
@@ -466,7 +466,7 @@ The main input is a genome FASTA (`GENOME_FA`). The notes below say what else ea
 
 ### Cross-cutting pitfalls
 
-- TE *library construction* is a separate job (vitis-te). This repo only soft-masks with a trusted library.
+- TE *library construction* is a separate job (TE-Lib). This repo only soft-masks with a trusted library.
 - Functional labels (GO, KEGG, domains, readable names, NLR/TF classifiers including HRP) belong in gene-function-annotation. A protein tool that says "structure" usually means 3D structure, not gene models.
 - `grade=` and `status=` are separate fields. Do not write `status=L1`. Provisional ≠ L1 (`docs/EVALUATION.md`).
 - A close reference is same species / cultivar (or a near-identical haplotype) with a curated GFF you trust — not merely "a GFF exists in the same family".
@@ -489,7 +489,7 @@ Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay
 | 场景 | 最低要求 | 建议再加 | 本库常用工具 | 常见陷阱 |
 |---|---|---|---|---|
 | 组装已完成（Asm0/Asm1 作检查清单） | `GENOME_FA`，`ASSEMBLY_OK=yes` | 组装所用测序数据，用于 k-mer / QV 检查；匹配的 BUSCO lineage | BUSCO（基因组模式）、compleasm（可选） | 用了错误类群的 lineage，或混用 odb10 与 odb12 名称却未写明（`docs/LINEAGES.md`） |
-| Soft-mask（A0） | 可信 TE 库 | 在 METHODS 中写明库版本与来源 | RepeatMasker / EDTA `make_masked.pl`（只做屏蔽） | 在本库里新建 TE 库 — 那是 vitis-te 的任务 |
+| Soft-mask（A0） | 可信 TE 库 | 在 METHODS 中写明库版本与来源 | RepeatMasker / EDTA `make_masked.pl`（只做屏蔽） | 在本库里新建 TE 库 — 那是 TE-Lib 的任务 |
 | 默认 S1（有 RNA 和蛋白，无近缘 GFF） | RNA-seq（或 `RNA_BAM`）和 `PROTEIN_DB` | 同一基因型、多组织 RNA | HISAT2/STAR、StringTie、BRAKER3/4、GeMoMa 或 miniprot | 把另一品种的 RNA 当作目标基因型来用 |
 | 仅有蛋白（S2） | `PROTEIN_DB` | 更近缘的蛋白组，而不是一套泛用集 | GALBA / GALBA2、GeMoMa、miniprot | 仅凭蛋白证据声称完整 UTR |
 | 深度 Iso-Seq（S3） | 长读长 RNA + 比对工具（minimap2） | 同时有短读长 RNA；SQANTI 一类过滤 | IsoQuant、SQANTI、EviAnn，孤儿基因再用 BRAKER | 跳过 SQANTI（或等效）过滤 |
@@ -502,7 +502,7 @@ Items still marked `[待确认]` in the 2026-11 catalogs (for example CRAQ) stay
 
 ### 跨切陷阱
 
-- 建 TE 库是 vitis-te 的任务。本库只用可信库做 soft-mask。
+- 建 TE 库是 TE-Lib 的任务。本库只用可信库做 soft-mask。
 - GO / KEGG / 结构域 / 可读名称 / NLR 与 TF 分类器（含 HRP）在 gene-function-annotation。蛋白工具里的 “structure” 多指三维结构，不是基因模型。
 - `grade=` 与 `status=` 分开写，不要写 `status=L1`。临时结果不等于 L1（`docs/EVALUATION.md`）。
 - 「近缘参考」指同种 / 同一品种或近乎相同的单倍型，且 GFF 可信，而不是「同科有一个 GFF」。

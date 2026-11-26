@@ -34,7 +34,7 @@ genome + evidence
 └───────────────────────────────┘
 
 ┌───────────────────────────────┐
-│  3. TE library build          │  vitis-te / TE_LIBRARY.md
+│  3. TE library build          │  TE-Lib / TE_LIBRARY.md
 │  (separate job — not FA)      │
 └───────────────────────────────┘
 ```
@@ -141,7 +141,7 @@ Example TE blow-up:   … → S10 remask → re-run same draft branch
 | Need | Where |
 |------|--------|
 | GO / KEGG / domains / names | [gene-function-annotation](https://github.com/Xuzhen-Li/gene-function-annotation) F-line |
-| TE library build / panEDTA | [`TE_LIBRARY.md`](TE_LIBRARY.md) · [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| TE library build / panEDTA | [`TE_LIBRARY.md`](TE_LIBRARY.md) · [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib) |
 | PAV / graphs | vitis-pangenome (sibling) |
 
 ---

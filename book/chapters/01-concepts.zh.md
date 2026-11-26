@@ -22,7 +22,7 @@
 
 ## 1.4 重复序列的 soft-mask
 
-不标记重复和转座子会产生假基因。soft-mask 把重复碱基写成小写，预测软件可以降低其权重而不删除序列。本仓库用 vitis-te 构建的可信 TE 库做屏蔽；这一步只做 soft-mask，BRAKER 和 GALBA 前绝不 hard-mask；soft-mask 比例衡量的是与该库的相似程度，不是基因组的 TE 百分比（`examples/plant_sim/01_vitis_s1_s7/plan.md` 与 `env.snippet`）。
+不标记重复和转座子会产生假基因。soft-mask 把重复碱基写成小写，预测软件可以降低其权重而不删除序列。本仓库用 TE-Lib 构建的可信 TE 库做屏蔽；这一步只做 soft-mask，BRAKER 和 GALBA 前绝不 hard-mask；soft-mask 比例衡量的是与该库的相似程度，不是基因组的 TE 百分比（`examples/plant_sim/01_vitis_s1_s7/plan.md` 与 `env.snippet`）。
 
 ## 1.5 合并证据
 

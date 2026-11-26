@@ -2,7 +2,7 @@
 
 **Role:** Usual *de novo* starter (`01_discovery`). **Not** a finished library / not curatedlib.  
 **Full order:** [`../TE_LIBRARY.md`](../TE_LIBRARY.md) — EDTA → TEtrimmer **working** → TEsorter labels → gate **trusted** → soft-mask; panEDTA/LAI after.  
-**Home:** [vitis-te](https://github.com/Xuzhen-Li/vitis-te). Lab detailed notebook is private (not in git).
+**Home:** [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib). Lab detailed notebook is private (not in git).
 
 ## Get it
 

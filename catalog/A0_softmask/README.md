@@ -2,7 +2,7 @@
 
 **Collects:** Only masking with a trusted library: masking tools, checks of the soft-mask result, diagnosis of TE-driven gene inflation and the S10 loop back.
 
-**Does not collect:** EDTA/panEDTA library building, TE library curation and TE classification (layer 3, [vitis-te](https://github.com/Xuzhen-Li/vitis-te)); using a raw EDTA library as gold standard. `docs/tools/edta.md` is only a pointer to the upstream library build.
+**Does not collect:** EDTA/panEDTA library building, TE library curation and TE classification (layer 3, [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib)); using a raw EDTA library as gold standard. `docs/tools/edta.md` is only a pointer to the upstream library build.
 
 ## Entries
 

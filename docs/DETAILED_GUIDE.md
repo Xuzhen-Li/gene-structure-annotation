@@ -113,7 +113,7 @@ Soft-mask TE without wiping NLR exons. Soft-mask is a **curated TE library** pro
 
 ### Lab TE scheme (required reading)
 [`TE_LIBRARY.md`](TE_LIBRARY.md) — from pangenome `03_TE`: EDTA → TEtrimmer **working** → TEsorter labels → gate **trusted** → soft-mask; panEDTA/LAI after.  
-**Never** soft-mask with raw EDTA or the whole working lib. Canonical stub: [vitis-te](https://github.com/Xuzhen-Li/vitis-te).
+**Never** soft-mask with raw EDTA or the whole working lib. Canonical stub: [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib).
 
 ### Steps
 
