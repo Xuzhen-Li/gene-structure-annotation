@@ -4,6 +4,10 @@
 
 Structural annotation finds genes on an assembled genome and writes their coordinates as GFF3, together with the predicted proteins (README, Overview). A gene model is a hierarchy: a gene contains one or more transcripts (mRNA), and each transcript is made of exons, coding sequence (CDS) and untranslated regions (UTR). The names of these parts come from the Sequence Ontology, a controlled vocabulary for the parts of a genomic annotation that makes data exchange and automated reasoning possible ([doi:10.1186/gb-2005-6-5-r44](https://doi.org/10.1186/gb-2005-6-5-r44)). Function (GO, KEGG, names) is a separate layer handled in the sibling repository gene-function-annotation (README, Overview).
 
+![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3.png)
+
+*Figure. A gene model is a hierarchy: one gene, one or more transcripts (mRNA), and exons made of UTR and CDS parts. The table shows the same model as GFF3 rows linked by `ID` and `Parent`, with the CDS phase. Toy coordinates, not a real locus; schematic drawn for this repository.*
+
 ## 1.2 Why plant genomes are hard
 
 Plant genomes are large, rich in transposable elements and often polyploid, and annotation software is mostly developed on model organisms without broad benchmarks ([doi:10.1002/aps3.11533](https://doi.org/10.1002/aps3.11533)). Errors spread: a survey of 30 recently annotated genomes found 605 confirmed chimeric gene models, where adjacent genes were fused into one, most of them in invertebrates and plants ([doi:10.1186/s12864-025-11765-w](https://doi.org/10.1186/s12864-025-11765-w)). Annotation choices also change later analyses: four annotation sources for the same genomes gave markedly different orthology inferences ([doi:10.1093/bioinformatics/btaf365](https://doi.org/10.1093/bioinformatics/btaf365)).

@@ -33,3 +33,21 @@ Words count English word tokens; 汉字 counts CJK characters; DOI is the number
 |---|---|---:|---:|
 | [`BOOK_full.md`](BOOK_full.md) | `de4378d571277b22f7818f8d5b125450880f6bf071a23fd7fc0ea143d21267f8` | 17984 | 187 |
 | [`BOOK_full.zh.md`](BOOK_full.zh.md) | `0378ed8eedb0ecec256e4532fd0268e1b79f851b24ba93d7d2e821e08c5eacb5` | 16638 | 188 |
+
+The tables above are unchanged. On 2026-11-26 13:31 CST figures with captions were inserted into the files below (no text removed), so their sha256 values changed; the current values are listed here. Word counts above are from before the figures were added.
+上表未改。2026-11-26 13:31 CST 在下列文件中插入了配图和图注（正文未删改），sha256 因此变化，现值如下；上表字数为插图前的值。
+
+- [`BOOK_full.md`](BOOK_full.md) `d27d7e7de30940b604ff9aa9aa5eed60a98ebe2e8754805a62ee2f2ece4ce700`
+- [`BOOK_full.zh.md`](BOOK_full.zh.md) `ff9f7915209b5e07cd5936438838ba8ca2bdbc25c2dda3e124478a28bebb5d5b`
+- [`chapters/00-preface.md`](chapters/00-preface.md) `e43fdf05ad5fd21c7e3fd71d28a2bf375e6c6c08f4dbbcf821f14a8be56c25dc`
+- [`chapters/00-preface.zh.md`](chapters/00-preface.zh.md) `7cf3674bd97b8ef6ef9095bc0d8b2d2e5d0c34f42e8fdc9d748b19ab0d60e898`
+- [`chapters/01-concepts.md`](chapters/01-concepts.md) `cda99a7cf6cbfe7adc6987b029d3953a7c6cf9b8ef0fd42e155443955fda204e`
+- [`chapters/01-concepts.zh.md`](chapters/01-concepts.zh.md) `8188b43af3b3cac2da26c2fb4db546aeaea4af7c91c284bb374f282ebb0d74c2`
+- [`chapters/09-combiners-and-annotation-pipelines.md`](chapters/09-combiners-and-annotation-pipelines.md) `74ef4ca19463ae78ba995ad29d4f407b53b74e6f1940993cf18081c7bd8f72e6`
+- [`chapters/09-combiners-and-annotation-pipelines.zh.md`](chapters/09-combiners-and-annotation-pipelines.zh.md) `079f6f3b141a30d521fbc2601c60ffb09630f0be9eacb81c4809bc73facd6e43`
+- [`chapters/11-gene-model-qc.md`](chapters/11-gene-model-qc.md) `422ecb3a731c548755d0f19e169292954a7319e968d86cd205e7b6770cd6793b`
+- [`chapters/11-gene-model-qc.zh.md`](chapters/11-gene-model-qc.zh.md) `8474bfeac306bc51dab8be60d98ee18cfd5baea10afe61d7dce3f0cfe77ae17c`
+- [`chapters/13-gff3-cleanup-and-release.md`](chapters/13-gff3-cleanup-and-release.md) `96a0a9ae3f388811ca8fd32d2c64dbf9ccfa1b54a3481b1bc565f12c8b37cb6f`
+- [`chapters/13-gff3-cleanup-and-release.zh.md`](chapters/13-gff3-cleanup-and-release.zh.md) `3a9c3dcf701ecfde27478e0f8960dd352a6333ebf97458987c1caec6306bf950`
+- [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `867f32bbeca45f2a7e8d6a8c9a501e3b497344630947c020a7305e942e674db7`
+- [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `e987332b95287ebddeb9ea96b909abf248abeb4f464759d4bef0082bf978c10e`
