@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="560" viewBox="0 0 1320 560">
+<title>Structural annotation route in gene-structure-annotation</title>
+<defs><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-color="#000000" flood-opacity="0.16"/></filter><linearGradient id="g1F72AE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFF5F9"/><stop offset="1" stop-color="#D6E5F0"/></linearGradient><linearGradient id="g119B76" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF8F5"/><stop offset="1" stop-color="#D4EDE6"/></linearGradient><linearGradient id="gF77E12" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FEF5EE"/><stop offset="1" stop-color="#FDE7D4"/></linearGradient><linearGradient id="g595594" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3F3F7"/><stop offset="1" stop-color="#E1E0EB"/></linearGradient><linearGradient id="gCC312C" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF0F0"/><stop offset="1" stop-color="#F5D9D9"/></linearGradient><linearGradient id="g1D7CBB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFF5FA"/><stop offset="1" stop-color="#D6E7F2"/></linearGradient><linearGradient id="g8A4C38" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6F2F1"/><stop offset="1" stop-color="#E9DEDB"/></linearGradient><marker id="m333333" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#333333"/></marker><marker id="mF77E12" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#F77E12"/></marker></defs>
+<rect x="0" y="0" width="1320" height="560" fill="#FFFFFF"/>
+<text x="24.0" y="34.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#6B6B6B" text-anchor="start">Inputs</text>
+<rect x="90.0" y="18.0" width="179.4" height="26.0" rx="13" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="179.7" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Genome FASTA (haplotype)</text>
+<rect x="281.4" y="18.0" width="199.1" height="26.0" rx="13" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="381.0" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Trusted TE library (from vitis-te)</text>
+<rect x="492.5" y="18.0" width="194.9" height="26.0" rx="13" fill="url(#gF77E12)" stroke="#F77E12" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="590.0" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">RNA-seq and/or Iso-Seq reads</text>
+<rect x="699.4" y="18.0" width="171.3" height="26.0" rx="13" fill="url(#g595594)" stroke="#595594" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="785.1" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Proteins of related species</text>
+<rect x="882.7" y="18.0" width="238.0" height="26.0" rx="13" fill="url(#gCC312C)" stroke="#CC312C" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="1001.7" y="35.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="normal" fill="#000000" text-anchor="middle">Curated reference GFF3 (if one exists)</text>
+<rect x="24.0" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="34.0" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Assembly and QC</text>
+<text x="34.0" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Default: hifiasm (HiFi)</text>
+<text x="34.0" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Check: BUSCO or compleasm,</text>
+<text x="34.0" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Merqury, LAI</text>
+<text x="34.0" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Already assembled: treat as a</text>
+<text x="34.0" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">checklist</text>
+<text x="34.0" y="227.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">Asm0 / Asm1</text>
+<circle cx="198.3" cy="90.0" r="11" fill="#1F72AE"/>
+<text x="198.3" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+<rect x="240.3" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="250.3" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Soft-mask</text>
+<text x="250.3" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">RepeatMasker with the trusted</text>
+<text x="250.3" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">vitis-te library</text>
+<text x="250.3" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Soft-mask only; never</text>
+<text x="250.3" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">hard-mask for BRAKER or</text>
+<text x="250.3" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">GALBA</text>
+<text x="250.3" y="227.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">A0</text>
+<circle cx="414.7" cy="90.0" r="11" fill="#119B76"/>
+<text x="414.7" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">2</text>
+<rect x="456.7" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#gF77E12)" stroke="#F77E12" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="466.7" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Evidence and one</text>
+<text x="466.7" y="134.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">primary draft</text>
+<text x="466.7" y="164.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">RNA: HISAT2 or STAR, then</text>
+<text x="466.7" y="180.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">StringTie</text>
+<text x="466.7" y="196.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Long reads: minimap2,</text>
+<text x="466.7" y="212.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">IsoQuant</text>
+<text x="466.7" y="228.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Proteins: miniprot hints</text>
+<text x="466.7" y="244.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Default draft S1: BRAKER4</text>
+<text x="466.7" y="261.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">S-branch</text>
+<circle cx="631.0" cy="90.0" r="11" fill="#F77E12"/>
+<text x="631.0" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">3</text>
+<rect x="673.0" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#g595594)" stroke="#595594" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="683.0" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Combine gene sets</text>
+<text x="683.0" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">EVidenceModeler (EVM)</text>
+<text x="683.0" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Optional: TSEBRA, Mikado,</text>
+<text x="683.0" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">PASA update</text>
+<text x="683.0" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Only for S14 or when a second</text>
+<text x="683.0" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">gene set exists</text>
+<text x="683.0" y="227.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">A4</text>
+<circle cx="847.3" cy="90.0" r="11" fill="#595594"/>
+<text x="847.3" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4</text>
+<rect x="889.3" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#gCC312C)" stroke="#CC312C" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="899.3" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Gene-model QC</text>
+<text x="899.3" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">BUSCO (protein mode),</text>
+<text x="899.3" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">OMArk, PSAURON</text>
+<text x="899.3" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">gffcompare, AGAT statistics</text>
+<text x="899.3" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Acceptance levels in</text>
+<text x="899.3" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">docs/EVALUATION.md</text>
+<text x="899.3" y="227.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">L0 / L1 / L2</text>
+<circle cx="1063.7" cy="90.0" r="11" fill="#CC312C"/>
+<text x="1063.7" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">5</text>
+<rect x="1105.7" y="92.0" width="190.3" height="190.0" rx="8" fill="url(#g1D7CBB)" stroke="#1D7CBB" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="1115.7" y="115.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#000000" text-anchor="start">Release and handoff</text>
+<text x="1115.7" y="146.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Clean GFF3, proteins.faa,</text>
+<text x="1115.7" y="162.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">METHODS</text>
+<text x="1115.7" y="178.2" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Validate: gt gff3validator</text>
+<text x="1115.7" y="194.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Hand proteins.faa to</text>
+<text x="1115.7" y="209.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">gene-function-annotation</text>
+<text x="1115.7" y="227.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="bold" fill="#000000" text-anchor="start">A6</text>
+<circle cx="1280.0" cy="90.0" r="11" fill="#1D7CBB"/>
+<text x="1280.0" y="94.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">6</text>
+<polyline points="216.3,152.0 237.3,152.0" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<polyline points="432.7,152.0 453.7,152.0" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<polyline points="649.0,152.0 670.0,152.0" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<polyline points="865.3,152.0 886.3,152.0" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<polyline points="1081.7,152.0 1102.7,152.0" fill="none" stroke="#333333" stroke-width="2" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<polyline points="551.8,284.0 551.8,318.0" fill="none" stroke="#F77E12" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#mF77E12)"/>
+<rect x="24.0" y="322.0" width="1272.0" height="186.0" rx="10" fill="#FEF9F5" stroke="#F77E12" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="38.0" y="346.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">Pick ONE primary branch from the data you have (README, Branches)</text>
+<rect x="38.0" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#gF77E12)" stroke="#F77E12" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="48.0" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S1 (default)</text>
+<text x="48.0" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">RNA-seq + proteins, no close</text>
+<text x="48.0" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">curated reference</text>
+<text x="48.0" y="442.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">HISAT2 or STAR, StringTie,</text>
+<text x="48.0" y="457.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">BRAKER4 + miniprot</text>
+<rect x="247.3" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#gCC312C)" stroke="#CC312C" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="257.3" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S11</text>
+<text x="257.3" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Trusted curated annotation of the</text>
+<text x="257.3" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">same species or cultivar</text>
+<text x="257.3" y="442.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Liftoff, LiftOn, CAT (lift-only =</text>
+<text x="257.3" y="457.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">S11-lite)</text>
+<rect x="456.7" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#g595594)" stroke="#595594" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="466.7" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S2</text>
+<text x="466.7" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Proteins only</text>
+<text x="466.7" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">GALBA2, GeMoMa, miniprot</text>
+<rect x="666.0" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="676.0" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S3</text>
+<text x="676.0" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Deep long-read RNA (Iso-Seq or</text>
+<text x="676.0" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">ONT)</text>
+<text x="676.0" y="442.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">minimap2, IsoQuant, SQANTI3</text>
+<rect x="875.3" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="885.3" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S13</text>
+<text x="885.3" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">GPU, want an ab initio comparison</text>
+<text x="885.3" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Helixer, Tiberius, ANNEVO (beside</text>
+<text x="885.3" y="442.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">S1, not instead)</text>
+<rect x="1084.7" y="360.0" width="197.3" height="128.0" rx="8" fill="url(#g8A4C38)" stroke="#8A4C38" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="1094.7" y="382.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="start">S14</text>
+<text x="1094.7" y="412.1" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">Classic multi-evidence stack</text>
+<text x="1094.7" y="427.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">PASA, AUGUSTUS or GeneMark,</text>
+<text x="1094.7" y="442.5" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="start">EVM</text>
+<text x="38.0" y="504.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="1" font-weight="normal" fill="#000000" text-anchor="start"></text>
+<text x="1296.0" y="546.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#6B6B6B" text-anchor="end">Stage names and tools from README (Usage, Branches, Default route) and catalog/SOFTWARE_AUTHORITY.tsv roles.</text>
+</svg>

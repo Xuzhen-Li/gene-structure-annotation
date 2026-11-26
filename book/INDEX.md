@@ -51,3 +51,19 @@ The tables above are unchanged. On 2026-11-26 13:31 CST figures with captions we
 - [`chapters/13-gff3-cleanup-and-release.zh.md`](chapters/13-gff3-cleanup-and-release.zh.md) `3a9c3dcf701ecfde27478e0f8960dd352a6333ebf97458987c1caec6306bf950`
 - [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `867f32bbeca45f2a7e8d6a8c9a501e3b497344630947c020a7305e942e674db7`
 - [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `e987332b95287ebddeb9ea96b909abf248abeb4f464759d4bef0082bf978c10e`
+
+The tables above are unchanged. On 2026-11-26 14:12 CST only figure links were pointed at later revised files, so sha256 values of the files below changed; the current values are listed here.
+上表未改。2026-11-26 14:12 CST 仅将若干配图链接改为指向后来新增的修订文件，sha256 因此变化，现值如下。
+
+- [`BOOK_full.md`](BOOK_full.md) `bd6acf2e78a8981ee3a3973e1c63b23fd0117aba287479f7934e0fa7ed211ae9`
+- [`BOOK_full.zh.md`](BOOK_full.zh.md) `678b313e4de222118bc87f0a13c9971ae31e82f270f0cc27e3b965db1870c14d`
+- [`chapters/00-preface.md`](chapters/00-preface.md) `5ee6787dbaffb2ce9237dcb2759bc86d37e2d38e4d6b004548c23f0aa2424503`
+- [`chapters/00-preface.zh.md`](chapters/00-preface.zh.md) `99bcba3b187e640ef848c2468f1c4a84336df6d11de04fc88945c34d135ca6ec`
+- [`chapters/01-concepts.md`](chapters/01-concepts.md) `d10b20282a18c439a199a066dba6c3784bdc050570ca7fd2cd5786540b61a997`
+- [`chapters/01-concepts.zh.md`](chapters/01-concepts.zh.md) `ad3e4f2d3272ae6acd97d470e34942e2be27975fd1d3447b027eb22712f3c41e`
+- [`chapters/09-combiners-and-annotation-pipelines.md`](chapters/09-combiners-and-annotation-pipelines.md) `9339ebd78cfa16f63c5590e275832425f1895325353fccaf2a2427e539bbcf41`
+- [`chapters/09-combiners-and-annotation-pipelines.zh.md`](chapters/09-combiners-and-annotation-pipelines.zh.md) `ba81c34608a72c40edb68e1e5adeb763fe03ea627eb873780d266b28223daf50`
+- [`chapters/13-gff3-cleanup-and-release.md`](chapters/13-gff3-cleanup-and-release.md) `d3080e189ad3ff803ebad401356e80eb5c505e5b9e9bb98c5b5d69ee397e259b`
+- [`chapters/13-gff3-cleanup-and-release.zh.md`](chapters/13-gff3-cleanup-and-release.zh.md) `1b7d665bbd4bf6df6ee86d6bd917fe2665a632ae30d4c77aeb634e861dd82b30`
+- [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `7b330380ff94312a22c803b7f63d62ca17b7d2049823d960c3070a466ff697e0`
+- [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `2ff1a990f7147bf21543de8e1fa6f5bcd49351ea14a32f433048d8d104df0cc6`

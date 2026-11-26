@@ -6,7 +6,7 @@ GFF3 清理、格式校验与提交（last-mile 06、A6）。
 
 **需要：** 审定后的 GFF 与基因组，外加 `docs/PLAYBOOK.md` 中列出的 METHODS 与核对表字段。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
-![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3.png)
+![Gene model and GFF3 rows](../../docs/figures/guide/structure_gene_model_gff3_v2.png)
 
 *图：基因模型是一个层级结构：一个基因，含一个或多个转录本（mRNA），外显子由 UTR 和 CDS 片段组成。下方表格把同一个模型写成 GFF3 行，用 `ID` 与 `Parent` 相连，并标出 CDS 的 phase。坐标为演示用，不是真实位点；示意图，为本仓库绘制。*
 
