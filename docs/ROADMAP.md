@@ -179,6 +179,10 @@ Documentation status as of 2026-11-13 (Asia/Shanghai). The scientific trunk and 
 
 ### 已完成 / Done (in open PR #10, not merged yet)
 
+> Note added 2026-11-26 (Asia/Shanghai): this heading was written while pull request #10 was still open. It was merged on 2026-11-13 22:38 CST (14:38 UTC) as commit 28a15eef. The status in the heading is out of date; the list below is unchanged.
+>
+> 补注（2026-11-26，北京时间）：这个标题写于拉取请求 #10 仍未合并的时候。它已于 2026-11-13 22:38（UTC 14:38）合并，提交 28a15eef。标题里的状态已过时，下面的列表未改。
+
 - A 2026-11 methods catalog, in two passes: 57 entries filed by stage in `catalog/` and `docs/CATALOG_NEW_TOOLS_2026-11.md`, then 78 further entries in `docs/CATALOG_BY_TYPE_2026-11.md`. Combined inventory: 135. This is a reading list; it does not change the default path in `docs/TOOLS.md`.
 - The repository homepage (`README.md` / `README.zh.md`) is now the catalog by type (15 sections, jump links, counts, a one-line intro per entry, a **Needs:** line, a data-needs summary, and credited figures). Long data-needs text is appended to the existing `SCENARIOS.md`. Stage order stays in this roadmap and in `catalog/`.
 - Two errata files were added in that PR (NLR/plantiSMASH boundary; GSAman DOI). They do not change the trunk.
@@ -255,6 +259,10 @@ Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk, chooser and S1
 
 ### 已完成 / Done (prepared 2026-11-14, not committed yet)
 
+> Note added 2026-11-26 (Asia/Shanghai): this heading was written before the work was committed. It was merged in pull request #13 on 2026-11-14 17:18 CST (09:18 UTC) as commit 69f187a8. The status in the heading is out of date; the list below is unchanged.
+>
+> 补注（2026-11-26，北京时间）：这个标题写于这些改动提交之前。它们已于 2026-11-14 17:18（UTC 09:18）在拉取请求 #13 中合并，提交 69f187a8。标题里的状态已过时，下面的列表未改。
+
 - Homepage catalog: 41 new entries, each with a verified DOI or project link and a one-line English and Chinese summary. Total entries: 135 → 174.
 - Version merges and renames (one entry per program, named for the latest version; older versions only in the entry note): BRAKER2, BRAKER3 → BRAKER4, GALBA → GALBA2, TOGA (paper) → TOGA2, Apollo (2019 paper) → Apollo 3, ANNEVO (paper) → ANNEVO. BUSCO entry now points to the OrthoDB v12 lineages.
 - Each of the 15 sections opens with a **Clusters:** list (alternatives / complementary / in order) and notes on when to use each. Section anchors are unchanged.
@@ -267,3 +275,7 @@ Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk, chooser and S1
 - BRAKER4, GALBA2 and TOGA2 do not yet have standalone papers; cite the original method papers and record the release or commit used.
 - New entries still marked [待确认]:
 - none
+
+---
+
+**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 207 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 135 was the total of the 2026-11 survey and 174 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](../catalog/COUNTS.md).
