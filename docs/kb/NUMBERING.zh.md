@@ -11,7 +11,7 @@
 | 分支编号 | S1–S14：草稿路线 S1、S2、S3、S6、S11、S13、S14；叠加 S4、S5、S7–S10、S12 | 现行 | [`docs/ROADMAP.md`](../ROADMAP.md)；[`catalog/_branches.md`](../../catalog/_branches.md) |
 | 完成等级与门槛 | L0、L1、L2；G1–G9 | 现行 | [`docs/EVALUATION.md`](../EVALUATION.md) |
 | 阶段编号 | Asm0、Asm1、A0–A6、收尾 01–06 | 流程步骤现行 | [`docs/STAGE_IO.md`](../STAGE_IO.md) |
-| 首批卡片的阶段文件夹 | `Asm0_assembly/` … `LM06_release/`；文件夹 `LMnn` 即收尾第 *nn* 步 | 旧视图（2026-11 首批） | [`catalog/README.md`](../../catalog/README.md) |
+| 最初卡片的阶段文件夹 | `Asm0_assembly/` … `LM06_release/`；文件夹 `LMnn` 即收尾第 *nn* 步 | 旧视图（2026-11 最初） | [`catalog/README.md`](../../catalog/README.md) |
 | 类型键 | `assembly-qc` … `idea` | 旧（2026-11 调研） | [`docs/CATALOG_BY_TYPE_2026-11.md`](../CATALOG_BY_TYPE_2026-11.md) |
 
 ## 类型小节、旧类型键与书章对照

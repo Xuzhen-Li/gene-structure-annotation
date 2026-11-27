@@ -8,6 +8,7 @@ A knowledge unit is a short page on one concept or one set of criteria. The book
 
 | Unit | Kind | Chinese |
 |---|---|---|
+| [Structural gene annotation: an overview](field-overview.md) | overview | [结构基因注释：概览](field-overview.zh.md) |
 | [Gene models and the evidence behind them](gene-model-concepts.md) | concept | [基因模型及其证据](gene-model-concepts.zh.md) |
 | [Soft-masking with a trusted TE library](trusted-softmask.md) | concept | [用可信 TE 库做 soft-mask](trusted-softmask.zh.md) |
 | [Is the gene set good enough? (criteria)](model-qc-criteria.md) | criteria | [基因集够不够好？（判据）](model-qc-criteria.zh.md) |

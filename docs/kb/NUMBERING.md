@@ -11,7 +11,7 @@ Several numbering schemes are used in this repository. The current ones are used
 | Branch IDs | S1–S14: draft routes S1, S2, S3, S6, S11, S13, S14; overlays S4, S5, S7–S10, S12 | current | [`docs/ROADMAP.md`](../ROADMAP.md); [`catalog/_branches.md`](../../catalog/_branches.md) |
 | Finish grades and gates | L0, L1, L2; G1–G9 | current | [`docs/EVALUATION.md`](../EVALUATION.md) |
 | Stage IDs | Asm0, Asm1, A0–A6, last mile 01–06 | current for pipeline steps | [`docs/STAGE_IO.md`](../STAGE_IO.md) |
-| Stage folders of first-pass cards | `Asm0_assembly/` … `LM06_release/`; folder `LMnn` = last mile *nn* | legacy view (2026-11 first pass) | [`catalog/README.md`](../../catalog/README.md) |
+| Stage folders of initial cards | `Asm0_assembly/` … `LM06_release/`; folder `LMnn` = last mile *nn* | legacy view (2026-11 initial) | [`catalog/README.md`](../../catalog/README.md) |
 | Type-class keys | `assembly-qc` … `idea` | legacy (2026-11 survey) | [`docs/CATALOG_BY_TYPE_2026-11.md`](../CATALOG_BY_TYPE_2026-11.md) |
 
 ## Type sections, legacy keys and book chapters

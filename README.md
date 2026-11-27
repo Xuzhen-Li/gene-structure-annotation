@@ -18,7 +18,7 @@ The layout follows [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib): knowledge firs
 | Example code and test data | read or run small scripts that show each step | [`pipeline/`](pipeline/00_overview.md); [`examples/`](examples/plant_sim/README.md); [`tests/`](tests/README.md) |
 | Figures | see the schematics and charts used on these pages | [`docs/figures/guide/`](docs/figures/guide/README.md) |
 | Chinese pages | read the same structure in Chinese | [`README.zh.md`](README.zh.md); [`docs/kb/README.zh.md`](docs/kb/README.zh.md); [`docs/zh/`](docs/zh/README.md) |
-| Older pages | find dated lists, checks and corrections kept as a record | [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md#older-pages) |
+| Older pages | find earlier lists, checks and corrections that are kept for reference | [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md#older-pages) |
 
 The code in `pipeline/` is reference code for the steps described here. It is small and tested on toy data; it is not a maintained software package.
 
@@ -26,10 +26,11 @@ The code in `pipeline/` is reference code for the steps described here. It is sm
 
 Start with the knowledge units, then the book chapter for the step you need:
 
+- [Structural gene annotation: an overview](docs/kb/field-overview.md)
 - [Gene models and the evidence behind them](docs/kb/gene-model-concepts.md)
 - [Soft-masking with a trusted TE library](docs/kb/trusted-softmask.md)
 - [Is the gene set good enough? (criteria)](docs/kb/model-qc-criteria.md)
-- Numbering schemes and how older numbers map to current ones: [`docs/kb/NUMBERING.md`](docs/kb/NUMBERING.md)
+- Labels used in these pages (sections, chapters, branches, grades, stages) and how earlier labels map to the current ones: [`docs/kb/NUMBERING.md`](docs/kb/NUMBERING.md)
 - All topics, tools, step cards and example code: [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md)
 
 ## Book contents
@@ -89,8 +90,8 @@ The full methods catalogue is in [`catalog/METHODS_CATALOG.md`](catalog/METHODS_
 The commands below are reference code for the steps explained in the book. They are tested on toy data and are not a maintained software package. Which page is authoritative for the step order is stated in [`docs/workflow/README.md`](docs/workflow/README.md).
 
 Chinese teaching entry is [`docs/zh/`](docs/zh/).
-If already assembled, treat Asm0/Asm1 as a checklist and set `ASSEMBLY_OK=yes`. Edit every `/path/to` in `local.env` before any `mkdir`.
-For a close curated reference GFF, set `close_curated_ref: true` in your answers (see `examples/plant_sim/03_solanum_s11`). Default `false` gives S1; a half-done Liftoff stays `false`.
+If the genome is already assembled, use the assembly and assembly-QC steps (Asm0/Asm1) as a checklist and set `ASSEMBLY_OK=yes`. Edit every `/path/to` in `local.env` before any `mkdir`.
+For a close curated reference GFF, set `close_curated_ref: true` in your answers (see `examples/plant_sim/03_solanum_s11`). The default `false` selects branch S1 (RNA and protein evidence, no close reference); an unfinished Liftoff run keeps it `false`.
 
 Step 1: Provide evidence.
 ```bash
@@ -109,7 +110,7 @@ cp config/example.env config/local.env
 ```
 
 Step 3: Execution.
-Finish `my_plan.md`. Read [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) or [`docs/zh/05_softmask与A0.md`](docs/zh/05_softmask与A0.md). Write `grade=` and `status=` separately. Do not write `status=L1`.
+Finish `my_plan.md`. Read [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) or [`docs/zh/05_softmask与A0.md`](docs/zh/05_softmask与A0.md). Write `grade=` and `status=` as separate fields: `grade` is L0, L1 or L2, and `status` is provisional or qualified (see [`docs/EVALUATION.md`](docs/EVALUATION.md)). Do not write `status=L1`.
 Run on cluster only after [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) is ticked and `python3 pipeline/print_qc_commands.py` exits 0 with no `[STOP]`. Otherwise no `RUN=1`. Browsing with `--env config/example.env` will show `[STOP]`; this is expected.
 Follow stages in `my_plan.md` and check [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md). Read full rules in [`docs/EVALUATION.md`](docs/EVALUATION.md).
 Provisional results are not L1. Read [`docs/EVALUATION.md`](docs/EVALUATION.md) for L0 vs L1.
@@ -131,7 +132,7 @@ L2: Acceptance level L1 plus S5 overlay for Paper/T2T bar.
 S7: Plant NLR or tandem windows overlay when `plant_tandem_focus: true`.
 
 Full map is at [`docs/ROADMAP.md`](docs/ROADMAP.md).
-Workflow chart with tool choices and decision points (2026-11-14): [`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14).
+Workflow chart with tool choices and decision points: [`docs/ROADMAP.md`, workflow chart](docs/ROADMAP.md#workflow-2026-11-14).
 
 ![Which branch to run](docs/figures/guide/structure_branch_decision_v2.png)
 
