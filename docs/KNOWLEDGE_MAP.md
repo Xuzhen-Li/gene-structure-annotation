@@ -19,6 +19,7 @@ TE-Lib was formerly named vitis-te. Older pages still use that name; GitHub redi
 <a id="knowledge-units"></a>
 ## Knowledge units and workflow index
 
+- [Structural gene annotation: an overview](kb/field-overview.md)
 - [Gene models and the evidence behind them](kb/gene-model-concepts.md)
 - [Soft-masking with a trusted TE library](kb/trusted-softmask.md)
 - [Is the gene set good enough? (criteria)](kb/model-qc-criteria.md)

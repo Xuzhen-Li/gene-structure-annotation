@@ -19,6 +19,7 @@ TE-Lib 原名 vitis-te。较早的页面仍用旧名，GitHub 会把旧链接转
 <a id="knowledge-units"></a>
 ## 知识单元与流程索引
 
+- [结构基因注释：概览](kb/field-overview.zh.md)
 - [基因模型及其证据](kb/gene-model-concepts.zh.md)
 - [用可信 TE 库做 soft-mask](kb/trusted-softmask.zh.md)
 - [基因集够不够好？（判据）](kb/model-qc-criteria.zh.md)

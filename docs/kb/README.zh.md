@@ -8,6 +8,7 @@
 
 | 单元 | 类型 | English |
 |---|---|---|
+| [结构基因注释：概览](field-overview.zh.md) | 概览 | [Structural gene annotation: an overview](field-overview.md) |
 | [基因模型及其证据](gene-model-concepts.zh.md) | 概念 | [Gene models and the evidence behind them](gene-model-concepts.md) |
 | [用可信 TE 库做 soft-mask](trusted-softmask.zh.md) | 概念 | [Soft-masking with a trusted TE library](trusted-softmask.md) |
 | [基因集够不够好？（判据）](model-qc-criteria.zh.md) | 判据 | [Is the gene set good enough? (criteria)](model-qc-criteria.md) |

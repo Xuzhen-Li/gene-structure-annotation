@@ -20,7 +20,7 @@
 | 示例代码与测试数据 | 阅读或运行展示每一步的小脚本 | [`pipeline/`](pipeline/00_overview.md)；[`examples/`](examples/plant_sim/README.md)；[`tests/`](tests/README.md) |
 | 图 | 查看各页用到的示意图和统计图 | [`docs/figures/guide/`](docs/figures/guide/README.md) |
 | 英文页面 | 阅读英文原版 | [`README.md`](README.md) |
-| 旧页面 | 查找作为记录保留的带日期清单、检查和勘误 | [`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md#older-pages) |
+| 旧页面 | 查找为备查而保留的早期清单、检查和勘误 | [`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md#older-pages) |
 
 `pipeline/` 里的代码是本仓库所述各步的参考代码，规模小，在玩具数据上测试过，不是维护中的软件。
 
@@ -28,10 +28,11 @@
 
 先读知识单元，再读需要那一步的书章：
 
+- [结构基因注释：概览](docs/kb/field-overview.zh.md)
 - [基因模型及其证据](docs/kb/gene-model-concepts.zh.md)
 - [用可信 TE 库做 soft-mask](docs/kb/trusted-softmask.zh.md)
 - [基因集够不够好？（判据）](docs/kb/model-qc-criteria.zh.md)
-- 编号体系及旧编号与现行编号的对照：[`docs/kb/NUMBERING.zh.md`](docs/kb/NUMBERING.zh.md)
+- 本仓库各页使用的标签（节、章、分支、等级、阶段）及早期标签与现行标签的对应：[`docs/kb/NUMBERING.zh.md`](docs/kb/NUMBERING.zh.md)
 - 全部主题、工具、步骤卡片和示例代码：[`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md)
 
 ## 书的目录
@@ -91,8 +92,8 @@ GO、KEGG 和易读名称位于相邻仓库 [`gene-function-annotation`](https:/
 下面的命令是书中各步的参考代码，在玩具数据上测试过，不是维护中的软件。步骤顺序以哪一页为准，见 [`docs/workflow/README.zh.md`](docs/workflow/README.zh.md)。
 
 中文教学入口为 [`docs/zh/`](docs/zh/)。
-如果已完成组装，请将 Asm0/Asm1 视为检查清单，并设置 `ASSEMBLY_OK=yes`。在运行任何 `mkdir` 之前，修改 `local.env` 中的每一个 `/path/to`。
-如果使用高质量的参考 GFF，请在问答中设置 `close_curated_ref: true`（参考 `examples/plant_sim/03_solanum_s11`）。默认 `false` 指向 S1；半成品的 Liftoff 保持 `false`。
+如果基因组已经组装好，请把组装和组装质控步骤（Asm0/Asm1）当作检查清单，并设置 `ASSEMBLY_OK=yes`。在运行任何 `mkdir` 之前，修改 `local.env` 中的每一个 `/path/to`。
+如果使用高质量的参考 GFF，请在问答中设置 `close_curated_ref: true`（参考 `examples/plant_sim/03_solanum_s11`）。默认值 `false` 选择 S1 分支（有 RNA 和蛋白证据、没有近缘参考）；未完成的 Liftoff 运行仍保持 `false`。
 
 第一步：提供证据文件。
 ```bash
@@ -111,7 +112,7 @@ cp config/example.env config/local.env
 ```
 
 第三步：执行分析。
-完成 `my_plan.md`。阅读 [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) 或 [`docs/zh/05_softmask与A0.md`](docs/zh/05_softmask与A0.md)。单独填写 `grade=` 和 `status=`。不要填写 `status=L1`。
+完成 `my_plan.md`。阅读 [Wiki Concepts](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Concepts) 或 [`docs/zh/05_softmask与A0.md`](docs/zh/05_softmask与A0.md)。把 `grade=` 和 `status=` 作为两个单独的字段填写：`grade` 取 L0、L1 或 L2，`status` 取 provisional 或 qualified（见 [`docs/EVALUATION.md`](docs/EVALUATION.md)）。不要填写 `status=L1`。
 仅在勾选完 [Done when](https://github.com/Xuzhen-Li/gene-structure-annotation/wiki/Start-tonight#done-when) 且 `python3 pipeline/print_qc_commands.py` 退出码为 0 并无 `[STOP]` 提示后，在集群上运行。否则不要设置 `RUN=1`。使用 `--env config/example.env` 浏览时会显示 `[STOP]`；这是正常现象。
 按照 `my_plan.md` 的阶段操作并对照 [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md)。完整规则见 [`docs/EVALUATION.md`](docs/EVALUATION.md)。
 临时结果不等于 L1。L0 与 L1 的区别请看 [`docs/EVALUATION.md`](docs/EVALUATION.md)。
@@ -133,7 +134,7 @@ L2: L1 接受标准叠加 S5 层，达到论文或 T2T 标准。
 S7: 设置 `plant_tandem_focus: true` 时叠加植物 NLR 或串联重复区域分析。
 
 完整路线图位于 [`docs/ROADMAP.md`](docs/ROADMAP.md)。
-含工具选择与判断节点的流程图（2026-11-14）：[`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14)。
+含工具选择与判断节点的流程图：[`docs/ROADMAP.md`，流程图](docs/ROADMAP.md#workflow-2026-11-14)。
 
 ![Which branch to run](docs/figures/guide/structure_branch_decision_v2.png)
 
